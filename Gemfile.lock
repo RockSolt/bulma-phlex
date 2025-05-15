@@ -7,6 +7,16 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    actionpack (8.0.2)
+      actionview (= 8.0.2)
+      activesupport (= 8.0.2)
+      nokogiri (>= 1.8.5)
+      rack (>= 2.2.4)
+      rack-session (>= 1.0.1)
+      rack-test (>= 0.6.3)
+      rails-dom-testing (~> 2.2)
+      rails-html-sanitizer (~> 1.6)
+      useragent (~> 0.16)
     actionview (8.0.2)
       activesupport (= 8.0.2)
       builder (~> 3.1)
@@ -82,6 +92,12 @@ GEM
       date
       stringio
     racc (1.8.1)
+    rack (3.1.14)
+    rack-session (2.1.1)
+      base64 (>= 0.1.0)
+      rack (>= 3.0.0)
+    rack-test (2.2.0)
+      rack (>= 1.3)
     rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
@@ -119,6 +135,7 @@ GEM
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
     uri (1.0.3)
+    useragent (0.16.11)
     zeitwerk (2.7.2)
 
 PLATFORMS
@@ -126,7 +143,9 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  actionpack
   actionview
+  activesupport
   bulma-phlex!
   irb
   minitest (~> 5.16)
