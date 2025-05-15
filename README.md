@@ -30,7 +30,7 @@ gem install bulma-phlex
 
 This gem requires:
 
-- Ruby 3.1.0 or higher
+- Ruby 3.4 or higher
 - Phlex 2.0.2 or higher
 - Bulma CSS (which you'll need to include in your application)
 
