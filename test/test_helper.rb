@@ -39,8 +39,8 @@ module TagOutputAssertions
 
     msg = message(msg) do
       "Expected HTML to include substring.\n\n" \
-      "HTML:\n#{formatted_html}\n\n" \
-      "Expected to include:\n#{formatted_substring}\n\n" \
+        "HTML:\n#{formatted_html}\n\n" \
+        "Expected to include:\n#{formatted_substring}\n\n" \
     end
 
     assert false, msg

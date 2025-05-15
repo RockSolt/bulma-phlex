@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Components
   module Bulma
     # Card component for content display
@@ -18,9 +20,8 @@ module Components
     # ```
     #
     class Card < Components::Bulma::Base
-
-      def view_template(&block)
-        div(class: "card", &block)
+      def view_template(&)
+        div(class: "card", &)
       end
 
       def head(title, classes: nil)
@@ -29,9 +30,9 @@ module Components
         end
       end
 
-      def content(&block)
+      def content(&)
         div(class: "card-content") do
-          div(class: "content", &block)
+          div(class: "content", &)
         end
       end
 

@@ -1,5 +1,34 @@
 AllCops:
-  TargetRubyVersion: 3.1
+  TargetRubyVersion: 3.4
+  NewCops: enable
+
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+Lint/MissingSuper:
+  Exclude:
+    - lib/components/bulma/*.rb
+
+Metrics/AbcSize:
+  Exclude:
+    - lib/components/bulma/pagination.rb
+    - lib/components/bulma/tabs.rb
+Metrics/BlockLength:
+  Exclude:
+    - lib/components/bulma/pagination.rb
+    - lib/components/bulma/tabs.rb
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - lib/components/bulma/pagination.rb
+Metrics/MethodLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Exclude:
+    - lib/components/bulma/pagination.rb
+
+Naming/FileName:
+  Exclude:
+    - lib/bulma-phlex.rb
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

@@ -10,15 +10,16 @@ Gem::Specification.new do |spec|
 
   spec.homepage    = "https://github.com/RockSolt/bulma-phlex"
   spec.summary     = "Build Bulma components with Phlex."
-  spec.description = "Add Bulma components including Card, Level, NavigationBar, Pagination, Table, and Tabs to your Phlex application."
+  spec.description = "Add Bulma components including Card, Level, NavigationBar, Pagination, Table, and Tabs " \
+                     "to your Phlex application."
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.1.0"
+  spec.required_ruby_version = ">= 3.4.0"
 
   spec.files = Dir["lib/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-
 
   spec.add_dependency "phlex", ">= 2.0.2"
 
   spec.add_development_dependency "actionview"
   spec.add_development_dependency "minitest-difftastic"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end

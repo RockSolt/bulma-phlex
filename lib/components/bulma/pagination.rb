@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Components
   module Bulma
     # Pagination component for navigating through multi-page content
@@ -79,8 +81,8 @@ module Components
           end
 
           div(class: "has-text-centered mt-2 is-size-7") do
-            start_item = (pager.current_page - 1) * pager.per_page + 1
-            end_item = [ start_item + pager.per_page - 1, pager.total_count ].min
+            start_item = ((pager.current_page - 1) * pager.per_page) + 1
+            end_item = [start_item + pager.per_page - 1, pager.total_count].min
 
             plain "Showing #{start_item}-#{end_item} of #{pager.total_count} items"
           end
@@ -108,8 +110,8 @@ module Components
       end
 
       def page_window
-        start_page = [ pager.current_page - 2, 1 ].max
-        end_page = [ pager.current_page + 2, pager.total_pages ].min
+        start_page = [pager.current_page - 2, 1].max
+        end_page = [pager.current_page + 2, pager.total_pages].min
         (start_page..end_page).to_a
       end
 

@@ -8,7 +8,6 @@ module Components
     # It provides common utility methods and inherits from `Phlex::HTML`.
     #
     class Base < Phlex::HTML
-
       private
 
       def icon_span(icon, additional_classes = nil)

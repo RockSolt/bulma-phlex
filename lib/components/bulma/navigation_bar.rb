@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Components
   module Bulma
     # Navigation bar component for site navigation

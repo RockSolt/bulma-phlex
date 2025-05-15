@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Components
   module Bulma
     # Tabs component for toggling between different content sections

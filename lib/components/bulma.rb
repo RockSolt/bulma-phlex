@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A collection of Bulma components built with Phlex
 #
 # This module provides a set of components that implement the [Bulma CSS framework](https://bulma.io/)
