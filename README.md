@@ -1,3 +1,7 @@
+[![Gem Version](https://badge.fury.io/rb/bulma-phlex.svg)](https://badge.fury.io/rb/bulma-phlex)
+![Tests](https://github.com/username/bulma-phlex/actions/workflows/main.yml/badge.svg?branch=main&event=push&job=test)
+![Lint](https://github.com/username/bulma-phlex/actions/workflows/main.yml/badge.svg?branch=main&event=push&job=lint)
+
 # Bulma Components Built with Phlex
 
 This gem provides a set of ready-to-use components [Phlex](https://github.com/phlex-ruby/phlex) for common [Bulma](https://bulma.io/) components and elements, making it easy to build beautiful, responsive interfaces with a clean, Ruby-focused API.
