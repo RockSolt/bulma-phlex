@@ -1,6 +1,6 @@
 [![Gem Version](https://badge.fury.io/rb/bulma-phlex.svg)](https://badge.fury.io/rb/bulma-phlex)
-![Tests](https://github.com/username/bulma-phlex/actions/workflows/main.yml/badge.svg?branch=main&event=push&job=test)
-![Lint](https://github.com/username/bulma-phlex/actions/workflows/main.yml/badge.svg?branch=main&event=push&job=lint)
+[![Tests](https://github.com/RockSolt/bulma-phlex/actions/workflows/test.yml/badge.svg)](https://github.com/RockSolt/bulma-phlex/actions/workflows/test.yml)
+[![RuboCop](https://github.com/RockSolt/bulma-phlex/actions/workflows/lint.yml/badge.svg)](https://github.com/RockSolt/bulma-phlex/actions/workflows/lint.yml)
 
 # Bulma Components Built with Phlex
 
