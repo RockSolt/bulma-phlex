@@ -2,8 +2,6 @@
 
 require "test_helper"
 
-# The `instance_eval` call is needed to get the block to execute in the context of the component. That is not necessary
-# in standard usage, but is needed in the test to simulate the component's behavior.
 module Components
   module Bulma
     class NavigationBarTest < Minitest::Test
@@ -14,7 +12,7 @@ module Components
 
         result = component.call do |navbar|
           navbar.brand do
-            navbar.instance_eval { a(href: "/", class: "navbar-item") { "Brand Name" } }
+            navbar.a(href: "/", class: "navbar-item") { "Brand Name" }
           end
         end
 
@@ -32,15 +30,14 @@ module Components
 
         result = component.call do |navbar|
           navbar.brand do
-            navbar.instance_eval { a(href: "/", class: "navbar-item") { "Brand" } }
+            navbar.a(href: "/", class: "navbar-item") { "Brand" }
           end
-
           navbar.left do
-            navbar.instance_eval { a(href: "/home", class: "navbar-item") { "Home" } }
+            navbar.a(href: "/home", class: "navbar-item") { "Home" }
           end
 
           navbar.right do
-            navbar.instance_eval { a(href: "/login", class: "navbar-item") { "Login" } }
+            navbar.a(href: "/login", class: "navbar-item") { "Login" }
           end
         end
 
