@@ -15,6 +15,9 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.4.0"
 
+  spec.metadata["rubygems_mfa_required"] = "true"
+  spec.metadata["homepage_uri"] = spec.homepage
+
   spec.files = Dir["lib/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency "phlex", ">= 2.0.2"
@@ -23,5 +26,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "actionview"
   spec.add_development_dependency "activesupport"
   spec.add_development_dependency "minitest-difftastic"
-  spec.metadata["rubygems_mfa_required"] = "true"
 end
