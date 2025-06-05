@@ -62,6 +62,35 @@ render Components::Bulma::Card.new do |card|
 end
 ```
 
+### Dropdown
+
+The [Dropdown](https://bulma.io/documentation/components/dropdown/) component provides a flexible dropdown menu for navigation or actions. It supports both click-to-toggle (default, requires a Stimulus controller) and hoverable modes, as well as alignment and icon customization.
+
+```ruby
+render Components::Bulma::Dropdown.new("Next Actions...") do |dropdown|
+  dropdown.link "View Profile", "/profile"
+  dropdown.link "Go to Settings", "/settings"
+  dropdown.divider
+  dropdown.item("This is just a text item")
+  dropdown.item do
+    div(class: "has-text-weight-bold") { "This is a bold item" }
+  end
+end
+```
+
+**Options:**
+
+- `label` (required): The dropdown button label.
+- `click`: Stimulus controller name for click-to-toggle (default: `"bulma--dropdown"`). Set to `false` for hoverable.
+- `alignment`: `:left` (default), `:right`, or `:up`.
+- `icon`: Icon class for the dropdown arrow (default: `"fas fa-angle-down"`).
+
+**Dropdown methods:**
+
+- `link(label, path)`: Adds a link item.
+- `item(content = nil, &block)`: Adds a custom item (string or block).
+- `divider`: Adds a divider line.
+
 ### Level
 
 The [Level](https://bulma.io/documentation/layout/level/) component provides a flexible horizontal layout system with left and right alignment.
