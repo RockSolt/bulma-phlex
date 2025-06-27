@@ -30,7 +30,8 @@ module Components
       Tab = Data.define(:id, :title, :icon, :active)
       Content = Data.define(:id, :block, :active)
 
-      def initialize
+      def initialize(stimulus_controller: "bulma--tabs")
+        @stimulus_controller = stimulus_controller
         @tabs = []
         @contents = []
       end
@@ -43,16 +44,16 @@ module Components
       def view_template(&)
         vanish(&)
 
-        div(data: { controller: "tabs" }) do
+        div(data: { controller: @stimulus_controller }) do
           div(class: "tabs is-boxed") do
             ul do
               @tabs.each do |tab|
                 li(
                   id: "#{tab.id}-tab",
                   data: {
-                    tabs_target: "tab",
+                    target_key => "tab",
                     tab_content: tab.id,
-                    action: "click->tabs#showTabContent"
+                    action: "click->#{@stimulus_controller}#showTabContent"
                   },
                   class: tab.active ? "is-active" : ""
                 ) do
@@ -67,12 +68,18 @@ module Components
 
           @contents.each do |content|
             div(id: content.id,
-                class: content.active ? "" : "hidden",
-                data: { tabs_target: "content" }) do
+                class: content.active ? "" : "is-hidden",
+                data: { target_key => "content" }) do
               content.block.call
             end
           end
         end
+      end
+
+      private
+
+      def target_key
+        "#{@stimulus_controller}-target"
       end
     end
   end

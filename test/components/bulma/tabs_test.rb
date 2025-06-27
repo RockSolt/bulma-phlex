@@ -21,19 +21,19 @@ module Components
         end
 
         expected_structure = <<~HTML
-          <div data-controller="tabs">
+          <div data-controller="bulma--tabs">
             <div class="tabs is-boxed">
               <ul>
-                <li id="tab1-tab" data-tabs-target="tab" data-tab-content="tab1" data-action="click->tabs#showTabContent" class="is-active">
+                <li id="tab1-tab" data-bulma--tabs-target="tab" data-tab-content="tab1" data-action="click->bulma--tabs#showTabContent" class="is-active">
                   <a><span>Tab 1</span></a>
                 </li>
-                <li id="tab2-tab" data-tabs-target="tab" data-tab-content="tab2" data-action="click->tabs#showTabContent" class="">
+                <li id="tab2-tab" data-bulma--tabs-target="tab" data-tab-content="tab2" data-action="click->bulma--tabs#showTabContent" class="">
                   <a><span>Tab 2</span></a>
                 </li>
               </ul>
             </div>
-            <div id="tab1" class="" data-tabs-target="content">Content for Tab 1</div>
-            <div id="tab2" class="hidden" data-tabs-target="content">Content for Tab 2</div>
+            <div id="tab1" class="" data-bulma--tabs-target="content">Content for Tab 1</div>
+            <div id="tab2" class="is-hidden" data-bulma--tabs-target="content">Content for Tab 2</div>
           </div>
         HTML
 
