@@ -48,6 +48,7 @@ module Components
             ul do
               @tabs.each do |tab|
                 li(
+                  id: "#{tab.id}-tab",
                   data: {
                     tabs_target: "tab",
                     tab_content: tab.id,

@@ -24,10 +24,10 @@ module Components
           <div data-controller="tabs">
             <div class="tabs is-boxed">
               <ul>
-                <li data-tabs-target="tab" data-tab-content="tab1" data-action="click->tabs#showTabContent" class="is-active">
+                <li id="tab1-tab" data-tabs-target="tab" data-tab-content="tab1" data-action="click->tabs#showTabContent" class="is-active">
                   <a><span>Tab 1</span></a>
                 </li>
-                <li data-tabs-target="tab" data-tab-content="tab2" data-action="click->tabs#showTabContent" class="">
+                <li id="tab2-tab" data-tabs-target="tab" data-tab-content="tab2" data-action="click->tabs#showTabContent" class="">
                   <a><span>Tab 2</span></a>
                 </li>
               </ul>
@@ -37,7 +37,7 @@ module Components
           </div>
         HTML
 
-        assert_dom_equal expected_structure, result
+        assert_html_equal expected_structure, result
       end
 
       def test_renders_tabs_with_icons
