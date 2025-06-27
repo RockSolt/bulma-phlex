@@ -117,12 +117,12 @@ The [NavigationBar](https://bulma.io/documentation/components/navbar/) component
 ```ruby
 render Components::Bulma::NavigationBar.new do |navbar|
   navbar.brand_item "My App", "/"
-  
+
   navbar.left do |menu|
     menu.item "Home", "/"
     menu.item "Products", "/products"
   end
-  
+
   navbar.right do |menu|
     menu.item "About", "/about"
     menu.dropdown "Account" do |dropdown|
@@ -152,6 +152,8 @@ render Components::Bulma::Pagination.new(@products, ->(page) { products_path(pag
 
 The [Table](https://bulma.io/documentation/elements/table/) component provides a way to display data in rows and columns with customizable headers and formatting options.
 
+It requires a Hotwired Stimulus controller to manage the tabs and the content. By default, the controller name is assumed to be `bulma--tabs`, but can be overridden with the constructor keyword argument `stimulus_controller`. Stimulus targets and actions are added to the component.
+
 ```ruby
 users = User.all
 
@@ -159,11 +161,11 @@ render Components::Bulma::Table.new(users) do |table|
   table.column "Name" do |user|
     user.full_name
   end
-  
+
   table.column "Email" do |user|
     user.email
   end
-  
+
   table.column "Actions" do |user|
     link_to "Edit", edit_user_path(user), class: "button is-small"
   end
@@ -179,11 +181,11 @@ render Components::Bulma::Tabs.new do |tabs|
   tabs.tab(id: "profile", title: "Profile", active: true) do
     "Profile content goes here"
   end
-  
+
   tabs.tab(id: "settings", title: "Settings", icon: "fas fa-cog") do
     "Settings content goes here"
   end
-  
+
   tabs.tab(id: "notifications", title: "Notifications", icon: "fas fa-bell") do
     "Notifications content goes here"
   end
