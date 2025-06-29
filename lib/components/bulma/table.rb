@@ -30,7 +30,7 @@ module Components
     #
     class Table < Components::Bulma::Base
       def initialize(rows, id = nil)
-        @id = id || rows.first&.model_name&.plural
+        @id = id || id_from_array_or_arel(rows)
         @rows = rows
         @columns = []
       end
@@ -68,6 +68,16 @@ module Components
       end
 
       private
+
+      def id_from_array_or_arel(rows)
+        if rows.respond_to? :model
+          rows.model.model_name.plural
+        elsif rows.empty?
+          "table"
+        else
+          rows.first.model_name.plural
+        end
+      end
 
       # this derives a th class from the column html attributes
       # perhaps a better way would be pre-defined pairs?
