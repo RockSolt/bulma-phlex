@@ -32,21 +32,45 @@ module Components
     # ```
     #
     class Tabs < Components::Bulma::Base
-      Tab = Data.define(:id, :title, :icon, :active)
-      Content = Data.define(:id, :block, :active)
+      StimulusDataAttributes = Data.define(:stimulus_controller) do
+        def for_container
+          { controller: stimulus_controller }
+        end
 
-      def initialize(id: nil, tabs_class: nil, contents_class: nil, stimulus_controller: "bulma--tabs")
+        def for_tab(id)
+          {
+            target_key => "tab",
+            tab_content: id,
+            action: "click->#{stimulus_controller}#showTabContent"
+          }
+        end
+
+        def for_content
+          { target_key => "content" }
+        end
+
+        private
+
+        def target_key
+          "#{stimulus_controller}-target"
+        end
+      end
+
+      def initialize(id: nil, tabs_class: nil, contents_class: nil,
+                     data_attributes_builder: StimulusDataAttributes.new("bulma--tabs"))
         @id = id || "tabs"
         @tabs_class = tabs_class
         @contents_class = contents_class
-        @stimulus_controller = stimulus_controller
+        @data_attributes_builder = data_attributes_builder
         @tabs = []
         @contents = []
       end
 
       def tab(id:, title:, icon: nil, active: false, &block)
-        @tabs << Tab.new(id:, title:, icon:, active:)
-        @contents << Content.new(id:, block:, active:)
+        @tabs << TabComponents::Tab.new(id:, title:, icon:, active:,
+                                        data_attributes_proc: @data_attributes_builder.method(:for_tab))
+        @contents << TabComponents::Content.new(id:, block:, active:,
+                                                data_attributes: @data_attributes_builder.for_content)
       end
 
       def right_content(&content)
@@ -56,7 +80,7 @@ module Components
       def view_template(&)
         vanish(&)
 
-        div(id: @id, data: { controller: @stimulus_controller }) do
+        div(id: @id, data: @data_attributes_builder.for_container) do
           build_tabs_with_optional_right_content
           div(id: "#{@id}-content", class: @contents_class) { build_content }
         end
@@ -76,38 +100,13 @@ module Components
       def build_tabs
         div(id: "#{@id}-tabs", class: "tabs #{@tabs_class}".strip) do
           ul do
-            @tabs.each do |tab|
-              li(
-                id: "#{tab.id}-tab",
-                data: {
-                  target_key => "tab",
-                  tab_content: tab.id,
-                  action: "click->#{@stimulus_controller}#showTabContent"
-                },
-                class: tab.active ? "is-active" : ""
-              ) do
-                a do
-                  icon_span(tab.icon, "mr-1") if tab.icon
-                  span { tab.title }
-                end
-              end
-            end
+            @tabs.each { render it }
           end
         end
       end
 
       def build_content
-        @contents.each do |content|
-          div(id: content.id,
-              class: content.active ? "" : "is-hidden",
-              data: { target_key => "content" }) do
-            content.block.call
-          end
-        end
-      end
-
-      def target_key
-        "#{@stimulus_controller}-target"
+        @contents.each { render it }
       end
     end
   end

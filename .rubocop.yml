@@ -7,7 +7,7 @@ Gemspec/DevelopmentDependencies:
 
 Lint/MissingSuper:
   Exclude:
-    - lib/components/bulma/*.rb
+    - lib/components/bulma/**/*.rb
 
 Metrics/AbcSize:
   Exclude:
