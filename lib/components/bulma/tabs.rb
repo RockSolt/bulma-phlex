@@ -35,7 +35,8 @@ module Components
       Tab = Data.define(:id, :title, :icon, :active)
       Content = Data.define(:id, :block, :active)
 
-      def initialize(tabs_class: nil, contents_class: nil, stimulus_controller: "bulma--tabs")
+      def initialize(id: nil, tabs_class: nil, contents_class: nil, stimulus_controller: "bulma--tabs")
+        @id = id || "tabs"
         @tabs_class = tabs_class
         @contents_class = contents_class
         @stimulus_controller = stimulus_controller
@@ -55,9 +56,9 @@ module Components
       def view_template(&)
         vanish(&)
 
-        div(data: { controller: @stimulus_controller }) do
+        div(id: @id, data: { controller: @stimulus_controller }) do
           build_tabs_with_optional_right_content
-          div(class: @contents_class) { build_content }
+          div(id: "#{@id}-content", class: @contents_class) { build_content }
         end
       end
 
@@ -73,7 +74,7 @@ module Components
       end
 
       def build_tabs
-        div(class: "tabs #{@tabs_class}".strip) do
+        div(id: "#{@id}-tabs", class: "tabs #{@tabs_class}".strip) do
           ul do
             @tabs.each do |tab|
               li(

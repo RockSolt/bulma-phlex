@@ -15,8 +15,8 @@ module Components
         end
 
         expected_structure = <<~HTML
-          <div data-controller="bulma--tabs">
-            <div class="tabs">
+          <div id="tabs" data-controller="bulma--tabs">
+            <div id="tabs-tabs" class="tabs">
               <ul>
                 <li id="tab1-tab" data-bulma--tabs-target="tab" data-tab-content="tab1" data-action="click->bulma--tabs#showTabContent" class="is-active">
                   <a><span>Tab 1</span></a>
@@ -27,7 +27,7 @@ module Components
               </ul>
             </div>
 
-            <div>
+            <div id="tabs-content" >
               <div id="tab1" class="" data-bulma--tabs-target="content">Content for Tab 1</div>
               <div id="tab2" class="is-hidden" data-bulma--tabs-target="content">Content for Tab 2</div>
             </div>
@@ -46,10 +46,10 @@ module Components
         end
 
         expected_structure = <<~HTML
-          <div data-controller="bulma--tabs">
+          <div id="tabs" data-controller="bulma--tabs">
             <div class="columns">
               <div class="column">
-                <div class="tabs">
+                <div id="tabs-tabs" class="tabs">
                 <ul>
                     <li id="tab1-tab" data-bulma--tabs-target="tab" data-tab-content="tab1" data-action="click->bulma--tabs#showTabContent" class="is-active">
                     <a><span>Tab 1</span></a>
@@ -63,7 +63,7 @@ module Components
               <div class="column is-narrow">ON THE RIGHT</div>
             </div>
 
-            <div>
+            <div id="tabs-content" >
               <div id="tab1" class="" data-bulma--tabs-target="content">Content for Tab 1</div>
               <div id="tab2" class="is-hidden" data-bulma--tabs-target="content">Content for Tab 2</div>
             </div>
@@ -82,7 +82,7 @@ module Components
           end
         end
 
-        assert_html_includes result, '<div class="tabs is-boxed">'
+        assert_html_includes result, '<div id="tabs-tabs" class="tabs is-boxed">'
       end
 
       def test_contents_class
@@ -94,7 +94,7 @@ module Components
           end
         end
 
-        assert_html_includes result, '<div class="ml-4">'
+        assert_html_includes result, '<div id="tabs-content" class="ml-4">'
       end
 
       def test_renders_tabs_with_icons
