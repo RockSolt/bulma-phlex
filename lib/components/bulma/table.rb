@@ -30,7 +30,7 @@ module Components
     #
     class Table < Components::Bulma::Base
       def initialize(rows, id = nil)
-        @id = id || rows.first&.model_name&.plural
+        @id = id || rows.model.model_name.plural
         @rows = rows
         @columns = []
       end
