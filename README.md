@@ -4,7 +4,7 @@
 
 # Bulma Components Built with Phlex
 
-This gem provides a set of ready-to-use components [Phlex](https://github.com/phlex-ruby/phlex) for common [Bulma](https://bulma.io/) components and elements, making it easy to build beautiful, responsive interfaces with a clean, Ruby-focused API.
+This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/phlex) components for common [Bulma](https://bulma.io/) components and elements, making it easy to build beautiful, responsive interfaces with a clean, Ruby-focused API.
 
 ## Installation
 
@@ -177,7 +177,7 @@ end
 The [Tabs](https://bulma.io/documentation/components/tabs/) component provides a way to toggle between different content sections using tabbed navigation, with support for icons and active state management.
 
 ```ruby
-render Components::Bulma::Tabs.new do |tabs|
+render Components::Bulma::Tabs.new(tabs_class: "is-boxed", contents_class: "ml-4") do |tabs|
   tabs.tab(id: "profile", title: "Profile", active: true) do
     "Profile content goes here"
   end
@@ -191,6 +191,20 @@ render Components::Bulma::Tabs.new do |tabs|
   end
 end
 ```
+
+**Constructor Keyword Arguments:**
+
+- `tabs_class`: Classes to be added to the tabs div, such as `is-boxed`, `is-medium`, `is-centered`, or `is-toggle`.
+- `contents_class`: Classes added to the div that wraps the content (no Bulma related tabs functionality here, just a hook).
+- `stimulus_controller`: Name of Stimulus controller to manage tabs.
+
+**Keyword Arguments for `tab` Method:**
+
+- `id`: The id to be assigned to the content. The tab will be assigned the same id with the suffix `-tab`.
+- `title`: The name on the tab.
+- `active`: Adds the `is-active` class to the tab and shows the related content. Non-active content is assigned the `is-hidden` class. Defaults to `false`.
+- `icon`: Specify an optional icon class.
+
 
 ## Development
 

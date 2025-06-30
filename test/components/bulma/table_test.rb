@@ -12,8 +12,8 @@ module Components
         # Add model_name support for Rails-style record identification
         def model_name
           Struct.new(:singular, :plural, :param_key).new(
-            "Test Record",
-            "Test Records",
+            "test_record",
+            "test_records",
             "test_record"
           )
         end
@@ -38,7 +38,7 @@ module Components
         result = format_html(raw_result)
 
         # Check for key elements in the rendered table
-        assert_html_includes result, "<table"
+        assert_html_includes result, '<table id="test_records"'
         assert_html_includes result, "<th>ID</th>"
         assert_html_includes result, "<th>Name</th>"
         assert_html_includes result, "<th>Email</th>"
