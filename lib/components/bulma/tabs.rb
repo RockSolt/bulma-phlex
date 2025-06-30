@@ -66,11 +66,12 @@ module Components
         @contents = []
       end
 
-      def tab(id:, title:, icon: nil, active: false, &block)
+      def tab(id:, title:, icon: nil, active: false, &)
         @tabs << TabComponents::Tab.new(id:, title:, icon:, active:,
                                         data_attributes_proc: @data_attributes_builder.method(:for_tab))
-        @contents << TabComponents::Content.new(id:, block:, active:,
-                                                data_attributes: @data_attributes_builder.for_content)
+        @contents << TabComponents::Content.new(id:, active:,
+                                                data_attributes: @data_attributes_builder.for_content,
+                                                &)
       end
 
       def right_content(&content)

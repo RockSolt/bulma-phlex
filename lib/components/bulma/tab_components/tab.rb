@@ -18,7 +18,7 @@ module Components
       # - `data_attributes_proc`: A proc that generates data attributes for the tab.
       class Tab < Components::Bulma::Base
         def initialize(id:, title:, icon:, active:,
-                       data_attributes_proc: StimulusDataAttributes.new("bulma--tabs").method(:for_tab))
+                       data_attributes_proc: Components::Bulma::Tabs::StimulusDataAttributes.new("bulma--tabs").method(:for_tab))
           @id = id
           @title = title
           @icon = icon
