@@ -16,8 +16,8 @@ module Components
 
         expected_structure = <<~HTML
           <div id="tabs" data-controller="bulma--tabs">
-            <div id="tabs-tabs" class="tabs">
-              <ul>
+            <div class="tabs">
+              <ul id="tabs-tabs">
                 <li id="tab1-tab" data-bulma--tabs-target="tab" data-tab-content="tab1" data-action="click->bulma--tabs#showTabContent" class="is-active">
                   <a><span>Tab 1</span></a>
                 </li>
@@ -49,8 +49,8 @@ module Components
           <div id="tabs" data-controller="bulma--tabs">
             <div class="columns">
               <div class="column">
-                <div id="tabs-tabs" class="tabs">
-                <ul>
+                <div class="tabs">
+                <ul id="tabs-tabs">
                     <li id="tab1-tab" data-bulma--tabs-target="tab" data-tab-content="tab1" data-action="click->bulma--tabs#showTabContent" class="is-active">
                     <a><span>Tab 1</span></a>
                     </li>
@@ -82,7 +82,7 @@ module Components
           end
         end
 
-        assert_html_includes result, '<div id="tabs-tabs" class="tabs is-boxed">'
+        assert_html_includes result, '<div class="tabs is-boxed">'
       end
 
       def test_contents_class

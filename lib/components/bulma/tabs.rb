@@ -98,8 +98,8 @@ module Components
       end
 
       def build_tabs
-        div(id: "#{@id}-tabs", class: "tabs #{@tabs_class}".strip) do
-          ul do
+        div(class: "tabs #{@tabs_class}".strip) do
+          ul(id: "#{@id}-tabs") do
             @tabs.each { render it }
           end
         end
