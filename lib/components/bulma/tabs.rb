@@ -13,6 +13,11 @@ module Components
     #
     # Use method `right_content` to add content to the right of the tabs, such as a button.
     #
+    # The tabs behavior can be managed by the data attributes provided by the `data_attributes_builder` argument. By
+    # default, this will use the `StimulusDataAttributes` class with the controller name `bulma--tabs`. That controller
+    # is not provided by this library, but you can create your own Stimulus controller to handle the tab switching
+    # logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-rails-helpers/blob/main/app/javascript/controllers/bulma/tabs_controller.js).
+    #
     # ## Example
     #
     # ```ruby
@@ -45,7 +50,7 @@ module Components
           }
         end
 
-        def for_content
+        def for_content(_id)
           { target_key => "content" }
         end
 
@@ -70,7 +75,7 @@ module Components
         @tabs << TabComponents::Tab.new(id:, title:, icon:, active:,
                                         data_attributes_proc: @data_attributes_builder.method(:for_tab))
         @contents << TabComponents::Content.new(id:, active:,
-                                                data_attributes: @data_attributes_builder.for_content,
+                                                data_attributes_proc: @data_attributes_builder.method(:for_content),
                                                 &)
       end
 
