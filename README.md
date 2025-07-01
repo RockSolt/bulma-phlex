@@ -152,8 +152,6 @@ render Components::Bulma::Pagination.new(@products, ->(page) { products_path(pag
 
 The [Table](https://bulma.io/documentation/elements/table/) component provides a way to display data in rows and columns with customizable headers and formatting options.
 
-It requires a Hotwired Stimulus controller to manage the tabs and the content. By default, the controller name is assumed to be `bulma--tabs`, but can be overridden with the constructor keyword argument `stimulus_controller`. Stimulus targets and actions are added to the component.
-
 ```ruby
 users = User.all
 
@@ -176,6 +174,8 @@ end
 
 The [Tabs](https://bulma.io/documentation/components/tabs/) component provides a way to toggle between different content sections using tabbed navigation, with support for icons and active state management.
 
+Behavior of the tabs can be driven by the data attributes, which are assigned by the object passed in as the `data_attributes_builder`. By default, this will use the `StimulusDataAttributes` class with the controller name `bulma--tabs`. The controller is not provided by this library, but you can create your own Stimulus controller to handle the tab switching logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-rails-helpers/blob/main/app/javascript/controllers/bulma/tabs_controller.js).
+
 ```ruby
 render Components::Bulma::Tabs.new(tabs_class: "is-boxed", contents_class: "ml-4") do |tabs|
   tabs.tab(id: "profile", title: "Profile", active: true) do
@@ -196,7 +196,7 @@ end
 
 - `tabs_class`: Classes to be added to the tabs div, such as `is-boxed`, `is-medium`, `is-centered`, or `is-toggle`.
 - `contents_class`: Classes added to the div that wraps the content (no Bulma related tabs functionality here, just a hook).
-- `stimulus_controller`: Name of Stimulus controller to manage tabs.
+- `data_attributes_builder`: Builder object that responds to `for_container`, `for_tab`, and `for_content` (with the latter two receiving the tab `id`). See the default `StimulusDataAttributes` for an example.
 
 **Keyword Arguments for `tab` Method:**
 

@@ -10,18 +10,19 @@ module Components
       # ## Arguments:
       # - `id`: Unique identifier for the content.
       # - `active`: Boolean indicating if the content is currently active.
-      # - `data_attributes`: A hash of data attributes to be applied to the content element.
+      # - `data_attributes_proc`: A proc that generates data attributes for the content.
       class Content < Components::Bulma::Base
-        def initialize(id:, active:, data_attributes: nil)
+        def initialize(id:, active:, data_attributes_proc: nil)
           @id = id
           @active = active
-          @data_attributes = data_attributes || Components::Bulma::Tabs::StimulusDataAttributes.new("bulma--tabs").for_content
+          @data_attributes = data_attributes_proc ||
+                             Components::Bulma::Tabs::StimulusDataAttributes.new("bulma--tabs").method(:for_content)
         end
 
         def view_template(&)
           div(id: @id,
               class: @active ? "" : "is-hidden",
-              data: @data_attributes, &)
+              data: @data_attributes.call(@id), &)
         end
       end
     end
