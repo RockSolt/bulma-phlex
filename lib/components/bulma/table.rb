@@ -13,7 +13,7 @@ module Components
     # ```ruby
     # users = User.all
     #
-    # render Components::Bulma::Table.new(users) do |table|
+    # Bulma::Table(users) do |table|
     #   table.column "Name" do |user|
     #     user.full_name
     #   end
