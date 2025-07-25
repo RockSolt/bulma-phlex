@@ -6,6 +6,22 @@
 
 This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/phlex) components for common [Bulma](https://bulma.io/) components and elements, making it easy to build beautiful, responsive interfaces with a clean, Ruby-focused API.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Card](#card)
+  - [Dropdown](#dropdown)
+  - [Level](#level)
+  - [NavigationBar](#navigationbar)
+  - [Pagination](#pagination)
+  - [Table](#table)
+  - [Tabs](#tabs)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
+- [Credits](#credits)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -219,3 +235,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/RockSo
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Credits
+
+This leverages the [Bulma CSS library](https://bulma.io/documentation/) and [Phlex](https://www.phlex.fun/) but is not endorsed or certified by either. We are fans of the both and this makes using them together easier.
