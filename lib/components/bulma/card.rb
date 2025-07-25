@@ -11,7 +11,7 @@ module Components
     # ## Example
     #
     # ```ruby
-    # render Components::Bulma::Card.new do |card|
+    # Bulma::Card() do |card|
     #   card.head("Card Title")
     #   card.content do
     #     "This is some card content"

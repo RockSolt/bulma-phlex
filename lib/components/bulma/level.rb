@@ -10,7 +10,7 @@ module Components
     # ## Example:
     #
     # ```ruby
-    # render Components::Bulma::Level.new do |level|
+    # Bulma::Level() do |level|
     #   level.left do
     #     button(class: "button") { "Left" }
     #   end

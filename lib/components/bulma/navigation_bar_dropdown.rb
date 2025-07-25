@@ -10,7 +10,7 @@ module Components
     # ## Example
     #
     # ```ruby
-    # render Components::Bulma::NavigationBar.new do |navbar|
+    # Bulma::NavigationBar() do |navbar|
     #   navbar.brand_item "My App", "/"
     #
     #   navbar.right do |menu|

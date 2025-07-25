@@ -19,7 +19,7 @@ module Components
     # @products = Product.page(params[:page]).per(20)
     #
     # # In the view:
-    # render Components::Bulma::Pagination.new(@products, ->(page) { products_path(page: page) })
+    # Bulma::Pagination(@products, ->(page) { products_path(page: page) })
     # ```
     #
     class Pagination < Components::Bulma::Base

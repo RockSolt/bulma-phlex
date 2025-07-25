@@ -11,7 +11,7 @@ module Components
     # ## Example
     #
     # ```ruby
-    # render Components::Bulma::NavigationBar.new do |navbar|
+    # Bulma::NavigationBar() do |navbar|
     #   navbar.brand do
     #     a(href: "/", class: "navbar-item") { "My App" }
     #   end
@@ -26,7 +26,7 @@ module Components
     #
     #     div(class: "navbar-item has-dropdown is-hoverable") do
     #       a(class: "navbar-link") { "Account" }
-    #       render Components::Bulma::NavigationBarDropdown do |dropdown|
+    #       Bulma::NavigationBarDropdown() do |dropdown|
     #         dropdown.item "Sign In", "/login"
     #         dropdown.item "Register", "/register"
     #       end

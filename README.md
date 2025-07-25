@@ -54,7 +54,7 @@ Use the Phlex components in your Rails views or any Ruby application that suppor
 [Cards](https://bulma.io/documentation/components/card/) are flexible containers that can display various types of content including headers and content sections.
 
 ```ruby
-render Components::Bulma::Card.new do |card|
+Bulma::Card() do |card|
   card.head("Card Title")
   card.content do
     "This is some card content"
@@ -67,7 +67,7 @@ end
 The [Dropdown](https://bulma.io/documentation/components/dropdown/) component provides a flexible dropdown menu for navigation or actions. It supports both click-to-toggle (default, requires a Stimulus controller) and hoverable modes, as well as alignment and icon customization.
 
 ```ruby
-render Components::Bulma::Dropdown.new("Next Actions...") do |dropdown|
+Bulma::Dropdown("Next Actions...") do |dropdown|
   dropdown.link "View Profile", "/profile"
   dropdown.link "Go to Settings", "/settings"
   dropdown.divider
@@ -96,7 +96,7 @@ end
 The [Level](https://bulma.io/documentation/layout/level/) component provides a flexible horizontal layout system with left and right alignment.
 
 ```ruby
-render Components::Bulma::Level.new do |level|
+Bulma::Level() do |level|
   level.left do
     button(class: "button") { "Left" }
   end
@@ -115,7 +115,7 @@ end
 The [NavigationBar](https://bulma.io/documentation/components/navbar/) component provides a responsive navigation header with support for branding, navigation links, and dropdown menus.
 
 ```ruby
-render Components::Bulma::NavigationBar.new do |navbar|
+Bulma::NavigationBar() do |navbar|
   navbar.brand_item "My App", "/"
 
   navbar.left do |menu|
@@ -145,7 +145,7 @@ The [Pagination](https://bulma.io/documentation/components/pagination/) componen
 @products = Product.page(params[:page]).per(20)
 
 # In the view:
-render Components::Bulma::Pagination.new(@products, ->(page) { products_path(page: page) })
+Bulma::Pagination(@products, ->(page) { products_path(page: page) })
 ```
 
 ### Table
@@ -155,7 +155,7 @@ The [Table](https://bulma.io/documentation/elements/table/) component provides a
 ```ruby
 users = User.all
 
-render Components::Bulma::Table.new(users) do |table|
+Bulma::Table(users) do |table|
   table.column "Name" do |user|
     user.full_name
   end
@@ -177,7 +177,7 @@ The [Tabs](https://bulma.io/documentation/components/tabs/) component provides a
 Behavior of the tabs can be driven by the data attributes, which are assigned by the object passed in as the `data_attributes_builder`. By default, this will use the `StimulusDataAttributes` class with the controller name `bulma--tabs`. The controller is not provided by this library, but you can create your own Stimulus controller to handle the tab switching logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-rails-helpers/blob/main/app/javascript/controllers/bulma/tabs_controller.js).
 
 ```ruby
-render Components::Bulma::Tabs.new(tabs_class: "is-boxed", contents_class: "ml-4") do |tabs|
+Bulma::Tabs(tabs_class: "is-boxed", contents_class: "ml-4") do |tabs|
   tabs.tab(id: "profile", title: "Profile", active: true) do
     "Profile content goes here"
   end

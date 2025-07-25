@@ -25,7 +25,7 @@ module Components
     # ## Example
     #
     # ```ruby
-    # render Components::Bulma::Dropdown.new("Next Actions...") do |dropdown|
+    # Bulma::Dropdown("Next Actions...") do |dropdown|
     #   dropdown.link "View Profile", "/profile"
     #   dropdown.link "Go to Settings", "/settings"
     #   dropdown.divider

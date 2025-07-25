@@ -21,7 +21,7 @@ module Components
     # ## Example
     #
     # ```ruby
-    # render Components::Bulma::Tabs.new do |tabs|
+    # Bulma::Tabs() do |tabs|
     #   tabs.tab(id: "profile", title: "Profile", active: true) do
     #     "Profile content goes here"
     #   end
