@@ -3,6 +3,7 @@ PATH
   specs:
     bulma-phlex (0.4.0)
       phlex (>= 2.0.2)
+      zeitwerk (~> 2.7)
 
 GEM
   remote: https://rubygems.org/
