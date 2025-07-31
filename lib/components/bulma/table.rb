@@ -29,16 +29,16 @@ module Components
     # ```
     #
     class Table < Components::Bulma::Base
-      def initialize(rows, id = nil)
-        @id = id || id_from_array_or_arel(rows)
+      def initialize(rows, id_or_options = nil, **options)
         @rows = rows
+        @id, @table_class = parse_id_and_options(id_or_options, options, rows)
         @columns = []
       end
 
       def view_template(&)
         vanish(&)
 
-        table(id: @id, class: "table is-fullwidth") do
+        table(id: @id, class: @table_class) do
           thead do
             @columns.each do |column|
               table_header(column)
@@ -69,6 +69,18 @@ module Components
 
       private
 
+      def parse_id_and_options(id_or_options, options, rows)
+        if id_or_options.is_a?(String)
+          id = id_or_options
+          opts = options
+        else
+          opts = (id_or_options || {}).merge(options)
+          id = opts.delete(:id) || id_from_array_or_arel(rows)
+        end
+        table_class = "table #{parse_table_classes(opts)}"
+        [id, table_class]
+      end
+
       def id_from_array_or_arel(rows)
         if rows.respond_to? :model
           rows.model.model_name.plural
@@ -77,6 +89,14 @@ module Components
         else
           rows.first.model_name.plural
         end
+      end
+
+      def parse_table_classes(options)
+        options.slice(*%i[bordered striped narrow hoverable fullwidth])
+               .transform_keys { |key| "is-#{key}" }
+               .select { |_, value| value }
+               .keys
+               .join(" ")
       end
 
       # this derives a th class from the column html attributes

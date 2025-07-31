@@ -186,20 +186,33 @@ The [Table](https://bulma.io/documentation/elements/table/) component provides a
 ```ruby
 users = User.all
 
-Bulma::Table(users) do |table|
+Bulma::Table(users, fullwidth: true, hoverable: true) do |table|
   table.column "Name" do |user|
     user.full_name
   end
 
-  table.column "Email" do |user|
-    user.email
-  end
+  # use the symbol-to-proc shortcut!
+  table.column "Email", &:email
 
   table.column "Actions" do |user|
     link_to "Edit", edit_user_path(user), class: "button is-small"
   end
 end
 ```
+
+**Constructor Keyword Arguments:**
+
+- `rows`: the data for the table as an enumerable (anything that responds to `each`)
+- `id`: the Id for the table element (defaults to "table")
+- `bordered`: adds the `is-bordered` class (boolean, defaults to false)
+- `striped`: adds the `is-striped` class (boolean, defaults to false)
+- `narrow`: adds the `is-narrow` class (boolean, defaults to false)
+- `hoverable`: adds the `is-hoverable` class (boolean, defaults to false)
+- `fullwidth`: adds the `is-fullwidth` class (boolean, defaults to false)
+
+**Arguments for `column` Method:**
+
+The `column` method takes the column name and any html attributes to be assigned to the table cell element. The block will be called with the row as the parameter.
 
 ### Tabs
 
