@@ -9,3 +9,5 @@ loader.tag = "bulma-phlex"
 loader.push_dir(File.dirname(__FILE__))
 loader.ignore(__FILE__)
 loader.setup
+
+require "bulma_phlex/railtie" if defined?(Rails)

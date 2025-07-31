@@ -78,6 +78,21 @@ Bulma::Card() do |card|
 end
 ```
 
+#### Rails Feature: Turbo Frame Content
+
+When the `turbo-rails` and `phlex-rails` gems are installed, the Card component also provides method `turbo_frame_content`, which allows the content to be deferred to a turbo frame. The method accepts the same parameters as [the Turbo Rails helper method `turbo_frame_tag`](https://github.com/hotwired/turbo-rails?tab=readme-ov-file#decompose-with-turbo-frames), with the addition of the following two attributes:
+
+- pending_message (default: "Loading...")
+- pending_icon (default: "fas fa-spinner fa-pulse")
+
+```ruby
+Bulma::Card() do |card|
+  card.head("Product Info")
+  card.turbo_frame_content("product", src: product_path(@product), pending_message: "Loading product...")
+end
+```
+
+
 ### Dropdown
 
 The [Dropdown](https://bulma.io/documentation/components/dropdown/) component provides a flexible dropdown menu for navigation or actions. It supports both click-to-toggle (default, requires a Stimulus controller) and hoverable modes, as well as alignment and icon customization.
