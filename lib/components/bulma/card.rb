@@ -19,6 +19,11 @@ module Components
     # end
     # ```
     #
+    # ## Rails Feature: Turbo Frame Content
+    #
+    # If the project includes Rails and the Phlex::Rails gem, the `BulmaPhlex::Rails::CardHelper` module
+    # provides a `turbo_frame_content` method to create a card with a turbo frame
+    # as its content. This allows for dynamic loading of card content.
     class Card < Components::Bulma::Base
       def view_template(&)
         div(class: "card", &)
@@ -33,24 +38,6 @@ module Components
       def content(&)
         div(class: "card-content") do
           div(class: "content", &)
-        end
-      end
-
-      if defined?(Phlex::Rails)
-        include Phlex::Rails::Helpers::TurboFrameTag
-
-        # this copies the signature of the turbo_frame_tag helper,
-        # with the addition of a pending_message attribute
-        def turbo_frame_content(*ids, src: nil, target: nil, **attributes)
-          pending_message = attributes.delete(:pending_message) || "Loading..."
-          pending_icon = attributes.delete(:pending_icon) || "fas fa-spinner fa-pulse"
-
-          content do
-            turbo_frame_tag ids, src: src, target: target, **attributes do
-              span(class: "icon") { i class: pending_icon }
-              span { plain pending_message }
-            end
-          end
         end
       end
     end

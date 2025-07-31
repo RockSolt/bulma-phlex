@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
-# Suppress method redefined warnings before requiring libraries
-original_verbose = $VERBOSE
-$VERBOSE = nil
+# Suppress only Phlex-related 'method redefined' warnings
+module Warning
+  def self.warn(msg)
+    return if msg =~ %r{gems/phlex}i
+
+    super
+  end
+end
 
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 require "bulma-phlex"
@@ -10,9 +15,6 @@ require "minitest/autorun"
 require "nokogiri"
 require "active_support/test_case"
 require "action_view/test_case"
-
-# Restore original warning level after libraries are loaded
-$VERBOSE = original_verbose
 
 module TagOutputAssertions
   include ActionView::TestCase::DomAssertions
