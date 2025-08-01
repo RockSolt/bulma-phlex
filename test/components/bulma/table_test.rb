@@ -128,5 +128,83 @@ module Components
         assert_html_includes format_html(raw_result), 'class="table is-bordered is-striped is-narrow"'
       end
     end
+
+    class TableDateColumnTest < Minitest::Test
+      include TagOutputAssertions
+
+      TestRecord = Data.define(:id, :name, :start_date)
+
+      def test_date_column_with_default_format
+        rows = [
+          TestRecord.new(id: 1, name: "Event 1", start_date: Time.new(2023, 10, 1)),
+          TestRecord.new(id: 2, name: "Event 2", start_date: Time.new(2023, 10, 2))
+        ]
+
+        component = Components::Bulma::Table.new(rows)
+
+        raw_result = component.call do |table|
+          table.date_column("Start Date", &:start_date)
+        end
+
+        result = format_html(raw_result)
+
+        assert_html_includes result, "<td>2023-10-01</td>"
+        assert_html_includes result, "<td>2023-10-02</td>"
+      end
+
+      def test_date_column_with_custom_format
+        rows = [
+          TestRecord.new(id: 1, name: "Event 1", start_date: Time.new(2023, 10, 1)),
+          TestRecord.new(id: 2, name: "Event 2", start_date: Time.new(2023, 10, 2))
+        ]
+
+        component = Components::Bulma::Table.new(rows)
+
+        raw_result = component.call do |table|
+          table.date_column("Start Date", format: "%d-%m-%Y", &:start_date)
+        end
+
+        result = format_html(raw_result)
+
+        assert_html_includes result, "<td>01-10-2023</td>"
+        assert_html_includes result, "<td>02-10-2023</td>"
+      end
+
+      def test_date_column_with_nil_value
+        rows = [
+          TestRecord.new(id: 1, name: "Event 1", start_date: nil),
+          TestRecord.new(id: 2, name: "Event 2", start_date: Time.new(2023, 10, 2))
+        ]
+
+        component = Components::Bulma::Table.new(rows)
+
+        raw_result = component.call do |table|
+          table.date_column("Start Date", &:start_date)
+        end
+
+        result = format_html(raw_result)
+
+        assert_html_includes result, "<td></td>" # Expect empty cell for nil date
+        assert_html_includes result, "<td>2023-10-02</td>"
+      end
+
+      def test_date_column_with_html_attributes
+        rows = [
+          TestRecord.new(id: 1, name: "Event 1", start_date: Time.new(2023, 10, 1)),
+          TestRecord.new(id: 2, name: "Event 2", start_date: Time.new(2023, 10, 2))
+        ]
+
+        component = Components::Bulma::Table.new(rows)
+
+        raw_result = component.call do |table|
+          table.date_column("Start Date", data: { custom: "go-bears" }, &:start_date)
+        end
+
+        result = format_html(raw_result)
+
+        assert_html_includes result, '<td data-custom="go-bears">2023-10-01</td>'
+        assert_html_includes result, '<td data-custom="go-bears">2023-10-02</td>'
+      end
+    end
   end
 end

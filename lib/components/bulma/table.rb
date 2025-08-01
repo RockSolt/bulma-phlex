@@ -63,6 +63,12 @@ module Components
         @columns << { header:, html_attributes:, content: }
       end
 
+      def date_column(header, format: "%Y-%m-%d", **html_attributes, &content)
+        column(header, **html_attributes) do |row|
+          content.call(row)&.strftime(format)
+        end
+      end
+
       def paginate(&path_builder)
         @path_builder = path_builder
       end
@@ -89,6 +95,8 @@ module Components
         else
           rows.first.model_name.plural
         end
+      rescue StandardError
+        "table"
       end
 
       def parse_table_classes(options)
