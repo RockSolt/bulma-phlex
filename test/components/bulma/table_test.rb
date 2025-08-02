@@ -206,5 +206,53 @@ module Components
         assert_html_includes result, '<td data-custom="go-bears">2023-10-02</td>'
       end
     end
+
+    class TableConditionalIconTest < Minitest::Test
+      include TagOutputAssertions
+
+      TestRecord = Data.define(:id, :name, :active)
+
+      def test_header
+        rows = [TestRecord.new(id: 1, name: "Item 1", active: true)]
+        component = Components::Bulma::Table.new(rows)
+
+        raw_result = component.call do |table|
+          table.conditional_icon("Active", icon_class: "fas fa-check", &:active)
+        end
+        result = format_html(raw_result)
+
+        assert_html_includes result, '<th class="has-text-centered">Active</th>'
+      end
+
+      def test_conditional_icon_column_with_true
+        row = [TestRecord.new(id: 1, name: "Item 1", active: true)]
+        component = Components::Bulma::Table.new(row)
+
+        raw_result = component.call do |table|
+          table.conditional_icon("Active", icon_class: "fas fa-check", &:active)
+        end
+        result = format_html(raw_result)
+
+        assert_html_includes result, <<~HTML
+          <td class="has-text-centered">
+            <span class="icon">
+              <i class="fas fa-check"></i>
+            </span>
+          </td>
+        HTML
+      end
+
+      def test_conditional_icon_column_with_false
+        row = [TestRecord.new(id: 2, name: "Item 2", active: false)]
+        component = Components::Bulma::Table.new(row)
+
+        raw_result = component.call do |table|
+          table.conditional_icon("Active", icon_class: "fas fa-check", &:active)
+        end
+        result = format_html(raw_result)
+
+        assert_html_includes result, '<td class="has-text-centered"></td>'
+      end
+    end
   end
 end

@@ -69,6 +69,14 @@ module Components
         end
       end
 
+      def conditional_icon(header, icon_class: "fas fa-check", **html_attributes, &content)
+        html_attributes[:class] = [html_attributes[:class], "has-text-centered"].compact.join(" ")
+
+        column(header, **html_attributes) do |row|
+          icon_span(icon_class) if content.call(row)
+        end
+      end
+
       def paginate(&path_builder)
         @path_builder = path_builder
       end
