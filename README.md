@@ -221,10 +221,11 @@ Instead of calling `column`, you can also invoke the following methods to add am
 **Arguments for `amount_column` (Rails only):**
 
 - name: content for the `th` element
-- `format` (keyword): the formatting options (will be passed to [Rails helper number_to_currency](https://api.rubyonrails.org/classes/ActiveSupport/NumberHelper.html#method-i-number_to_currency), uses Rails default)
+- `currency` (keyword): options that will be passed to [Rails helper number_to_currency](https://api.rubyonrails.org/classes/ActiveSupport/NumberHelper.html#method-i-number_to_currency, uses Rails defaults)
 
 ```ruby
   table.amount_column("Payment Amount") { |row| row.payment_amount }
+  table.amount_column("Total", currency: { unit: "€" }, class: "is-bold", &:total)
 ```
 
 **Arguments for `date_column`:**
