@@ -39,6 +39,8 @@ module TagOutputAssertions
     formatted_html = format_html(html)
     formatted_substring = format_html(substring)
 
+    return assert(true) if squash_html_whitespace(formatted_html).include?(squash_html_whitespace(formatted_substring))
+
     msg = message(msg) do
       "Expected HTML to include substring.\n\n" \
         "HTML:\n#{formatted_html}\n\n" \
@@ -55,5 +57,10 @@ module TagOutputAssertions
   rescue StandardError => e
     puts "Error formatting HTML: #{e.message}"
     html
+  end
+
+  def squash_html_whitespace(str)
+    # Replace whitespace between tags as well as leading/trailing whitespace
+    str.gsub(/>\s+</, "><").strip
   end
 end

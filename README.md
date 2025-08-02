@@ -186,20 +186,90 @@ The [Table](https://bulma.io/documentation/elements/table/) component provides a
 ```ruby
 users = User.all
 
-Bulma::Table(users) do |table|
+Bulma::Table(users, fullwidth: true, hoverable: true) do |table|
   table.column "Name" do |user|
     user.full_name
   end
 
-  table.column "Email" do |user|
-    user.email
-  end
+  # use the symbol-to-proc shortcut!
+  table.column "Email", &:email
 
   table.column "Actions" do |user|
     link_to "Edit", edit_user_path(user), class: "button is-small"
   end
 end
 ```
+
+**Constructor Keyword Arguments:**
+
+- `rows`: the data for the table as an enumerable (anything that responds to `each`)
+- `id`: the Id for the table element (defaults to "table")
+- `bordered`: adds the `is-bordered` class (boolean, defaults to false)
+- `striped`: adds the `is-striped` class (boolean, defaults to false)
+- `narrow`: adds the `is-narrow` class (boolean, defaults to false)
+- `hoverable`: adds the `is-hoverable` class (boolean, defaults to false)
+- `fullwidth`: adds the `is-fullwidth` class (boolean, defaults to false)
+
+**Arguments for `column` Method:**
+
+The `column` method takes the column name and any html attributes to be assigned to the table cell element. The block will be called with the row as the parameter.
+
+#### Additional Column Types
+
+Instead of calling `column`, you can also invoke the following methods to add amount, date, and icon columns:
+
+**Arguments for `amount_column` (Rails only):**
+
+- name: content for the `th` element
+- `currency` (keyword): options that will be passed to [Rails helper number_to_currency](https://api.rubyonrails.org/classes/ActiveSupport/NumberHelper.html#method-i-number_to_currency, uses Rails defaults)
+
+```ruby
+  table.amount_column("Payment Amount") { |row| row.payment_amount }
+  table.amount_column("Total", currency: { unit: "€" }, class: "is-bold", &:total)
+```
+
+**Arguments for `date_column`:**
+
+- name: content for the `th` element
+- `format` (keyword): the formatting options (will be passed to `strftime`, defaults to "%Y-%m-%d")
+
+```ruby
+  table.date_column("Due Date", format: "%B %d, %Y") { |row| row.due_date }
+```
+
+**Arguments for `conditional_icon`:**
+
+The icon column is intended to show a boolean flag: a yes / no or an on / off. When the value is true the icon shows and when the value is false it does not.
+
+- name: content for the `th` element
+- `icon_class` (keyword): the icon to show (defaults to the Font Awesome check mark: "fas fa-check")
+ 
+```ruby
+  table.conditional_icon("Completed?", &:complete)
+  table.conditional_icon("Approved?", icon_class: "fas fa-thumbs-up") { |row| row.status == "Approved" }
+```
+
+#### Pagination
+
+If the table should be paginated, invoke method `paginate` with a block that will return a path given a page number.
+
+```ruby
+  table.paginate do |page_number|
+    products_path(page: { number: page_number })
+  end
+```
+
+In order to support pagination, the `rows` argument passed into the constructor must repond with integers to the following:
+
+- current_page
+- total_pages
+- per_page
+- total_count
+- previous_page (can be nil)
+- next_page (can be nil)
+
+This generates the [Bulma pagination](https://bulma.io/documentation/components/pagination/) component, providing navigation controls for paginated content.
+
 
 ### Tabs
 
