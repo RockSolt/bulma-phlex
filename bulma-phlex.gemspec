@@ -21,7 +21,6 @@ Gem::Specification.new do |spec|
   spec.files = Dir["lib/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency "phlex", ">= 2.0.2"
-  spec.add_dependency "zeitwerk", "~> 2.7"
 
   spec.add_development_dependency "actionpack"
   spec.add_development_dependency "actionview"

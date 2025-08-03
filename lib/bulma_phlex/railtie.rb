@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "bulma_phlex/rails/card_helper"
+require "bulma_phlex/rails/table_helper"
+
 module BulmaPhlex
   # # Railtie for BulmaPhlex
   #
