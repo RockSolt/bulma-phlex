@@ -75,8 +75,17 @@ Bulma::Card() do |card|
   card.content do
     "This is some card content"
   end
+  card.footer_link("View", "/view", target: "_blank")
+  card.footer_link("Edit", "/edit", class: "has-text-primary")
 end
 ```
+
+**Arguments for `footer_link`:**
+
+- text: the link text
+- href: passed to the anchor's `href` attribute
+- Any additional HTML attributes can be passed as keyword arguments.
+
 
 #### Rails Feature: Turbo Frame Content
 
@@ -243,7 +252,7 @@ The icon column is intended to show a boolean flag: a yes / no or an on / off. W
 
 - name: content for the `th` element
 - `icon_class` (keyword): the icon to show (defaults to the Font Awesome check mark: "fas fa-check")
- 
+
 ```ruby
   table.conditional_icon("Completed?", &:complete)
   table.conditional_icon("Approved?", icon_class: "fas fa-thumbs-up") { |row| row.status == "Approved" }

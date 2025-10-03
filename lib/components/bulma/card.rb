@@ -16,6 +16,8 @@ module Components
     #   card.content do
     #     "This is some card content"
     #   end
+    #   card.footer_link("View", "/view", target: "_blank")
+    #   card.footer_link("Edit", "/edit", class: "has-text-primary")
     # end
     # ```
     #
@@ -26,18 +28,54 @@ module Components
     # as its content. This allows for dynamic loading of card content.
     class Card < Components::Bulma::Base
       def view_template(&)
-        div(class: "card", &)
-      end
+        vanish(&)
 
-      def head(title, classes: nil)
-        header(class: "card-header #{classes}") do
-          p(class: "card-header-title") { plain title }
+        div(class: "card") do
+          card_header
+          card_content
+          card_footer
         end
       end
 
-      def content(&)
+      def head(title, classes: nil)
+        @header_title = title
+        @header_classes = classes
+      end
+
+      def content(&block)
+        @card_content = block
+      end
+
+      def footer_link(text, href, **html_attributes)
+        (@footer_items ||= []) << [text, href, html_attributes]
+      end
+
+      private
+
+      def card_header
+        return if @header_title.nil?
+
+        header(class: "card-header #{@header_classes}") do
+          p(class: "card-header-title") { plain @header_title }
+        end
+      end
+
+      def card_content
+        return if @card_content.nil?
+
         div(class: "card-content") do
-          div(class: "content", &)
+          div(class: "content") { @card_content.call }
+        end
+      end
+
+      def card_footer
+        return if @footer_items.nil? || @footer_items.empty?
+
+        footer(class: "card-footer") do
+          @footer_items.each do |text, href, html_attributes|
+            html_attributes[:class] = [html_attributes[:class], "card-footer-item"].compact.join(" ")
+            a(href:, **html_attributes) { text }
+          end
         end
       end
     end
