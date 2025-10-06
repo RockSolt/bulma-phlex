@@ -5,7 +5,7 @@ PATH
       phlex (>= 2.0.2)
 
 GEM
-  remote: https://rubygems.org/
+  remote: https://gem.coop/
   specs:
     actionpack (8.0.2)
       actionview (= 8.0.2)
