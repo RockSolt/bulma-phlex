@@ -155,7 +155,7 @@ end
 The [NavigationBar](https://bulma.io/documentation/components/navbar/) component provides a responsive navigation header with support for branding, navigation links, and dropdown menus.
 
 ```ruby
-Bulma::NavigationBar() do |navbar|
+Bulma::NavigationBar(classes: "is-primary") do |navbar|
   navbar.brand_item "My App", "/"
 
   navbar.left do |menu|
@@ -175,6 +175,10 @@ Bulma::NavigationBar() do |navbar|
   end
 end
 ```
+
+**Constructor Keyword Arguments:**
+
+- `classes`: Additional classes to be added to the `nav` element, such as "is-primary" or "has-shadow".
 
 ### Pagination
 

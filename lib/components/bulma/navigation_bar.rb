@@ -36,7 +36,8 @@ module Components
     # ```
     #
     class NavigationBar < Components::Bulma::Base
-      def initialize
+      def initialize(classes: "")
+        @classes = classes
         @brand = []
         @left = []
         @right = []
@@ -45,7 +46,7 @@ module Components
       def view_template(&)
         vanish(&)
 
-        nav(class: "navbar is-light block",
+        nav(class: "navbar #{@classes}".rstrip,
             role: "navigation",
             aria_label: "main navigation",
             data: { controller: "bulma--navigation-bar" }) do

@@ -26,7 +26,7 @@ module Components
       end
 
       def test_renders_with_left_and_right_menus
-        component = Components::Bulma::NavigationBar.new
+        component = Components::Bulma::NavigationBar.new(classes: "is-light block")
 
         result = component.call do |navbar|
           navbar.brand do
