@@ -179,6 +179,10 @@ end
 **Constructor Keyword Arguments:**
 
 - `classes`: Additional classes to be added to the `nav` element, such as "is-primary" or "has-shadow".
+- `container`: When true, wraps the content in a Bulma container. To set a constraint, such as "is-max-desktop", pass that string instead of true. (defaults to false)
+
+> [!NOTE]  
+> Adding a container will limit the width of the Navigation Bar content according to Bulma's container rules. The background color of the navbar will still span the full width of the viewport.
 
 ### Pagination
 
