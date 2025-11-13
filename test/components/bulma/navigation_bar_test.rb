@@ -43,6 +43,40 @@ module Components
 
         expected_structure = <<~HTML
           <nav class="navbar is-light block" role="navigation" aria-label="main navigation" data-controller="bulma--navigation-bar">
+            <div class="navbar-brand">
+              <a href="/" class="navbar-item">Brand</a>
+              <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false" data-action="bulma--navigation-bar#toggle" data-bulma--navigation-bar-target="burger">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div class="navbar-menu" data-bulma--navigation-bar-target="menu">
+              <div class="navbar-start">
+                <a href="/home" class="navbar-item">Home</a>
+              </div>
+              <div class="navbar-end">
+                <a href="/login" class="navbar-item">Login</a>
+              </div>
+            </div>
+          </nav>
+        HTML
+
+        assert_dom_equal expected_structure, result
+      end
+
+      def test_renders_with_container
+        component = Components::Bulma::NavigationBar.new(container: true)
+
+        result = component.call do |navbar|
+          navbar.brand do
+            navbar.a(href: "/", class: "navbar-item") { "Brand" }
+          end
+        end
+
+        expected_structure = <<~HTML
+          <nav class="navbar" role="navigation" aria-label="main navigation" data-controller="bulma--navigation-bar">
             <div class="container">
               <div class="navbar-brand">
                 <a href="/" class="navbar-item">Brand</a>
@@ -55,10 +89,8 @@ module Components
               </div>
               <div class="navbar-menu" data-bulma--navigation-bar-target="menu">
                 <div class="navbar-start">
-                  <a href="/home" class="navbar-item">Home</a>
                 </div>
                 <div class="navbar-end">
-                  <a href="/login" class="navbar-item">Login</a>
                 </div>
               </div>
             </div>
@@ -66,6 +98,18 @@ module Components
         HTML
 
         assert_dom_equal expected_structure, result
+      end
+
+      def test_renders_container_with_constraint
+        component = Components::Bulma::NavigationBar.new(container: "is-max-desktop")
+
+        result = component.call do |navbar|
+          navbar.brand do
+            navbar.a(href: "/", class: "navbar-item") { "Brand" }
+          end
+        end
+
+        assert_html_includes format_html(result), '<div class="container is-max-desktop">'
       end
     end
   end

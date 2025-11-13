@@ -36,7 +36,8 @@ module Components
     # ```
     #
     class NavigationBar < Components::Bulma::Base
-      def initialize(classes: "")
+      def initialize(container: false, classes: "")
+        @container = container
         @classes = classes
         @brand = []
         @left = []
@@ -50,7 +51,7 @@ module Components
             role: "navigation",
             aria_label: "main navigation",
             data: { controller: "bulma--navigation-bar" }) do
-          div(class: "container") do
+          optional_container do
             div(class: "navbar-brand") do
               @brand.each(&:call)
 
@@ -90,6 +91,17 @@ module Components
 
       def right(&block)
         @right << block
+      end
+
+      private
+
+      def optional_container(&)
+        if @container
+          constraint = @container if @container.is_a?(String) || @container.is_a?(Symbol)
+          div(class: "container #{constraint}".rstrip, &)
+        else
+          yield
+        end
       end
     end
   end
