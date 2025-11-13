@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bulma-phlex (0.6.0)
+    bulma-phlex (0.7.0)
       phlex (>= 2.0.2)
 
 GEM
