@@ -35,7 +35,7 @@ module BulmaPhlex
   # end
   # ```
   #
-  class Dropdown < Components::Bulma::Base
+  class Dropdown < BulmaPhlex::Base
     def initialize(label, click: "bulma--dropdown", alignment: "left", icon: "fas fa-angle-down")
       @label = label
       @click = click

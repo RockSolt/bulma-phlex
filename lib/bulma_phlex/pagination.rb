@@ -21,7 +21,7 @@ module BulmaPhlex
   # Bulma::Pagination(@products, ->(page) { products_path(page: page) })
   # ```
   #
-  class Pagination < Components::Bulma::Base
+  class Pagination < BulmaPhlex::Base
     attr_reader :pager, :path_builder
 
     # Initializes the pagination component

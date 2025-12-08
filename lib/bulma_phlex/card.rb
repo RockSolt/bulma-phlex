@@ -25,7 +25,7 @@ module BulmaPhlex
   # If the project includes Rails and the Phlex::Rails gem, the `BulmaPhlex::Rails::CardHelper` module
   # provides a `turbo_frame_content` method to create a card with a turbo frame
   # as its content. This allows for dynamic loading of card content.
-  class Card < Components::Bulma::Base
+  class Card < BulmaPhlex::Base
     def view_template(&)
       vanish(&)
 

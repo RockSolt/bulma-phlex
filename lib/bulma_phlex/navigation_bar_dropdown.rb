@@ -24,7 +24,7 @@ module BulmaPhlex
   # end
   # ```
   #
-  class NavigationBarDropdown < Components::Bulma::Base
+  class NavigationBarDropdown < BulmaPhlex::Base
     def view_template(&)
       div(class: "navbar-dropdown is-right", &)
     end

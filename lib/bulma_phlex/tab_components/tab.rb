@@ -15,9 +15,9 @@ module BulmaPhlex
     # - `icon`: Optional icon to display on the tab.
     # - `active`: Boolean indicating if the tab is currently active.
     # - `data_attributes_proc`: A proc that generates data attributes for the tab.
-    class Tab < Components::Bulma::Base
+    class Tab < BulmaPhlex::Base
       def initialize(id:, title:, icon:, active:,
-                     data_attributes_proc: Components::Bulma::Tabs::StimulusDataAttributes.new("bulma--tabs").method(:for_tab))
+                     data_attributes_proc: BulmaPhlex::Tabs::StimulusDataAttributes.new("bulma--tabs").method(:for_tab))
         @id = id
         @title = title
         @icon = icon

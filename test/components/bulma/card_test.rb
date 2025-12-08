@@ -8,7 +8,7 @@ module Components
       include TagOutputAssertions
 
       def test_renders_basic_card
-        component = Components::Bulma::Card.new
+        component = BulmaPhlex::Card.new
 
         result = component.call do |card|
           card.head("Card Title")
@@ -36,7 +36,7 @@ module Components
       end
 
       def test_head_with_custom_classes
-        component = Components::Bulma::Card.new
+        component = BulmaPhlex::Card.new
 
         result = component.call do |card|
           card.head("Custom Header", classes: "is-primary")
@@ -54,7 +54,7 @@ module Components
       end
 
       def test_footer_with_links
-        component = Components::Bulma::Card.new
+        component = BulmaPhlex::Card.new
 
         result = component.call do |card|
           card.footer_link("Footer Link", "/footer-link", data: { test: "value" })
@@ -77,7 +77,7 @@ module Components
         # Skip this test if Phlex::Rails is not available
         skip unless defined?(Phlex::Rails)
 
-        component = Components::Bulma::Card.new
+        component = BulmaPhlex::Card.new
 
         result = component.call do |card|
           card.turbo_frame_content("my-frame", src: "/some-path")
@@ -103,7 +103,7 @@ module Components
         # Skip this test if Phlex::Rails is not available
         skip unless defined?(Phlex::Rails)
 
-        component = Components::Bulma::Card.new
+        component = BulmaPhlex::Card.new
 
         result = component.call do |card|
           card.turbo_frame_content("my-frame", pending_message: "Please wait...")

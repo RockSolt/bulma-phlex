@@ -8,7 +8,7 @@ module Components
       include TagOutputAssertions
 
       def test_renders_tabs_with_content
-        component = Components::Bulma::Tabs.new
+        component = BulmaPhlex::Tabs.new
 
         result = component.call do |tabs|
           assign_two_tabs(tabs)
@@ -38,7 +38,7 @@ module Components
       end
 
       def test_renders_tabs_with_flex_right
-        component = Components::Bulma::Tabs.new
+        component = BulmaPhlex::Tabs.new
 
         result = component.call do |tabs|
           assign_two_tabs(tabs)
@@ -74,7 +74,7 @@ module Components
       end
 
       def test_tabs_class
-        component = Components::Bulma::Tabs.new(tabs_class: "is-boxed")
+        component = BulmaPhlex::Tabs.new(tabs_class: "is-boxed")
 
         result = component.call do |tabs|
           tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
@@ -86,7 +86,7 @@ module Components
       end
 
       def test_contents_class
-        component = Components::Bulma::Tabs.new(contents_class: "ml-4")
+        component = BulmaPhlex::Tabs.new(contents_class: "ml-4")
 
         result = component.call do |tabs|
           tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
@@ -98,7 +98,7 @@ module Components
       end
 
       def test_renders_tabs_with_icons
-        component = Components::Bulma::Tabs.new
+        component = BulmaPhlex::Tabs.new
 
         result = component.call do |tabs|
           tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
