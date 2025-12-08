@@ -2,63 +2,61 @@
 
 require "test_helper"
 
-module Components
-  module Bulma
-    class LevelTest < Minitest::Test
-      include TagOutputAssertions
+module BulmaPhlex
+  class LevelTest < Minitest::Test
+    include TagOutputAssertions
 
-      def test_renders_level_with_left_and_right
-        component = BulmaPhlex::Level.new
+    def test_renders_level_with_left_and_right
+      component = BulmaPhlex::Level.new
 
-        result = component.call do |level|
-          level.left do
-            "Left Content"
-          end
-
-          level.right do
-            "Right Content"
-          end
+      result = component.call do |level|
+        level.left do
+          "Left Content"
         end
 
-        expected_html = <<~HTML
-          <div class="level">
-            <div class="level-left">
-              <div class="level-item">Left Content</div>
-            </div>
-            <div class="level-right">
-              <div class="level-item">Right Content</div>
-            </div>
-          </div>
-        HTML
-
-        assert_html_equal expected_html, result
+        level.right do
+          "Right Content"
+        end
       end
 
-      def test_multiple_items_on_same_side
-        component = BulmaPhlex::Level.new
+      expected_html = <<~HTML
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">Left Content</div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">Right Content</div>
+          </div>
+        </div>
+      HTML
 
-        result = component.call do |level|
-          level.left do
-            "Left Item 1"
-          end
+      assert_html_equal expected_html, result
+    end
 
-          level.left do
-            "Left Item 2"
-          end
+    def test_multiple_items_on_same_side
+      component = BulmaPhlex::Level.new
+
+      result = component.call do |level|
+        level.left do
+          "Left Item 1"
         end
 
-        expected_html = <<~HTML
-          <div class="level">
-            <div class="level-left">
-              <div class="level-item">Left Item 1</div>
-              <div class="level-item">Left Item 2</div>
-            </div>
-            <div class="level-right"></div>
-          </div>
-        HTML
-
-        assert_html_equal expected_html, result
+        level.left do
+          "Left Item 2"
+        end
       end
+
+      expected_html = <<~HTML
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">Left Item 1</div>
+            <div class="level-item">Left Item 2</div>
+          </div>
+          <div class="level-right"></div>
+        </div>
+      HTML
+
+      assert_html_equal expected_html, result
     end
   end
 end
