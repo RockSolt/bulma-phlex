@@ -7,24 +7,24 @@ Gemspec/DevelopmentDependencies:
 
 Lint/MissingSuper:
   Exclude:
-    - lib/components/bulma/**/*.rb
+    - lib/bulma_phlex/**/*.rb
 
 Metrics/AbcSize:
   Exclude:
-    - lib/components/bulma/pagination.rb
-    - lib/components/bulma/tabs.rb
+    - lib/bulma_phlex/pagination.rb
+    - lib/bulma_phlex/tabs.rb
 Metrics/BlockLength:
   Exclude:
-    - lib/components/bulma/pagination.rb
-    - lib/components/bulma/tabs.rb
+    - lib/bulma_phlex/pagination.rb
+    - lib/bulma_phlex/tabs.rb
 Metrics/CyclomaticComplexity:
   Exclude:
-    - lib/components/bulma/pagination.rb
+    - lib/bulma_phlex/pagination.rb
 Metrics/MethodLength:
   Enabled: false
 Metrics/PerceivedComplexity:
   Exclude:
-    - lib/components/bulma/pagination.rb
+    - lib/bulma_phlex/pagination.rb
 
 Naming/FileName:
   Exclude:
