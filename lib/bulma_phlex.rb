@@ -4,6 +4,7 @@ require "phlex"
 require "zeitwerk"
 
 loader = Zeitwerk::Loader.for_gem
+loader.ignore("#{__dir__}/bulma-phlex.rb")
 loader.setup # ready!
 
 # A collection of Bulma components built with Phlex
