@@ -34,7 +34,7 @@ module BulmaPhlex
   # end
   # ```
   #
-  class NavigationBar < Components::Bulma::Base
+  class NavigationBar < BulmaPhlex::Base
     def initialize(container: false, classes: "")
       @container = container
       @classes = classes

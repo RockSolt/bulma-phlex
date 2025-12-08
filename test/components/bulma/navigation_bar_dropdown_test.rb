@@ -8,7 +8,7 @@ module Components
       include TagOutputAssertions
 
       def test_renders_navigation_bar_dropdown
-        component = Components::Bulma::NavigationBarDropdown.new
+        component = BulmaPhlex::NavigationBarDropdown.new
 
         result = component.call do |dropdown|
           dropdown.header("User")
@@ -30,7 +30,7 @@ module Components
       end
 
       def test_renders_dropdown_with_multiple_items
-        component = Components::Bulma::NavigationBarDropdown.new
+        component = BulmaPhlex::NavigationBarDropdown.new
 
         result = component.call do |dropdown|
           dropdown.item("Item 1", "/item1")
@@ -44,7 +44,7 @@ module Components
       end
 
       def test_renders_with_header_and_divider
-        component = Components::Bulma::NavigationBarDropdown.new
+        component = BulmaPhlex::NavigationBarDropdown.new
 
         result = component.call do |dropdown|
           dropdown.header("Section 1")

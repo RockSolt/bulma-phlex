@@ -8,7 +8,7 @@ module Components
       include TagOutputAssertions
 
       def test_renders_level_with_left_and_right
-        component = Components::Bulma::Level.new
+        component = BulmaPhlex::Level.new
 
         result = component.call do |level|
           level.left do
@@ -35,7 +35,7 @@ module Components
       end
 
       def test_multiple_items_on_same_side
-        component = Components::Bulma::Level.new
+        component = BulmaPhlex::Level.new
 
         result = component.call do |level|
           level.left do

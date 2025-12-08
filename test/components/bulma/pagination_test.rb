@@ -30,7 +30,7 @@ module Components
       def test_pagination_with_multiple_pages
         pager = MockPager.new(5, 10, 20, 200)
         path_builder = ->(page) { "/posts?page=#{page}" }
-        component = Components::Bulma::Pagination.new(pager, path_builder)
+        component = BulmaPhlex::Pagination.new(pager, path_builder)
 
         result = component.call
 
@@ -46,7 +46,7 @@ module Components
       def test_pagination_on_first_page
         pager = MockPager.new(1, 5, 10, 45)
         path_builder = ->(page) { "/posts?page=#{page}" }
-        component = Components::Bulma::Pagination.new(pager, path_builder)
+        component = BulmaPhlex::Pagination.new(pager, path_builder)
 
         result = component.call
 
@@ -58,7 +58,7 @@ module Components
       def test_pagination_on_last_page
         pager = MockPager.new(5, 5, 10, 45)
         path_builder = ->(page) { "/posts?page=#{page}" }
-        component = Components::Bulma::Pagination.new(pager, path_builder)
+        component = BulmaPhlex::Pagination.new(pager, path_builder)
 
         result = component.call
 
@@ -70,7 +70,7 @@ module Components
       def test_no_pagination_for_single_page
         pager = MockPager.new(1, 1, 10, 5)
         path_builder = ->(page) { "/posts?page=#{page}" }
-        component = Components::Bulma::Pagination.new(pager, path_builder)
+        component = BulmaPhlex::Pagination.new(pager, path_builder)
 
         result = component.call
 

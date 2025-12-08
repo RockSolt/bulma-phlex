@@ -23,7 +23,7 @@ module BulmaPhlex
   # end
   # ```
   #
-  class Level < Components::Bulma::Base
+  class Level < BulmaPhlex::Base
     def initialize
       @items = []
       @left = []

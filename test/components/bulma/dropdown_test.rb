@@ -8,7 +8,7 @@ module Components
       include TagOutputAssertions
 
       def test_renders_basic_dropdown
-        component = Components::Bulma::Dropdown.new("Menu")
+        component = BulmaPhlex::Dropdown.new("Menu")
 
         result = component.call
 
@@ -30,7 +30,7 @@ module Components
       end
 
       def test_renders_dropdown_with_links_and_items
-        component = Components::Bulma::Dropdown.new("Menu")
+        component = BulmaPhlex::Dropdown.new("Menu")
 
         result = component.call do |dropdown|
           dropdown.link "Profile", "/profile"
@@ -60,7 +60,7 @@ module Components
       end
 
       def test_renders_dropdown_with_block_item
-        component = Components::Bulma::Dropdown.new("Menu")
+        component = BulmaPhlex::Dropdown.new("Menu")
 
         result = component.call do |dropdown|
           dropdown.item do |context|
@@ -73,7 +73,7 @@ module Components
       end
 
       def test_hoverable_dropdown
-        component = Components::Bulma::Dropdown.new("Menu", click: false)
+        component = BulmaPhlex::Dropdown.new("Menu", click: false)
 
         result = component.call
 
@@ -81,7 +81,7 @@ module Components
       end
 
       def test_alignment_right
-        component = Components::Bulma::Dropdown.new("Menu", alignment: :right)
+        component = BulmaPhlex::Dropdown.new("Menu", alignment: :right)
 
         result = component.call
 
@@ -89,7 +89,7 @@ module Components
       end
 
       def test_alignment_up
-        component = Components::Bulma::Dropdown.new("Menu", alignment: :up)
+        component = BulmaPhlex::Dropdown.new("Menu", alignment: :up)
 
         result = component.call
 
@@ -97,7 +97,7 @@ module Components
       end
 
       def test_custom_icon
-        component = Components::Bulma::Dropdown.new("Menu", icon: "fas fa-caret-down")
+        component = BulmaPhlex::Dropdown.new("Menu", icon: "fas fa-caret-down")
 
         result = component.call
 
@@ -105,7 +105,7 @@ module Components
       end
 
       def test_dropdown_link_escapes_label
-        component = Components::Bulma::Dropdown.new("Menu")
+        component = BulmaPhlex::Dropdown.new("Menu")
 
         result = component.call do |dropdown|
           dropdown.link "<b>Unsafe</b>", "/unsafe"
@@ -116,7 +116,7 @@ module Components
       end
 
       def test_dropdown_with_custom_label_and_icon
-        component = Components::Bulma::Dropdown.new("Actions", icon: "fas fa-ellipsis-v")
+        component = BulmaPhlex::Dropdown.new("Actions", icon: "fas fa-ellipsis-v")
 
         result = component.call
 
@@ -125,7 +125,7 @@ module Components
       end
 
       def test_dropdown_with_string_alignment
-        component = Components::Bulma::Dropdown.new("Menu", alignment: "right")
+        component = BulmaPhlex::Dropdown.new("Menu", alignment: "right")
 
         result = component.call
 

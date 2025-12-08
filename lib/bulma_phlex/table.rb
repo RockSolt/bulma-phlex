@@ -27,7 +27,7 @@ module BulmaPhlex
   # end
   # ```
   #
-  class Table < Components::Bulma::Base
+  class Table < BulmaPhlex::Base
     def initialize(rows, id_or_options = nil, **options)
       @rows = rows
       @id, @table_class = parse_id_and_options(id_or_options, options, rows)

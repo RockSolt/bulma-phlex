@@ -19,7 +19,7 @@ module BulmaPhlex
   #   card.footer_link("Edit", "/edit", class: "has-text-primary")
   # end
   # ```
-  class Card < Components::Bulma::Base
+  class Card < BulmaPhlex::Base
     def view_template(&)
       vanish(&)
 

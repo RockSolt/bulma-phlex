@@ -8,7 +8,7 @@ module Components
       include TagOutputAssertions
 
       def test_renders_navigation_bar_with_brand
-        component = Components::Bulma::NavigationBar.new
+        component = BulmaPhlex::NavigationBar.new
 
         result = component.call do |navbar|
           navbar.brand do
@@ -26,7 +26,7 @@ module Components
       end
 
       def test_renders_with_left_and_right_menus
-        component = Components::Bulma::NavigationBar.new(classes: "is-light block")
+        component = BulmaPhlex::NavigationBar.new(classes: "is-light block")
 
         result = component.call do |navbar|
           navbar.brand do
@@ -67,7 +67,7 @@ module Components
       end
 
       def test_renders_with_container
-        component = Components::Bulma::NavigationBar.new(container: true)
+        component = BulmaPhlex::NavigationBar.new(container: true)
 
         result = component.call do |navbar|
           navbar.brand do
@@ -101,7 +101,7 @@ module Components
       end
 
       def test_renders_container_with_constraint
-        component = Components::Bulma::NavigationBar.new(container: "is-max-desktop")
+        component = BulmaPhlex::NavigationBar.new(container: "is-max-desktop")
 
         result = component.call do |navbar|
           navbar.brand do

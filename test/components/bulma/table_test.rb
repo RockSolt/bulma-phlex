@@ -26,7 +26,7 @@ module Components
           TestRecord.new(id: 2, name: "Jane Smith", email: "jane@example.com")
         ]
 
-        component = Components::Bulma::Table.new(rows)
+        component = BulmaPhlex::Table.new(rows)
 
         raw_result = component.call do |table|
           table.column("ID", &:id)
@@ -48,7 +48,7 @@ module Components
       end
 
       def test_renders_empty_table
-        component = Components::Bulma::Table.new([])
+        component = BulmaPhlex::Table.new([])
 
         raw_result = component.call do |table|
           table.column("Name", &:name)
@@ -67,7 +67,7 @@ module Components
 
       def test_renders_with_string_id
         rows = [TestRecord.new(id: nil, name: "Test", email: nil)]
-        component = Components::Bulma::Table.new(rows, "custom-table-id")
+        component = BulmaPhlex::Table.new(rows, "custom-table-id")
 
         raw_result = component.call do |table|
           table.column("Name", &:name)
@@ -78,7 +78,7 @@ module Components
 
       def test_renders_with_id_option
         rows = [TestRecord.new(id: nil, name: "Test", email: nil)]
-        component = Components::Bulma::Table.new(rows, id: "custom-table-id")
+        component = BulmaPhlex::Table.new(rows, id: "custom-table-id")
         raw_result = component.call { |table| table.column("Name", &:name) }
 
         assert_html_includes format_html(raw_result), 'id="custom-table-id"'
@@ -86,35 +86,35 @@ module Components
 
       def test_bordered_table
         rows = [TestRecord.new(id: nil, name: "Test", email: nil)]
-        component = Components::Bulma::Table.new(rows, bordered: true)
+        component = BulmaPhlex::Table.new(rows, bordered: true)
         raw_result = component.call { |table| table.column("Name", &:name) }
 
         assert_html_includes format_html(raw_result), 'class="table is-bordered"'
       end
 
       def test_striped_table
-        component = Components::Bulma::Table.new([], striped: true)
+        component = BulmaPhlex::Table.new([], striped: true)
         raw_result = component.call { |table| table.column("Name", &:name) }
 
         assert_html_includes format_html(raw_result), 'class="table is-striped"'
       end
 
       def test_narrow_table
-        component = Components::Bulma::Table.new([], narrow: true)
+        component = BulmaPhlex::Table.new([], narrow: true)
         raw_result = component.call { |table| table.column("Name", &:name) }
 
         assert_html_includes format_html(raw_result), 'class="table is-narrow"'
       end
 
       def test_hoverable_table
-        component = Components::Bulma::Table.new([], hoverable: true)
+        component = BulmaPhlex::Table.new([], hoverable: true)
         raw_result = component.call { |table| table.column("Name", &:name) }
 
         assert_html_includes format_html(raw_result), 'class="table is-hoverable"'
       end
 
       def test_fullwidth_table
-        component = Components::Bulma::Table.new([], fullwidth: true)
+        component = BulmaPhlex::Table.new([], fullwidth: true)
         raw_result = component.call { |table| table.column("Name", &:name) }
 
         assert_html_includes format_html(raw_result), 'class="table is-fullwidth"'
@@ -122,7 +122,7 @@ module Components
 
       def test_combined_classes
         rows = [TestRecord.new(id: nil, name: "Test", email: nil)]
-        component = Components::Bulma::Table.new(rows, bordered: true, striped: true, narrow: true)
+        component = BulmaPhlex::Table.new(rows, bordered: true, striped: true, narrow: true)
         raw_result = component.call { |table| table.column("Name", &:name) }
 
         assert_html_includes format_html(raw_result), 'class="table is-bordered is-striped is-narrow"'
@@ -140,7 +140,7 @@ module Components
           TestRecord.new(id: 2, name: "Event 2", start_date: Time.new(2023, 10, 2))
         ]
 
-        component = Components::Bulma::Table.new(rows)
+        component = BulmaPhlex::Table.new(rows)
 
         raw_result = component.call do |table|
           table.date_column("Start Date", &:start_date)
@@ -158,7 +158,7 @@ module Components
           TestRecord.new(id: 2, name: "Event 2", start_date: Time.new(2023, 10, 2))
         ]
 
-        component = Components::Bulma::Table.new(rows)
+        component = BulmaPhlex::Table.new(rows)
 
         raw_result = component.call do |table|
           table.date_column("Start Date", format: "%d-%m-%Y", &:start_date)
@@ -176,7 +176,7 @@ module Components
           TestRecord.new(id: 2, name: "Event 2", start_date: Time.new(2023, 10, 2))
         ]
 
-        component = Components::Bulma::Table.new(rows)
+        component = BulmaPhlex::Table.new(rows)
 
         raw_result = component.call do |table|
           table.date_column("Start Date", &:start_date)
@@ -194,7 +194,7 @@ module Components
           TestRecord.new(id: 2, name: "Event 2", start_date: Time.new(2023, 10, 2))
         ]
 
-        component = Components::Bulma::Table.new(rows)
+        component = BulmaPhlex::Table.new(rows)
 
         raw_result = component.call do |table|
           table.date_column("Start Date", data: { custom: "go-bears" }, &:start_date)
@@ -214,7 +214,7 @@ module Components
 
       def test_header
         rows = [TestRecord.new(id: 1, name: "Item 1", active: true)]
-        component = Components::Bulma::Table.new(rows)
+        component = BulmaPhlex::Table.new(rows)
 
         raw_result = component.call do |table|
           table.conditional_icon("Active", icon_class: "fas fa-check", &:active)
@@ -226,7 +226,7 @@ module Components
 
       def test_conditional_icon_column_with_true
         row = [TestRecord.new(id: 1, name: "Item 1", active: true)]
-        component = Components::Bulma::Table.new(row)
+        component = BulmaPhlex::Table.new(row)
 
         raw_result = component.call do |table|
           table.conditional_icon("Active", icon_class: "fas fa-check", &:active)
@@ -244,7 +244,7 @@ module Components
 
       def test_conditional_icon_column_with_false
         row = [TestRecord.new(id: 2, name: "Item 2", active: false)]
-        component = Components::Bulma::Table.new(row)
+        component = BulmaPhlex::Table.new(row)
 
         raw_result = component.call do |table|
           table.conditional_icon("Active", icon_class: "fas fa-check", &:active)

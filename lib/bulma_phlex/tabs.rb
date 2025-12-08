@@ -35,7 +35,7 @@ module BulmaPhlex
   # end
   # ```
   #
-  class Tabs < Components::Bulma::Base
+  class Tabs < BulmaPhlex::Base
     StimulusDataAttributes = Data.define(:stimulus_controller) do
       def for_container
         { controller: stimulus_controller }
