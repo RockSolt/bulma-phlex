@@ -15,5 +15,3 @@ require "components/bulma/table"
 require "components/bulma/tabs"
 require "components/bulma/tab_components/content"
 require "components/bulma/tab_components/tab"
-
-require "bulma_phlex/railtie" if defined?(Rails::Railtie)

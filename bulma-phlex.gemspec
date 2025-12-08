@@ -23,7 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "phlex", ">= 2.0.2"
 
   spec.add_development_dependency "actionpack"
-  spec.add_development_dependency "actionview"
-  spec.add_development_dependency "activesupport"
   spec.add_development_dependency "minitest-difftastic"
 end
