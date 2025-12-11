@@ -22,9 +22,7 @@ module TagOutputAssertions
   def assert_html_equal(expected, actual, message = nil)
     # First try the normal DOM comparison
     assert_dom_equal(expected, actual, message)
-  rescue Minitest::Assertion => e
-    puts "Caught Minitest::Assertion: #{e.class} - #{e.message}"
-
+  rescue Minitest::Assertion
     # If the DOM comparison fails, format the HTML for better readability
     expected_formatted = format_html(expected)
     actual_formatted = format_html(actual)
