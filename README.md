@@ -6,6 +6,10 @@
 
 This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/phlex) components for common [Bulma](https://bulma.io/) components and elements, making it easy to build beautiful, responsive interfaces with a clean, Ruby-focused API.
 
+
+> [!IMPORTANT]
+> There are breaking changes in main, specifically around namespaces. Please refer to the latest released branch for [documentation of the current gem](https://github.com/RockSolt/bulma-phlex/tree/v0.7.0?tab=readme-ov-file#bulma-components-built-with-phlex).
+
 ## Table of Contents
 
 - [Installation](#installation)
