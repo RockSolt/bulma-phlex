@@ -21,6 +21,7 @@ This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/ph
   - [Pagination](#pagination)
   - [Table](#table)
   - [Tabs](#tabs)
+  - [Title and Subtitle](#title-and-subtitle)
 - [Development](#development)
 - [Contributing](#contributing)
 - [License](#license)
@@ -302,6 +303,23 @@ end
 - `active`: Adds the `is-active` class to the tab and shows the related content. Non-active content is assigned the `is-hidden` class. Defaults to `false`.
 - `icon`: Specify an optional icon class.
 
+### Title and Subtitle
+
+The [Title](https://bulma.io/documentation/elements/title/) component provide a way to display headings and subheadings with customizable sizes and styles.
+
+```ruby
+BulmaPhex::Title("Hello World")
+
+BulmaPhex::Title("Dr. Strangelove", size: 2, subtitle: "Or: How I Learned to Stop Worrying and Love the Bomb")
+```
+
+**Constructor Arguments:**
+
+- `text`: (positional, required) The main title text to display.
+- `size`: (optional) An integer from 1 to 6 indicating the size of the title. Corresponds to Bulma's `is-<size>` classes.
+- `subtitle`: (optional) The subtitle text to display below the main title.
+- `subtitle_size`: (optional) An integer from 1 to 6 indicating the size of the subtitle. If not provided and a title size is given, it defaults to `size + 2`.
+- `spaced`: (optional) A boolean indicating whether to add the `is-spaced` class to the title.
 
 ## Development
 
