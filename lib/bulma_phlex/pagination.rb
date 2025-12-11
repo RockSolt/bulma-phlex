@@ -18,7 +18,7 @@ module BulmaPhlex
   # @products = Product.page(params[:page]).per(20)
   #
   # # In the view:
-  # Bulma::Pagination(@products, ->(page) { products_path(page: page) })
+  # BulmaPhex::Pagination(@products, ->(page) { products_path(page: page) })
   # ```
   #
   class Pagination < BulmaPhlex::Base

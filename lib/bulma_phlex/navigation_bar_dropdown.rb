@@ -9,7 +9,7 @@ module BulmaPhlex
   # ## Example
   #
   # ```ruby
-  # Bulma::NavigationBar() do |navbar|
+  # BulmaPhex::NavigationBar() do |navbar|
   #   navbar.brand_item "My App", "/"
   #
   #   navbar.right do |menu|
