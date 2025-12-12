@@ -12,9 +12,9 @@ module BulmaPhlex
       result = component.call
 
       expected_html = <<~HTML
-        <div class="dropdown" data-controller="bulma--dropdown">
+        <div class="dropdown" data-controller="bulma-phlex--dropdown">
           <div class="dropdown-trigger">
-            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" data-action="bulma--dropdown#toggle">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" data-action="bulma-phlex--dropdown#toggle">
               <span>Menu</span>
               <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
             </button>
@@ -38,9 +38,9 @@ module BulmaPhlex
       end
 
       expected_html = <<~HTML
-        <div class="dropdown" data-controller="bulma--dropdown">
+        <div class="dropdown" data-controller="bulma-phlex--dropdown">
           <div class="dropdown-trigger">
-            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" data-action="bulma--dropdown#toggle">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" data-action="bulma-phlex--dropdown#toggle">
               <span>Menu</span>
               <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
             </button>

@@ -111,7 +111,7 @@ end
 **Options:**
 
 - `label` (required): The dropdown button label.
-- `click`: Stimulus controller name for click-to-toggle (default: `"bulma--dropdown"`). Set to `false` for hoverable.
+- `click`: Stimulus controller name for click-to-toggle (default: `"bulma-phlex--dropdown"`). Set to `false` for hoverable.
 - `alignment`: `:left` (default), `:right`, or `:up`.
 - `icon`: Icon class for the dropdown arrow (default: `"fas fa-angle-down"`).
 
@@ -272,7 +272,7 @@ This generates the [Bulma pagination](https://bulma.io/documentation/components/
 
 The [Tabs](https://bulma.io/documentation/components/tabs/) component provides a way to toggle between different content sections using tabbed navigation, with support for icons and active state management.
 
-Behavior of the tabs can be driven by the data attributes, which are assigned by the object passed in as the `data_attributes_builder`. By default, this will use the `StimulusDataAttributes` class with the controller name `bulma--tabs`. The controller is not provided by this library, but you can create your own Stimulus controller to handle the tab switching logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-rails-helpers/blob/main/app/javascript/controllers/bulma/tabs_controller.js).
+Behavior of the tabs can be driven by the data attributes, which are assigned by the object passed in as the `data_attributes_builder`. By default, this will use the `StimulusDataAttributes` class with the controller name `bulma-phlex--tabs`. The controller is not provided by this library, but you can create your own Stimulus controller to handle the tab switching logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-rails-helpers/blob/main/app/javascript/controllers/bulma/tabs_controller.js).
 
 ```ruby
 BulmaPhex::Tabs(tabs_class: "is-boxed", contents_class: "ml-4") do |tabs|

@@ -7,8 +7,8 @@ module BulmaPhlex
   #
   # ## [Hoverable or Toggable](https://bulma.io/documentation/components/dropdown/#hoverable-or-toggable)
   #
-  # By default the dropdown is in Click Mode and assumes a Stimulus controller named `bulma--dropdown` is present to
-  # handle the click events. The controller name can be customized using the `click` option.
+  # By default the dropdown is in Click Mode and assumes a Stimulus controller named `bulma-phlex--dropdown` is present
+  # to handle the click events. The controller name can be customized using the `click` option.
   #
   # Set click to `false` to make the dropdown hoverable instead of togglable.
   #
@@ -36,7 +36,7 @@ module BulmaPhlex
   # ```
   #
   class Dropdown < BulmaPhlex::Base
-    def initialize(label, click: "bulma--dropdown", alignment: "left", icon: "fas fa-angle-down")
+    def initialize(label, click: "bulma-phlex--dropdown", alignment: "left", icon: "fas fa-angle-down")
       @label = label
       @click = click
       @alignment = alignment
