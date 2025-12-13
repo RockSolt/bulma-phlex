@@ -17,7 +17,7 @@ module BulmaPhlex
     # - `data_attributes_proc`: A proc that generates data attributes for the tab.
     class Tab < BulmaPhlex::Base
       def initialize(id:, title:, icon:, active:,
-                     data_attributes_proc: BulmaPhlex::Tabs::StimulusDataAttributes.new("bulma--tabs").method(:for_tab))
+                     data_attributes_proc: BulmaPhlex::Tabs::StimulusDataAttributes.new("bulma-phlex--tabs").method(:for_tab))
         @id = id
         @title = title
         @icon = icon

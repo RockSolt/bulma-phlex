@@ -41,17 +41,17 @@ module BulmaPhlex
       end
 
       expected_structure = <<~HTML
-        <nav class="navbar is-light block" role="navigation" aria-label="main navigation" data-controller="bulma--navigation-bar">
+        <nav class="navbar is-light block" role="navigation" aria-label="main navigation" data-controller="bulma-phlex--navigation-bar">
           <div class="navbar-brand">
             <a href="/" class="navbar-item">Brand</a>
-            <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false" data-action="bulma--navigation-bar#toggle" data-bulma--navigation-bar-target="burger">
+            <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false" data-action="bulma-phlex--navigation-bar#toggle" data-bulma-phlex--navigation-bar-target="burger">
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
             </a>
           </div>
-          <div class="navbar-menu" data-bulma--navigation-bar-target="menu">
+          <div class="navbar-menu" data-bulma-phlex--navigation-bar-target="menu">
             <div class="navbar-start">
               <a href="/home" class="navbar-item">Home</a>
             </div>
@@ -75,18 +75,18 @@ module BulmaPhlex
       end
 
       expected_structure = <<~HTML
-        <nav class="navbar" role="navigation" aria-label="main navigation" data-controller="bulma--navigation-bar">
+        <nav class="navbar" role="navigation" aria-label="main navigation" data-controller="bulma-phlex--navigation-bar">
           <div class="container">
             <div class="navbar-brand">
               <a href="/" class="navbar-item">Brand</a>
-              <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false" data-action="bulma--navigation-bar#toggle" data-bulma--navigation-bar-target="burger">
+              <a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false" data-action="bulma-phlex--navigation-bar#toggle" data-bulma-phlex--navigation-bar-target="burger">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
               </a>
             </div>
-            <div class="navbar-menu" data-bulma--navigation-bar-target="menu">
+            <div class="navbar-menu" data-bulma-phlex--navigation-bar-target="menu">
               <div class="navbar-start">
               </div>
               <div class="navbar-end">

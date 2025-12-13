@@ -13,9 +13,9 @@ module BulmaPhlex
   # Use method `right_content` to add content to the right of the tabs, such as a button.
   #
   # The tabs behavior can be managed by the data attributes provided by the `data_attributes_builder` argument. By
-  # default, this will use the `StimulusDataAttributes` class with the controller name `bulma--tabs`. That controller
-  # is not provided by this library, but you can create your own Stimulus controller to handle the tab switching
-  # logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-rails-helpers/blob/main/app/javascript/controllers/bulma/tabs_controller.js).
+  # default, this will use the `StimulusDataAttributes` class with the controller name `bulma-phlex--tabs`. That
+  # controlleris not provided by this library, but you can create your own Stimulus controller to handle the tab
+  #  switching logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-rails-helpers/blob/main/app/javascript/controllers/bulma/tabs_controller.js).
   #
   # ## Example
   #
@@ -61,7 +61,7 @@ module BulmaPhlex
     end
 
     def initialize(id: nil, tabs_class: nil, contents_class: nil,
-                   data_attributes_builder: StimulusDataAttributes.new("bulma--tabs"))
+                   data_attributes_builder: StimulusDataAttributes.new("bulma-phlex--tabs"))
       @id = id || "tabs"
       @tabs_class = tabs_class
       @contents_class = contents_class

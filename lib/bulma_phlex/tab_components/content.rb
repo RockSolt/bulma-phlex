@@ -15,7 +15,7 @@ module BulmaPhlex
         @id = id
         @active = active
         @data_attributes = data_attributes_proc ||
-                           BulmaPhlex::Tabs::StimulusDataAttributes.new("bulma--tabs").method(:for_content)
+                           BulmaPhlex::Tabs::StimulusDataAttributes.new("bulma-phlex--tabs").method(:for_content)
       end
 
       def view_template(&)

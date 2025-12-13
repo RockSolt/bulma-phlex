@@ -49,7 +49,7 @@ module BulmaPhlex
       nav(class: "navbar #{@classes}".rstrip,
           role: "navigation",
           aria_label: "main navigation",
-          data: { controller: "bulma--navigation-bar" }) do
+          data: { controller: "bulma-phlex--navigation-bar" }) do
         optional_container do
           div(class: "navbar-brand") do
             @brand.each(&:call)
@@ -59,15 +59,15 @@ module BulmaPhlex
               aria_label: "menu",
               aria_expanded: "false",
               data: {
-                action: "bulma--navigation-bar#toggle",
-                "bulma--navigation-bar-target": "burger"
+                action: "bulma-phlex--navigation-bar#toggle",
+                "bulma-phlex--navigation-bar-target": "burger"
               }) do
               4.times { span(aria_hidden: "true") }
             end
           end
 
           div(class: "navbar-menu",
-              data: { "bulma--navigation-bar-target": "menu" }) do
+              data: { "bulma-phlex--navigation-bar-target": "menu" }) do
             div(class: "navbar-start") do
               @left.each(&:call)
             end

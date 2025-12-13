@@ -14,21 +14,21 @@ module BulmaPhlex
       end
 
       expected_structure = <<~HTML
-        <div id="tabs" data-controller="bulma--tabs">
+        <div id="tabs" data-controller="bulma-phlex--tabs">
           <div class="tabs">
             <ul id="tabs-tabs">
-              <li id="tab1-tab" data-bulma--tabs-target="tab" data-tab-content="tab1" data-action="click->bulma--tabs#showTabContent" class="is-active">
+              <li id="tab1-tab" data-bulma-phlex--tabs-target="tab" data-tab-content="tab1" data-action="click->bulma-phlex--tabs#showTabContent" class="is-active">
                 <a><span>Tab 1</span></a>
               </li>
-              <li id="tab2-tab" data-bulma--tabs-target="tab" data-tab-content="tab2" data-action="click->bulma--tabs#showTabContent" class="">
+              <li id="tab2-tab" data-bulma-phlex--tabs-target="tab" data-tab-content="tab2" data-action="click->bulma-phlex--tabs#showTabContent" class="">
                 <a><span>Tab 2</span></a>
               </li>
             </ul>
           </div>
 
           <div id="tabs-content" >
-            <div id="tab1" class="" data-bulma--tabs-target="content">Content for Tab 1</div>
-            <div id="tab2" class="is-hidden" data-bulma--tabs-target="content">Content for Tab 2</div>
+            <div id="tab1" class="" data-bulma-phlex--tabs-target="content">Content for Tab 1</div>
+            <div id="tab2" class="is-hidden" data-bulma-phlex--tabs-target="content">Content for Tab 2</div>
           </div>
         </div>
       HTML
@@ -45,15 +45,15 @@ module BulmaPhlex
       end
 
       expected_structure = <<~HTML
-        <div id="tabs" data-controller="bulma--tabs">
+        <div id="tabs" data-controller="bulma-phlex--tabs">
           <div class="columns">
             <div class="column">
               <div class="tabs">
               <ul id="tabs-tabs">
-                  <li id="tab1-tab" data-bulma--tabs-target="tab" data-tab-content="tab1" data-action="click->bulma--tabs#showTabContent" class="is-active">
+                  <li id="tab1-tab" data-bulma-phlex--tabs-target="tab" data-tab-content="tab1" data-action="click->bulma-phlex--tabs#showTabContent" class="is-active">
                   <a><span>Tab 1</span></a>
                   </li>
-                  <li id="tab2-tab" data-bulma--tabs-target="tab" data-tab-content="tab2" data-action="click->bulma--tabs#showTabContent" class="">
+                  <li id="tab2-tab" data-bulma-phlex--tabs-target="tab" data-tab-content="tab2" data-action="click->bulma-phlex--tabs#showTabContent" class="">
                   <a><span>Tab 2</span></a>
                   </li>
               </ul>
@@ -63,8 +63,8 @@ module BulmaPhlex
           </div>
 
           <div id="tabs-content" >
-            <div id="tab1" class="" data-bulma--tabs-target="content">Content for Tab 1</div>
-            <div id="tab2" class="is-hidden" data-bulma--tabs-target="content">Content for Tab 2</div>
+            <div id="tab1" class="" data-bulma-phlex--tabs-target="content">Content for Tab 1</div>
+            <div id="tab2" class="is-hidden" data-bulma-phlex--tabs-target="content">Content for Tab 2</div>
           </div>
         </div>
       HTML
