@@ -66,9 +66,23 @@ module BulmaPhlex
 
       footer(class: "card-footer") do
         @footer_items.each do |text, href, html_attributes|
+          icon = html_attributes.delete(:icon)
           html_attributes[:class] = [html_attributes[:class], "card-footer-item"].compact.join(" ")
-          a(href:, **html_attributes) { text }
+          a(href:, **html_attributes) do
+            if icon.present?
+              icon_text(icon, text)
+            else
+              plain text
+            end
+          end
         end
+      end
+    end
+
+    def icon_text(icon, text)
+      span(class: "icon-text") do
+        span(class: "icon") { i(class: icon) }
+        span { text }
       end
     end
   end

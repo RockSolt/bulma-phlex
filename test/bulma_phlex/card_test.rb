@@ -71,5 +71,30 @@ module BulmaPhlex
 
       assert_html_equal expected_html, result
     end
+
+    def test_footer_with_icons
+      component = BulmaPhlex::Card.new
+
+      result = component.call do |card|
+        card.footer_link("Profile", "/profile", icon: "fas fa-user")
+      end
+
+      expected_html = <<~HTML
+        <div class="card">
+          <footer class="card-footer">
+            <a href="/profile" class="card-footer-item">
+              <span class="icon-text">
+                <span class='icon'>
+                  <i class='fas fa-user'></i>
+                </span>
+                <span>Profile</span>
+              </span>
+            </a>
+          </footer>
+        </div>
+      HTML
+
+      assert_html_equal expected_html, result
+    end
   end
 end
