@@ -309,6 +309,26 @@ end
 - `active`: Adds the `is-active` class to the tab and shows the related content. Non-active content is assigned the `is-hidden` class. Defaults to `false`.
 - `icon`: Specify an optional icon class.
 
+### Tag
+
+The [Tag](https://bulma.io/documentation/elements/tag/) component provides a way to display small, colored labels or tags with customizable styles. The component generates either a `span`, `a`, or `button` element based on the provided options and HTML attributes.
+
+If the HTML attributes include an `href`, an anchor (`a`) element is generated; if not and either the `delete` option is true or there is a `data-action` attribute, a `button` element is generated; otherwise, a `span` element is used.
+
+```ruby
+BulmaPhex::Tag("New", color: "primary", rounded: true)
+BulmaPhex::Tag("Sale", light: "danger")
+```
+
+**Constructor Arguments:**
+- `text`: (positional, required) The tag text to display.
+- `color`: (optional) The [Bulma color class](https://bulma.io/documentation/elements/tag/#colors) to apply.
+- `light`: (optional) Use instead of `color` to apply a light color variant.
+- `rounded`: (optional) A boolean indicating whether the tag should have rounded corners.
+- `size`: (optional) The [Bulma tag size](https://bulma.io/documentation/elements/tag/#sizes): normal, medium, or large.
+- `delete`: (optional) A boolean indicating whether to include a delete button on the tag.
+
+
 ### Title and Subtitle
 
 The [Title](https://bulma.io/documentation/elements/title/) component provide a way to display headings and subheadings with customizable sizes and styles.
