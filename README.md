@@ -91,6 +91,12 @@ end
 - href: passed to the anchor's `href` attribute
 - Any additional HTML attributes can be passed as keyword arguments.
 
+Icons can be added to the links by passing an `icon` keyword argument with the icon class:
+
+```ruby
+  card.footer_link("View", "/view", icon: "fas fa-eye")
+```
+
 
 ### Dropdown
 
