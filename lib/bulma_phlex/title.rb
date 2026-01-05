@@ -20,8 +20,8 @@ module BulmaPhlex
   # ## Example
   #
   # ```ruby
-  # BulmaPhex::Title("Hello World")
-  # BulmaPhex::Title("Dr. Strangelove", size: 2, subtitle: "Or: How I Learned to Stop Worrying and
+  # BulmaPhlex::Title("Hello World")
+  # BulmaPhlex::Title("Dr. Strangelove", size: 2, subtitle: "Or: How I Learned to Stop Worrying and
   #   Love the Bomb")
   # ```
   class Title < BulmaPhlex::Base

@@ -75,7 +75,7 @@ Use the Phlex components in your Rails views or any Ruby application that suppor
 [Cards](https://bulma.io/documentation/components/card/) are flexible containers that can display various types of content including headers and content sections.
 
 ```ruby
-BulmaPhex::Card() do |card|
+BulmaPhlex::Card() do |card|
   card.head("Card Title")
   card.content do
     "This is some card content"
@@ -103,7 +103,7 @@ Icons can be added to the links by passing an `icon` keyword argument with the i
 The [Dropdown](https://bulma.io/documentation/components/dropdown/) component provides a flexible dropdown menu for navigation or actions. It supports both click-to-toggle (default, requires a Stimulus controller) and hoverable modes, as well as alignment and icon customization.
 
 ```ruby
-BulmaPhex::Dropdown("Next Actions...") do |dropdown|
+BulmaPhlex::Dropdown("Next Actions...") do |dropdown|
   dropdown.link "View Profile", "/profile"
   dropdown.link "Go to Settings", "/settings"
   dropdown.divider
@@ -132,7 +132,7 @@ end
 The [Level](https://bulma.io/documentation/layout/level/) component provides a flexible horizontal layout system with left and right alignment.
 
 ```ruby
-BulmaPhex::Level() do |level|
+BulmaPhlex::Level() do |level|
   level.left do
     button(class: "button") { "Left" }
   end
@@ -151,7 +151,7 @@ end
 The [NavigationBar](https://bulma.io/documentation/components/navbar/) component provides a responsive navigation header with support for branding, navigation links, and dropdown menus.
 
 ```ruby
-BulmaPhex::NavigationBar(classes: "is-primary") do |navbar|
+BulmaPhlex::NavigationBar(classes: "is-primary") do |navbar|
   navbar.brand_item "My App", "/"
 
   navbar.left do |menu|
@@ -189,7 +189,7 @@ The [Pagination](https://bulma.io/documentation/components/pagination/) componen
 @products = Product.page(params[:page]).per(20)
 
 # In the view:
-BulmaPhex::Pagination(@products, ->(page) { products_path(page: page) })
+BulmaPhlex::Pagination(@products, ->(page) { products_path(page: page) })
 ```
 
 ### Table
@@ -199,7 +199,7 @@ The [Table](https://bulma.io/documentation/elements/table/) component provides a
 ```ruby
 users = User.all
 
-BulmaPhex::Table(users, fullwidth: true, hoverable: true) do |table|
+BulmaPhlex::Table(users, fullwidth: true, hoverable: true) do |table|
   table.column "Name" do |user|
     user.full_name
   end
@@ -281,7 +281,7 @@ The [Tabs](https://bulma.io/documentation/components/tabs/) component provides a
 Behavior of the tabs can be driven by the data attributes, which are assigned by the object passed in as the `data_attributes_builder`. By default, this will use the `StimulusDataAttributes` class with the controller name `bulma-phlex--tabs`. The controller is not provided by this library, but you can create your own Stimulus controller to handle the tab switching logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-rails-helpers/blob/main/app/javascript/controllers/bulma/tabs_controller.js).
 
 ```ruby
-BulmaPhex::Tabs(tabs_class: "is-boxed", contents_class: "ml-4") do |tabs|
+BulmaPhlex::Tabs(tabs_class: "is-boxed", contents_class: "ml-4") do |tabs|
   tabs.tab(id: "profile", title: "Profile", active: true) do
     "Profile content goes here"
   end
@@ -316,8 +316,8 @@ The [Tag](https://bulma.io/documentation/elements/tag/) component provides a way
 If the HTML attributes include an `href`, an anchor (`a`) element is generated; if not and either the `delete` option is true or there is a `data-action` attribute, a `button` element is generated; otherwise, a `span` element is used.
 
 ```ruby
-BulmaPhex::Tag("New", color: "primary", rounded: true)
-BulmaPhex::Tag("Sale", light: "danger")
+BulmaPhlex::Tag("New", color: "primary", rounded: true)
+BulmaPhlex::Tag("Sale", light: "danger")
 ```
 
 **Constructor Arguments:**
@@ -334,9 +334,9 @@ BulmaPhex::Tag("Sale", light: "danger")
 The [Title](https://bulma.io/documentation/elements/title/) component provide a way to display headings and subheadings with customizable sizes and styles.
 
 ```ruby
-BulmaPhex::Title("Hello World")
+BulmaPhlex::Title("Hello World")
 
-BulmaPhex::Title("Dr. Strangelove", size: 2, subtitle: "Or: How I Learned to Stop Worrying and Love the Bomb")
+BulmaPhlex::Title("Dr. Strangelove", size: 2, subtitle: "Or: How I Learned to Stop Worrying and Love the Bomb")
 ```
 
 **Constructor Arguments:**
