@@ -24,7 +24,7 @@ module BulmaPhlex
   # ## Example
   #
   # ```ruby
-  # BulmaPhex::Dropdown("Next Actions...") do |dropdown|
+  # BulmaPhlex::Dropdown("Next Actions...") do |dropdown|
   #   dropdown.link "View Profile", "/profile"
   #   dropdown.link "Go to Settings", "/settings"
   #   dropdown.divider
