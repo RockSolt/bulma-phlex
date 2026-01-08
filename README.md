@@ -6,9 +6,19 @@
 
 This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/phlex) components for common [Bulma](https://bulma.io/) components and elements, making it easy to build beautiful, responsive interfaces with a clean, Ruby-focused API.
 
+## Upgrading to 0.8.0
 
 > [!IMPORTANT]
-> There are breaking changes in main, specifically around namespaces. Please refer to the latest released branch for [documentation of the current gem](https://github.com/RockSolt/bulma-phlex/tree/v0.7.0?tab=readme-ov-file#bulma-components-built-with-phlex).
+> The 0.8.0 release includes breaking changes. The namespace for the components has been changed from `Components::Bulma` to `Components::BulmaPhlex`.
+
+This can generally be handled with a *Find-and-Replace*:
+
+**Find:** `Bulma::`  
+**Replace:** `BulmaPhlex::`
+
+Note that this change was also applied to the expected Stimulus controllers. References such as the Navigation bar have been updated from `bulma--navigation-bar` to `bulma-phlex--navigation-bar`.
+
+Finally, the optional Rails extensions for the Card and Table components have been moved to the `bulma-phlex-rails` gem. If you are using this with Rails, you should use [the `bulma-phlex-rails` gem](https://github.com/RockSolt/bulma-phlex-rails). It provides both the component extensions as well as JavaScript for the Dropdown, Navigation Bar, and Tabs components.
 
 ## Table of Contents
 
@@ -178,7 +188,7 @@ end
 - `container`: When true, wraps the content in a Bulma container. To set a constraint, such as "is-max-desktop", pass that string instead of true. (defaults to false)
 
 > [!NOTE]  
-> Adding a container will limit the width of the Navigation Bar content according to Bulma's container rules. The background color of the navbar will still span the full width of the viewport.
+> Adding a container will limit the width of the Navigation Bar content according to Bulma's container rules. However, the background color of the navbar will still span the full width of the viewport.
 
 ### Pagination
 
