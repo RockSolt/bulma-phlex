@@ -6,7 +6,7 @@
 
 This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/phlex) components for common [Bulma](https://bulma.io/) components and elements, making it easy to build beautiful, responsive interfaces with a clean, Ruby-focused API.
 
-## Upgrading to 0.8.0
+## Upgrading to 0.8
 
 > [!IMPORTANT]
 > The 0.8.0 release includes breaking changes. The namespace for the components has been changed from `Components::Bulma` to `Components::BulmaPhlex`.
