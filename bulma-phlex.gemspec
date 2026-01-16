@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.metadata["rubygems_mfa_required"] = "true"
   spec.metadata["homepage_uri"] = spec.homepage
 
-  spec.files = Dir["lib/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  spec.files = Dir["lib/**/*", "LICENSE.txt", "Rakefile", "README.md"]
 
   spec.add_dependency "phlex", ">= 2.0.2"
 
