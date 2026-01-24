@@ -17,6 +17,9 @@ Metrics/BlockLength:
   Exclude:
     - lib/bulma_phlex/pagination.rb
     - lib/bulma_phlex/tabs.rb
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*.rb
 Metrics/CyclomaticComplexity:
   Exclude:
     - lib/bulma_phlex/pagination.rb
