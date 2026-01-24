@@ -227,12 +227,18 @@ end
 The [Pagination](https://bulma.io/documentation/components/pagination/) component provides navigation controls for paginated content, including previous/next links, page number links, and a summary of items being displayed.
 
 ```ruby
-# In a controller action:
-@products = Product.page(params[:page]).per(20)
-
-# In the view:
 BulmaPhlex::Pagination(@products, ->(page) { products_path(page: page) })
 ```
+
+In order to support pagination, the argument passed into the constructor must repond with integers to the following:
+
+- current_page
+- total_pages
+- per_page
+- total_count
+- previous_page (can be nil)
+- next_page (can be nil)
+
 
 ### Table
 
@@ -304,16 +310,7 @@ If the table should be paginated, invoke method `paginate` with a block that wil
   end
 ```
 
-In order to support pagination, the `rows` argument passed into the constructor must repond with integers to the following:
-
-- current_page
-- total_pages
-- per_page
-- total_count
-- previous_page (can be nil)
-- next_page (can be nil)
-
-This generates the [Bulma pagination](https://bulma.io/documentation/components/pagination/) component, providing navigation controls for paginated content.
+This generates the [Bulma pagination](https://bulma.io/documentation/components/pagination/) component, providing navigation controls for paginated content. The rows argument is passed into the Pagination component to determine the current page, total pages, and other pagination details.
 
 
 ### Tabs
