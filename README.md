@@ -26,11 +26,13 @@ Finally, the optional Rails extensions for the Card and Table components have be
 - [Usage](#usage)
   - [Card](#card)
   - [Dropdown](#dropdown)
+  - [Form Field](#form-field)
   - [Level](#level)
   - [NavigationBar](#navigationbar)
   - [Pagination](#pagination)
   - [Table](#table)
   - [Tabs](#tabs)
+  - [Tag](#tag)
   - [Title and Subtitle](#title-and-subtitle)
 - [Development](#development)
 - [Contributing](#contributing)
@@ -136,6 +138,36 @@ end
 - `link(label, path)`: Adds a link item.
 - `item(content = nil, &block)`: Adds a custom item (string or block).
 - `divider`: Adds a divider line.
+
+
+### Form Field
+
+The [Form Field](https://bulma.io/documentation/form/general/) component provides a way to create form fields with labels, inputs, and help text, following Bulma's form styling conventions. It also supports adding icons to the input, as well as tagging the field as a column or grid cell.
+
+```ruby
+BulmaPhlex::FormField(help: "We'll never share your email.") do |field|
+  field.label("Email Address")
+  field.control { input(name: "user[email_address]", type: "email") }
+end
+```
+
+The label can be passed in as a string or created with a block:
+
+```ruby
+  field.label do
+    span { "Email Address" }
+    span(class: "has-text-danger") { "*" }
+  end
+```
+
+**Constructor Keyword Arguments:**
+
+- `icon_left`: Icon class to display on the left side of the input (such as `fas fa-user`).
+- `icon_right`: Icon class to display on the right side of the input.
+- `help`: Help text to display below the field.
+- `column`: When true, adds the `column` class to the container. Can also be a string specifying the column size (such as `two-thirds`) or a hash with sizes by breakpoint (such as `{ mobile: "full", desktop: "half" }`).
+- `grid`: When true, adds the `cell` class to the container. Can also be a string specifying the heighth or width of the cell (such as `col-span-3`).
+
 
 ### Level
 
