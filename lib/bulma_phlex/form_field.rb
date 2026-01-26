@@ -90,7 +90,7 @@ module BulmaPhlex
       div(class: field_classes) do
         render_label
         render FormControl.new(class: control_classes) do
-          render raw @control_builder.call
+          raw @control_builder.call
           Icon(@icon_left, size: :small, left: true) if @icon_left
           Icon(@icon_right, size: :small, right: true) if @icon_right
         end
@@ -131,7 +131,7 @@ module BulmaPhlex
       if @label_string
         html_label(class: "label") { @label_string }
       elsif @label_builder
-        render raw @label_builder&.call
+        raw @label_builder&.call
       end
     end
 
