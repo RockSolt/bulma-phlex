@@ -28,7 +28,8 @@ module BulmaPhlex
                    size: nil,
                    color: nil,
                    left: false,
-                   right: false)
+                   right: false,
+                   **html_attributes)
       @icon = icon
       @text_right = text_right
       @text_left = text_left
@@ -36,12 +37,13 @@ module BulmaPhlex
       @color = color
       @left = left
       @right = right
+      @html_attributes = html_attributes
     end
 
     def view_template
       optional_text_wrapper do
         span { @text_left } if @text_left
-        span(class: icon_classes) do
+        span(**mix({ class: icon_classes }, @html_attributes)) do
           i(class: @icon)
         end
         span { @text_right } if @text_right
