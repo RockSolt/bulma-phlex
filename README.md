@@ -29,6 +29,7 @@ Finally, the optional Rails extensions for the Card and Table components have be
   - [Form Field](#form-field)
   - [Level](#level)
   - [NavigationBar](#navigationbar)
+  - [Notification](#notification)
   - [Pagination](#pagination)
   - [Table](#table)
   - [Tabs](#tabs)
@@ -221,6 +222,40 @@ end
 
 > [!NOTE]  
 > Adding a container will limit the width of the Navigation Bar content according to Bulma's container rules. However, the background color of the navbar will still span the full width of the viewport.
+
+
+### Notification
+
+The [Notification](https://bulma.io/documentation/components/notification/) component provides a way to display messages or alerts with customizable styles and a close button.
+
+```ruby
+BulmaPhlex::Notification(color: "info", delete: true) do
+  "This is an informational notification with a close button."
+end
+```
+
+The `delete` keyword argument adds a close button to the notification. In addition to setting it to `true`, it can also be a hash of HTML attributes for the button, such as a data attribute to hook into a Stimulus controller.
+
+```ruby
+BulmaPhlex::Notification(color: "warning", delete: { data: { controller: "bulma-phlex--notification" } }) do
+  "This is a warning notification with a close button that works with a Stimulus controller."
+end
+```
+
+**Constructor Keyword Arguments:**
+
+- `delete`: (optional) When true, adds a close button to the notification. Can also be a hash of HTML attributes for the button.
+- `color`: (optional) The [Bulma color class](https://bulma.io/documentation/elements/tag/#colors) to apply.
+- `mode`: Sets the mode of the notification: "light" or "dark".
+
+Any additional attributes are passed to the notification container div.
+
+```ruby
+BulmaPhlex::Notification(id: "my-notification", class: "ml-3") do
+  "This is a notification with custom id and class."
+end
+```
+
 
 ### Pagination
 
