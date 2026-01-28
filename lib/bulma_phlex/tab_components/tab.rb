@@ -32,7 +32,7 @@ module BulmaPhlex
           class: @active ? "is-active" : ""
         ) do
           a do
-            icon_span(@icon, "mr-1") if @icon
+            Icon(@icon, class: "mr-1") if @icon
             span { @title }
           end
         end

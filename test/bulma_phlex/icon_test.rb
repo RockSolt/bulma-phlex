@@ -91,5 +91,15 @@ module BulmaPhlex
         </span>
       HTML
     end
+
+    def test_with_additional_html_attributes
+      result = Icon.new("fas fa-home", id: "home-icon", data: { test: "value" }).call
+
+      assert_html_equal <<~HTML, result
+        <span class="icon" id="home-icon" data-test="value">
+          <i class="fas fa-home"></i>
+        </span>
+      HTML
+    end
   end
 end

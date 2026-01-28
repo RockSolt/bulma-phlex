@@ -27,6 +27,7 @@ Finally, the optional Rails extensions for the Card and Table components have be
   - [Card](#card)
   - [Dropdown](#dropdown)
   - [Form Field](#form-field)
+  - [Icon](#icon)
   - [Level](#level)
   - [NavigationBar](#navigationbar)
   - [Notification](#notification)
@@ -168,6 +169,27 @@ The label can be passed in as a string or created with a block:
 - `help`: Help text to display below the field.
 - `column`: When true, adds the `column` class to the container. Can also be a string specifying the column size (such as `two-thirds`) or a hash with sizes by breakpoint (such as `{ mobile: "full", desktop: "half" }`).
 - `grid`: When true, adds the `cell` class to the container. Can also be a string specifying the heighth or width of the cell (such as `col-span-3`).
+
+
+### Icon
+
+The [Icon](https://bulma.io/documentation/elements/icon/) component provides a way to display icons using Font Awesome or other icon libraries, with support for different sizes and colors.
+
+```ruby
+BulmaPhlex::Icon("fas fa-user", size: "large", color: "primary")
+```
+
+**Constructor Arguments:**
+
+- `icon_class`: (positional, required) The icon class to display (such as `fas fa-user`).
+- `size`: (optional) The [Bulma icon size](https://bulma.io/documentation/elements/icon/#sizes): small, medium, large.
+- `color`: (optional) The [Bulma color class](https://bulma.io/documentation/elements/icon/#colors) to apply.
+- `text_right`: (optional) Text to display to the right of the icon.
+- `text_left`: (optional) Text to display to the left of the icon.
+- `left`: (optional) If true, adds the `is-left` class for use in form controls.
+- `right`: (optional) If true, adds the `is-right` class for use in form controls.
+
+Any additional HTML attributes are passed to the icon container span.
 
 
 ### Level

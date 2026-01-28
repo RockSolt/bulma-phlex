@@ -72,7 +72,7 @@ module BulmaPhlex
       html_attributes[:class] = [html_attributes[:class], "has-text-centered"].compact.join(" ")
 
       column(header, **html_attributes) do |row|
-        icon_span(icon_class) if content.call(row)
+        Icon(icon_class) if content.call(row)
       end
     end
 
