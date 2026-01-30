@@ -56,6 +56,17 @@ module BulmaPhlex
   # end
   # ```
   #
+  # ### Shorthand with no Label
+  #
+  # If no label is needed, you can use the shorthand syntax which just puts the control
+  # in the block without needing to call `control` explicitly:
+  #
+  # ```ruby
+  # FormField(help: "Enter the project name.") do
+  #   input id: "project_name", name: "project[name]", type: "text"
+  # end
+  # ```
+  #
   # ## References
   #
   # - [Bulma Form Field](https://bulma.io/documentation/form/general/#form-field)
@@ -84,8 +95,9 @@ module BulmaPhlex
       @control_builder = block
     end
 
-    def view_template(&)
-      vanish(&)
+    def view_template(&implicit_control)
+      @control_builder = implicit_control if @control_builder.nil? && implicit_control
+      vanish(&implicit_control)
 
       div(class: field_classes) do
         render_label
