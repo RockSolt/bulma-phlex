@@ -243,6 +243,21 @@ module BulmaPhlex
       assert_html_equal expected_html, output
     end
 
+    def test_with_no_label_control_block_is_implicit
+      component = FormField.new(grid: "col-span-2")
+      output = component.call do
+        input_builder
+      end
+
+      assert_html_equal <<~HTML, output
+        <div class="field cell is-col-span-2">
+          <div class="control">
+            <input name="test_input" type="text" />
+          </div>
+        </div>
+      HTML
+    end
+
     private
 
     def label_builder
