@@ -25,6 +25,7 @@ Finally, the optional Rails extensions for the Card and Table components have be
 - [Installation](#installation)
 - [Usage](#usage)
   - [Card](#card)
+  - [Columns](#columns)
   - [Dropdown](#dropdown)
   - [Form Field](#form-field)
   - [Grid](#grid)
@@ -111,6 +112,29 @@ Icons can be added to the links by passing an `icon` keyword argument with the i
 ```ruby
   card.footer_link("View", "/view", icon: "fas fa-eye")
 ```
+
+
+### Columns
+
+The [Columns](https://bulma.io/documentation/columns/basics/) component provides a way to create responsive columns layouts using Bulma's column classes. It generates the wrapping `div` with the `columns` class and handles all the options.
+
+```ruby
+BulmaPhlex::Columns(gap: 4, multiline: true) do
+  div(class: "column is-one-third") { "Column 1" }
+  div(class: "column is-one-third") { "Column 2" }
+  div(class: "column is-one-third") { "Column 3" }
+end
+```
+
+**Constructor Keyword Arguments:**
+
+- `minimum_breakpoint`: (Symbol, optional) Sets the minimum breakpoint for the columns; default is `:tablet`.
+- `multiline`: (Boolean, optional) If true, allows the columns to wrap onto multiple lines.
+- `gap`: (optional) Use an integer (0-8) to set the gap size between columns; use a hash keyed by breakpoints
+  to set responsive gap sizes.
+- `centered`: (Boolean, optional) If true, centers the columns.
+- `vcentered`: (Boolean, optional) If true, vertically centers the columns.
+
 
 
 ### Dropdown
