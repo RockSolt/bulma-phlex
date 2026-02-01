@@ -17,12 +17,36 @@ module BulmaPhlex
       HTML
     end
 
+    def test_html_attributes
+      component = Grid.new(id: "my-grid", data: { test: "value" })
+      output = component.call { "Content" }
+
+      assert_html_equal <<~HTML, output
+        <div class="grid" id="my-grid" data-test="value">
+          Content
+        </div>
+      HTML
+    end
+
     def test_fixed_columns
       component = Grid.new(fixed_columns: 3)
       output = component.call { "Content" }
 
       assert_html_equal <<~HTML, output
         <div class="fixed-grid has-3-cols">
+          <div class="grid">
+            Content
+          </div>
+        </div>
+      HTML
+    end
+
+    def test_fixed_columns_with_html_attributes
+      component = Grid.new(fixed_columns: 4, id: "my-grid", data: { test: "value" })
+      output = component.call { "Content" }
+
+      assert_html_equal <<~HTML, output
+        <div class="fixed-grid has-4-cols" id="my-grid" data-test="value">
           <div class="grid">
             Content
           </div>

@@ -20,18 +20,20 @@ module BulmaPhlex
                    minimum_column_width: nil,
                    gap: nil,
                    column_gap: nil,
-                   row_gap: nil)
+                   row_gap: nil,
+                   **html_attributes)
       @fixed_columns = fixed_columns
       @auto_count = auto_count
       @minimum_column_width = minimum_column_width
       @gap = gap
       @column_gap = column_gap
       @row_gap = row_gap
+      @html_attributes = html_attributes
     end
 
     def view_template(&)
       optional_fixed_grid_wrapper do
-        div(class: grid_classes, &)
+        div(**mix({ class: grid_classes }, @html_attributes), &)
       end
     end
 
@@ -39,7 +41,10 @@ module BulmaPhlex
 
     def optional_fixed_grid_wrapper(&)
       if @fixed_columns || @auto_count
-        div(class: fixed_grid_classes, &)
+        div(**mix({ class: fixed_grid_classes }, @html_attributes)) do
+          @html_attributes = {}
+          yield
+        end
       else
         yield
       end
