@@ -27,6 +27,7 @@ Finally, the optional Rails extensions for the Card and Table components have be
   - [Card](#card)
   - [Dropdown](#dropdown)
   - [Form Field](#form-field)
+  - [Grid](#grid)
   - [Icon](#icon)
   - [Level](#level)
   - [NavigationBar](#navigationbar)
@@ -169,6 +170,31 @@ The label can be passed in as a string or created with a block:
 - `help`: Help text to display below the field.
 - `column`: When true, adds the `column` class to the container. Can also be a string specifying the column size (such as `two-thirds`) or a hash with sizes by breakpoint (such as `{ mobile: "full", desktop: "half" }`).
 - `grid`: When true, adds the `cell` class to the container. Can also be a string specifying the heighth or width of the cell (such as `col-span-3`).
+
+
+### Grid
+
+The [Grid](https://bulma.io/documentation/grid/smart-grid/) component provides a flexible grid layout system using Bulma's grid classes.
+
+```ruby
+BulmaPhlex::Grid(minimum_column_width: 16) do
+  @tiles.each do |tile|
+    div(class: "cell") do
+      ... render tile ...
+    end
+  end
+end
+```
+
+**Constructor Keyword Arguments:**
+
+- `fixed_columns`: (Integer, optional) Specifies a fixed number of columns for the grid.
+- `auto_count`: (Boolean, optional) If true, the grid will automatically adjust the number
+    of columns based on the breakpoint.
+- `minimum_column_width`: (Integer 1-32, optional) Sets a minimum width for the columns in the grid.
+- `gap`: (optional) Sets the gap size between grid items, from 1-8 with 0.5 increments.
+- `column_gap`: (optional) Sets the column gap size between grid items, from 1-8 with 0.5 increments.
+- `row_gap`: (optional) Sets the row gap size between grid items, from 1-8 with 0.5 increments.
 
 
 ### Icon
