@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["lib/**/*", "LICENSE.txt", "Rakefile", "README.md"]
 
-  spec.add_dependency "phlex", ">= 2.0.2"
+  spec.add_dependency "phlex", ">= 2.4.1"
 
   spec.add_development_dependency "actionpack"
   spec.add_development_dependency "minitest-difftastic"

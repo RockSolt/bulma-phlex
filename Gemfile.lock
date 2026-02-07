@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     bulma-phlex (0.10.0)
-      phlex (>= 2.0.2)
+      phlex (>= 2.4.1)
 
 GEM
   remote: https://gem.coop/
