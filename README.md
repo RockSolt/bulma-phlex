@@ -34,6 +34,7 @@ Finally, the optional Rails extensions for the Card and Table components have be
   - [NavigationBar](#navigationbar)
   - [Notification](#notification)
   - [Pagination](#pagination)
+  - [Progress Bar](#progress-bar)
   - [Table](#table)
   - [Tabs](#tabs)
   - [Tag](#tag)
@@ -345,6 +346,24 @@ In order to support pagination, the argument passed into the constructor must re
 - total_count
 - previous_page (can be nil)
 - next_page (can be nil)
+
+
+### Progress Bar
+
+The [Progress Bar](https://bulma.io/documentation/components/progress/) component provides a visual representation of progress or completion status, with support for different colors and sizes.
+
+```ruby
+BulmaPhlex::ProgressBar(color: "success", size: "large", value: 75, max: 100) { "75%" }
+```
+
+**Constructor Keyword Arguments:**
+
+- `color`: (optional) The [Bulma color class](https://bulma.io/documentation/elements/progress/#colors) to apply.
+- `size`: (optional) The [Bulma size class](https://bulma.io/documentation/elements/progress/#sizes) to apply: small, medium, or large.
+- `html_attributes`: Any additional HTML attributes to be passed to the `progress` element. Include the `value` and `max` attributes here to set the progress level.
+
+Leaving out the `value` and `max` attributes will render an indeterminate progress bar, which can be used to indicate that a process is ongoing without specifying the exact progress.
+
 
 
 ### Table
