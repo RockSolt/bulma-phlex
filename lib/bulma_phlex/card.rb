@@ -20,10 +20,14 @@ module BulmaPhlex
   # end
   # ```
   class Card < BulmaPhlex::Base
+    def initialize(**html_attributes)
+      @html_attributes = html_attributes
+    end
+
     def view_template(&)
       vanish(&)
 
-      div(class: "card") do
+      div(**mix(class: "card", **@html_attributes)) do
         card_header
         card_content
         card_footer

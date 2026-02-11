@@ -102,6 +102,10 @@ BulmaPhlex::Card() do |card|
 end
 ```
 
+**Constructor Arguments:**
+
+- `html_attributes`: Any additional HTML attributes to be passed to the card container div.
+
 **Arguments for `footer_link`:**
 
 - text: the link text
