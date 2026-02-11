@@ -130,5 +130,14 @@ module BulmaPhlex
 
       assert_includes result, "is-right"
     end
+
+    def test_with_additional_html_attributes
+      component = BulmaPhlex::Dropdown.new("Menu", id: "my-dropdown", data: { test: "value" })
+
+      result = component.call
+
+      assert_includes result, 'id="my-dropdown"'
+      assert_includes result, 'data-test="value"'
+    end
   end
 end

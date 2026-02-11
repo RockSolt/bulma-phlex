@@ -58,5 +58,13 @@ module BulmaPhlex
 
       assert_html_equal expected_html, result
     end
+
+    def test_with_html_attributes
+      component = BulmaPhlex::Level.new(id: "my-level", class: "custom-class")
+      result = component.call
+
+      assert_includes result, 'id="my-level"'
+      assert_includes result, 'class="level custom-class"'
+    end
   end
 end

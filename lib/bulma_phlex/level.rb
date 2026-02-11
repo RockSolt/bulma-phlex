@@ -24,7 +24,8 @@ module BulmaPhlex
   # ```
   #
   class Level < BulmaPhlex::Base
-    def initialize
+    def initialize(**html_attributes)
+      @html_attributes = html_attributes
       @items = []
       @left = []
       @right = []
@@ -33,15 +34,15 @@ module BulmaPhlex
     def view_template(&)
       vanish(&)
 
-      div(class: "level") do
+      div(**mix({ class: "level" }, @html_attributes)) do
         div(class: "level-left") do
-          @left.each { level_item(it) }
+          @left.each { |item| level_item(item) }
         end
 
-        @items.each { level_item(it) }
+        @items.each { |item| level_item(item) }
 
         div(class: "level-right") do
-          @right.each { level_item(it) }
+          @right.each { |item| level_item(item) }
         end
       end
     end

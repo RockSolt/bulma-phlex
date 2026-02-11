@@ -96,5 +96,23 @@ module BulmaPhlex
 
       assert_html_equal expected_html, result
     end
+
+    def test_with_additional_html_attributes
+      component = BulmaPhlex::Card.new(id: "my-card", data: { test: "value" })
+
+      result = component.call do |card|
+        card.head("Card with Attributes")
+      end
+
+      expected_html = <<~HTML
+        <div class="card" id="my-card" data-test="value">
+          <header class="card-header ">
+            <p class="card-header-title">Card with Attributes</p>
+          </header>
+        </div>
+      HTML
+
+      assert_html_equal expected_html, result
+    end
   end
 end

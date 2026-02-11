@@ -34,15 +34,16 @@ module BulmaPhlex
     #   - `previous_page` - Integer or nil representing the previous page number
     #   - `next_page` - Integer or nil representing the next page number
     # @param path_builder [Proc] A callable that takes a page number and returns a URL string
-    def initialize(pager, path_builder)
+    def initialize(pager, path_builder, **html_attributes)
       @pager = pager
       @path_builder = path_builder
+      @html_attributes = html_attributes
     end
 
     def view_template
       return unless pager.total_pages > 1
 
-      div(class: "pagination-container mt-5") do
+      div(**mix({ class: "pagination-container" }, @html_attributes)) do
         nav(class: "pagination", role: "navigation", aria_label: "pagination") do
           # Previous page link
           if pager.previous_page

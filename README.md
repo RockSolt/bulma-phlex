@@ -102,6 +102,10 @@ BulmaPhlex::Card() do |card|
 end
 ```
 
+**Constructor Arguments:**
+
+- `html_attributes`: Any additional HTML attributes to be passed to the card container div.
+
 **Arguments for `footer_link`:**
 
 - text: the link text
@@ -157,9 +161,10 @@ end
 **Options:**
 
 - `label` (required): The dropdown button label.
-- `click`: Stimulus controller name for click-to-toggle (default: `"bulma-phlex--dropdown"`). Set to `false` for hoverable.
-- `alignment`: `:left` (default), `:right`, or `:up`.
-- `icon`: Icon class for the dropdown arrow (default: `"fas fa-angle-down"`).
+- `click` (keyword): Stimulus controller name for click-to-toggle (default: `"bulma-phlex--dropdown"`). Set to `false` for hoverable.
+- `alignment` (keyword): `:left` (default), `:right`, or `:up`.
+- `icon` (keyword): Icon class for the dropdown arrow (default: `"fas fa-angle-down"`).
+- `html_attributes`: Any additional HTML attributes to be passed to the dropdown container div.
 
 **Dropdown methods:**
 
@@ -262,6 +267,8 @@ BulmaPhlex::Level() do |level|
 end
 ```
 
+Pass in any HTML attributes to the constructor to have them applied to the level container div.
+
 ### NavigationBar
 
 The [NavigationBar](https://bulma.io/documentation/components/navbar/) component provides a responsive navigation header with support for branding, navigation links, and dropdown menus.
@@ -338,7 +345,14 @@ The [Pagination](https://bulma.io/documentation/components/pagination/) componen
 BulmaPhlex::Pagination(@products, ->(page) { products_path(page: page) })
 ```
 
-In order to support pagination, the argument passed into the constructor must repond with integers to the following:
+**Constructor Arguments:**
+
+- `pager`: An object that responds to pagination methods (see below).
+- `path_builder`: A lambda that takes a page number and returns the URL for that page. This is used to generate the links for the pagination controls.
+
+Any additional HTML attributes passed to the constructor will be applied to the pagination container element.
+
+In order to support pagination, the first argument in the constructor must repond with integers to the following:
 
 - current_page
 - total_pages
