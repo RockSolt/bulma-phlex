@@ -345,7 +345,14 @@ The [Pagination](https://bulma.io/documentation/components/pagination/) componen
 BulmaPhlex::Pagination(@products, ->(page) { products_path(page: page) })
 ```
 
-In order to support pagination, the argument passed into the constructor must repond with integers to the following:
+**Constructor Arguments:**
+
+- `pager`: An object that responds to pagination methods (see below).
+- `path_builder`: A lambda that takes a page number and returns the URL for that page. This is used to generate the links for the pagination controls.
+
+Any additional HTML attributes passed to the constructor will be applied to the pagination container element.
+
+In order to support pagination, the first argument in the constructor must repond with integers to the following:
 
 - current_page
 - total_pages

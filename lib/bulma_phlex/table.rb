@@ -139,7 +139,7 @@ module BulmaPhlex
       tfoot do
         tr do
           td(class: "py-0", colspan: @columns.size) do
-            Pagination(@rows, @path_builder)
+            Pagination(@rows, @path_builder, class: "mt-5")
           end
         end
       end

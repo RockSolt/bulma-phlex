@@ -75,5 +75,16 @@ module BulmaPhlex
 
       assert_empty result
     end
+
+    def test_pagination_with_custom_html_attributes
+      pager = MockPager.new(2, 5, 10, 45)
+      path_builder = ->(page) { "/posts?page=#{page}" }
+      component = BulmaPhlex::Pagination.new(pager, path_builder, class: "custom-pagination", data_test: "pagination")
+
+      result = component.call
+
+      assert_html_includes result, 'class="pagination-container custom-pagination"'
+      assert_html_includes result, 'data-test="pagination"'
+    end
   end
 end
