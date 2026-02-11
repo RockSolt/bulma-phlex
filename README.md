@@ -267,6 +267,8 @@ BulmaPhlex::Level() do |level|
 end
 ```
 
+Pass in any HTML attributes to the constructor to have them applied to the level container div.
+
 ### NavigationBar
 
 The [NavigationBar](https://bulma.io/documentation/components/navbar/) component provides a responsive navigation header with support for branding, navigation links, and dropdown menus.
