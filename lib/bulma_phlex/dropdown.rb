@@ -36,15 +36,17 @@ module BulmaPhlex
   # ```
   #
   class Dropdown < BulmaPhlex::Base
-    def initialize(label, click: "bulma-phlex--dropdown", alignment: "left", icon: "fas fa-angle-down")
+    def initialize(label, click: "bulma-phlex--dropdown", alignment: "left", icon: "fas fa-angle-down",
+                   **html_attributes)
       @label = label
       @click = click
       @alignment = alignment
       @icon = icon
+      @html_attributes = html_attributes
     end
 
     def view_template(&)
-      div(class: "dropdown #{"is-hoverable" unless @click} #{alignment_class}".strip, **stimulus_controller) do
+      div(**mix({ class: dropdown_classes, **stimulus_controller }, @html_attributes)) do
         div(class: "dropdown-trigger") do
           button(
             class: "button",
@@ -82,6 +84,13 @@ module BulmaPhlex
     end
 
     private
+
+    def dropdown_classes
+      classes = ["dropdown"]
+      classes << "is-hoverable" unless @click
+      classes << "is-#{@alignment}" unless @alignment == "left"
+      classes.join(" ")
+    end
 
     def alignment_class
       case @alignment.to_sym

@@ -161,9 +161,10 @@ end
 **Options:**
 
 - `label` (required): The dropdown button label.
-- `click`: Stimulus controller name for click-to-toggle (default: `"bulma-phlex--dropdown"`). Set to `false` for hoverable.
-- `alignment`: `:left` (default), `:right`, or `:up`.
-- `icon`: Icon class for the dropdown arrow (default: `"fas fa-angle-down"`).
+- `click` (keyword): Stimulus controller name for click-to-toggle (default: `"bulma-phlex--dropdown"`). Set to `false` for hoverable.
+- `alignment` (keyword): `:left` (default), `:right`, or `:up`.
+- `icon` (keyword): Icon class for the dropdown arrow (default: `"fas fa-angle-down"`).
+- `html_attributes`: Any additional HTML attributes to be passed to the dropdown container div.
 
 **Dropdown methods:**
 
