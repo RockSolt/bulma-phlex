@@ -37,7 +37,6 @@ module BulmaPhlex
       result = format_html(raw_result)
 
       # Check for key elements in the rendered table
-      assert_html_includes result, '<table id="test_records"'
       assert_html_includes result, "<th>ID</th>"
       assert_html_includes result, "<th>Name</th>"
       assert_html_includes result, "<th>Email</th>"
@@ -62,17 +61,6 @@ module BulmaPhlex
       assert_html_includes result, "<th>Email</th>"
       assert_html_includes result, "<tbody>"
       refute_includes result, "<tr>"
-    end
-
-    def test_renders_with_string_id
-      rows = [TestRecord.new(id: nil, name: "Test", email: nil)]
-      component = BulmaPhlex::Table.new(rows, "custom-table-id")
-
-      raw_result = component.call do |table|
-        table.column("Name", &:name)
-      end
-
-      assert_html_includes format_html(raw_result), 'id="custom-table-id"'
     end
 
     def test_renders_with_id_option
@@ -125,6 +113,15 @@ module BulmaPhlex
       raw_result = component.call { |table| table.column("Name", &:name) }
 
       assert_html_includes format_html(raw_result), 'class="table is-bordered is-striped is-narrow"'
+    end
+
+    def test_with_html_attributes
+      rows = [TestRecord.new(id: nil, name: "Test", email: nil)]
+      component = BulmaPhlex::Table.new(rows, class: "projects", data: { test: "value" })
+      raw_result = component.call { |table| table.column("Name", &:name) }
+
+      assert_html_includes format_html(raw_result), 'data-test="value"'
+      assert_html_includes format_html(raw_result), 'class="table projects"'
     end
   end
 

@@ -25,7 +25,7 @@ module BulmaPhlex
     end
 
     def test_renders_with_left_and_right_menus
-      component = BulmaPhlex::NavigationBar.new(classes: "is-light block")
+      component = BulmaPhlex::NavigationBar.new(color: "light", class: "block")
 
       result = component.call do |navbar|
         navbar.brand do
@@ -109,6 +109,67 @@ module BulmaPhlex
       end
 
       assert_html_includes format_html(result), '<div class="container is-max-desktop">'
+    end
+
+    def test_transparent
+      component = BulmaPhlex::NavigationBar.new(transparent: true)
+
+      result = component.call do |navbar|
+        navbar.brand do
+          navbar.a(href: "/", class: "navbar-item") { "Brand" }
+        end
+      end
+
+      assert_html_includes format_html(result), 'class="navbar is-transparent"'
+    end
+
+    def test_spaced
+      component = BulmaPhlex::NavigationBar.new(spaced: true)
+
+      result = component.call do |navbar|
+        navbar.brand do
+          navbar.a(href: "/", class: "navbar-item") { "Brand" }
+        end
+      end
+
+      assert_html_includes format_html(result), 'class="navbar is-spaced"'
+    end
+
+    def test_shadow
+      component = BulmaPhlex::NavigationBar.new(shadow: true)
+
+      result = component.call do |navbar|
+        navbar.brand do
+          navbar.a(href: "/", class: "navbar-item") { "Brand" }
+        end
+      end
+
+      assert_html_includes format_html(result), 'class="navbar has-shadow"'
+    end
+
+    def test_color
+      component = BulmaPhlex::NavigationBar.new(color: "primary")
+
+      result = component.call do |navbar|
+        navbar.brand do
+          navbar.a(href: "/", class: "navbar-item") { "Brand" }
+        end
+      end
+
+      assert_html_includes format_html(result), 'class="navbar is-primary"'
+    end
+
+    def test_with_additional_html_attributes
+      component = BulmaPhlex::NavigationBar.new(id: "main-navbar", data: { test: "value" })
+
+      result = component.call do |navbar|
+        navbar.brand do
+          navbar.a(href: "/", class: "navbar-item") { "Brand" }
+        end
+      end
+
+      assert_html_includes format_html(result), 'id="main-navbar"'
+      assert_html_includes format_html(result), 'data-test="value"'
     end
   end
 end
