@@ -297,8 +297,13 @@ end
 
 **Constructor Keyword Arguments:**
 
-- `classes`: Additional classes to be added to the `nav` element, such as "is-primary" or "has-shadow".
 - `container`: When true, wraps the content in a Bulma container. To set a constraint, such as "is-max-desktop", pass that string instead of true. (defaults to false)
+- `color`: Sets the navbar color (e.g., "primary", "light", "dark").
+- `transparent`: If `true`, makes the navbar transparent.
+- `spaced`: If `true`, adds spacing to the navbar.
+- `shadow`: If `true`, adds a shadow to the navbar.
+
+Any additional HTML attributes passed to the component will be applied to the `<nav>` element.
 
 > [!NOTE]  
 > Adding a container will limit the width of the Navigation Bar content according to Bulma's container rules. However, the background color of the navbar will still span the full width of the viewport.

@@ -7,6 +7,10 @@ module BulmaPhlex
   # interface. It provides a responsive navigation header with support for branding, navigation
   # links, and dropdown menus, automatically collapsing on mobile devices.
   #
+  # The component is rendered with data attributes to enable JavaScript behavior for toggling the mobile
+  # menu. It is hardcoded to the Stimulus controller `bulma-phlex--navigation-bar` (available via the
+  # `bulma-phlex-rails` gem).
+  #
   # ## Example
   #
   # ```ruby
@@ -34,10 +38,30 @@ module BulmaPhlex
   # end
   # ```
   #
+  # ## Options
+  #
+  # - `container`: If `true`, wraps the navbar content in a `.container` for fixed-width layout. Can also
+  #   be a string or symbol to specify a custom container class.
+  # - `color`: Sets the navbar color (e.g., "primary", "light", "dark").
+  # - `transparent`: If `true`, makes the navbar transparent.
+  # - `spaced`: If `true`, adds spacing to the navbar.
+  # - `shadow`: If `true`, adds a shadow to the navbar.
+  #
+  # Any additional HTML attributes passed to the component will be applied to the `<nav>` element.
   class NavigationBar < BulmaPhlex::Base
-    def initialize(container: false, classes: "")
+    def initialize(container: false, # rubocop:disable Metrics/ParameterLists
+                   color: nil,
+                   transparent: false,
+                   spaced: false,
+                   shadow: false,
+                   **html_attributes)
       @container = container
-      @classes = classes
+      @color = color
+      @transparent = transparent
+      @spaced = spaced
+      @shadow = shadow
+      @html_attributes = html_attributes
+
       @brand = []
       @left = []
       @right = []
@@ -46,10 +70,7 @@ module BulmaPhlex
     def view_template(&)
       vanish(&)
 
-      nav(class: "navbar #{@classes}".rstrip,
-          role: "navigation",
-          aria_label: "main navigation",
-          data: { controller: "bulma-phlex--navigation-bar" }) do
+      nav(**mix(nav_attributes, @html_attributes)) do
         optional_container do
           div(class: "navbar-brand") do
             @brand.each(&:call)
@@ -93,6 +114,22 @@ module BulmaPhlex
     end
 
     private
+
+    def nav_attributes
+      { class: nav_classes,
+        role: "navigation",
+        aria_label: "main navigation",
+        data: { controller: "bulma-phlex--navigation-bar" } }
+    end
+
+    def nav_classes
+      classes = ["navbar"]
+      classes << "is-#{@color}" if @color
+      classes << "is-transparent" if @transparent
+      classes << "is-spaced" if @spaced
+      classes << "has-shadow" if @shadow
+      classes
+    end
 
     def optional_container(&)
       if @container
