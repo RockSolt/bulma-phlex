@@ -404,12 +404,13 @@ end
 **Constructor Keyword Arguments:**
 
 - `rows`: the data for the table as an enumerable (anything that responds to `each`)
-- `id`: the Id for the table element (defaults to "table")
 - `bordered`: adds the `is-bordered` class (boolean, defaults to false)
 - `striped`: adds the `is-striped` class (boolean, defaults to false)
 - `narrow`: adds the `is-narrow` class (boolean, defaults to false)
 - `hoverable`: adds the `is-hoverable` class (boolean, defaults to false)
 - `fullwidth`: adds the `is-fullwidth` class (boolean, defaults to false)
+
+Any additional HTML attributes passed to the constructor will be applied to the table element.
 
 **Arguments for `column` Method:**
 

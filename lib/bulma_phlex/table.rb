@@ -27,17 +27,43 @@ module BulmaPhlex
   # end
   # ```
   #
+  # ## Options
+  #
+  # - `bordered`: Adds borders to the table.
+  # - `striped`: Adds zebra-striping to the table rows.
+  # - `narrow`: Makes the table more compact.
+  # - `hoverable`: Adds a hover effect to the table rows.
+  # - `fullwidth`: Makes the table take up the full width of its container.
+  #
+  # Any additional HTML attributes passed to the component will be applied to the `<table>` element.
+  #
+  # ## Pagination
+  #
+  # If the `paginate` method is called with a block that builds pagination paths, a pagination control
+  # will be rendered in the table footer. The block should accept a page number and return the
+  # corresponding URL for that page.
   class Table < BulmaPhlex::Base
-    def initialize(rows, id_or_options = nil, **options)
+    def initialize(rows, # rubocop:disable Metrics/ParameterLists
+                   bordered: false,
+                   striped: false,
+                   narrow: false,
+                   hoverable: false,
+                   fullwidth: false,
+                   **html_attributes)
       @rows = rows
-      @id, @table_class = parse_id_and_options(id_or_options, options, rows)
+      @bordered = bordered
+      @striped = striped
+      @narrow = narrow
+      @hoverable = hoverable
+      @fullwidth = fullwidth
+      @html_attributes = html_attributes
       @columns = []
     end
 
     def view_template(&)
       vanish(&)
 
-      table(id: @id, class: @table_class) do
+      table(**mix({ class: table_classes }, @html_attributes)) do
         thead do
           @columns.each do |column|
             table_header(column)
@@ -82,36 +108,14 @@ module BulmaPhlex
 
     private
 
-    def parse_id_and_options(id_or_options, options, rows)
-      if id_or_options.is_a?(String)
-        id = id_or_options
-        opts = options
-      else
-        opts = (id_or_options || {}).merge(options)
-        id = opts.delete(:id) || id_from_array_or_arel(rows)
-      end
-      table_class = "table #{parse_table_classes(opts)}"
-      [id, table_class]
-    end
-
-    def id_from_array_or_arel(rows)
-      if rows.respond_to? :model
-        rows.model.model_name.plural
-      elsif rows.empty?
-        "table"
-      else
-        rows.first.model_name.plural
-      end
-    rescue StandardError
-      "table"
-    end
-
-    def parse_table_classes(options)
-      options.slice(*%i[bordered striped narrow hoverable fullwidth])
-             .transform_keys { |key| "is-#{key}" }
-             .select { |_, value| value }
-             .keys
-             .join(" ")
+    def table_classes
+      classes = ["table"]
+      classes << "is-bordered" if @bordered
+      classes << "is-striped" if @striped
+      classes << "is-narrow" if @narrow
+      classes << "is-hoverable" if @hoverable
+      classes << "is-fullwidth" if @fullwidth
+      classes
     end
 
     # this derives a th class from the column html attributes
