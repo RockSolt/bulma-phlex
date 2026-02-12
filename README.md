@@ -24,6 +24,7 @@ Finally, the optional Rails extensions for the Card and Table components have be
 
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Button](#button)
   - [Card](#card)
   - [Columns](#columns)
   - [Dropdown](#dropdown)
@@ -86,6 +87,34 @@ require "bulma-phlex"
 ## Usage
 
 Use the Phlex components in your Rails views or any Ruby application that supports Phlex components.
+
+### Button
+
+The [Button](https://bulma.io/documentation/elements/button/) component provides a way to create styled buttons with various options for colors, sizes, and icons.
+
+```ruby
+BulmaPhlex::Button(color: "primary", size: "large", icon: "fas fa-thumbs-up") { "Like" }
+```
+
+**Constructor Keyword Arguments:**
+
+- `color`: Sets the button color (e.g., "primary", "link", "info", "success", "warning", "danger").
+- `mode`: Sets the mode of the notification: "light" or "dark".
+- `size`: Sets the button size: "small", "normal" (the default), "medium", or "large".
+- `responsive`: If `true`, makes the button responsive.
+- `fullwidth`: If `true`, makes the button full width.
+- `outlined`: If `true`, makes the button outlined.
+- `inverted`: If `true`, makes the button inverted.
+- `rounded`: If `true`, makes the button rounded.
+- `icon`: If provided, adds an icon to the button. Should be a string representing the 
+  icon class (e.g., "fa-solid fa-check").
+- `icon_left`: If provided, adds an icon to the left of the button text. Should be a string
+  representing the icon class (e.g., "fa-solid fa-check").
+- `icon_right`: If provided, adds an icon to the right of the button text. Should be a string
+  representing the icon class (e.g., "fa-solid fa-check").
+
+Any additional HTML attributes passed to the constructor will be applied to the button element.
+
 
 ### Card
 
