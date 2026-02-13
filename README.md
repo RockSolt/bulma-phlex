@@ -492,10 +492,10 @@ This generates the [Bulma pagination](https://bulma.io/documentation/components/
 
 The [Tabs](https://bulma.io/documentation/components/tabs/) component provides a way to toggle between different content sections using tabbed navigation, with support for icons and active state management.
 
-Behavior of the tabs can be driven by the data attributes, which are assigned by the object passed in as the `data_attributes_builder`. By default, this will use the `StimulusDataAttributes` class with the controller name `bulma-phlex--tabs`. The controller is not provided by this library, but you can create your own Stimulus controller to handle the tab switching logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-rails-helpers/blob/main/app/javascript/controllers/bulma/tabs_controller.js).
+Behavior of the tabs can be driven by the data attributes, which are assigned by the object passed in as the `data_attributes_builder`. By default, this will use the `StimulusDataAttributes` class with the controller name `bulma-phlex--tabs`. The controller is not provided by this library, but you can create your own Stimulus controller to handle the tab switching logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-phlex-rails/blob/main/app/javascript/controllers/bulma_phlex/tabs_controller.js).
 
 ```ruby
-BulmaPhlex::Tabs(tabs_class: "is-boxed", contents_class: "ml-4") do |tabs|
+BulmaPhlex::Tabs(boxed: true) do |tabs|
   tabs.tab(id: "profile", title: "Profile", active: true) do
     "Profile content goes here"
   end
@@ -512,9 +512,15 @@ end
 
 **Constructor Keyword Arguments:**
 
-- `tabs_class`: Classes to be added to the tabs div, such as `is-boxed`, `is-medium`, `is-centered`, or `is-toggle`.
-- `contents_class`: Classes added to the div that wraps the content (no Bulma related tabs functionality here, just a hook).
+- `align`: Can be `centered` or `right` to align the tabs accordingly.
+- `size`: Can be `small`, `medium`, or `large` to set the size of the tabs.
+- `boxed`: If `true`, uses classic style tabs.
+- `toggle`: If `true`, makes the tabs look like buttons.
+- `rounded`: If `true`, makes the tabs look like buttons with the first and last rounded.
+- `fullwidth`: If `true`, makes the tabs take up the full width of the container.
 - `data_attributes_builder`: Builder object that responds to `for_container`, `for_tab`, and `for_content` (with the latter two receiving the tab `id`). See the default `StimulusDataAttributes` for an example.
+
+Any additional HTML attributes passed to the component will be applied to the outer `<div>` element.
 
 **Keyword Arguments for `tab` Method:**
 

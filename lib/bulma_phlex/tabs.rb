@@ -7,15 +7,12 @@ module BulmaPhlex
   # interface, providing a way to toggle between different content sections using
   # tabbed navigation. Includes support for icons and active state management.
   #
-  # Classes can be assigned to either the tabs or contents wrappers. The tabs div is where Bulma
-  # options such as `is-boxed`, `is-centered`, or `is-small` can be added.
-  #
   # Use method `right_content` to add content to the right of the tabs, such as a button.
   #
   # The tabs behavior can be managed by the data attributes provided by the `data_attributes_builder` argument. By
   # default, this will use the `StimulusDataAttributes` class with the controller name `bulma-phlex--tabs`. That
   # controlleris not provided by this library, but you can create your own Stimulus controller to handle the tab
-  #  switching logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-rails-helpers/blob/main/app/javascript/controllers/bulma/tabs_controller.js).
+  # switching logic. Here is an implementation of a [Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-phlex-rails/blob/main/app/javascript/controllers/bulma_phlex/tabs_controller.js).
   #
   # ## Example
   #
@@ -35,6 +32,18 @@ module BulmaPhlex
   # end
   # ```
   #
+  # ## Options
+  #
+  # - `align`: Can be `centered` or `right` to align the tabs accordingly.
+  # - `size`: Can be `small`, `medium`, or `large` to set the size of the tabs.
+  # - `boxed`: If `true`, uses classic style tabs.
+  # - `toggle`: If `true`, makes the tabs look like buttons.
+  # - `rounded`: If `true`, makes the tabs look like buttons with the first and last rounded.
+  # - `fullwidth`: If `true`, makes the tabs take up the full width of the container.
+  # - `data_attributes_builder`: An object that provides methods to generate data attributes for the
+  #   tabs. By default, this is an instance of `StimulusDataAttributes` with "bulma-phlex--tabs".
+  #
+  # Any additional HTML attributes passed to the component will be applied to the outer `<div>` element.
   class Tabs < BulmaPhlex::Base
     StimulusDataAttributes = Data.define(:stimulus_controller) do
       def for_container
@@ -60,12 +69,22 @@ module BulmaPhlex
       end
     end
 
-    def initialize(id: nil, tabs_class: nil, contents_class: nil,
-                   data_attributes_builder: StimulusDataAttributes.new("bulma-phlex--tabs"))
-      @id = id || "tabs"
-      @tabs_class = tabs_class
-      @contents_class = contents_class
+    def initialize(align: nil, # rubocop:disable Metrics/ParameterLists
+                   size: nil,
+                   boxed: false,
+                   toggle: false,
+                   rounded: false,
+                   fullwidth: false,
+                   data_attributes_builder: StimulusDataAttributes.new("bulma-phlex--tabs"),
+                   **html_attributes)
+      @align = align
+      @size = size
+      @boxed = boxed
+      @toggle = toggle || rounded
+      @rounded = rounded
+      @fullwidth = fullwidth
       @data_attributes_builder = data_attributes_builder
+      @html_attributes = html_attributes
       @tabs = []
       @contents = []
     end
@@ -85,9 +104,9 @@ module BulmaPhlex
     def view_template(&)
       vanish(&)
 
-      div(id: @id, data: @data_attributes_builder.for_container) do
+      div(**mix({ data: @data_attributes_builder.for_container }, @html_attributes)) do
         build_tabs_with_optional_right_content
-        div(id: "#{@id}-content", class: @contents_class) { build_content }
+        build_content
       end
     end
 
@@ -103,15 +122,34 @@ module BulmaPhlex
     end
 
     def build_tabs
-      div(class: "tabs #{@tabs_class}".strip) do
-        ul(id: "#{@id}-tabs") do
+      attributes = {}
+      attributes[:id] = "#{@html_attributes[:id]}-tabs" if @html_attributes[:id]
+
+      div(class: tabs_classes) do
+        ul(**attributes) do
           @tabs.each { render it }
         end
       end
     end
 
+    def tabs_classes
+      classes = ["tabs"]
+      classes << "is-boxed" if @boxed
+      classes << "is-#{@align}" if @align
+      classes << "is-#{@size}" if @size
+      classes << "is-toggle" if @toggle
+      classes << "is-toggle-rounded" if @rounded
+      classes << "is-fullwidth" if @fullwidth
+      classes
+    end
+
     def build_content
-      @contents.each { render it }
+      attributes = {}
+      attributes[:id] = "#{@html_attributes[:id]}-content" if @html_attributes[:id]
+
+      div(**attributes) do
+        @contents.each { render it }
+      end
     end
   end
 end
