@@ -14,7 +14,7 @@ module BulmaPhlex
   # - `centered`: (Boolean, optional) If true, centers the columns.
   # - `vcentered`: (Boolean, optional) If true, vertically centers the columns.
   class Columns < BulmaPhlex::Base
-    def initialize(minimum_breakpoint: nil, # rubocop:disable Metrics/ParameterLists
+    def initialize(minimum_breakpoint: nil,
                    multiline: false,
                    gap: nil,
                    centered: false,

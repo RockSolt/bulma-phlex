@@ -23,7 +23,7 @@ module BulmaPhlex
   # - `icon_right`: If provided, adds an icon to the right of the button text. Should be a string
   #   representing the icon class (e.g., "fa-solid fa-check").
   class Button < Base
-    def initialize(color: nil, # rubocop:disable Metrics/ParameterLists
+    def initialize(color: nil,
                    mode: nil,
                    size: nil,
                    responsive: false,

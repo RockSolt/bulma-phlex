@@ -22,7 +22,7 @@ module BulmaPhlex
   # BulmaPhlex::Icon.new("fas fa-home", color: :primary, size: :large, text_right: "Home")
   # ```
   class Icon < BulmaPhlex::Base
-    def initialize(icon, # rubocop:disable Metrics/ParameterLists
+    def initialize(icon,
                    text_right: nil,
                    text_left: nil,
                    size: nil,
