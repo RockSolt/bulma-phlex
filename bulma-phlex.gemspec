@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.description = "Add Bulma components including Card, Level, NavigationBar, Pagination, Table, and Tabs " \
                      "to your Phlex application."
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.4.0"
+  spec.required_ruby_version = ">= 3.2.10"
 
   spec.metadata["rubygems_mfa_required"] = "true"
   spec.metadata["homepage_uri"] = spec.homepage

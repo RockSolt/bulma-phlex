@@ -127,7 +127,7 @@ module BulmaPhlex
 
       div(class: tabs_classes) do
         ul(**attributes) do
-          @tabs.each { render it }
+          @tabs.each { |tab| render tab }
         end
       end
     end
@@ -148,7 +148,7 @@ module BulmaPhlex
       attributes[:id] = "#{@html_attributes[:id]}-content" if @html_attributes[:id]
 
       div(**attributes) do
-        @contents.each { render it }
+        @contents.each { |content| render content }
       end
     end
   end
