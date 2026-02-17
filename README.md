@@ -6,20 +6,6 @@
 
 This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/phlex) components for common [Bulma](https://bulma.io/) components and elements, making it easy to build beautiful, responsive interfaces with a clean, Ruby-focused API.
 
-## Upgrading to 0.8
-
-> [!IMPORTANT]
-> The 0.8.0 release includes breaking changes. The namespace for the components has been changed from `Components::Bulma` to `Components::BulmaPhlex`.
-
-This can generally be handled with a *Find-and-Replace*:
-
-**Find:** `Bulma::`  
-**Replace:** `BulmaPhlex::`
-
-Note that this change was also applied to the expected Stimulus controllers. References such as the Navigation bar have been updated from `bulma--navigation-bar` to `bulma-phlex--navigation-bar`.
-
-Finally, the optional Rails extensions for the Card and Table components have been moved to the `bulma-phlex-rails` gem. If you are using this with Rails, you should use [the `bulma-phlex-rails` gem](https://github.com/RockSolt/bulma-phlex-rails). It provides both the component extensions as well as JavaScript for the Dropdown, Navigation Bar, and Tabs components.
-
 ## Table of Contents
 
 - [Installation](#installation)
@@ -69,8 +55,8 @@ gem install bulma-phlex
 
 This gem requires:
 
-- Ruby 3.4 or higher
-- Phlex 2.0.2 or higher
+- Ruby 3.2.10 or higher
+- Phlex 2.4.1 or higher
 - Bulma CSS (which you'll need to include in your application)
 
 ### Required Setup
@@ -567,6 +553,22 @@ BulmaPhlex::Title("Dr. Strangelove", size: 2, subtitle: "Or: How I Learned to St
 - `subtitle_size`: (optional) An integer from 1 to 6 indicating the size of the subtitle. If not provided and a title size is given, it defaults to `size + 2`.
 - `spaced`: (optional) A boolean indicating whether to add the `is-spaced` class to the title.
 
+
+## Upgrading to 0.8
+
+> [!IMPORTANT]
+> The 0.8.0 release includes breaking changes. The namespace for the components has been changed from `Components::Bulma` to `Components::BulmaPhlex`.
+
+This can generally be handled with a *Find-and-Replace*:
+
+**Find:** `Bulma::`
+**Replace:** `BulmaPhlex::`
+
+Note that this change was also applied to the expected Stimulus controllers. References such as the Navigation bar have been updated from `bulma--navigation-bar` to `bulma-phlex--navigation-bar`.
+
+Finally, the optional Rails extensions for the Card and Table components have been moved to the `bulma-phlex-rails` gem. If you are using this with Rails, you should use [the `bulma-phlex-rails` gem](https://github.com/RockSolt/bulma-phlex-rails). It provides both the component extensions as well as JavaScript for the Dropdown, Navigation Bar, and Tabs components.
+
+
 ## Development
 
 After checking out the repo, run `bundle install` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -583,4 +585,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Credits
 
-This leverages the [Bulma CSS library](https://bulma.io/documentation/) and [Phlex](https://www.phlex.fun/) but is not endorsed or certified by either. We are fans of the both and this makes using them together easier.
+This leverages the [Bulma CSS library](https://bulma.io/documentation/) and [Phlex](https://www.phlex.fun/) but is not endorsed or certified by either. We are fans of both and this makes using them together easier.
