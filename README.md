@@ -18,6 +18,7 @@ This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/ph
   - [Grid](#grid)
   - [Icon](#icon)
   - [Level](#level)
+  - [Modal](#modal)
   - [NavigationBar](#navigationbar)
   - [Notification](#notification)
   - [Pagination](#pagination)
@@ -283,6 +284,27 @@ end
 ```
 
 Pass in any HTML attributes to the constructor to have them applied to the level container div.
+
+
+### Modal
+
+The [Modal](https://bulma.io/documentation/components/modal/) component provides a way to create modal dialogs with customizable content and styling options.
+
+```ruby
+BulmaPhlex::Modal.new do
+  div(class: "box") do
+    h1(class: "title") { "Modal Title" }
+    p { "This is the modal content." }
+  end
+end
+```
+
+**Constructor Keyword Arguments:**
+
+- `data_attributes_builder`: A builder object that responds to `for_container`, `for_background`, and `for_close_button`, which should return a hash of data attributes for the container, background, and close button, respectively. By default, this uses the nested `StimulusDataAttributes` class with the controller name `bulma-phlex--modal`. You can create your own builder to integrate with a different JavaScript framework or custom logic.
+
+Any additional HTML attributes passed to the constructor will be applied to the modal container div. The modal can be toggled by adding or removing the `is-active` class on the container. (Nothing in the component adds the `is-active` class, so you will need to handle that with your own JavaScript or Stimulus controller.)
+
 
 ### NavigationBar
 
