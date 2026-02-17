@@ -43,7 +43,7 @@ module BulmaPhlex
   # will be rendered in the table footer. The block should accept a page number and return the
   # corresponding URL for that page.
   class Table < BulmaPhlex::Base
-    def initialize(rows, # rubocop:disable Metrics/ParameterLists
+    def initialize(rows,
                    bordered: false,
                    striped: false,
                    narrow: false,

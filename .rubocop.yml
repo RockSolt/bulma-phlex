@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://www.rubyschema.org/rubocop.json
+
 AllCops:
   TargetRubyVersion: 3.2
   NewCops: enable
@@ -25,6 +27,8 @@ Metrics/CyclomaticComplexity:
     - lib/bulma_phlex/pagination.rb
 Metrics/MethodLength:
   Enabled: false
+Metrics/ParameterLists:
+  CountKeywordArgs: false
 Metrics/PerceivedComplexity:
   Exclude:
     - lib/bulma_phlex/pagination.rb

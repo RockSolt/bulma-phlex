@@ -49,7 +49,7 @@ module BulmaPhlex
   #
   # Any additional HTML attributes passed to the component will be applied to the `<nav>` element.
   class NavigationBar < BulmaPhlex::Base
-    def initialize(container: false, # rubocop:disable Metrics/ParameterLists
+    def initialize(container: false,
                    color: nil,
                    transparent: false,
                    spaced: false,

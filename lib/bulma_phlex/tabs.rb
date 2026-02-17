@@ -69,7 +69,7 @@ module BulmaPhlex
       end
     end
 
-    def initialize(align: nil, # rubocop:disable Metrics/ParameterLists
+    def initialize(align: nil,
                    size: nil,
                    boxed: false,
                    toggle: false,

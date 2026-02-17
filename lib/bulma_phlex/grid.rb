@@ -15,7 +15,7 @@ module BulmaPhlex
   # - `column_gap`: (optional) Sets the column gap size between grid items from 1-8 with 0.5 increments.
   # - `row_gap`: (optional) Sets the row gap size between grid items from 1-8 with 0.5 increments.
   class Grid < BulmaPhlex::Base
-    def initialize(fixed_columns: nil, # rubocop:disable Metrics/ParameterLists
+    def initialize(fixed_columns: nil,
                    auto_count: false,
                    minimum_column_width: nil,
                    gap: nil,
