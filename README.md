@@ -16,6 +16,7 @@ This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/ph
   - [Dropdown](#dropdown)
   - [Form Field](#form-field)
   - [Grid](#grid)
+  - [Hero](#hero)
   - [Icon](#icon)
   - [Level](#level)
   - [Modal](#modal)
@@ -241,6 +242,25 @@ end
 - `gap`: (optional) Sets the gap size between grid items, from 1-8 with 0.5 increments.
 - `column_gap`: (optional) Sets the column gap size between grid items, from 1-8 with 0.5 increments.
 - `row_gap`: (optional) Sets the row gap size between grid items, from 1-8 with 0.5 increments.
+
+
+
+### Hero
+
+The [Hero](https://bulma.io/documentation/layout/hero/) component provides a large, full-width section for showcasing important content or calls to action, with support for different sizes and colors.
+
+There are three ways to invoke the component:
+
+- with a title and subtitle argument
+- with a block for the hero body content
+- invoke methods head, body, and footer on the yielded component and pass blocks to define each section
+
+Additionally, both the size and color of the Hero can be specified through keyword arguments in the
+constructor. Any additional HTML attributes given to the constructor will be added to the containing `div`.
+
+```ruby
+BulmaPhlex::Hero(title: "Welcome to My Site", subtitle: "We're glad you're here!", color: "primary")
+```
 
 
 ### Icon
