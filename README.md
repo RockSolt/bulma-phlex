@@ -14,6 +14,7 @@ This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/ph
   - [Card](#card)
   - [Columns](#columns)
   - [Dropdown](#dropdown)
+  - [File Upload](#file-upload)
   - [Form Field](#form-field)
   - [Grid](#grid)
   - [Hero](#hero)
@@ -195,6 +196,30 @@ end
 - `item(content = nil, &block)`: Adds a custom item (string or block).
 - `divider`: Adds a divider line.
 
+
+### File Upload
+
+The [File Upload](https://bulma.io/documentation/form/file/) component provides the structure for a file input. The component generates the container and additional elements, then yields for the file input.
+
+If the name keyword argument is set to true, the component will also generate the file name display element and add the necessary data attributes for it to work with the default Stimulus controller. The controller is not provided by this library, but you can create your own Stimulus controller to handle the logic. Here is [an implementation of a Stimulus controller for Bulma file upload](https://github.com/RockSolt/bulma-phlex-rails/blob/main/app/javascript/controllers/bulma_phlex/file_input_display_controller.js). If you want to use a custom builder for the data attributes, you can pass that in as well. 
+
+```ruby
+BulmaPhlex::FileUpload.new(color: "primary") do |data_attributes|
+  input(type: "file", class: "file-input", data: data_attributes)
+end
+```
+
+**Constructor Keyword Arguments:**
+
+- `color`: Sets the color of the file input
+- `size`: Sets the size of the file input
+- `name`: If `true`, includes the file name display element
+- `align`: Aligns the file input: right or centered
+- `fullwidth`: If `true`, makes the file input full width
+- `boxed`: If `true`, makes the file input boxed
+- `data_attributes_builder`: A custom builder for the data attributes used for Stimulus integration. If not provided, a default builder is used with the controller name "bulma-phlex--file-input-display".
+
+Any additional HTML attributes passed to the constructor will be applied to the outer container div. 
 
 ### Form Field
 
