@@ -156,5 +156,31 @@ module BulmaPhlex
         </button>
       HTML
     end
+
+    def test_classes_for_color_mode_and_size
+      assert_equal ["button"], BulmaPhlex::Button.classes_for
+      assert_equal %w[button is-primary], BulmaPhlex::Button.classes_for(color: "primary")
+      assert_equal %w[button is-dark], BulmaPhlex::Button.classes_for(mode: "dark")
+      assert_equal %w[button is-large], BulmaPhlex::Button.classes_for(size: "large")
+
+      assert_equal %w[button is-primary is-dark is-large],
+                   BulmaPhlex::Button.classes_for(color: "primary", mode: "dark", size: "large")
+    end
+
+    def test_classes_for_responsive_fullwidth_outlined_inverted_and_rounded
+      assert_equal %w[button is-responsive], BulmaPhlex::Button.classes_for(responsive: true)
+      assert_equal %w[button is-fullwidth], BulmaPhlex::Button.classes_for(fullwidth: true)
+      assert_equal %w[button is-outlined], BulmaPhlex::Button.classes_for(outlined: true)
+      assert_equal %w[button is-inverted], BulmaPhlex::Button.classes_for(inverted: true)
+      assert_equal %w[button is-rounded], BulmaPhlex::Button.classes_for(rounded: true)
+    end
+
+    def test_classes_for_combination_of_all_options
+      expected = %w[button is-primary is-dark is-large is-responsive is-fullwidth is-outlined is-inverted
+                    is-rounded]
+      assert_equal expected, BulmaPhlex::Button.classes_for(color: "primary", mode: "dark", size: "large",
+                                                            responsive: true, fullwidth: true, outlined: true,
+                                                            inverted: true, rounded: true)
+    end
   end
 end
