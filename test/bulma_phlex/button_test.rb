@@ -182,5 +182,25 @@ module BulmaPhlex
                                                             responsive: true, fullwidth: true, outlined: true,
                                                             inverted: true, rounded: true)
     end
+
+    def test_generates_anchor_tag_when_href_is_provided
+      component = BulmaPhlex::Button.new(color: "primary", href: "/link")
+      result = component.call { "Link Button" }
+
+      assert_html_equal <<~HTML, result
+        <a class="button is-primary" href="/link">
+          Link Button
+        </a>
+      HTML
+    end
+
+    def test_generates_input_tag_when_input_option_is_provided
+      component = BulmaPhlex::Button.new(color: "primary", input: "submit", value: "Save")
+      result = component.call
+
+      assert_html_equal <<~HTML, result
+        <input class="button is-primary" type="submit" value="Save">
+      HTML
+    end
   end
 end
