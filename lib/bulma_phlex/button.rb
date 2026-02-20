@@ -23,6 +23,27 @@ module BulmaPhlex
   # - `icon_right`: If provided, adds an icon to the right of the button text. Should be a string
   #   representing the icon class (e.g., "fa-solid fa-check").
   class Button < Base
+    # Returns an array of CSS classes for the button based on the provided options.
+    def self.classes_for(color: nil, # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+                         mode: nil,
+                         size: nil,
+                         responsive: false,
+                         fullwidth: false,
+                         outlined: false,
+                         inverted: false,
+                         rounded: false)
+      classes = ["button"]
+      classes << "is-#{color}" if color
+      classes << "is-#{mode}" if mode
+      classes << "is-#{size}" if size
+      classes << "is-responsive" if responsive
+      classes << "is-fullwidth" if fullwidth
+      classes << "is-outlined" if outlined
+      classes << "is-inverted" if inverted
+      classes << "is-rounded" if rounded
+      classes
+    end
+
     def initialize(color: nil,
                    mode: nil,
                    size: nil,
@@ -35,40 +56,18 @@ module BulmaPhlex
                    icon_left: nil,
                    icon_right: nil,
                    **html_attributes)
-      @color = color
-      @mode = mode
-      @size = size
-      @responsive = responsive
-      @fullwidth = fullwidth
-      @outlined = outlined
-      @inverted = inverted
-      @rounded = rounded
+      @classes = self.class.classes_for(color:, mode:, size:, responsive:, fullwidth:, outlined:, inverted:, rounded:)
       @icon_left = icon || icon_left
       @icon_right = icon_right
       @html_attributes = html_attributes
     end
 
     def view_template(&)
-      button(**mix({ class: button_classes }, @html_attributes)) do
+      button(**mix({ class: @classes }, @html_attributes)) do
         Icon(@icon_left) if @icon_left
         yield if block_given?
         Icon(@icon_right) if @icon_right
       end
-    end
-
-    private
-
-    def button_classes # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      classes = ["button"]
-      classes << "is-#{@color}" if @color
-      classes << "is-#{@mode}" if @mode
-      classes << "is-#{@size}" if @size
-      classes << "is-responsive" if @responsive
-      classes << "is-fullwidth" if @fullwidth
-      classes << "is-outlined" if @outlined
-      classes << "is-inverted" if @inverted
-      classes << "is-rounded" if @rounded
-      classes
     end
   end
 end
