@@ -84,6 +84,11 @@ The [Button](https://bulma.io/documentation/elements/button/) component provides
 BulmaPhlex::Button(color: "primary", size: "large", icon: "fas fa-thumbs-up") { "Like" }
 ```
 
+The component can generate a button, anchor, or input element. By default it generates a `<button>`
+element. If the `href` attribute is provided, it generates an `<a>` element. To generate an `<input>`
+element, use the keyword argument `input` with a value of the type of input (button, reset, or submit).
+
+
 **Constructor Keyword Arguments:**
 
 - `color`: Sets the button color (e.g., "primary", "link", "info", "success", "warning", "danger").
@@ -94,6 +99,7 @@ BulmaPhlex::Button(color: "primary", size: "large", icon: "fas fa-thumbs-up") { 
 - `outlined`: If `true`, makes the button outlined.
 - `inverted`: If `true`, makes the button inverted.
 - `rounded`: If `true`, makes the button rounded.
+- `input`: If provided, generates an `input` element instead of a `button`. The value should be the type of input: "button", "reset", or "submit".
 - `icon`: If provided, adds an icon to the button. Should be a string representing the 
   icon class (e.g., "fa-solid fa-check").
 - `icon_left`: If provided, adds an icon to the left of the button text. Should be a string

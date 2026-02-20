@@ -6,6 +6,10 @@ module BulmaPhlex
   # This component implements the [Bulma button](https://bulma.io/documentation/elements/button/)
   # interface. It provides a simple way to create buttons with the appropriate Bulma classes.
   #
+  # The component can generate a button, anchor, or input element. By default it generates a `<button>`
+  # element. If the `href` attribute is provided, it generates an `<a>` element. To generate an `<input>`
+  # element, use the keyword argument `input` with a value of the type of input (button, reset, or submit).
+  #
   # ## Options
   #
   # - `color`: Sets the button color (e.g., "primary", "link", "info", "success", "warning", "danger").
@@ -55,18 +59,27 @@ module BulmaPhlex
                    icon: nil,
                    icon_left: nil,
                    icon_right: nil,
+                   input: nil,
                    **html_attributes)
       @classes = self.class.classes_for(color:, mode:, size:, responsive:, fullwidth:, outlined:, inverted:, rounded:)
+      @input = input
       @icon_left = icon || icon_left
       @icon_right = icon_right
       @html_attributes = html_attributes
     end
 
     def view_template(&)
-      button(**mix({ class: @classes }, @html_attributes)) do
-        Icon(@icon_left) if @icon_left
-        yield if block_given?
-        Icon(@icon_right) if @icon_right
+      options = mix({ class: @classes }, @html_attributes)
+
+      if @input
+        input(**options, type: @input)
+      else
+        element_type = @html_attributes.key?(:href) ? :a : :button
+        tag(element_type, **options) do
+          Icon(@icon_left) if @icon_left
+          yield if block_given?
+          Icon(@icon_right) if @icon_right
+        end
       end
     end
   end
