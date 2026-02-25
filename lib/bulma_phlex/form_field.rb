@@ -101,10 +101,8 @@ module BulmaPhlex
 
       div(class: field_classes) do
         render_label
-        render FormControl.new(class: control_classes) do
+        render FormControl.new(icon_left: @icon_left, icon_right: @icon_right) do
           raw @control_builder.call
-          Icon(@icon_left, size: :small, left: true) if @icon_left
-          Icon(@icon_right, size: :small, right: true) if @icon_right
         end
         p(class: "help") { @help } if @help
       end
@@ -144,13 +142,6 @@ module BulmaPhlex
         html_label(class: "label") { @label_string }
       elsif @label_builder
         raw @label_builder&.call
-      end
-    end
-
-    def control_classes
-      [].tap do |classes|
-        classes << "has-icons-left" if @icon_left
-        classes << "has-icons-right" if @icon_right
       end
     end
   end

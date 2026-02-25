@@ -10,26 +10,50 @@ module BulmaPhlex
       component = FormControl.new
       output = component.call { "Content" }
 
-      expected_html = <<~HTML
+      assert_html_equal <<~HTML, output
         <div class="control">
           Content
         </div>
       HTML
-
-      assert_html_equal expected_html, output
     end
 
-    def test_renders_div_with_additional_classes
-      component = FormControl.new(class: "is-expanded")
+    def test_renders_div_with_additional_html_attributes
+      component = FormControl.new(class: "is-expanded", data: { test: "value" })
       output = component.call { "Content" }
 
-      expected_html = <<~HTML
-        <div class="control is-expanded">
+      assert_html_equal <<~HTML, output
+        <div class="control is-expanded" data-test="value">
           Content
         </div>
       HTML
+    end
 
-      assert_html_equal expected_html, output
+    def test_renders_icon_left
+      component = FormControl.new(icon_left: "fas fa-check")
+      output = component.call { "Content" }
+
+      assert_html_equal <<~HTML, output
+        <div class="control has-icons-left">
+          Content
+          <span class="icon is-small is-left">
+            <i class="fas fa-check"></i>
+          </span>
+        </div>
+      HTML
+    end
+
+    def test_renders_icon_right
+      component = FormControl.new(icon_right: "fas fa-check")
+      output = component.call { "Content" }
+
+      assert_html_equal <<~HTML, output
+        <div class="control has-icons-right">
+          Content
+          <span class="icon is-small is-right">
+            <i class="fas fa-check"></i>
+          </span>
+        </div>
+      HTML
     end
   end
 end
