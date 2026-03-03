@@ -10,7 +10,7 @@ module BulmaPhlex
   # ## Example
   #
   # ```ruby
-  # BulmaPhlex::Card() do |card|
+  # render BulmaPhlex::Card.new do |card|
   #   card.head("Card Title")
   #   card.content do
   #     "This is some card content"

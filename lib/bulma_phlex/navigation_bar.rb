@@ -14,7 +14,7 @@ module BulmaPhlex
   # ## Example
   #
   # ```ruby
-  # BulmaPhlex::NavigationBar() do |navbar|
+  # render BulmaPhlex::NavigationBar.new do |navbar|
   #   navbar.brand do
   #     a(href: "/", class: "navbar-item") { "My App" }
   #   end
@@ -29,7 +29,7 @@ module BulmaPhlex
   #
   #     div(class: "navbar-item has-dropdown is-hoverable") do
   #       a(class: "navbar-link") { "Account" }
-  #       BulmaPhlex::NavigationBarDropdown() do |dropdown|
+  #       render BulmaPhlex::NavigationBarDropdown.new do |dropdown|
   #         dropdown.item "Sign In", "/login"
   #         dropdown.item "Register", "/register"
   #       end
