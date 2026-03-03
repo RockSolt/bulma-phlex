@@ -12,7 +12,7 @@ module BulmaPhlex
   # ```ruby
   # users = User.all
   #
-  # BulmaPhlex::Table(users) do |table|
+  # render BulmaPhlex::Table.new(users) do |table|
   #   table.column "Name" do |user|
   #     user.full_name
   #   end

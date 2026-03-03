@@ -17,7 +17,7 @@ module BulmaPhlex
   # ## Example
   #
   # ```ruby
-  # BulmaPhlex::Tabs() do |tabs|
+  # render BulmaPhlex::Tabs.new do |tabs|
   #   tabs.tab(id: "profile", title: "Profile", active: true) do
   #     "Profile content goes here"
   #   end

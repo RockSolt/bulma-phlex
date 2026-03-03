@@ -16,7 +16,7 @@ module BulmaPhlex
   # icons with the `icon_left` and `icon_right` keyword arguments.
   #
   # ```ruby
-  # FormField(icon_left: "fas fa-user", icon_right: "fas fa-check")
+  # render BulmaPhlex::FormField.new(icon_left: "fas fa-user", icon_right: "fas fa-check")
   # ```
   #
   # ## Column Layout
@@ -33,7 +33,7 @@ module BulmaPhlex
   # Here is the label provided as a block:
   #
   # ```ruby
-  # FormField(help: "Enter the project name.") do |field|
+  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
   #   field.label { label "Project Name" }
   #   field.input { input id: "project_name", name: "project[name]", type: "text" }
   # end
@@ -42,7 +42,7 @@ module BulmaPhlex
   # Here is the label provided as a string:
   #
   # ```ruby
-  # FormField(help: "Enter the project name.") do |field|
+  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
   #   field.label "Project Name"
   #   field.input { input id: "project_name", name: "project[name]", type: "text" }
   # end
@@ -51,7 +51,7 @@ module BulmaPhlex
   # Here is no label provided:
   #
   # ```ruby
-  # FormField(help: "Enter the project name.") do |field|
+  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
   #   field.input { input id: "project_name", name: "project[name]", type: "text" }
   # end
   # ```
@@ -62,7 +62,7 @@ module BulmaPhlex
   # in the block without needing to call `control` explicitly:
   #
   # ```ruby
-  # FormField(help: "Enter the project name.") do
+  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do
   #   input id: "project_name", name: "project[name]", type: "text"
   # end
   # ```

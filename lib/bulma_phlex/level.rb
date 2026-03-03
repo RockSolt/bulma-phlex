@@ -9,7 +9,7 @@ module BulmaPhlex
   # ## Example:
   #
   # ```ruby
-  # BulmaPhlex::Level() do |level|
+  # render BulmaPhlex::Level.new do |level|
   #   level.left do
   #     button(class: "button") { "Left" }
   #   end
