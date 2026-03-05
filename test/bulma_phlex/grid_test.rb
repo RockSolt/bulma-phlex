@@ -3,7 +3,7 @@
 require "test_helper"
 
 module BulmaPhlex
-  class GridTest < ActiveSupport::TestCase
+  class GridTest < Minitest::Test
     include TagOutputAssertions
 
     def test_renders_div_with_class
