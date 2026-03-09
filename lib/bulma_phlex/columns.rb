@@ -3,15 +3,23 @@
 module BulmaPhlex
   # Renders a responsive column layout using [Bulma's column system](https://bulma.io/documentation/columns/basics/).
   #
-  # ## Keyword Arguments
-  #
-  # - `minimum_breakpoint`: (Symbol, optional) Sets the minimum breakpoint for the columns; default is `:tablet`.
-  # - `multiline`: (Boolean, optional) If true, allows the columns to wrap onto multiple lines.
-  # - `gap`: (optional) Use an integer (0-8) to set the gap size between columns; use a hash keyed by breakpoints
-  #   to set responsive gap sizes.
-  # - `centered`: (Boolean, optional) If true, centers the columns.
-  # - `vcentered`: (Boolean, optional) If true, vertically centers the columns.
   class Columns < BulmaPhlex::Base
+    # **Parameters**
+    # - `minimum_breakpoint` — Sets the minimum breakpoint for the columns (e.g. `:tablet`, `:desktop`)
+    # - `multiline` — If `true`, allows the columns to wrap onto multiple lines
+    # - `gap` — An integer (0-8) to set the gap size, or a hash keyed by breakpoints for responsive gaps
+    # - `centered` — If `true`, centers the columns
+    # - `vcentered` — If `true`, vertically centers the columns
+    # - `**html_attributes` — Additional HTML attributes for the columns container
+    def self.new(minimum_breakpoint: nil,
+                 multiline: false,
+                 gap: nil,
+                 centered: false,
+                 vcentered: false,
+                 **html_attributes)
+      super
+    end
+
     def initialize(minimum_breakpoint: nil,
                    multiline: false,
                    gap: nil,

@@ -24,22 +24,30 @@ module BulmaPhlex
   #       end
   #     end
   #
-  # ## Options
-  #
-  # - `bordered`: Adds borders to the table.
-  # - `striped`: Adds zebra-striping to the table rows.
-  # - `narrow`: Makes the table more compact.
-  # - `hoverable`: Adds a hover effect to the table rows.
-  # - `fullwidth`: Makes the table take up the full width of its container.
-  #
-  # Any additional HTML attributes passed to the component will be applied to the `<table>` element.
-  #
   # ## Pagination
   #
   # If the `paginate` method is called with a block that builds pagination paths, a pagination control
   # will be rendered in the table footer. The block should accept a page number and return the
   # corresponding URL for that page.
   class Table < BulmaPhlex::Base
+    # **Parameters**
+    # - `rows` — The collection of records to display in the table
+    # - `bordered` — If `true`, adds borders to the table
+    # - `striped` — If `true`, adds zebra-striping to the table rows
+    # - `narrow` — If `true`, makes the table more compact
+    # - `hoverable` — If `true`, adds a hover effect to the table rows
+    # - `fullwidth` — If `true`, makes the table take up the full width of its container
+    # - `**html_attributes` — Additional HTML attributes for the `<table>` element
+    def self.new(rows,
+                 bordered: false,
+                 striped: false,
+                 narrow: false,
+                 hoverable: false,
+                 fullwidth: false,
+                 **html_attributes)
+      super
+    end
+
     def initialize(rows,
                    bordered: false,
                    striped: false,

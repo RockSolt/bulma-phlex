@@ -35,17 +35,24 @@ module BulmaPhlex
   #       end
   #     end
   #
-  # ## Options
-  #
-  # - `container`: If `true`, wraps the navbar content in a `.container` for fixed-width layout. Can also
-  #   be a string or symbol to specify a custom container class.
-  # - `color`: Sets the navbar color (e.g., "primary", "light", "dark").
-  # - `transparent`: If `true`, makes the navbar transparent.
-  # - `spaced`: If `true`, adds spacing to the navbar.
-  # - `shadow`: If `true`, adds a shadow to the navbar.
-  #
-  # Any additional HTML attributes passed to the component will be applied to the `<nav>` element.
   class NavigationBar < BulmaPhlex::Base
+    # **Parameters**
+    # - `container` — If `true`, wraps the navbar content in a `.container` for fixed-width layout. Can also
+    #   be a string or symbol to specify a custom container class
+    # - `color` — Sets the navbar color (e.g., `"primary"`, `"light"`, `"dark"`)
+    # - `transparent` — If `true`, makes the navbar transparent
+    # - `spaced` — If `true`, adds spacing to the navbar
+    # - `shadow` — If `true`, adds a shadow to the navbar
+    # - `**html_attributes` — Additional HTML attributes for the `<nav>` element
+    def self.new(container: false,
+                 color: nil,
+                 transparent: false,
+                 spaced: false,
+                 shadow: false,
+                 **html_attributes)
+      super
+    end
+
     def initialize(container: false,
                    color: nil,
                    transparent: false,

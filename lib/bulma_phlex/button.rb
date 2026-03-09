@@ -6,23 +6,6 @@ module BulmaPhlex
   # The component can generate a button, anchor, or input element. By default it generates a `<button>`
   # element. If the `href` attribute is provided, it generates an `<a>` element. To generate an `<input>`
   # element, use the keyword argument `input` with a value of the type of input (button, reset, or submit).
-  #
-  # ## Options
-  #
-  # - `color`: Sets the button color (e.g., "primary", "link", "info", "success", "warning", "danger").
-  # - `mode`: Sets the mode of the notification: "light" or "dark".
-  # - `size`: Sets the button size: "small", "normal" (the default), "medium", or "large".
-  # - `responsive`: If `true`, makes the button responsive.
-  # - `fullwidth`: If `true`, makes the button full width.
-  # - `outlined`: If `true`, makes the button outlined.
-  # - `inverted`: If `true`, makes the button inverted.
-  # - `rounded`: If `true`, makes the button rounded.
-  # - `icon`: If provided, adds an icon to the button. Should be a string representing
-  #   the icon class (e.g., "fa-solid fa-check").
-  # - `icon_left`: If provided, adds an icon to the left of the button text. Should be a string
-  #   representing the icon class (e.g., "fa-solid fa-check").
-  # - `icon_right`: If provided, adds an icon to the right of the button text. Should be a string
-  #   representing the icon class (e.g., "fa-solid fa-check").
   class Button < Base
     # Returns an array of CSS classes for the button based on the provided options.
     def self.classes_for(color: nil, # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
@@ -43,6 +26,36 @@ module BulmaPhlex
       classes << "is-inverted" if inverted
       classes << "is-rounded" if rounded
       classes
+    end
+
+    # **Parameters**
+    # - `color` — Button color: `"primary"`, `"link"`, `"info"`, `"success"`, `"warning"`, `"danger"`
+    # - `mode` — Button style mode: `"light"` or `"dark"`
+    # - `size` — Button size: `"small"`, `"normal"`, `"medium"`, `"large"`
+    # - `responsive` — If `true`, makes the button responsive
+    # - `fullwidth` — If `true`, makes the button full width
+    # - `outlined` — If `true`, renders the button outlined
+    # - `inverted` — If `true`, renders the button inverted
+    # - `rounded` — If `true`, renders the button rounded
+    # - `icon` — Icon class added to the button (e.g. `"fa-solid fa-check"`); shorthand for `icon_left`
+    # - `icon_left` — Icon class added to the left of the button text
+    # - `icon_right` — Icon class added to the right of the button text
+    # - `input` — If set, renders an `<input>` element of this type (`"button"`, `"reset"`, `"submit"`)
+    # - `**html_attributes` — Additional HTML attributes for the button element
+    def self.new(color: nil,
+                 mode: nil,
+                 size: nil,
+                 responsive: false,
+                 fullwidth: false,
+                 outlined: false,
+                 inverted: false,
+                 rounded: false,
+                 icon: nil,
+                 icon_left: nil,
+                 icon_right: nil,
+                 input: nil,
+                 **html_attributes)
+      super
     end
 
     def initialize(color: nil,

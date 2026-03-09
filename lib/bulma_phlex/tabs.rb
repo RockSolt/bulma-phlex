@@ -28,18 +28,6 @@ module BulmaPhlex
   #       end
   #     end
   #
-  # ## Options
-  #
-  # - `align`: Can be `centered` or `right` to align the tabs accordingly.
-  # - `size`: Can be `small`, `medium`, or `large` to set the size of the tabs.
-  # - `boxed`: If `true`, uses classic style tabs.
-  # - `toggle`: If `true`, makes the tabs look like buttons.
-  # - `rounded`: If `true`, makes the tabs look like buttons with the first and last rounded.
-  # - `fullwidth`: If `true`, makes the tabs take up the full width of the container.
-  # - `data_attributes_builder`: An object that provides methods to generate data attributes for the
-  #   tabs. By default, this is an instance of `StimulusDataAttributes` with "bulma-phlex--tabs".
-  #
-  # Any additional HTML attributes passed to the component will be applied to the outer `<div>` element.
   class Tabs < BulmaPhlex::Base
     StimulusDataAttributes = Data.define(:stimulus_controller) do
       def for_container
@@ -63,6 +51,26 @@ module BulmaPhlex
       def target_key
         "#{stimulus_controller}-target"
       end
+    end
+
+    # **Parameters**
+    # - `align` — Aligns the tabs: `"centered"` or `"right"`
+    # - `size` — Sets the size of the tabs: `"small"`, `"medium"`, or `"large"`
+    # - `boxed` — If `true`, uses classic boxed style tabs
+    # - `toggle` — If `true`, makes the tabs look like buttons
+    # - `rounded` — If `true`, makes the tabs look like rounded buttons (also enables toggle)
+    # - `fullwidth` — If `true`, makes the tabs take up the full width of the container
+    # - `data_attributes_builder` — Provides data attributes for Stimulus integration; defaults to `StimulusDataAttributes` with `"bulma-phlex--tabs"`
+    # - `**html_attributes` — Additional HTML attributes for the outer `<div>` element
+    def self.new(align: nil,
+                 size: nil,
+                 boxed: false,
+                 toggle: false,
+                 rounded: false,
+                 fullwidth: false,
+                 data_attributes_builder: StimulusDataAttributes.new("bulma-phlex--tabs"),
+                 **html_attributes)
+      super
     end
 
     def initialize(align: nil,

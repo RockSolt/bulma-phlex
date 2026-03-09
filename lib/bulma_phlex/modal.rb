@@ -5,19 +5,20 @@ module BulmaPhlex
   #
   # Consists of a background, content area, and a close button. Content is defined via the block
   # passed to the component.
-  #
-  # The constructor accepts an optional `data_attributes_builder` argument, which allows you to
-  # provide data attributes for the container, background, and close button. By default, it uses a
-  # `StimulusDataAttributes` instance with the controller name "bulma-phlex--modal". You can provide your
-  # own builder if you want to use a different controller or customize the data attributes further.
-  #
-  # Any additional HTML attributes passed to the constructor will be applied to the outer `<div>`
-  # element of the modal.
   class Modal < BulmaPhlex::Base
     StimulusDataAttributes = Data.define(:stimulus_controller) do
       def for_container = { controller: stimulus_controller }
       def for_background = { action: "click->bulma-phlex--modal#close" }
       def for_close_button = { action: "bulma-phlex--modal#close" }
+    end
+
+    # **Parameters**
+    # - `data_attributes_builder` — Provides data attributes for the container, background, and close button.
+    #   Defaults to a `StimulusDataAttributes` instance with the controller name `"bulma-phlex--modal"`.
+    #   Provide a custom builder to use a different controller or customize the data attributes.
+    # - `**html_attributes` — Additional HTML attributes for the outer `<div>` element
+    def self.new(data_attributes_builder: StimulusDataAttributes.new("bulma-phlex--modal"), **html_attributes)
+      super
     end
 
     def initialize(data_attributes_builder: StimulusDataAttributes.new("bulma-phlex--modal"), **html_attributes)

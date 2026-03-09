@@ -4,18 +4,17 @@ module BulmaPhlex
   # Renders a [Bulma notification](https://bulma.io/documentation/elements/notification/) component.
   #
   # Styled alert box for displaying messages to the user, with optional dismiss button.
-  # Can be styled with the following options:
-  #
-  # - `delete`: If true, includes a delete button to dismiss the notification. Can also be a hash of HTML
-  # attributes for the button.
-  # - `color`: Sets the color of the notification. Accepts any Bulma color class suffix (e.g., "primary",
-  # "info", "danger").
-  # - `mode`: Sets the mode of the notification: "light" or "dark".
-  #
-  # Any additional HTML attributes passed to the component will be applied to the notification div.
-  #
-  # The content of the notification is provided via a block.
+  # Content is provided via a block.
   class Notification < BulmaPhlex::Base
+    # **Parameters**
+    # - `delete` — If `true`, includes a delete button to dismiss the notification. Can also be a hash of HTML attributes for the button
+    # - `color` — Color of the notification (e.g. `"primary"`, `"info"`, `"danger"`)
+    # - `mode` — Style mode: `"light"` or `"dark"`
+    # - `**html_attributes` — Additional HTML attributes for the notification element
+    def self.new(delete: false, color: nil, mode: nil, **html_attributes)
+      super
+    end
+
     def initialize(delete: false, color: nil, mode: nil, **html_attributes)
       @delete = delete
       @color = color

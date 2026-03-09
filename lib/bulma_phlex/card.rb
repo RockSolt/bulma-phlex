@@ -14,6 +14,12 @@ module BulmaPhlex
   #       card.footer_link("Edit", "/edit", class: "has-text-primary")
   #     end
   class Card < BulmaPhlex::Base
+    # **Parameters**
+    # - `**html_attributes` — Additional HTML attributes for the card element
+    def self.new(**html_attributes)
+      super
+    end
+
     def initialize(**html_attributes)
       @html_attributes = html_attributes
     end

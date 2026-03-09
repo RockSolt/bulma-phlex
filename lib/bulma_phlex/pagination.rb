@@ -22,16 +22,15 @@ module BulmaPhlex
   class Pagination < BulmaPhlex::Base
     attr_reader :pager, :path_builder
 
-    # Initializes the pagination component
-    #
-    # @param pager [Object] An object that responds to:
-    #   - `current_page` - Integer representing the current page number
-    #   - `total_pages` - Integer representing the total number of pages
-    #   - `per_page` - Integer representing the number of items per page
-    #   - `total_count` - Integer representing the total number of items
-    #   - `previous_page` - Integer or nil representing the previous page number
-    #   - `next_page` - Integer or nil representing the next page number
-    # @param path_builder [Proc] A callable that takes a page number and returns a URL string
+    # **Parameters**
+    # - `pager` — A page object responding to `current_page`, `total_pages`, `per_page`,
+    #   `total_count`, `previous_page`, and `next_page`
+    # - `path_builder` — A callable that takes a page number and returns a URL string
+    # - `**html_attributes` — Additional HTML attributes for the pagination container
+    def self.new(pager, path_builder, **html_attributes) # rubocop:disable Lint/UselessMethodDefinition
+      super
+    end
+
     def initialize(pager, path_builder, **html_attributes)
       @pager = pager
       @path_builder = path_builder

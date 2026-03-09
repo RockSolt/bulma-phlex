@@ -4,20 +4,31 @@ module BulmaPhlex
   # Renders a [Bulma icon element](https://bulma.io/documentation/elements/icon/) with optional text and
   # form control positioning.
   #
-  # ## Options
-  #
-  # - `color`: Sets the [color of the icon](https://bulma.io/documentation/elements/icon/#colors)
-  # - `size`: Sets the [size of the icon](https://bulma.io/documentation/elements/icon/#sizes)
-  # - `text_right`: Text to display to the right of the icon
-  # - `text_left`: Text to display to the left of the icon
-  # - `left`: If true, adds the `is-left` class for use in form controls
-  # - `right`: If true, adds the `is-right` class for use in form controls
-  #
   # ## Example
   #
   #     render BulmaPhlex::Icon.new("fas fa-home")
   #     render BulmaPhlex::Icon.new("fas fa-home", color: :primary, size: :large, text_right: "Home")
   class Icon < BulmaPhlex::Base
+    # **Parameters**
+    # - `icon` — The icon class string (e.g. `"fas fa-home"`)
+    # - `color` — Sets the [color of the icon](https://bulma.io/documentation/elements/icon/#colors)
+    # - `size` — Sets the [size of the icon](https://bulma.io/documentation/elements/icon/#sizes)
+    # - `text_right` — Text to display to the right of the icon
+    # - `text_left` — Text to display to the left of the icon
+    # - `left` — If `true`, adds the `is-left` class for use in form controls
+    # - `right` — If `true`, adds the `is-right` class for use in form controls
+    # - `**html_attributes` — Additional HTML attributes for the icon span element
+    def self.new(icon,
+                 text_right: nil,
+                 text_left: nil,
+                 size: nil,
+                 color: nil,
+                 left: false,
+                 right: false,
+                 **html_attributes)
+      super
+    end
+
     def initialize(icon,
                    text_right: nil,
                    text_left: nil,

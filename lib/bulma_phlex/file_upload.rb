@@ -2,17 +2,6 @@
 
 module BulmaPhlex
   # Renders a styled [Bulma file upload](https://bulma.io/documentation/form/file/) input element.
-  #
-  # ## Options
-  #
-  # - `color`: Sets the color of the file input
-  # - `size`: Sets the size of the file input
-  # - `name`: If `true`, includes the file name display element
-  # - `align`: Aligns the file input: right or centered
-  # - `fullwidth`: If `true`, makes the file input full width
-  # - `boxed`: If `true`, makes the file input boxed
-  # - `data_attributes_builder`: A custom builder for the data attributes used for Stimulus integration. If
-  #   not provided, a default builder is used with the controller name "bulma-phlex--file-input-display".
   class FileUpload < Base
     DataAttributesBuilder = Data.define(:for_file, :for_file_input, :for_file_list)
 
@@ -22,6 +11,25 @@ module BulmaPhlex
         for_file_input: { "#{controller}-target": "fileInput", action: "#{controller}#show" },
         for_file_list: { "#{controller}-target": "fileList" }
       )
+    end
+
+    # **Parameters**
+    # - `color` — Sets the color of the file input
+    # - `size` — Sets the size of the file input
+    # - `name` — If `true`, includes the file name display element
+    # - `align` — Aligns the file input: `"right"` or `"centered"`
+    # - `fullwidth` — If `true`, makes the file input full width
+    # - `boxed` — If `true`, makes the file input boxed
+    # - `data_attributes_builder` — A custom builder for the data attributes used for Stimulus integration;
+    #   defaults to a builder with the controller name `"bulma-phlex--file-input-display"`
+    def self.new(color: nil,
+                 size: nil,
+                 name: false,
+                 align: nil,
+                 fullwidth: false,
+                 boxed: false,
+                 data_attributes_builder: nil)
+      super
     end
 
     def initialize(color: nil,

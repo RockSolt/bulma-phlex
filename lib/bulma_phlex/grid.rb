@@ -3,16 +3,25 @@
 module BulmaPhlex
   # Renders a responsive grid layout using [Bulma's grid system](https://bulma.io/documentation/grid/).
   #
-  # ## Keyword Arguments
-  #
-  # - `fixed_columns`: (Integer, optional) Specifies a fixed number of columns for the grid.
-  # - `auto_count`: (Boolean, optional) If true, the grid will automatically adjust the number
-  #    of columns based on the content.
-  # - `minimum_column_width`: (Integer 1-32, optional) Sets a minimum width for the columns in the grid.
-  # - `gap`: (optional) Sets the gap size between grid items from 1-8 with 0.5 increments.
-  # - `column_gap`: (optional) Sets the column gap size between grid items from 1-8 with 0.5 increments.
-  # - `row_gap`: (optional) Sets the row gap size between grid items from 1-8 with 0.5 increments.
   class Grid < BulmaPhlex::Base
+    # **Parameters**
+    # - `fixed_columns` — Specifies a fixed number of columns for the grid
+    # - `auto_count` — If `true`, the grid will automatically adjust the number of columns based on the content
+    # - `minimum_column_width` — Sets a minimum column width (integer 1-32)
+    # - `gap` — Sets the gap size between grid items (1-8 with 0.5 increments)
+    # - `column_gap` — Sets the column gap size between grid items (1-8 with 0.5 increments)
+    # - `row_gap` — Sets the row gap size between grid items (1-8 with 0.5 increments)
+    # - `**html_attributes` — Additional HTML attributes for the grid element
+    def self.new(fixed_columns: nil,
+                 auto_count: false,
+                 minimum_column_width: nil,
+                 gap: nil,
+                 column_gap: nil,
+                 row_gap: nil,
+                 **html_attributes)
+      super
+    end
+
     def initialize(fixed_columns: nil,
                    auto_count: false,
                    minimum_column_width: nil,

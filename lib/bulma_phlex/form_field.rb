@@ -10,22 +10,6 @@ module BulmaPhlex
   # block. If a string is provided, it will be rendered inside a `<label>` tag with the
   # `label` class. The label can also be omitted entirely if not needed.
   #
-  # ## Icons
-  #
-  # The component supports optional left and right icons within the input control. Specify
-  # icons with the `icon_left` and `icon_right` keyword arguments.
-  #
-  #     render BulmaPhlex::FormField.new(icon_left: "fas fa-user", icon_right: "fas fa-check")
-  #
-  # ## Column Layout
-  #
-  # If the form field is to be used within a Bulma column layout, you can specify the `column`
-  # keyword. There are three ways to use this:
-  # - `true`: makes the field a column without specific sizing.
-  # - a size string (e.g., `"half"`): makes the field a column with that size for all breakpoints.
-  # - a hash mapping breakpoints to sizes (e.g., `{ mobile: "full", desktop: "half" }`): makes the
-  #   field a column with sizes specific to breakpoints
-  #
   # ## Example Usage
   #
   # Here is the label provided as a block:
@@ -64,6 +48,17 @@ module BulmaPhlex
   # - [Columns](https://bulma.io/documentation/columns/basics/)
   # - [Grid Cells](https://bulma.io/documentation/grid/grid-cells/)
   class FormField < Base
+    # **Parameters**
+    # - `help` — Optional help text displayed below the input
+    # - `icon_left` — Icon class for an icon to the left of the input (e.g. `"fas fa-user"`)
+    # - `icon_right` — Icon class for an icon to the right of the input (e.g. `"fas fa-check"`)
+    # - `column` — If `true`, makes the field a column; a size string (e.g. `"half"`) sets the size for
+    #   all breakpoints; a hash (e.g. `{ mobile: "full", desktop: "half" }`) sets responsive sizes
+    # - `grid` — If `true`, makes the field a grid cell; a size string sets the cell size
+    def self.new(help: nil, icon_left: nil, icon_right: nil, column: nil, grid: nil)
+      super
+    end
+
     def initialize(help: nil, icon_left: nil, icon_right: nil, column: nil, grid: nil)
       @help = help
       @icon_left = icon_left
