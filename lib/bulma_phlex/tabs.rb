@@ -90,6 +90,14 @@ module BulmaPhlex
       @contents = []
     end
 
+    # Adds a tab and its associated content panel. Can be called multiple times.
+    #
+    # - `id:` — A unique identifier for the tab, used to link the tab button to its content panel
+    # - `title:` — The text label displayed on the tab button
+    # - `icon:` — Optional icon class string (e.g. `"fas fa-cog"`) displayed alongside the title
+    # - `active:` — If `true`, this tab is shown as selected on initial render (default: `false`)
+    #
+    # Expects a block that renders the content for this tab's panel.
     def tab(id:, title:, icon: nil, active: false, &)
       @tabs << TabComponents::Tab.new(id:, title:, icon:, active:,
                                       data_attributes_proc: @data_attributes_builder.method(:for_tab))
@@ -98,6 +106,9 @@ module BulmaPhlex
                                               &)
     end
 
+    # Sets optional content to render to the right of the tab bar (e.g. a button or action link).
+    #
+    # Expects a block that renders the right-side content.
     def right_content(&content)
       @right_content = content
     end

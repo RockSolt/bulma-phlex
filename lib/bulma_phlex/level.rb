@@ -51,14 +51,23 @@ module BulmaPhlex
       end
     end
 
+    # Adds a centered item to the level. Can be called multiple times.
+    #
+    # Expects a block that renders the item content.
     def item(&content)
       @items << content
     end
 
+    # Adds an item to the left section of the level. Can be called multiple times.
+    #
+    # Expects a block that renders the item content.
     def left(&content)
       @left << content
     end
 
+    # Adds an item to the right section of the level. Can be called multiple times.
+    #
+    # Expects a block that renders the item content.
     def right(&content)
       @right << content
     end

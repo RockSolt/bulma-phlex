@@ -103,14 +103,23 @@ module BulmaPhlex
       end
     end
 
+    # Sets the brand area of the navbar (typically a logo or site name).
+    #
+    # Expects a block that renders the brand content. Can be called multiple times.
     def brand(&block)
       @brand << block
     end
 
+    # Adds content to the left side of the navbar menu. Can be called multiple times.
+    #
+    # Expects a block that renders navbar items (e.g. `<a class="navbar-item">`).
     def left(&block)
       @left << block
     end
 
+    # Adds content to the right side of the navbar menu. Can be called multiple times.
+    #
+    # Expects a block that renders navbar items (e.g. `<a class="navbar-item">`).
     def right(&block)
       @right << block
     end

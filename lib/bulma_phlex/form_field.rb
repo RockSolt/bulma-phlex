@@ -38,11 +38,21 @@ module BulmaPhlex
     # so it is stil available to us
     alias html_label label
 
+    # Sets the label for the field.
+    #
+    # - `label_string` — A plain text label string. If omitted, a block must be provided instead.
+    #
+    # Optionally expects a block that renders a custom label (e.g. with a link or icon inside).
+    # Only one of `label_string` or a block should be provided.
     def label(label_string = nil, &block)
       @label_string = label_string
       @label_builder = block
     end
 
+    # Sets the form control content for the field (e.g. an `<input>`, `<select>`, or `<textarea>`).
+    # If not called explicitly, the block passed directly to the component is used as the control.
+    #
+    # Expects a block that renders the form control element.
     def control(&block)
       @control_builder = block
     end

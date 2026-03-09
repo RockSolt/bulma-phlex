@@ -38,15 +38,28 @@ module BulmaPhlex
       end
     end
 
+    # Sets the card header title and optional CSS classes.
+    #
+    # - `title` — The text to display in the card header
+    # - `classes` — Optional additional CSS classes for the header element
     def head(title, classes: nil)
       @header_title = title
       @header_classes = classes
     end
 
+    # Sets the card body content.
+    #
+    # Expects a block that renders the card content.
     def content(&block)
       @card_content = block
     end
 
+    # Adds a link item to the card footer. Can be called multiple times to add multiple links.
+    #
+    # - `text` — The link label text
+    # - `href` — The URL the link points to
+    # - `icon:` — Optional icon class string (e.g. `"fas fa-edit"`) to render an icon alongside the text
+    # - `**html_attributes` — Additional HTML attributes for the `<a>` element (e.g. `target:`, `class:`)
     def footer_link(text, href, **html_attributes)
       (@footer_items ||= []) << [text, href, html_attributes]
     end

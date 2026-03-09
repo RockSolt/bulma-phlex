@@ -85,16 +85,36 @@ module BulmaPhlex
       end
     end
 
+    # Adds a column to the table. Can be called multiple times to define all columns.
+    #
+    # - `header` — The column header text
+    # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
+    #
+    # Expects a block that receives each `row` object and returns the cell content.
     def column(header, **html_attributes, &content)
       @columns << { header:, html_attributes:, content: }
     end
 
+    # Adds a date-formatted column to the table. Can be called multiple times.
+    #
+    # - `header` — The column header text
+    # - `format` — A `strftime` format string for the date value (default: `"%Y-%m-%d"`)
+    # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
+    #
+    # Expects a block that receives each `row` object and returns a `Date` or `Time` value.
     def date_column(header, format: "%Y-%m-%d", **html_attributes, &content)
       column(header, **html_attributes) do |row|
         content.call(row)&.strftime(format)
       end
     end
 
+    # Adds a column that displays an icon when the block returns a truthy value. Can be called multiple times.
+    #
+    # - `header` — The column header text
+    # - `icon_class` — The CSS class(es) for the icon element (default: `"fas fa-check"`)
+    # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
+    #
+    # Expects a block that receives each `row` object and returns a truthy or falsy value.
     def conditional_icon(header, icon_class: "fas fa-check", **html_attributes, &content)
       html_attributes[:class] = [html_attributes[:class], "has-text-centered"].compact.join(" ")
 
@@ -103,6 +123,10 @@ module BulmaPhlex
       end
     end
 
+    # Adds a pagination control to the table footer.
+    #
+    # Expects a block used as the path builder for pagination links. The block receives a page
+    # number and should return the URL for that page.
     def paginate(&path_builder)
       @path_builder = path_builder
     end
