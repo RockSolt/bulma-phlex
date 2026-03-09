@@ -9,7 +9,7 @@ module BulmaPhlex
   #
   # The tabs behavior can be managed by the data attributes provided by the `data_attributes_builder` argument. By
   # default, this will use the `StimulusDataAttributes` class with the controller name `bulma-phlex--tabs`. That
-  # controlleris not provided by this library, but you can create your own Stimulus controller to handle the tab
+  # controller is not provided by this library, but you can create your own Stimulus controller to handle the tab
   # switching logic. Here is an implementation of a [Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-phlex-rails/blob/main/app/javascript/controllers/bulma_phlex/tabs_controller.js).
   #
   # ## Example
