@@ -8,6 +8,9 @@ module BulmaPhlex
   # (e.g. a button) can be placed alongside the tab bar. Tab switching behavior is managed via a
   # Stimulus controller; the default controller name is `bulma-phlex--tabs`.
   #
+  # Tabs and their content panels are added via the `tab` builder method. An optional right-side
+  # element can be added via the `right_content` method.
+  #
   # ## Example
   #
   #     render BulmaPhlex::Tabs.new do |tabs|

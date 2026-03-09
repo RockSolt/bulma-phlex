@@ -4,9 +4,10 @@ module BulmaPhlex
   # A `field` container that groups a label, control input, and optional help text using
   # the [Bulma form field](https://bulma.io/documentation/form/general/#form-field) pattern.
   #
-  # Supports an optional **label** (provided as a string or block), optional **help text**,
-  # optional **icons** (left and/or right), and **layout** options for integrating with Bulma's
-  # column and grid systems.
+  # Supports an optional **label** (provided as a string or block via the `label` method),
+  # optional **help text**, optional **icons** (left and/or right), and **layout** options for
+  # integrating with Bulma's column and grid systems. The form control content is set via the
+  # `control` method (or a block passed directly to the component).
   #
   # ## References
   #
