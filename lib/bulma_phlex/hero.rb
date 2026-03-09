@@ -1,18 +1,23 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # ## Hero
+  # Renders a [Bulma Hero](https://bulma.io/documentation/layout/hero/) component.
   #
-  # This component implements the [Bulma Hero](https://bulma.io/documentation/layout/hero/) layout. There are
-  # three ways to invoke the component:
-  #
-  # - with a title and subtitle argument
-  # - with a block for the hero body content
-  # - invoke methods head, body, and footer on the yielded component and pass blocks to define each section
-  #
-  # Additionally, both the size and color of the Hero can be specified through keyword arguments in the
-  # constructor. Any additional HTML attributes given to the constructor will be added to the containing `div`.
+  # Supports **color** and **size** options. Content can be provided as a title/subtitle pair,
+  # a single block for the body, or by calling `head`, `body`, and `foot` on the yielded
+  # component to define each section independently.
   class Hero < BulmaPhlex::Base
+    # **Parameters**
+    #
+    # - `title` — Main title text for the hero body
+    # - `subtitle` — Subtitle text displayed below the title
+    # - `color` — Hero color (e.g. `"primary"`, `"info"`, `"success"`, `"warning"`, `"danger"`)
+    # - `size` — Hero size: `"small"`, `"medium"`, `"large"`, `"halfheight"`, `"fullheight"`
+    # - `**html_attributes` — Additional HTML attributes for the hero `<section>` element
+    def self.new(title: nil, subtitle: nil, color: nil, size: nil, **html_attributes)
+      super
+    end
+
     def initialize(title: nil, subtitle: nil, color: nil, size: nil, **html_attributes)
       @title = title
       @subtitle = subtitle

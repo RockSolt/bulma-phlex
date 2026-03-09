@@ -1,21 +1,18 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Form Control
-  #
-  # The Bulma Form Control is used to wrap form elements like inputs, selects, and buttons. It can optionally
-  # include icons on the left and/or right side of the control.
-  #
-  # ## Options
-  #
-  # - `icon_left`: If provided, adds an icon to the left of the control. Should be a string representing
-  #   the icon class (e.g., "fas fa-check").
-  # - `icon_right`: If provided, adds an icon to the right of the control. Should be a string representing
-  #   the icon class (e.g., "fas fa-check").
-  #
-  # ## References
-  # - [Bulma Form Control](https://bulma.io/documentation/form/general/#form-control)
-  class FormControl < Phlex::HTML
+  # Wraps form elements in a [Bulma form control](https://bulma.io/documentation/form/general/#form-control)
+  # container. Supports optional **icons** on the left and/or right side of the control.
+  class FormControl < Base
+    # **Parameters**
+    #
+    # - `icon_left` — Icon class for the left side of the control (e.g. `"fas fa-check"`)
+    # - `icon_right` — Icon class for the right side of the control (e.g. `"fas fa-check"`)
+    # - `**html_attributes` — Additional HTML attributes for the control element
+    def self.new(icon_left: nil, icon_right: nil, **html_attributes)
+      super
+    end
+
     def initialize(icon_left: nil, icon_right: nil, **html_attributes)
       @icon_left = icon_left
       @icon_right = icon_right

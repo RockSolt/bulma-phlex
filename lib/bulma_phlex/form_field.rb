@@ -1,71 +1,13 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Form Field Component
+  # A `field` container that groups a label, control input, and optional help text using
+  # the [Bulma form field](https://bulma.io/documentation/form/general/#form-field) pattern.
   #
-  # The Bulma Form Field is a `field` container that groups a label with yielded content
-  # (usually an input). It can optionally include a help text.
-  #
-  # The label can be provided either as a string argument to the `label` method or as a
-  # block. If a string is provided, it will be rendered inside a `<label>` tag with the
-  # `label` class. The label can also be omitted entirely if not needed.
-  #
-  # ## Icons
-  #
-  # The component supports optional left and right icons within the input control. Specify
-  # icons with the `icon_left` and `icon_right` keyword arguments.
-  #
-  # ```ruby
-  # render BulmaPhlex::FormField.new(icon_left: "fas fa-user", icon_right: "fas fa-check")
-  # ```
-  #
-  # ## Column Layout
-  #
-  # If the form field is to be used within a Bulma column layout, you can specify the `column`
-  # keyword. There are three ways to use this:
-  # - `true`: makes the field a column without specific sizing.
-  # - a size string (e.g., `"half"`): makes the field a column with that size for all breakpoints.
-  # - a hash mapping breakpoints to sizes (e.g., `{ mobile: "full", desktop: "half" }`): makes the
-  #   field a column with sizes specific to breakpoints
-  #
-  # ## Example Usage
-  #
-  # Here is the label provided as a block:
-  #
-  # ```ruby
-  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
-  #   field.label { label "Project Name" }
-  #   field.input { input id: "project_name", name: "project[name]", type: "text" }
-  # end
-  # ```
-  #
-  # Here is the label provided as a string:
-  #
-  # ```ruby
-  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
-  #   field.label "Project Name"
-  #   field.input { input id: "project_name", name: "project[name]", type: "text" }
-  # end
-  # ```
-  #
-  # Here is no label provided:
-  #
-  # ```ruby
-  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
-  #   field.input { input id: "project_name", name: "project[name]", type: "text" }
-  # end
-  # ```
-  #
-  # ### Shorthand with no Label
-  #
-  # If no label is needed, you can use the shorthand syntax which just puts the control
-  # in the block without needing to call `control` explicitly:
-  #
-  # ```ruby
-  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do
-  #   input id: "project_name", name: "project[name]", type: "text"
-  # end
-  # ```
+  # Supports an optional **label** (provided as a string or block via the `label` method),
+  # optional **help text**, optional **icons** (left and/or right), and **layout** options for
+  # integrating with Bulma's column and grid systems. The form control content is set via the
+  # `control` method (or a block passed directly to the component).
   #
   # ## References
   #
@@ -73,7 +15,19 @@ module BulmaPhlex
   #   - [With Icons](https://bulma.io/documentation/form/general/#with-icons)
   # - [Columns](https://bulma.io/documentation/columns/basics/)
   # - [Grid Cells](https://bulma.io/documentation/grid/grid-cells/)
-  class FormField < Phlex::HTML
+  class FormField < Base
+    # **Parameters**
+    #
+    # - `help` — Optional help text displayed below the input
+    # - `icon_left` — Icon class for an icon to the left of the input (e.g. `"fas fa-user"`)
+    # - `icon_right` — Icon class for an icon to the right of the input (e.g. `"fas fa-check"`)
+    # - `column` — If `true`, makes the field a column; a size string (e.g. `"half"`) sets the size for
+    #   all breakpoints; a hash (e.g. `{ mobile: "full", desktop: "half" }`) sets responsive sizes
+    # - `grid` — If `true`, makes the field a grid cell; a size string sets the cell size
+    def self.new(help: nil, icon_left: nil, icon_right: nil, column: nil, grid: nil)
+      super
+    end
+
     def initialize(help: nil, icon_left: nil, icon_right: nil, column: nil, grid: nil)
       @help = help
       @icon_left = icon_left
@@ -83,14 +37,24 @@ module BulmaPhlex
     end
 
     # in order to use the method name `label`, we need to grab a reference to the method on the base class
-    # so it is stil available to us
+    # so it is still available to us
     alias html_label label
 
+    # Sets the label for the field.
+    #
+    # - `label_string` — A plain text label string. If omitted, a block must be provided instead.
+    #
+    # Optionally expects a block that renders a custom label (e.g. with a link or icon inside).
+    # Only one of `label_string` or a block should be provided.
     def label(label_string = nil, &block)
       @label_string = label_string
       @label_builder = block
     end
 
+    # Sets the form control content for the field (e.g. an `<input>`, `<select>`, or `<textarea>`).
+    # If not called explicitly, the block passed directly to the component is used as the control.
+    #
+    # Expects a block that renders the form control element.
     def control(&block)
       @control_builder = block
     end

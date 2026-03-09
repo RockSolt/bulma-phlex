@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=https://www.rubyschema.org/rubocop.json
 
+require:
+  - ./tools/rubocop-bulma_phlex
+
 AllCops:
   TargetRubyVersion: 3.2
   NewCops: enable
@@ -8,6 +11,9 @@ Gemspec/DevelopmentDependencies:
   Enabled: false
 
 Lint/MissingSuper:
+  Exclude:
+    - lib/bulma_phlex/**/*.rb
+Lint/UselessMethodDefinition:
   Exclude:
     - lib/bulma_phlex/**/*.rb
 
@@ -36,9 +42,20 @@ Metrics/PerceivedComplexity:
 Naming/FileName:
   Exclude:
     - lib/bulma-phlex.rb
+    - tools/rubocop-bulma_phlex.rb
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
+
+BulmaPhlex/PhlexNewMethod:
+  Enabled: true
+  Include:
+    - lib/bulma_phlex/**/*.rb
+  # The cop checks direct superclass only, not the full ancestry chain, so
+  # BulmaPhlex::Base must be listed explicitly even though it descends from Phlex::HTML.
+  Ancestors:
+    - Phlex::HTML
+    - BulmaPhlex::Base

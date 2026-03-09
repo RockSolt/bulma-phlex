@@ -1,39 +1,33 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Pagination component for navigating through multi-page content
+  # Renders the [Bulma pagination](https://bulma.io/documentation/components/pagination/) component.
   #
-  # This component implements the [Bulma pagination](https://bulma.io/documentation/components/pagination/)
-  # interface, providing navigation controls for paginated content. It shows:
-  # - Previous/next page links
-  # - First/last page links when appropriate
-  # - Current page indicator
-  # - Ellipses for skipped page ranges
-  # - Summary of items being displayed
+  # Accepts a pager object and a path builder callable. Automatically renders previous/next links,
+  # numbered page links with ellipses for skipped ranges, and a summary of items being displayed.
+  # Only renders when there is more than one page of results.
   #
   # ## Example
   #
-  # ```ruby
-  # # In a controller action:
-  # @products = Product.page(params[:page]).per(20)
+  #     # In a controller action:
+  #     @products = Product.page(params[:page]).per(20)
   #
-  # # In the view:
-  # render BulmaPhlex::Pagination.new(@products, ->(page) { products_path(page: page) })
-  # ```
+  #     # In the view:
+  #     render BulmaPhlex::Pagination.new(@products, ->(page) { products_path(page: page) })
   #
   class Pagination < BulmaPhlex::Base
     attr_reader :pager, :path_builder
 
-    # Initializes the pagination component
+    # **Parameters**
     #
-    # @param pager [Object] An object that responds to:
-    #   - `current_page` - Integer representing the current page number
-    #   - `total_pages` - Integer representing the total number of pages
-    #   - `per_page` - Integer representing the number of items per page
-    #   - `total_count` - Integer representing the total number of items
-    #   - `previous_page` - Integer or nil representing the previous page number
-    #   - `next_page` - Integer or nil representing the next page number
-    # @param path_builder [Proc] A callable that takes a page number and returns a URL string
+    # - `pager` — A page object responding to `current_page`, `total_pages`, `per_page`,
+    #   `total_count`, `previous_page`, and `next_page`
+    # - `path_builder` — A callable that takes a page number and returns a URL string
+    # - `**html_attributes` — Additional HTML attributes for the pagination container
+    def self.new(pager, path_builder, **html_attributes)
+      super
+    end
+
     def initialize(pager, path_builder, **html_attributes)
       @pager = pager
       @path_builder = path_builder

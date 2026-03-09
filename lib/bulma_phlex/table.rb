@@ -1,48 +1,50 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Table component for data display
+  # Renders the [Bulma table](https://bulma.io/documentation/elements/table/) component.
   #
-  # This component implements the [Bulma table](https://bulma.io/documentation/elements/table/)
-  # interface, providing a way to display data in rows and columns with customizable
-  # headers and formatting options.
+  # Displays a collection of records in rows and columns. Columns are defined via the `column`,
+  # `date_column`, and `conditional_icon` builder methods. Supports Bulma **style** options
+  # (bordered, striped, hoverable) and **layout** options (narrow, fullwidth). An optional
+  # **pagination** control can be added to the table footer via the `paginate` method.
   #
   # ## Example
   #
-  # ```ruby
-  # users = User.all
+  #     users = User.all
   #
-  # render BulmaPhlex::Table.new(users) do |table|
-  #   table.column "Name" do |user|
-  #     user.full_name
-  #   end
+  #     render BulmaPhlex::Table.new(users) do |table|
+  #       table.column "Name" do |user|
+  #         user.full_name
+  #       end
   #
-  #   table.column "Email" do |user|
-  #     user.email
-  #   end
+  #       table.column "Email" do |user|
+  #         user.email
+  #       end
   #
-  #   table.column "Actions" do |user|
-  #     link_to "Edit", edit_user_path(user), class: "button is-small"
-  #   end
-  # end
-  # ```
-  #
-  # ## Options
-  #
-  # - `bordered`: Adds borders to the table.
-  # - `striped`: Adds zebra-striping to the table rows.
-  # - `narrow`: Makes the table more compact.
-  # - `hoverable`: Adds a hover effect to the table rows.
-  # - `fullwidth`: Makes the table take up the full width of its container.
-  #
-  # Any additional HTML attributes passed to the component will be applied to the `<table>` element.
-  #
-  # ## Pagination
-  #
-  # If the `paginate` method is called with a block that builds pagination paths, a pagination control
-  # will be rendered in the table footer. The block should accept a page number and return the
-  # corresponding URL for that page.
+  #       table.column "Actions" do |user|
+  #         link_to "Edit", edit_user_path(user), class: "button is-small"
+  #       end
+  #     end
   class Table < BulmaPhlex::Base
+    # **Parameters**
+    #
+    # - `rows` — The collection of records to display in the table
+    # - `bordered` — If `true`, adds borders to the table
+    # - `striped` — If `true`, adds zebra-striping to the table rows
+    # - `narrow` — If `true`, makes the table more compact
+    # - `hoverable` — If `true`, adds a hover effect to the table rows
+    # - `fullwidth` — If `true`, makes the table take up the full width of its container
+    # - `**html_attributes` — Additional HTML attributes for the `<table>` element
+    def self.new(rows,
+                 bordered: false,
+                 striped: false,
+                 narrow: false,
+                 hoverable: false,
+                 fullwidth: false,
+                 **html_attributes)
+      super
+    end
+
     def initialize(rows,
                    bordered: false,
                    striped: false,
@@ -84,16 +86,36 @@ module BulmaPhlex
       end
     end
 
+    # Adds a column to the table. Can be called multiple times to define all columns.
+    #
+    # - `header` — The column header text
+    # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
+    #
+    # Expects a block that receives each `row` object and returns the cell content.
     def column(header, **html_attributes, &content)
       @columns << { header:, html_attributes:, content: }
     end
 
+    # Adds a date-formatted column to the table. Can be called multiple times.
+    #
+    # - `header` — The column header text
+    # - `format` — A `strftime` format string for the date value (default: `"%Y-%m-%d"`)
+    # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
+    #
+    # Expects a block that receives each `row` object and returns a `Date` or `Time` value.
     def date_column(header, format: "%Y-%m-%d", **html_attributes, &content)
       column(header, **html_attributes) do |row|
         content.call(row)&.strftime(format)
       end
     end
 
+    # Adds a column that displays an icon when the block returns a truthy value. Can be called multiple times.
+    #
+    # - `header` — The column header text
+    # - `icon_class` — The CSS class(es) for the icon element (default: `"fas fa-check"`)
+    # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
+    #
+    # Expects a block that receives each `row` object and returns a truthy or falsy value.
     def conditional_icon(header, icon_class: "fas fa-check", **html_attributes, &content)
       html_attributes[:class] = [html_attributes[:class], "has-text-centered"].compact.join(" ")
 
@@ -102,6 +124,10 @@ module BulmaPhlex
       end
     end
 
+    # Adds a pagination control to the table footer.
+    #
+    # Expects a block used as the path builder for pagination links. The block receives a page
+    # number and should return the URL for that page.
     def paginate(&path_builder)
       @path_builder = path_builder
     end

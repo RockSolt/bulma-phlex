@@ -2,15 +2,21 @@
 
 module BulmaPhlex
   module TabComponents
-    # # Content
+    # Renders a single content panel within a {BulmaPhlex::Tabs} component.
     #
-    # This component represents a single content section within the Bulma Tabs component.
+    # Manages visibility (shown/hidden) based on the **active** state, and accepts a
+    # **data attributes proc** for Stimulus integration.
     #
-    # ## Arguments:
-    # - `id`: Unique identifier for the content.
-    # - `active`: Boolean indicating if the content is currently active.
-    # - `data_attributes_proc`: A proc that generates data attributes for the content.
     class Content < BulmaPhlex::Base
+      # **Parameters**
+      #
+      # - `id` — Unique identifier for the content panel
+      # - `active` — If `true`, the content panel is visible; otherwise it is hidden
+      # - `data_attributes_proc` — A proc that generates data attributes for the content panel
+      def self.new(id:, active:, data_attributes_proc: nil)
+        super
+      end
+
       def initialize(id:, active:, data_attributes_proc: nil)
         @id = id
         @active = active

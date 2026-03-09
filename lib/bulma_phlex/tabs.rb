@@ -1,49 +1,32 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Tabs component for toggling between different content sections
+  # Renders a [Bulma tabs](https://bulma.io/documentation/components/tabs/) component.
   #
-  # This component implements the [Bulma tabs](https://bulma.io/documentation/components/tabs/)
-  # interface, providing a way to toggle between different content sections using
-  # tabbed navigation. Includes support for icons and active state management.
+  # Supports Bulma options for **alignment**, **size**, and **style** (boxed, toggle, rounded, fullwidth).
+  # Each tab can include an optional **icon** and an **active** state. An optional **right content** area
+  # (e.g. a button) can be placed alongside the tab bar. Tab switching behavior is managed via a
+  # Stimulus controller; the default controller name is `bulma-phlex--tabs`.
   #
-  # Use method `right_content` to add content to the right of the tabs, such as a button.
-  #
-  # The tabs behavior can be managed by the data attributes provided by the `data_attributes_builder` argument. By
-  # default, this will use the `StimulusDataAttributes` class with the controller name `bulma-phlex--tabs`. That
-  # controlleris not provided by this library, but you can create your own Stimulus controller to handle the tab
-  # switching logic. Here is an implementation of a [Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-phlex-rails/blob/main/app/javascript/controllers/bulma_phlex/tabs_controller.js).
+  # Tabs and their content panels are added via the `tab` builder method. An optional right-side
+  # element can be added via the `right_content` method.
   #
   # ## Example
   #
-  # ```ruby
-  # render BulmaPhlex::Tabs.new do |tabs|
-  #   tabs.tab(id: "profile", title: "Profile", active: true) do
-  #     "Profile content goes here"
-  #   end
+  #     render BulmaPhlex::Tabs.new do |tabs|
+  #       tabs.tab(id: "profile", title: "Profile", active: true) do
+  #         "Profile content goes here"
+  #       end
   #
-  #   tabs.tab(id: "settings", title: "Settings", icon: "fas fa-cog") do
-  #     "Settings content goes here"
-  #   end
+  #       tabs.tab(id: "settings", title: "Settings", icon: "fas fa-cog") do
+  #         "Settings content goes here"
+  #       end
   #
-  #   tabs.tab(id: "notifications", title: "Notifications", icon: "fas fa-bell") do
-  #     "Notifications content goes here"
-  #   end
-  # end
-  # ```
+  #       tabs.tab(id: "notifications", title: "Notifications", icon: "fas fa-bell") do
+  #         "Notifications content goes here"
+  #       end
+  #     end
   #
-  # ## Options
-  #
-  # - `align`: Can be `centered` or `right` to align the tabs accordingly.
-  # - `size`: Can be `small`, `medium`, or `large` to set the size of the tabs.
-  # - `boxed`: If `true`, uses classic style tabs.
-  # - `toggle`: If `true`, makes the tabs look like buttons.
-  # - `rounded`: If `true`, makes the tabs look like buttons with the first and last rounded.
-  # - `fullwidth`: If `true`, makes the tabs take up the full width of the container.
-  # - `data_attributes_builder`: An object that provides methods to generate data attributes for the
-  #   tabs. By default, this is an instance of `StimulusDataAttributes` with "bulma-phlex--tabs".
-  #
-  # Any additional HTML attributes passed to the component will be applied to the outer `<div>` element.
   class Tabs < BulmaPhlex::Base
     StimulusDataAttributes = Data.define(:stimulus_controller) do
       def for_container
@@ -69,6 +52,28 @@ module BulmaPhlex
       end
     end
 
+    # **Parameters**
+    #
+    # - `align` — Aligns the tabs: `"centered"` or `"right"`
+    # - `size` — Sets the size of the tabs: `"small"`, `"medium"`, or `"large"`
+    # - `boxed` — If `true`, uses classic boxed style tabs
+    # - `toggle` — If `true`, makes the tabs look like buttons
+    # - `rounded` — If `true`, makes the tabs look like rounded buttons (also enables toggle)
+    # - `fullwidth` — If `true`, makes the tabs take up the full width of the container
+    # - `data_attributes_builder` — Provides data attributes for Stimulus integration; defaults to
+    #  `StimulusDataAttributes` with `"bulma-phlex--tabs"`
+    # - `**html_attributes` — Additional HTML attributes for the outer `<div>` element
+    def self.new(align: nil,
+                 size: nil,
+                 boxed: false,
+                 toggle: false,
+                 rounded: false,
+                 fullwidth: false,
+                 data_attributes_builder: StimulusDataAttributes.new("bulma-phlex--tabs"),
+                 **html_attributes)
+      super
+    end
+
     def initialize(align: nil,
                    size: nil,
                    boxed: false,
@@ -89,6 +94,14 @@ module BulmaPhlex
       @contents = []
     end
 
+    # Adds a tab and its associated content panel. Can be called multiple times.
+    #
+    # - `id:` — A unique identifier for the tab, used to link the tab button to its content panel
+    # - `title:` — The text label displayed on the tab button
+    # - `icon:` — Optional icon class string (e.g. `"fas fa-cog"`) displayed alongside the title
+    # - `active:` — If `true`, this tab is shown as selected on initial render (default: `false`)
+    #
+    # Expects a block that renders the content for this tab's panel.
     def tab(id:, title:, icon: nil, active: false, &)
       @tabs << TabComponents::Tab.new(id:, title:, icon:, active:,
                                       data_attributes_proc: @data_attributes_builder.method(:for_tab))
@@ -97,6 +110,9 @@ module BulmaPhlex
                                               &)
     end
 
+    # Sets optional content to render to the right of the tab bar (e.g. a button or action link).
+    #
+    # Expects a block that renders the right-side content.
     def right_content(&content)
       @right_content = content
     end

@@ -1,54 +1,57 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Navigation bar component for site navigation
+  # Renders the [Bulma navbar](https://bulma.io/documentation/components/navbar/) component.
   #
-  # This component implements the [Bulma navbar](https://bulma.io/documentation/components/navbar/)
-  # interface. It provides a responsive navigation header with support for branding, navigation
-  # links, and dropdown menus, automatically collapsing on mobile devices.
-  #
-  # The component is rendered with data attributes to enable JavaScript behavior for toggling the mobile
-  # menu. It is hardcoded to the Stimulus controller `bulma-phlex--navigation-bar` (available via the
-  # `bulma-phlex-rails` gem).
+  # A responsive navigation header with support for **branding**, left/right **navigation links**,
+  # and **dropdown menus**, automatically collapsing on mobile devices. Supports **color**,
+  # **transparency**, **spacing**, and **shadow** options. Uses the Stimulus controller
+  # `bulma-phlex--navigation-bar` (available via the `bulma-phlex-rails` gem) for mobile menu toggling.
   #
   # ## Example
   #
-  # ```ruby
-  # render BulmaPhlex::NavigationBar.new do |navbar|
-  #   navbar.brand do
-  #     a(href: "/", class: "navbar-item") { "My App" }
-  #   end
+  #     render BulmaPhlex::NavigationBar.new do |navbar|
+  #       navbar.brand do
+  #         a(href: "/", class: "navbar-item") { "My App" }
+  #       end
   #
-  #   navbar.left do
-  #     a(href: "/", class: "navbar-item") { "Home" }
-  #     a(href: "/products", class: "navbar-item") { "Products" }
-  #   end
+  #       navbar.left do
+  #         a(href: "/", class: "navbar-item") { "Home" }
+  #         a(href: "/products", class: "navbar-item") { "Products" }
+  #       end
   #
-  #   navbar.right do
-  #     a(href: "/about", class: "navbar-item") { "About" }
+  #       navbar.right do
+  #         a(href: "/about", class: "navbar-item") { "About" }
   #
-  #     div(class: "navbar-item has-dropdown is-hoverable") do
-  #       a(class: "navbar-link") { "Account" }
-  #       render BulmaPhlex::NavigationBarDropdown.new do |dropdown|
-  #         dropdown.item "Sign In", "/login"
-  #         dropdown.item "Register", "/register"
+  #         div(class: "navbar-item has-dropdown is-hoverable") do
+  #           a(class: "navbar-link") { "Account" }
+  #           render BulmaPhlex::NavigationBarDropdown.new do |dropdown|
+  #             dropdown.item "Sign In", "/login"
+  #             dropdown.item "Register", "/register"
+  #           end
+  #         end
   #       end
   #     end
-  #   end
-  # end
-  # ```
   #
-  # ## Options
-  #
-  # - `container`: If `true`, wraps the navbar content in a `.container` for fixed-width layout. Can also
-  #   be a string or symbol to specify a custom container class.
-  # - `color`: Sets the navbar color (e.g., "primary", "light", "dark").
-  # - `transparent`: If `true`, makes the navbar transparent.
-  # - `spaced`: If `true`, adds spacing to the navbar.
-  # - `shadow`: If `true`, adds a shadow to the navbar.
-  #
-  # Any additional HTML attributes passed to the component will be applied to the `<nav>` element.
   class NavigationBar < BulmaPhlex::Base
+    # **Parameters**
+    #
+    # - `container` — If `true`, wraps the navbar content in a `.container` for fixed-width layout. Can also
+    #   be a string or symbol to specify a custom container class
+    # - `color` — Sets the navbar color (e.g., `"primary"`, `"light"`, `"dark"`)
+    # - `transparent` — If `true`, makes the navbar transparent
+    # - `spaced` — If `true`, adds spacing to the navbar
+    # - `shadow` — If `true`, adds a shadow to the navbar
+    # - `**html_attributes` — Additional HTML attributes for the `<nav>` element
+    def self.new(container: false,
+                 color: nil,
+                 transparent: false,
+                 spaced: false,
+                 shadow: false,
+                 **html_attributes)
+      super
+    end
+
     def initialize(container: false,
                    color: nil,
                    transparent: false,
@@ -101,14 +104,23 @@ module BulmaPhlex
       end
     end
 
+    # Sets the brand area of the navbar (typically a logo or site name).
+    #
+    # Expects a block that renders the brand content. Can be called multiple times.
     def brand(&block)
       @brand << block
     end
 
+    # Adds content to the left side of the navbar menu. Can be called multiple times.
+    #
+    # Expects a block that renders navbar items (e.g. `<a class="navbar-item">`).
     def left(&block)
       @left << block
     end
 
+    # Adds content to the right side of the navbar menu. Can be called multiple times.
+    #
+    # Expects a block that renders navbar items (e.g. `<a class="navbar-item">`).
     def right(&block)
       @right << block
     end

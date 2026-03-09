@@ -79,41 +79,20 @@ Use the Phlex components in your Rails views or any Ruby application that suppor
 
 ### Button
 
-The [Button](https://bulma.io/documentation/elements/button/) component provides a way to create styled buttons with various options for colors, sizes, and icons.
+Renders a [Bulma button](https://bulma.io/documentation/elements/button/) element with support for color, size, style modifiers, and left/right icons.
+
+The component generates a `<button>` by default. Pass an `href:` attribute to generate an `<a>` element instead. Pass `input: "submit"` (or `"button"` or `"reset"`) to generate an `<input>` element.
 
 ```ruby
 BulmaPhlex::Button(color: "primary", size: "large", icon: "fas fa-thumbs-up") { "Like" }
+BulmaPhlex::Button(href: "/profile") { "View Profile" }
+BulmaPhlex::Button(input: "submit", color: "success")
 ```
-
-The component can generate a button, anchor, or input element. By default it generates a `<button>`
-element. If the `href` attribute is provided, it generates an `<a>` element. To generate an `<input>`
-element, use the keyword argument `input` with a value of the type of input (button, reset, or submit).
-
-
-**Constructor Keyword Arguments:**
-
-- `color`: Sets the button color (e.g., "primary", "link", "info", "success", "warning", "danger").
-- `mode`: Sets the mode of the notification: "light" or "dark".
-- `size`: Sets the button size: "small", "normal" (the default), "medium", or "large".
-- `responsive`: If `true`, makes the button responsive.
-- `fullwidth`: If `true`, makes the button full width.
-- `outlined`: If `true`, makes the button outlined.
-- `inverted`: If `true`, makes the button inverted.
-- `rounded`: If `true`, makes the button rounded.
-- `input`: If provided, generates an `input` element instead of a `button`. The value should be the type of input: "button", "reset", or "submit".
-- `icon`: If provided, adds an icon to the button. Should be a string representing the 
-  icon class (e.g., "fa-solid fa-check").
-- `icon_left`: If provided, adds an icon to the left of the button text. Should be a string
-  representing the icon class (e.g., "fa-solid fa-check").
-- `icon_right`: If provided, adds an icon to the right of the button text. Should be a string
-  representing the icon class (e.g., "fa-solid fa-check").
-
-Any additional HTML attributes passed to the constructor will be applied to the button element.
 
 
 ### Card
 
-[Cards](https://bulma.io/documentation/components/card/) are flexible containers that can display various types of content including headers and content sections.
+Renders a [Bulma card](https://bulma.io/documentation/components/card/) with an optional header, content area, and footer links. Each section is populated via builder methods on the yielded component.
 
 ```ruby
 render BulmaPhlex::Card.new do |card|
@@ -122,30 +101,14 @@ render BulmaPhlex::Card.new do |card|
     "This is some card content"
   end
   card.footer_link("View", "/view", target: "_blank")
-  card.footer_link("Edit", "/edit", class: "has-text-primary")
+  card.footer_link("Edit", "/edit", icon: "fas fa-edit")
 end
-```
-
-**Constructor Arguments:**
-
-- `html_attributes`: Any additional HTML attributes to be passed to the card container div.
-
-**Arguments for `footer_link`:**
-
-- text: the link text
-- href: passed to the anchor's `href` attribute
-- Any additional HTML attributes can be passed as keyword arguments.
-
-Icons can be added to the links by passing an `icon` keyword argument with the icon class:
-
-```ruby
-  card.footer_link("View", "/view", icon: "fas fa-eye")
 ```
 
 
 ### Columns
 
-The [Columns](https://bulma.io/documentation/columns/basics/) component provides a way to create responsive columns layouts using Bulma's column classes. It generates the wrapping `div` with the `columns` class and handles all the options.
+Renders the [Bulma columns](https://bulma.io/documentation/columns/basics/) wrapper `div` with the `columns` class and handles all layout options. Each column inside the block is responsible for its own `column` class and sizing.
 
 ```ruby
 render BulmaPhlex::Columns.new(gap: 4, multiline: true) do
@@ -155,20 +118,12 @@ render BulmaPhlex::Columns.new(gap: 4, multiline: true) do
 end
 ```
 
-**Constructor Keyword Arguments:**
-
-- `minimum_breakpoint`: (Symbol, optional) Sets the minimum breakpoint for the columns; default is `:tablet`.
-- `multiline`: (Boolean, optional) If true, allows the columns to wrap onto multiple lines.
-- `gap`: (optional) Use an integer (0-8) to set the gap size between columns; use a hash keyed by breakpoints
-  to set responsive gap sizes.
-- `centered`: (Boolean, optional) If true, centers the columns.
-- `vcentered`: (Boolean, optional) If true, vertically centers the columns.
-
+The `gap:` option accepts either an integer (0–8) or a hash keyed by breakpoint for responsive gap sizes.
 
 
 ### Dropdown
 
-The [Dropdown](https://bulma.io/documentation/components/dropdown/) component provides a flexible dropdown menu for navigation or actions. It supports both click-to-toggle (default, requires a Stimulus controller) and hoverable modes, as well as alignment and icon customization.
+Renders a [Bulma dropdown](https://bulma.io/documentation/components/dropdown/) menu. Supports click-to-toggle (default, via a Stimulus controller) and hoverable (no JavaScript) modes.
 
 ```ruby
 render BulmaPhlex::Dropdown.new("Next Actions...") do |dropdown|
@@ -176,32 +131,16 @@ render BulmaPhlex::Dropdown.new("Next Actions...") do |dropdown|
   dropdown.link "Go to Settings", "/settings"
   dropdown.divider
   dropdown.item("This is just a text item")
-  dropdown.item do
-    div(class: "has-text-weight-bold") { "This is a bold item" }
-  end
+  dropdown.item { div(class: "has-text-weight-bold") { "Bold item" } }
 end
 ```
 
-**Options:**
-
-- `label` (required): The dropdown button label.
-- `click` (keyword): Stimulus controller name for click-to-toggle (default: `"bulma-phlex--dropdown"`). Set to `false` for hoverable.
-- `alignment` (keyword): `:left` (default), `:right`, or `:up`.
-- `icon` (keyword): Icon class for the dropdown arrow (default: `"fas fa-angle-down"`).
-- `html_attributes`: Any additional HTML attributes to be passed to the dropdown container div.
-
-**Dropdown methods:**
-
-- `link(label, path)`: Adds a link item.
-- `item(content = nil, &block)`: Adds a custom item (string or block).
-- `divider`: Adds a divider line.
+Set `click: false` to use hover mode instead of the Stimulus controller.
 
 
 ### File Upload
 
-The [File Upload](https://bulma.io/documentation/form/file/) component provides the structure for a file input. The component generates the container and additional elements, then yields for the file input.
-
-If the name keyword argument is set to true, the component will also generate the file name display element and add the necessary data attributes for it to work with the default Stimulus controller. The controller is not provided by this library, but you can create your own Stimulus controller to handle the logic. Here is [an implementation of a Stimulus controller for Bulma file upload](https://github.com/RockSolt/bulma-phlex-rails/blob/main/app/javascript/controllers/bulma_phlex/file_input_display_controller.js). If you want to use a custom builder for the data attributes, you can pass that in as well. 
+Renders a styled [Bulma file upload](https://bulma.io/documentation/form/file/) input. The component generates the container and structural elements, then yields for the `<input>` element itself.
 
 ```ruby
 render BulmaPhlex::FileUpload.new(color: "primary") do |data_attributes|
@@ -209,21 +148,12 @@ render BulmaPhlex::FileUpload.new(color: "primary") do |data_attributes|
 end
 ```
 
-**Constructor Keyword Arguments:**
+Set `name: true` to include a file name display element. When enabled, Stimulus data attributes are wired up automatically. The controller is not included in this gem; an [example implementation](https://github.com/RockSolt/bulma-phlex-rails/blob/main/app/javascript/controllers/bulma_phlex/file_input_display_controller.js) is available in the `bulma-phlex-rails` gem.
 
-- `color`: Sets the color of the file input
-- `size`: Sets the size of the file input
-- `name`: If `true`, includes the file name display element
-- `align`: Aligns the file input: right or centered
-- `fullwidth`: If `true`, makes the file input full width
-- `boxed`: If `true`, makes the file input boxed
-- `data_attributes_builder`: A custom builder for the data attributes used for Stimulus integration. If not provided, a default builder is used with the controller name "bulma-phlex--file-input-display".
-
-Any additional HTML attributes passed to the constructor will be applied to the outer container div. 
 
 ### Form Field
 
-The [Form Field](https://bulma.io/documentation/form/general/) component provides a way to create form fields with labels, inputs, and help text, following Bulma's form styling conventions. It also supports adding icons to the input, as well as tagging the field as a column or grid cell.
+Renders a [Bulma form field](https://bulma.io/documentation/form/general/#form-field) grouping a label, control, and optional help text. Set the label via the `label` method (string or block) and the input via the `control` method.
 
 ```ruby
 render BulmaPhlex::FormField.new(help: "We'll never share your email.") do |field|
@@ -232,114 +162,64 @@ render BulmaPhlex::FormField.new(help: "We'll never share your email.") do |fiel
 end
 ```
 
-The label can be passed in as a string or created with a block:
-
-```ruby
-  field.label do
-    span { "Email Address" }
-    span(class: "has-text-danger") { "*" }
-  end
-```
-
-**Constructor Keyword Arguments:**
-
-- `icon_left`: Icon class to display on the left side of the input (such as `fas fa-user`).
-- `icon_right`: Icon class to display on the right side of the input.
-- `help`: Help text to display below the field.
-- `column`: When true, adds the `column` class to the container. Can also be a string specifying the column size (such as `two-thirds`) or a hash with sizes by breakpoint (such as `{ mobile: "full", desktop: "half" }`).
-- `grid`: When true, adds the `cell` class to the container. Can also be a string specifying the heighth or width of the cell (such as `col-span-3`).
+The `column:` and `grid:` options integrate the field into Bulma's column and grid layout systems. Both accept `true`, a size string, or a breakpoint hash.
 
 
 ### Grid
 
-The [Grid](https://bulma.io/documentation/grid/smart-grid/) component provides a flexible grid layout system using Bulma's grid classes.
+Renders a [Bulma smart grid](https://bulma.io/documentation/grid/smart-grid/) layout. Supports fixed column counts, auto-count, minimum column width, and independent gap control.
 
 ```ruby
 render BulmaPhlex::Grid.new(minimum_column_width: 16) do
   @tiles.each do |tile|
-    div(class: "cell") do
-      ... render tile ...
-    end
+    div(class: "cell") { render tile }
   end
 end
 ```
 
-**Constructor Keyword Arguments:**
-
-- `fixed_columns`: (Integer, optional) Specifies a fixed number of columns for the grid.
-- `auto_count`: (Boolean, optional) If true, the grid will automatically adjust the number
-    of columns based on the breakpoint.
-- `minimum_column_width`: (Integer 1-32, optional) Sets a minimum width for the columns in the grid.
-- `gap`: (optional) Sets the gap size between grid items, from 1-8 with 0.5 increments.
-- `column_gap`: (optional) Sets the column gap size between grid items, from 1-8 with 0.5 increments.
-- `row_gap`: (optional) Sets the row gap size between grid items, from 1-8 with 0.5 increments.
-
-
 
 ### Hero
 
-The [Hero](https://bulma.io/documentation/layout/hero/) component provides a large, full-width section for showcasing important content or calls to action, with support for different sizes and colors.
+Renders a [Bulma hero](https://bulma.io/documentation/layout/hero/) section with support for color and size options.
 
-There are three ways to invoke the component:
-
-- with a title and subtitle argument
-- with a block for the hero body content
-- invoke methods head, body, and footer on the yielded component and pass blocks to define each section
-
-Additionally, both the size and color of the Hero can be specified through keyword arguments in the
-constructor. Any additional HTML attributes given to the constructor will be added to the containing `div`.
+Content can be provided three ways: as `title:` and `subtitle:` keyword arguments, as a plain block for the body, or by calling `head`, `body`, and `foot` on the yielded component for full control over each section.
 
 ```ruby
-render BulmaPhlex::Hero.new(title: "Welcome to My Site", subtitle: "We're glad you're here!", color: "primary")
+render BulmaPhlex::Hero.new(title: "Welcome", subtitle: "Glad you're here!", color: "primary")
+
+render BulmaPhlex::Hero.new(color: "info", size: "large") do |hero|
+  hero.head { "header content" }
+  hero.body { "body content" }
+  hero.foot { "footer content" }
+end
 ```
 
 
 ### Icon
 
-The [Icon](https://bulma.io/documentation/elements/icon/) component provides a way to display icons using Font Awesome or other icon libraries, with support for different sizes and colors.
+Renders a [Bulma icon](https://bulma.io/documentation/elements/icon/) element. Supports color, size, optional text alongside the icon, and left/right positioning for use inside form controls.
 
 ```ruby
-render BulmaPhlex::Icon.new("fas fa-user", size: "large", color: "primary")
+render BulmaPhlex::Icon.new("fas fa-user")
+render BulmaPhlex::Icon.new("fas fa-home", size: :large, color: :primary, text_right: "Home")
 ```
-
-**Constructor Arguments:**
-
-- `icon_class`: (positional, required) The icon class to display (such as `fas fa-user`).
-- `size`: (optional) The [Bulma icon size](https://bulma.io/documentation/elements/icon/#sizes): small, medium, large.
-- `color`: (optional) The [Bulma color class](https://bulma.io/documentation/elements/icon/#colors) to apply.
-- `text_right`: (optional) Text to display to the right of the icon.
-- `text_left`: (optional) Text to display to the left of the icon.
-- `left`: (optional) If true, adds the `is-left` class for use in form controls.
-- `right`: (optional) If true, adds the `is-right` class for use in form controls.
-
-Any additional HTML attributes are passed to the icon container span.
 
 
 ### Level
 
-The [Level](https://bulma.io/documentation/layout/level/) component provides a flexible horizontal layout system with left and right alignment.
+Renders the [Bulma level](https://bulma.io/documentation/layout/level/) horizontal layout component. Place items in the left section, right section, or centered via the `left`, `right`, and `item` builder methods. Each can be called multiple times.
 
 ```ruby
 render BulmaPhlex::Level.new do |level|
-  level.left do
-    button(class: "button") { "Left" }
-  end
-
-  level.right do
-    button(class: "button") { "Right" }
-  end
-  level.right do
-    button(class: "button") { "Right 2" }
-  end
+  level.left { button(class: "button") { "Back" } }
+  level.right { button(class: "button is-primary") { "Save" } }
 end
 ```
-
-Pass in any HTML attributes to the constructor to have them applied to the level container div.
 
 
 ### Modal
 
-The [Modal](https://bulma.io/documentation/components/modal/) component provides a way to create modal dialogs with customizable content and styling options.
+Renders a [Bulma modal](https://bulma.io/documentation/components/modal/) dialog overlay with a background, content area, and close button. Content is provided via a block.
 
 ```ruby
 render BulmaPhlex::Modal.new do
@@ -350,281 +230,137 @@ render BulmaPhlex::Modal.new do
 end
 ```
 
-**Constructor Keyword Arguments:**
-
-- `data_attributes_builder`: A builder object that responds to `for_container`, `for_background`, and `for_close_button`, which should return a hash of data attributes for the container, background, and close button, respectively. By default, this uses the nested `StimulusDataAttributes` class with the controller name `bulma-phlex--modal`. You can create your own builder to integrate with a different JavaScript framework or custom logic.
-
-Any additional HTML attributes passed to the constructor will be applied to the modal container div. The modal can be toggled by adding or removing the `is-active` class on the container. (Nothing in the component adds the `is-active` class, so you will need to handle that with your own JavaScript or Stimulus controller.)
+The modal is shown by adding the `is-active` class to the container — nothing in the component does this automatically. The default Stimulus controller (`bulma-phlex--modal`) handles open/close behavior. Pass a custom `data_attributes_builder:` to integrate with a different JavaScript setup.
 
 
 ### NavigationBar
 
-The [NavigationBar](https://bulma.io/documentation/components/navbar/) component provides a responsive navigation header with support for branding, navigation links, and dropdown menus.
+Renders a [Bulma navbar](https://bulma.io/documentation/components/navbar/) with support for branding, left/right nav links, and dropdown menus. Collapses automatically on mobile via the `bulma-phlex--navigation-bar` Stimulus controller (provided by the `bulma-phlex-rails` gem).
 
 ```ruby
 render BulmaPhlex::NavigationBar.new(color: "primary") do |navbar|
-  navbar.brand_item "My App", "/"
+  navbar.brand { a(href: "/", class: "navbar-item") { "My App" } }
 
-  navbar.left do |menu|
-    menu.item "Home", "/"
-    menu.item "Products", "/products"
+  navbar.left do
+    a(href: "/", class: "navbar-item") { "Home" }
+    a(href: "/products", class: "navbar-item") { "Products" }
   end
 
-  navbar.right do |menu|
-    menu.item "About", "/about"
-    menu.dropdown "Account" do |dropdown|
-      dropdown.header "User"
-      dropdown.item "Profile", "/profile"
-      dropdown.item "Settings", "/settings"
-      dropdown.divider
-      dropdown.item "Sign Out", "/logout"
-    end
+  navbar.right do
+    a(href: "/about", class: "navbar-item") { "About" }
   end
 end
 ```
 
-**Constructor Keyword Arguments:**
-
-- `container`: When true, wraps the content in a Bulma container. To set a constraint, such as "is-max-desktop", pass that string instead of true. (defaults to false)
-- `color`: Sets the navbar color (e.g., "primary", "light", "dark").
-- `transparent`: If `true`, makes the navbar transparent.
-- `spaced`: If `true`, adds spacing to the navbar.
-- `shadow`: If `true`, adds a shadow to the navbar.
-
-Any additional HTML attributes passed to the component will be applied to the `<nav>` element.
-
-> [!NOTE]  
-> Adding a container will limit the width of the Navigation Bar content according to Bulma's container rules. However, the background color of the navbar will still span the full width of the viewport.
+> [!NOTE]
+> Setting `container: true` (or a constraint string like `"is-max-desktop"`) wraps the navbar content in a Bulma container for fixed-width layout. The navbar's background color still spans the full viewport width.
 
 
 ### Notification
 
-The [Notification](https://bulma.io/documentation/components/notification/) component provides a way to display messages or alerts with customizable styles and a close button.
+Renders a [Bulma notification](https://bulma.io/documentation/elements/notification/) alert box with support for color and mode options.
 
 ```ruby
 render BulmaPhlex::Notification.new(color: "info", delete: true) do
-  "This is an informational notification with a close button."
+  "This is an informational notification."
 end
 ```
 
-The `delete` keyword argument adds a close button to the notification. In addition to setting it to `true`, it can also be a hash of HTML attributes for the button, such as a data attribute to hook into a Stimulus controller.
+The `delete:` option adds a dismiss button. It accepts `true` or a hash of HTML attributes for the button — useful for hooking into a Stimulus controller.
 
 ```ruby
-render BulmaPhlex::Notification.new(color: "warning", delete: { data: { controller: "bulma-phlex--notification" } }) do
-  "This is a warning notification with a close button that works with a Stimulus controller."
-end
-```
-
-**Constructor Keyword Arguments:**
-
-- `delete`: (optional) When true, adds a close button to the notification. Can also be a hash of HTML attributes for the button.
-- `color`: (optional) The [Bulma color class](https://bulma.io/documentation/elements/tag/#colors) to apply.
-- `mode`: Sets the mode of the notification: "light" or "dark".
-
-Any additional attributes are passed to the notification container div.
-
-```ruby
-render BulmaPhlex::Notification.new(id: "my-notification", class: "ml-3") do
-  "This is a notification with custom id and class."
+render BulmaPhlex::Notification.new(color: "warning", delete: { data: { action: "bulma-phlex--notification#close" } }) do
+  "This notification has a wired-up close button."
 end
 ```
 
 
 ### Pagination
 
-The [Pagination](https://bulma.io/documentation/components/pagination/) component provides navigation controls for paginated content, including previous/next links, page number links, and a summary of items being displayed.
+Renders the [Bulma pagination](https://bulma.io/documentation/components/pagination/) component with previous/next links, numbered page links, ellipses for skipped ranges, and an item count summary. Only renders when there is more than one page of results.
 
 ```ruby
 render BulmaPhlex::Pagination.new(@products, ->(page) { products_path(page: page) })
 ```
 
-**Constructor Arguments:**
-
-- `pager`: An object that responds to pagination methods (see below).
-- `path_builder`: A lambda that takes a page number and returns the URL for that page. This is used to generate the links for the pagination controls.
-
-Any additional HTML attributes passed to the constructor will be applied to the pagination container element.
-
-In order to support pagination, the first argument in the constructor must repond with integers to the following:
-
-- current_page
-- total_pages
-- per_page
-- total_count
-- previous_page (can be nil)
-- next_page (can be nil)
+The first argument must be a pager object responding to `current_page`, `total_pages`, `per_page`, `total_count`, `previous_page`, and `next_page`.
 
 
 ### Progress Bar
 
-The [Progress Bar](https://bulma.io/documentation/components/progress/) component provides a visual representation of progress or completion status, with support for different colors and sizes.
+Renders a [Bulma progress bar](https://bulma.io/documentation/elements/progress/) element. Supports color and size options.
 
 ```ruby
 render BulmaPhlex::ProgressBar.new(color: "success", size: "large", value: 75, max: 100) { "75%" }
 ```
 
-**Constructor Keyword Arguments:**
-
-- `color`: (optional) The [Bulma color class](https://bulma.io/documentation/elements/progress/#colors) to apply.
-- `size`: (optional) The [Bulma size class](https://bulma.io/documentation/elements/progress/#sizes) to apply: small, medium, or large.
-- `html_attributes`: Any additional HTML attributes to be passed to the `progress` element. Include the `value` and `max` attributes here to set the progress level.
-
-Leaving out the `value` and `max` attributes will render an indeterminate progress bar, which can be used to indicate that a process is ongoing without specifying the exact progress.
-
+Omitting `value:` and `max:` produces an indeterminate (animated) progress bar.
 
 
 ### Table
 
-The [Table](https://bulma.io/documentation/elements/table/) component provides a way to display data in rows and columns with customizable headers and formatting options.
+Renders a [Bulma table](https://bulma.io/documentation/elements/table/) for a collection of records. Columns are defined via builder methods on the yielded component.
 
 ```ruby
-users = User.all
-
-render BulmaPhlex::Table.new(users, fullwidth: true, hoverable: true) do |table|
-  table.column "Name" do |user|
-    user.full_name
-  end
-
-  # use the symbol-to-proc shortcut!
-  table.column "Email", &:email
-
-  table.column "Actions" do |user|
+render BulmaPhlex::Table.new(@users, fullwidth: true, hoverable: true) do |table|
+  table.column("Name") { |user| user.full_name }
+  table.column("Email", &:email)
+  table.column("Actions") do |user|
     link_to "Edit", edit_user_path(user), class: "button is-small"
   end
 end
 ```
 
-**Constructor Keyword Arguments:**
+In addition to `column`, two specialized column methods are available:
 
-- `rows`: the data for the table as an enumerable (anything that responds to `each`)
-- `bordered`: adds the `is-bordered` class (boolean, defaults to false)
-- `striped`: adds the `is-striped` class (boolean, defaults to false)
-- `narrow`: adds the `is-narrow` class (boolean, defaults to false)
-- `hoverable`: adds the `is-hoverable` class (boolean, defaults to false)
-- `fullwidth`: adds the `is-fullwidth` class (boolean, defaults to false)
+- `date_column(header, format: "%Y-%m-%d")` — formats the value with `strftime`
+- `conditional_icon(header, icon_class: "fas fa-check")` — shows an icon when the block returns truthy
 
-Any additional HTML attributes passed to the constructor will be applied to the table element.
-
-**Arguments for `column` Method:**
-
-The `column` method takes the column name and any html attributes to be assigned to the table cell element. The block will be called with the row as the parameter.
-
-#### Additional Column Types
-
-Instead of calling `column`, you can also invoke the following methods to add date and icon columns:
-
-**Arguments for `date_column`:**
-
-- name: content for the `th` element
-- `format` (keyword): the formatting options (will be passed to `strftime`, defaults to "%Y-%m-%d")
+To add pagination to the table, call `paginate` with a block that returns a path given a page number:
 
 ```ruby
-  table.date_column("Due Date", format: "%B %d, %Y") { |row| row.due_date }
+table.paginate { |page| products_path(page: page) }
 ```
-
-**Arguments for `conditional_icon`:**
-
-The icon column is intended to show a boolean flag: a yes / no or an on / off. When the value is true the icon shows and when the value is false it does not.
-
-- name: content for the `th` element
-- `icon_class` (keyword): the icon to show (defaults to the Font Awesome check mark: "fas fa-check")
-
-```ruby
-  table.conditional_icon("Completed?", &:complete)
-  table.conditional_icon("Approved?", icon_class: "fas fa-thumbs-up") { |row| row.status == "Approved" }
-```
-
-#### Pagination
-
-If the table should be paginated, invoke method `paginate` with a block that will return a path given a page number.
-
-```ruby
-  table.paginate do |page_number|
-    products_path(page: { number: page_number })
-  end
-```
-
-This generates the [Bulma pagination](https://bulma.io/documentation/components/pagination/) component, providing navigation controls for paginated content. The rows argument is passed into the Pagination component to determine the current page, total pages, and other pagination details.
 
 
 ### Tabs
 
-The [Tabs](https://bulma.io/documentation/components/tabs/) component provides a way to toggle between different content sections using tabbed navigation, with support for icons and active state management.
-
-Behavior of the tabs can be driven by the data attributes, which are assigned by the object passed in as the `data_attributes_builder`. By default, this will use the `StimulusDataAttributes` class with the controller name `bulma-phlex--tabs`. The controller is not provided by this library, but you can create your own Stimulus controller to handle the tab switching logic. Here is [an implementation of a Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-phlex-rails/blob/main/app/javascript/controllers/bulma_phlex/tabs_controller.js).
+Renders a [Bulma tabs](https://bulma.io/documentation/components/tabs/) component with tabbed navigation and associated content panels. Supports alignment, size, and style options (boxed, toggle, rounded, fullwidth).
 
 ```ruby
 render BulmaPhlex::Tabs.new(boxed: true) do |tabs|
-  tabs.tab(id: "profile", title: "Profile", active: true) do
-    "Profile content goes here"
-  end
-
-  tabs.tab(id: "settings", title: "Settings", icon: "fas fa-cog") do
-    "Settings content goes here"
-  end
-
-  tabs.tab(id: "notifications", title: "Notifications", icon: "fas fa-bell") do
-    "Notifications content goes here"
-  end
+  tabs.tab(id: "profile", title: "Profile", active: true) { "Profile content" }
+  tabs.tab(id: "settings", title: "Settings", icon: "fas fa-cog") { "Settings content" }
 end
 ```
 
-**Constructor Keyword Arguments:**
+Tab switching is handled by the `bulma-phlex--tabs` Stimulus controller. The controller is not included in this gem; an [example implementation](https://github.com/RockSolt/bulma-phlex-rails/blob/main/app/javascript/controllers/bulma_phlex/tabs_controller.js) is available in the `bulma-phlex-rails` gem. Pass a custom `data_attributes_builder:` to integrate with a different JavaScript setup.
 
-- `align`: Can be `centered` or `right` to align the tabs accordingly.
-- `size`: Can be `small`, `medium`, or `large` to set the size of the tabs.
-- `boxed`: If `true`, uses classic style tabs.
-- `toggle`: If `true`, makes the tabs look like buttons.
-- `rounded`: If `true`, makes the tabs look like buttons with the first and last rounded.
-- `fullwidth`: If `true`, makes the tabs take up the full width of the container.
-- `data_attributes_builder`: Builder object that responds to `for_container`, `for_tab`, and `for_content` (with the latter two receiving the tab `id`). See the default `StimulusDataAttributes` for an example.
+An optional right-side element (e.g. a button) can be placed alongside the tab bar via `right_content`.
 
-Any additional HTML attributes passed to the component will be applied to the outer `<div>` element.
-
-**Keyword Arguments for `tab` Method:**
-
-- `id`: The id to be assigned to the content. The tab will be assigned the same id with the suffix `-tab`.
-- `title`: The name on the tab.
-- `active`: Adds the `is-active` class to the tab and shows the related content. Non-active content is assigned the `is-hidden` class. Defaults to `false`.
-- `icon`: Specify an optional icon class.
 
 ### Tag
 
-The [Tag](https://bulma.io/documentation/elements/tag/) component provides a way to display small, colored labels or tags with customizable styles. The component generates either a `span`, `a`, or `button` element based on the provided options and HTML attributes.
-
-If the HTML attributes include an `href`, an anchor (`a`) element is generated; if not and either the `delete` option is true or there is a `data-action` attribute, a `button` element is generated; otherwise, a `span` element is used.
+Renders the [Bulma tag](https://bulma.io/documentation/elements/tag/) component. Supports color, size, rounded, and an optional inline delete button.
 
 ```ruby
 render BulmaPhlex::Tag.new("New", color: "primary", rounded: true)
 render BulmaPhlex::Tag.new("Sale", light: "danger")
 ```
 
-**Constructor Arguments:**
-- `text`: (positional, required) The tag text to display.
-- `color`: (optional) The [Bulma color class](https://bulma.io/documentation/elements/tag/#colors) to apply.
-- `light`: (optional) Use instead of `color` to apply a light color variant.
-- `rounded`: (optional) A boolean indicating whether the tag should have rounded corners.
-- `size`: (optional) The [Bulma tag size](https://bulma.io/documentation/elements/tag/#sizes): normal, medium, or large.
-- `delete`: (optional) A boolean indicating whether to include a delete button on the tag.
+The element type is inferred from the attributes: an `href:` produces an `<a>`, a `data-action` or `delete: true` produces a `<button>`, and otherwise a `<span>` is used.
 
 
 ### Title and Subtitle
 
-The [Title](https://bulma.io/documentation/elements/title/) component provide a way to display headings and subheadings with customizable sizes and styles.
+Renders a [Bulma title](https://bulma.io/documentation/elements/title/) with an optional subtitle. Supports sizes 1–6 for both elements and a `spaced:` option to increase the gap between them.
 
 ```ruby
 render BulmaPhlex::Title.new("Hello World")
-
 render BulmaPhlex::Title.new("Dr. Strangelove", size: 2, subtitle: "Or: How I Learned to Stop Worrying and Love the Bomb")
 ```
 
-**Constructor Arguments:**
-
-- `text`: (positional, required) The main title text to display.
-- `size`: (optional) An integer from 1 to 6 indicating the size of the title. Corresponds to Bulma's `is-<size>` classes.
-- `subtitle`: (optional) The subtitle text to display below the main title.
-- `subtitle_size`: (optional) An integer from 1 to 6 indicating the size of the subtitle. If not provided and a title size is given, it defaults to `size + 2`.
-- `spaced`: (optional) A boolean indicating whether to add the `is-spaced` class to the title.
+When `size:` is set but `subtitle_size:` is not, the subtitle size defaults to `size + 2`.
 
 
 ## Upgrading to 0.8
@@ -647,6 +383,14 @@ Finally, the optional Rails extensions for the Card and Table components have be
 After checking out the repo, run `bundle install` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+### The `self.new` Pattern
+
+Each component that defines `initialize` also defines a dummy `self.new` that does nothing but call `super`. This exists solely to support hover documentation in editors using [Ruby LSP](https://shopify.github.io/ruby-lsp/).
+
+Phlex defines its own `self.new` on the base class (`Phlex::SGML`). Because Ruby LSP resolves hover documentation by walking the ancestor chain and stopping at the first definition it finds, it would otherwise show Phlex's generic comment for every component's `.new` call rather than the component's own parameter documentation. Defining a local `self.new` gives Ruby LSP a component-level entry point to attach comments to.
+
+The `self.new` method must match the signature of `initialize` and be preceded by a comment documenting its parameters. A custom RuboCop cop (`RuboCop::Cop::BulmaPhlex::PhlexNewMethod`) enforces this convention.
 
 ## Contributing
 

@@ -1,26 +1,27 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Tag
+  # Renders the [Bulma tag](https://bulma.io/documentation/elements/tag/) component.
   #
-  # The Tag component is a bit of a chameleon. It can generate a `span`, `a`, or `button` element
-  # based on the provided attributes. If an `href` attribute is provided, the tag will render as an `a` element. If
-  # the `delete` option is true or a `data-action` attribute is present, it will render as a `button` element.
-  #  Otherwise, it defaults to a `span` element.
-  #
-  # ## Options
-  #
-  # - `delete`: If true, adds a delete button inside the tag.
-  # - `color`: Sets the [color of the tag](https://bulma.io/documentation/elements/tag/#colors)
-  # - `light`: To use a light version of the color, use the key `light` instead of `color`.
-  # - `size`: Sets the [size of the tag](https://bulma.io/documentation/elements/tag/#sizes): normal, medium, or large.
-  # - `rounded`: If true, adds the `is-rounded` class to the tag.
-  #
-  # ## HTML Attributes
-  #
-  # Any additional HTML attributes provided will be applied to the rendered element.
+  # Generates a `<span>`, `<a>`, or `<button>` element depending on the provided attributes.
+  # Supports Bulma options for **color**, **size**, and **shape** (rounded), with an optional
+  # **delete button** that can appear inside the tag.
   class Tag < BulmaPhlex::Base
     TAG_OPTIONS = %i[delete color light size rounded].freeze
+
+    # **Parameters**
+    #
+    # - `text` — The text content of the tag
+    # - `delete` — If `true`, adds a delete button inside the tag
+    # - `color` — Sets the [color of the tag](https://bulma.io/documentation/elements/tag/#colors)
+    # - `light` — To use a light version of the color, use the key `light` instead of `color`
+    # - `size` — Sets the [size of the tag](https://bulma.io/documentation/elements/tag/#sizes): `"normal"`,
+    # `"medium"`, or `"large"`
+    # - `rounded` — If `true`, adds the `is-rounded` class to the tag
+    # - `**options_and_html_attributes` — Additional HTML attributes applied to the rendered element
+    def self.new(text, **options_and_html_attributes)
+      super
+    end
 
     def initialize(text, **options_and_html_attributes)
       @text = text

@@ -1,29 +1,26 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Dropdown component for the Bulma navigation bar
+  # Renders a dropdown menu for the [Bulma navbar](https://bulma.io/documentation/components/navbar/#dropdown-menu).
   #
-  # This component implements the dropdown portion of the [Bulma navbar](https://bulma.io/documentation/components/navbar/#dropdown-menu).
-  # It provides a structured way to add dropdown menus to a navigation bar with headers, items, and dividers.
+  # Provides structured content for a navbar dropdown, including **headers**, **links**, and **dividers**.
+  # Intended to be used inside a {BulmaPhlex::NavigationBar} block.
   #
   # ## Example
   #
-  # ```ruby
-  # render BulmaPhlex::NavigationBar.new do |navbar|
-  #   navbar.brand_item "My App", "/"
+  #     render BulmaPhlex::NavigationBar.new do |navbar|
+  #       navbar.brand_item "My App", "/"
   #
-  #   navbar.right do |menu|
-  #     menu.dropdown "Account" do |dropdown|
-  #       dropdown.header "User"
-  #       dropdown.item "Profile", "/profile"
-  #       dropdown.item "Settings", "/settings"
-  #       dropdown.divider
-  #       dropdown.item "Sign Out", "/logout"
+  #       navbar.right do |menu|
+  #         menu.dropdown "Account" do |dropdown|
+  #           dropdown.header "User"
+  #           dropdown.item "Profile", "/profile"
+  #           dropdown.item "Settings", "/settings"
+  #           dropdown.divider
+  #           dropdown.item "Sign Out", "/logout"
+  #         end
+  #       end
   #     end
-  #   end
-  # end
-  # ```
-  #
   class NavigationBarDropdown < BulmaPhlex::Base
     def view_template(&)
       div(class: "navbar-dropdown is-right", &)

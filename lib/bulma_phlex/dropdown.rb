@@ -1,41 +1,35 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Dropdown component
+  # Renders a [Bulma Dropdown](https://bulma.io/documentation/components/dropdown/) component.
   #
-  # This component implements the [Bulma Dropdown](https://bulma.io/documentation/components/dropdown/).
-  #
-  # ## [Hoverable or Toggable](https://bulma.io/documentation/components/dropdown/#hoverable-or-toggable)
-  #
-  # By default the dropdown is in Click Mode and assumes a Stimulus controller named `bulma-phlex--dropdown` is present
-  # to handle the click events. The controller name can be customized using the `click` option.
-  #
-  # Set click to `false` to make the dropdown hoverable instead of togglable.
-  #
-  # ## Alignment
-  #
-  # Use the `alignment` option to control the dropdown's alignment. By default, it aligns to the left. Pass in
-  # `:right` or `:up` to change the alignment.
-  #
-  # ## Icon
-  #
-  # Use the `icon` option to customize the dropdown's icon. By default, it uses the Font Awesome angle down icon.
+  # Supports options for **alignment** and **trigger icon**, and can operate in either click-to-toggle
+  # or hover mode. Click mode integrates with a Stimulus controller; hover mode requires no JavaScript.
   #
   # ## Example
   #
-  # ```ruby
-  # render BulmaPhlex::Dropdown.new("Next Actions...") do |dropdown|
-  #   dropdown.link "View Profile", "/profile"
-  #   dropdown.link "Go to Settings", "/settings"
-  #   dropdown.divider
-  #   dropdown.item("This is just a text item")
-  #   dropdown.item do
-  #     div(class: "has-text-weight-bold") { "This is a bold item" }
-  #   end
-  # end
-  # ```
-  #
+  #     render BulmaPhlex::Dropdown.new("Next Actions...") do |dropdown|
+  #       dropdown.link "View Profile", "/profile"
+  #       dropdown.link "Go to Settings", "/settings"
+  #       dropdown.divider
+  #       dropdown.item("This is just a text item")
+  #       dropdown.item do
+  #         div(class: "has-text-weight-bold") { "This is a bold item" }
+  #       end
+  #     end
   class Dropdown < BulmaPhlex::Base
+    # **Parameters**
+    #
+    # - `label` — The text displayed in the dropdown trigger button
+    # - `click` — Stimulus controller name for toggling; set to `false` for hover mode instead
+    # - `alignment` — Alignment of the dropdown menu: `"left"` (default), `"right"`, or `"up"`
+    # - `icon` — Icon class for the trigger button (default: `"fas fa-angle-down"`)
+    # - `**html_attributes` — Additional HTML attributes for the outermost dropdown element
+    def self.new(label, click: "bulma-phlex--dropdown", alignment: "left", icon: "fas fa-angle-down",
+                 **html_attributes)
+      super
+    end
+
     def initialize(label, click: "bulma-phlex--dropdown", alignment: "left", icon: "fas fa-angle-down",
                    **html_attributes)
       @label = label
