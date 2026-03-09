@@ -5,7 +5,8 @@ module RuboCop
     module BulmaPhlex
       # Enforces that Phlex component classes that define `initialize` also define a
       # `self.new` method that only calls `super`, so that hover documentation is
-      # visible in editors using Ruby LSP.
+      # visible in editors using Ruby LSP. The `self.new` method must also have a
+      # comment documenting its parameters.
       #
       # Components without an `initialize` method do not need a `self.new`.
       #
@@ -33,8 +34,21 @@ module RuboCop
       #     end
       #   end
       #
-      #   # good - has initialize and matching self.new
+      #   # bad - self.new has no comment
       #   class MyComponent < Phlex::HTML
+      #     def self.new(title:)
+      #       super
+      #     end
+      #
+      #     def initialize(title:)
+      #       @title = title
+      #     end
+      #   end
+      #
+      #   # good - has initialize, matching self.new, and a comment
+      #   class MyComponent < Phlex::HTML
+      #     # **Parameters**
+      #     # - `title` — The title text
       #     def self.new(title:)
       #       super
       #     end
@@ -54,6 +68,7 @@ module RuboCop
         MSG_MISSING = "Define a `self.new` method that only calls `super` so that " \
                       "hover documentation is visible in editors using Ruby LSP."
         MSG_BODY = "`self.new` must only call `super`."
+        MSG_COMMENT = "`self.new` must have a comment documenting its parameters."
 
         # @!method self_new_def?(node)
         def_node_matcher :self_new_def?, <<~PATTERN
@@ -80,10 +95,16 @@ module RuboCop
             add_offense(node.loc.keyword, message: MSG_MISSING)
           elsif !only_super?(new_method.body)
             add_offense(new_method, message: MSG_BODY)
+          elsif !preceding_comment?(new_method)
+            add_offense(new_method, message: MSG_COMMENT)
           end
         end
 
         private
+
+        def preceding_comment?(node)
+          processed_source.ast_with_comments[node].any?
+        end
 
         def ancestors
           cop_config.fetch("Ancestors", ["Phlex::HTML"])
