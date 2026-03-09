@@ -6,7 +6,8 @@ module RuboCop
       # Enforces that Phlex component classes that define `initialize` also define a
       # `self.new` method that only calls `super`, so that hover documentation is
       # visible in editors using Ruby LSP. The `self.new` method must also have a
-      # comment documenting its parameters.
+      # comment documenting its parameters, and its parameter list must exactly
+      # match `initialize`.
       #
       # Components without an `initialize` method do not need a `self.new`.
       #
@@ -31,6 +32,20 @@ module RuboCop
       #
       #     def initialize(title:)
       #       @title = title
+      #     end
+      #   end
+      #
+      #   # bad - self.new signature doesn't match initialize
+      #   class MyComponent < Phlex::HTML
+      #     # **Parameters**
+      #     # - `title` — The title text
+      #     def self.new(title:)
+      #       super
+      #     end
+      #
+      #     def initialize(title:, subtitle: nil)
+      #       @title = title
+      #       @subtitle = subtitle
       #     end
       #   end
       #
@@ -68,6 +83,7 @@ module RuboCop
         MSG_MISSING = "Define a `self.new` method that only calls `super` so that " \
                       "hover documentation is visible in editors using Ruby LSP."
         MSG_BODY = "`self.new` must only call `super`."
+        MSG_SIGNATURE = "`self.new` parameters must match `initialize` exactly."
         MSG_COMMENT = "`self.new` must have a comment documenting its parameters."
 
         # @!method self_new_def?(node)
@@ -103,13 +119,16 @@ module RuboCop
           children.any? { |n| n.def_type? && n.method_name == :initialize }
         end
 
-        def check_new_method(node, children)
+        def check_new_method(node, children) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
           new_method = children.find { |child| self_new_def?(child) }
+          init_method = children.find { |child| child.def_type? && child.method_name == :initialize }
 
           if new_method.nil?
             add_offense(node.loc.keyword, message: MSG_MISSING)
           elsif invalid_new_method_body?(new_method)
             add_offense(new_method, message: MSG_BODY)
+          elsif mismatched_signature?(new_method, init_method)
+            add_offense(new_method, message: MSG_SIGNATURE)
           elsif !preceding_comment?(new_method)
             add_offense(new_method, message: MSG_COMMENT)
           end
@@ -117,6 +136,29 @@ module RuboCop
 
         def invalid_new_method_body?(new_method)
           !only_super?(new_method.body)
+        end
+
+        # Returns true when the parameter lists of `self.new` and `initialize` differ.
+        #
+        # Each parameter is represented as a tuple of [type, name, default_source] where
+        # `default_source` is the source text of the default-value expression (present only
+        # for `optarg` and `kwoptarg` nodes). Two signatures are equal when every element
+        # of those tuples matches in order.
+        def mismatched_signature?(new_method, init_method)
+          param_signature(new_method.arguments) != param_signature(init_method.arguments)
+        end
+
+        # Normalises an array of argument nodes into a comparable list of tuples.
+        def param_signature(args)
+          args.map do |arg|
+            name = arg.children[0]
+            default = arg.children[1]
+            if default
+              [arg.type, name, default.source]
+            else
+              [arg.type, name]
+            end
+          end
         end
 
         def preceding_comment?(node)
