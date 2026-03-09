@@ -13,6 +13,7 @@ module BulmaPhlex
   #     render BulmaPhlex::Icon.new("fas fa-home", color: :primary, size: :large, text_right: "Home")
   class Icon < BulmaPhlex::Base
     # **Parameters**
+    #
     # - `icon` — The icon class string (e.g. `"fas fa-home"`)
     # - `color` — Sets the [color of the icon](https://bulma.io/documentation/elements/icon/#colors)
     # - `size` — Sets the [size of the icon](https://bulma.io/documentation/elements/icon/#sizes)

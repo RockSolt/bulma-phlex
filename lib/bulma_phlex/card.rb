@@ -19,6 +19,7 @@ module BulmaPhlex
   #     end
   class Card < BulmaPhlex::Base
     # **Parameters**
+    #
     # - `**html_attributes` — Additional HTML attributes for the card element
     def self.new(**html_attributes)
       super

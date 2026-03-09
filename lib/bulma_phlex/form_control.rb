@@ -5,6 +5,7 @@ module BulmaPhlex
   # container. Supports optional **icons** on the left and/or right side of the control.
   class FormControl < Base
     # **Parameters**
+    #
     # - `icon_left` — Icon class for the left side of the control (e.g. `"fas fa-check"`)
     # - `icon_right` — Icon class for the right side of the control (e.g. `"fas fa-check"`)
     # - `**html_attributes` — Additional HTML attributes for the control element

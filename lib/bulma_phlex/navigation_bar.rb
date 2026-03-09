@@ -35,6 +35,7 @@ module BulmaPhlex
   #
   class NavigationBar < BulmaPhlex::Base
     # **Parameters**
+    #
     # - `container` — If `true`, wraps the navbar content in a `.container` for fixed-width layout. Can also
     #   be a string or symbol to specify a custom container class
     # - `color` — Sets the navbar color (e.g., `"primary"`, `"light"`, `"dark"`)

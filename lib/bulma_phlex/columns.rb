@@ -8,6 +8,7 @@ module BulmaPhlex
   #
   class Columns < BulmaPhlex::Base
     # **Parameters**
+    #
     # - `minimum_breakpoint` — Sets the minimum breakpoint for the columns (e.g. `:tablet`, `:desktop`)
     # - `multiline` — If `true`, allows the columns to wrap onto multiple lines
     # - `gap` — An integer (0-8) to set the gap size, or a hash keyed by breakpoints for responsive gaps

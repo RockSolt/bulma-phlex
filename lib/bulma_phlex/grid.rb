@@ -7,6 +7,7 @@ module BulmaPhlex
   # independent control over **gap**, **column gap**, and **row gap** sizes.
   class Grid < BulmaPhlex::Base
     # **Parameters**
+    #
     # - `fixed_columns` — Specifies a fixed number of columns for the grid
     # - `auto_count` — If `true`, the grid will automatically adjust the number of columns based on the content
     # - `minimum_column_width` — Sets a minimum column width (integer 1-32)

@@ -23,6 +23,7 @@ module BulmaPhlex
   #     end
   class Level < BulmaPhlex::Base
     # **Parameters**
+    #
     # - `**html_attributes` — Additional HTML attributes for the level element
     def self.new(**html_attributes)
       super

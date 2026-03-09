@@ -18,6 +18,7 @@ module BulmaPhlex
     end
 
     # **Parameters**
+    #
     # - `color` — Sets the color of the file input
     # - `size` — Sets the size of the file input
     # - `name` — If `true`, includes the file name display element

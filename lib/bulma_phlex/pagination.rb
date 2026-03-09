@@ -19,6 +19,7 @@ module BulmaPhlex
     attr_reader :pager, :path_builder
 
     # **Parameters**
+    #
     # - `pager` — A page object responding to `current_page`, `total_pages`, `per_page`,
     #   `total_count`, `previous_page`, and `next_page`
     # - `path_builder` — A callable that takes a page number and returns a URL string

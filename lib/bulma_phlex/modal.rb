@@ -14,6 +14,7 @@ module BulmaPhlex
     end
 
     # **Parameters**
+    #
     # - `data_attributes_builder` — Provides data attributes for the container, background, and close button.
     #   Defaults to a `StimulusDataAttributes` instance with the controller name `"bulma-phlex--modal"`.
     #   Provide a custom builder to use a different controller or customize the data attributes.

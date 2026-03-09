@@ -10,6 +10,7 @@ module BulmaPhlex
     TAG_OPTIONS = %i[delete color light size rounded].freeze
 
     # **Parameters**
+    #
     # - `text` — The text content of the tag
     # - `delete` — If `true`, adds a delete button inside the tag
     # - `color` — Sets the [color of the tag](https://bulma.io/documentation/elements/tag/#colors)

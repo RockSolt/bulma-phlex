@@ -53,6 +53,7 @@ module BulmaPhlex
     end
 
     # **Parameters**
+    #
     # - `align` — Aligns the tabs: `"centered"` or `"right"`
     # - `size` — Sets the size of the tabs: `"small"`, `"medium"`, or `"large"`
     # - `boxed` — If `true`, uses classic boxed style tabs

@@ -17,6 +17,7 @@ module BulmaPhlex
   # - [Grid Cells](https://bulma.io/documentation/grid/grid-cells/)
   class FormField < Base
     # **Parameters**
+    #
     # - `help` — Optional help text displayed below the input
     # - `icon_left` — Icon class for an icon to the left of the input (e.g. `"fas fa-user"`)
     # - `icon_right` — Icon class for an icon to the right of the input (e.g. `"fas fa-check"`)
@@ -36,7 +37,7 @@ module BulmaPhlex
     end
 
     # in order to use the method name `label`, we need to grab a reference to the method on the base class
-    # so it is stil available to us
+    # so it is still available to us
     alias html_label label
 
     # Sets the label for the field.

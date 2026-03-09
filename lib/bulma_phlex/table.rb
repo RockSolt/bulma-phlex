@@ -27,6 +27,7 @@ module BulmaPhlex
   #     end
   class Table < BulmaPhlex::Base
     # **Parameters**
+    #
     # - `rows` — The collection of records to display in the table
     # - `bordered` — If `true`, adds borders to the table
     # - `striped` — If `true`, adds zebra-striping to the table rows

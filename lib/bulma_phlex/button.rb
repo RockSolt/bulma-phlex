@@ -30,6 +30,7 @@ module BulmaPhlex
     end
 
     # **Parameters**
+    #
     # - `color` — Button color: `"primary"`, `"link"`, `"info"`, `"success"`, `"warning"`, `"danger"`
     # - `mode` — Button style mode: `"light"` or `"dark"`
     # - `size` — Button size: `"small"`, `"normal"`, `"medium"`, `"large"`

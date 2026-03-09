@@ -9,6 +9,7 @@ module BulmaPhlex
     #
     class Content < BulmaPhlex::Base
       # **Parameters**
+      #
       # - `id` — Unique identifier for the content panel
       # - `active` — If `true`, the content panel is visible; otherwise it is hidden
       # - `data_attributes_proc` — A proc that generates data attributes for the content panel

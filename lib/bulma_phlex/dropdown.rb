@@ -19,6 +19,7 @@ module BulmaPhlex
   #     end
   class Dropdown < BulmaPhlex::Base
     # **Parameters**
+    #
     # - `label` — The text displayed in the dropdown trigger button
     # - `click` — Stimulus controller name for toggling; set to `false` for hover mode instead
     # - `alignment` — Alignment of the dropdown menu: `"left"` (default), `"right"`, or `"up"`

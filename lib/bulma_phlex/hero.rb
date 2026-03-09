@@ -8,6 +8,7 @@ module BulmaPhlex
   # component to define each section independently.
   class Hero < BulmaPhlex::Base
     # **Parameters**
+    #
     # - `title` — Main title text for the hero body
     # - `subtitle` — Subtitle text displayed below the title
     # - `color` — Hero color (e.g. `"primary"`, `"info"`, `"success"`, `"warning"`, `"danger"`)

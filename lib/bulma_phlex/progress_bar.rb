@@ -7,6 +7,7 @@ module BulmaPhlex
   # produces an indeterminate (animated) progress bar.
   class ProgressBar < Base
     # **Parameters**
+    #
     # - `color` — [Color of the progress bar](https://bulma.io/documentation/elements/progress/#colors)
     # - `size` — [Size of the progress bar](https://bulma.io/documentation/elements/progress/#sizes): `"small"`,
     # `"normal"`, `"medium"`, `"large"`

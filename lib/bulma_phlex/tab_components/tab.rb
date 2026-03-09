@@ -8,6 +8,7 @@ module BulmaPhlex
     # when you need to create or update a tab dynamically.
     class Tab < BulmaPhlex::Base
       # **Parameters**
+      #
       # - `id` — Unique identifier for the tab
       # - `title` — The text displayed on the tab
       # - `icon` — Optional icon class to display on the tab (e.g. `"fas fa-cog"`)
