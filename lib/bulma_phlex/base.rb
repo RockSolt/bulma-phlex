@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Base component for all Bulma components
+  # Base component for all BulmaPhlex components.
   #
-  # This is the parent class for all Bulma components in this library.
-  # It provides common utility methods and inherits from `Phlex::HTML`.
+  # Inherits from `Phlex::HTML` and provides common utility methods shared across all components.
   #
   class Base < Phlex::HTML
   end

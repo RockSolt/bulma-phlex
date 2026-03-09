@@ -3,14 +3,10 @@
 module BulmaPhlex
   # Renders a [Bulma tabs](https://bulma.io/documentation/components/tabs/) component.
   #
-  # Supports icons, active state management, and an optional content area to the right of the tab bar.
-  #
-  # Use method `right_content` to add content to the right of the tabs, such as a button.
-  #
-  # The tabs behavior can be managed by the data attributes provided by the `data_attributes_builder` argument. By
-  # default, this will use the `StimulusDataAttributes` class with the controller name `bulma-phlex--tabs`. That
-  # controller is not provided by this library, but you can create your own Stimulus controller to handle the tab
-  # switching logic. Here is an implementation of a [Stimulus controller for Bulma tabs](https://github.com/RockSolt/bulma-phlex-rails/blob/main/app/javascript/controllers/bulma_phlex/tabs_controller.js).
+  # Supports Bulma options for **alignment**, **size**, and **style** (boxed, toggle, rounded, fullwidth).
+  # Each tab can include an optional **icon** and an **active** state. An optional **right content** area
+  # (e.g. a button) can be placed alongside the tab bar. Tab switching behavior is managed via a
+  # Stimulus controller; the default controller name is `bulma-phlex--tabs`.
   #
   # ## Example
   #

@@ -4,6 +4,9 @@ module BulmaPhlex
   module TabComponents
     # Renders a single content panel within a {BulmaPhlex::Tabs} component.
     #
+    # Manages visibility (shown/hidden) based on the **active** state, and accepts a
+    # **data attributes proc** for Stimulus integration.
+    #
     class Content < BulmaPhlex::Base
       # **Parameters**
       # - `id` — Unique identifier for the content panel

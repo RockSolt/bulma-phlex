@@ -3,12 +3,9 @@
 module BulmaPhlex
   # Renders the [Bulma tag](https://bulma.io/documentation/elements/tag/) component.
   #
-  # The component can generate a `span`, `a`, or `button` element based on the provided attributes. If an `href`
-  # attribute is provided, the tag will render as an `a` element. If the `delete` option is true or
-  # a `data-action` attribute is present, it will render as a `button` element.
-  # Otherwise, it defaults to a `span` element.
-  #
-  # Any additional HTML attributes provided will be applied to the rendered element.
+  # Generates a `<span>`, `<a>`, or `<button>` element depending on the provided attributes.
+  # Supports Bulma options for **color**, **size**, and **shape** (rounded), with an optional
+  # **delete button** that can appear inside the tag.
   class Tag < BulmaPhlex::Base
     TAG_OPTIONS = %i[delete color light size rounded].freeze
 

@@ -2,10 +2,7 @@
 
 module BulmaPhlex
   # Wraps form elements in a [Bulma form control](https://bulma.io/documentation/form/general/#form-control)
-  # container with optional left/right icons.
-  #
-  # ## References
-  # - [Bulma Form Control](https://bulma.io/documentation/form/general/#form-control)
+  # container. Supports optional **icons** on the left and/or right side of the control.
   class FormControl < Base
     # **Parameters**
     # - `icon_left` — Icon class for the left side of the control (e.g. `"fas fa-check"`)

@@ -3,11 +3,9 @@
 module BulmaPhlex
   # Renders a [Bulma Hero](https://bulma.io/documentation/layout/hero/) component.
   #
-  # There are three ways to invoke the component:
-  #
-  # - with a title and subtitle argument
-  # - with a block for the hero body content
-  # - invoke methods head, body, and footer on the yielded component and pass blocks to define each section
+  # Supports **color** and **size** options. Content can be provided as a title/subtitle pair,
+  # a single block for the body, or by calling `head`, `body`, and `foot` on the yielded
+  # component to define each section independently.
   class Hero < BulmaPhlex::Base
     # **Parameters**
     # - `title` — Main title text for the hero body

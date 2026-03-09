@@ -4,6 +4,9 @@ module BulmaPhlex
   # Renders a [Bulma icon element](https://bulma.io/documentation/elements/icon/) with optional text and
   # form control positioning.
   #
+  # Supports **color** and **size** options, optional **text** to the left or right of the icon,
+  # and **positioning** helpers (`left`/`right`) for use inside form controls.
+  #
   # ## Example
   #
   #     render BulmaPhlex::Icon.new("fas fa-home")

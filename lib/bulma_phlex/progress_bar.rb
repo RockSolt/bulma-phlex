@@ -3,8 +3,8 @@
 module BulmaPhlex
   # Renders the [Bulma progress bar element](https://bulma.io/documentation/elements/progress/).
   #
-  # Leaving out the `value` and `max` attributes will result in an indeterminate progress bar, which is useful for
-  # indicating that a process is ongoing without specifying how much of it is complete.
+  # Supports **color** and **size** options. Omitting `value` and `max` from the HTML attributes
+  # produces an indeterminate (animated) progress bar.
   class ProgressBar < Base
     # **Parameters**
     # - `color` — [Color of the progress bar](https://bulma.io/documentation/elements/progress/#colors)

@@ -3,6 +3,10 @@
 module BulmaPhlex
   # Renders a [Bulma card](https://bulma.io/documentation/components/card/) component.
   #
+  # Supports an optional **header** (with title and custom classes), a **content** area, and a
+  # **footer** with one or more link items (which can include icons). Each section is populated
+  # via builder methods on the yielded component.
+  #
   # ## Example
   #
   #     render BulmaPhlex::Card.new do |card|

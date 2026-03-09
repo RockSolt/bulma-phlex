@@ -3,7 +3,9 @@
 module BulmaPhlex
   # Renders the [Bulma level](https://bulma.io/documentation/layout/level/) component.
   #
-  # The Level component provides a flexible horizontal layout system with left and right alignment.
+  # A flexible horizontal layout system. Items can be placed in the **left** section, the
+  # **right** section, or centered as standalone **items**. Content in each section is
+  # provided via `left`, `right`, and `item` block methods on the yielded component.
   #
   # ## Example:
   #
@@ -19,7 +21,6 @@ module BulmaPhlex
   #         button(class: "button") { "Right 2" }
   #       end
   #     end
-  #
   class Level < BulmaPhlex::Base
     # **Parameters**
     # - `**html_attributes` — Additional HTML attributes for the level element

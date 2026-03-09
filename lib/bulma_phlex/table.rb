@@ -3,8 +3,10 @@
 module BulmaPhlex
   # Renders the [Bulma table](https://bulma.io/documentation/elements/table/) component.
   #
-  # This component provides a way to display data in rows and columns with customizable
-  # headers and formatting options.
+  # Displays a collection of records in rows and columns. Columns are defined via the `column`,
+  # `date_column`, and `conditional_icon` builder methods. Supports Bulma **style** options
+  # (bordered, striped, hoverable) and **layout** options (narrow, fullwidth). An optional
+  # **pagination** control can be added to the table footer via the `paginate` method.
   #
   # ## Example
   #
@@ -23,12 +25,6 @@ module BulmaPhlex
   #         link_to "Edit", edit_user_path(user), class: "button is-small"
   #       end
   #     end
-  #
-  # ## Pagination
-  #
-  # If the `paginate` method is called with a block that builds pagination paths, a pagination control
-  # will be rendered in the table footer. The block should accept a page number and return the
-  # corresponding URL for that page.
   class Table < BulmaPhlex::Base
     # **Parameters**
     # - `rows` — The collection of records to display in the table

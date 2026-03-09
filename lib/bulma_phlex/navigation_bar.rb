@@ -3,12 +3,10 @@
 module BulmaPhlex
   # Renders the [Bulma navbar](https://bulma.io/documentation/components/navbar/) component.
   #
-  # This component provides a responsive navigation header with support for branding, navigation
-  # links, and dropdown menus, automatically collapsing on mobile devices.
-  #
-  # The component is rendered with data attributes to enable JavaScript behavior for toggling the mobile
-  # menu. It is hardcoded to the Stimulus controller `bulma-phlex--navigation-bar` (available via the
-  # `bulma-phlex-rails` gem).
+  # A responsive navigation header with support for **branding**, left/right **navigation links**,
+  # and **dropdown menus**, automatically collapsing on mobile devices. Supports **color**,
+  # **transparency**, **spacing**, and **shadow** options. Uses the Stimulus controller
+  # `bulma-phlex--navigation-bar` (available via the `bulma-phlex-rails` gem) for mobile menu toggling.
   #
   # ## Example
   #

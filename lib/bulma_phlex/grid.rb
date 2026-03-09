@@ -3,6 +3,8 @@
 module BulmaPhlex
   # Renders a responsive grid layout using [Bulma's grid system](https://bulma.io/documentation/grid/).
   #
+  # Supports **fixed or auto-count column** layouts, configurable **minimum column width**, and
+  # independent control over **gap**, **column gap**, and **row gap** sizes.
   class Grid < BulmaPhlex::Base
     # **Parameters**
     # - `fixed_columns` — Specifies a fixed number of columns for the grid

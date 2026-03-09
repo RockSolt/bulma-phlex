@@ -2,6 +2,10 @@
 
 module BulmaPhlex
   # Renders a styled [Bulma file upload](https://bulma.io/documentation/form/file/) input element.
+  #
+  # Supports Bulma options for **color**, **size**, and **layout** (alignment, fullwidth, boxed),
+  # with an optional **file name display** element. When the file name display is enabled,
+  # Stimulus data attributes are wired up automatically for showing the selected filename.
   class FileUpload < Base
     DataAttributesBuilder = Data.define(:for_file, :for_file_input, :for_file_list)
 

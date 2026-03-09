@@ -3,13 +3,9 @@
 module BulmaPhlex
   # Renders the [Bulma pagination](https://bulma.io/documentation/components/pagination/) component.
   #
-  # This component provides navigation controls for paginated content. It shows:
-  #
-  # - Previous/next page links
-  # - First/last page links when appropriate
-  # - Current page indicator
-  # - Ellipses for skipped page ranges
-  # - Summary of items being displayed
+  # Accepts a pager object and a path builder callable. Automatically renders previous/next links,
+  # numbered page links with ellipses for skipped ranges, and a summary of items being displayed.
+  # Only renders when there is more than one page of results.
   #
   # ## Example
   #

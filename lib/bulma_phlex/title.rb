@@ -3,6 +3,9 @@
 module BulmaPhlex
   # Renders a [Bulma title element](https://bulma.io/documentation/elements/title/) with an optional subtitle.
   #
+  # Supports **size** (1–6) for both the title and subtitle, an optional **subtitle** string, and
+  # a **spaced** layout option to increase the gap between the title and subtitle.
+  #
   # ## Example
   #
   #     render BulmaPhlex::Title.new("Hello World")

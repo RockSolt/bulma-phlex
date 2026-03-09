@@ -3,9 +3,10 @@
 module BulmaPhlex
   # Renders a [Bulma button](https://bulma.io/documentation/elements/button/) element.
   #
-  # The component can generate a button, anchor, or input element. By default it generates a `<button>`
-  # element. If the `href` attribute is provided, it generates an `<a>` element. To generate an `<input>`
-  # element, use the keyword argument `input` with a value of the type of input (button, reset, or submit).
+  # The component can generate a `<button>`, `<a>`, or `<input>` element depending on the
+  # arguments provided. Supports Bulma options for **color**, **size**, **style mode**,
+  # and **layout** (responsive, fullwidth, outlined, inverted, rounded), as well as
+  # optional **icons** on the left and/or right side of the label.
   class Button < Base
     # Returns an array of CSS classes for the button based on the provided options.
     def self.classes_for(color: nil, # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity

@@ -4,42 +4,9 @@ module BulmaPhlex
   # A `field` container that groups a label, control input, and optional help text using
   # the [Bulma form field](https://bulma.io/documentation/form/general/#form-field) pattern.
   #
-  # Groups a label with yielded content (usually an input) and optionally includes help text.
-  #
-  # The label can be provided either as a string argument to the `label` method or as a
-  # block. If a string is provided, it will be rendered inside a `<label>` tag with the
-  # `label` class. The label can also be omitted entirely if not needed.
-  #
-  # ## Example Usage
-  #
-  # Here is the label provided as a block:
-  #
-  #     render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
-  #       field.label { label "Project Name" }
-  #       field.input { input id: "project_name", name: "project[name]", type: "text" }
-  #     end
-  #
-  # Here is the label provided as a string:
-  #
-  #     render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
-  #       field.label "Project Name"
-  #       field.input { input id: "project_name", name: "project[name]", type: "text" }
-  #     end
-  #
-  # Here is no label provided:
-  #
-  #     render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
-  #       field.input { input id: "project_name", name: "project[name]", type: "text" }
-  #     end
-  #
-  # ### Shorthand with no Label
-  #
-  # If no label is needed, you can use the shorthand syntax which just puts the control
-  # in the block without needing to call `control` explicitly:
-  #
-  #     render BulmaPhlex::FormField.new(help: "Enter the project name.") do
-  #       input id: "project_name", name: "project[name]", type: "text"
-  #     end
+  # Supports an optional **label** (provided as a string or block), optional **help text**,
+  # optional **icons** (left and/or right), and **layout** options for integrating with Bulma's
+  # column and grid systems.
   #
   # ## References
   #

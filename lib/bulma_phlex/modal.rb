@@ -3,8 +3,9 @@
 module BulmaPhlex
   # Renders a [Bulma modal](https://bulma.io/documentation/components/modal/) dialog overlay.
   #
-  # Consists of a background, content area, and a close button. Content is defined via the block
-  # passed to the component.
+  # Consists of a background, content area, and a close button. Content is provided via a block.
+  # Supports customization of the **Stimulus controller** used for open/close behavior via the
+  # `data_attributes_builder` option.
   class Modal < BulmaPhlex::Base
     StimulusDataAttributes = Data.define(:stimulus_controller) do
       def for_container = { controller: stimulus_controller }

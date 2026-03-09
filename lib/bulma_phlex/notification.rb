@@ -3,8 +3,9 @@
 module BulmaPhlex
   # Renders a [Bulma notification](https://bulma.io/documentation/elements/notification/) component.
   #
-  # Styled alert box for displaying messages to the user, with optional dismiss button.
-  # Content is provided via a block.
+  # A styled alert box for displaying messages to the user. Supports **color** and **style mode**
+  # (light/dark) options, and optionally includes a **dismiss button** whose HTML attributes
+  # can be customized. Content is provided via a block.
   class Notification < BulmaPhlex::Base
     # **Parameters**
     # - `delete` — If `true`, includes a delete button to dismiss the notification. Can also be a hash of HTML attributes for the button

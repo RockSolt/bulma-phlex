@@ -3,6 +3,9 @@
 module BulmaPhlex
   # Renders a responsive column layout using [Bulma's column system](https://bulma.io/documentation/columns/basics/).
   #
+  # Supports options for **breakpoint**, **alignment** (centered, vertically centered), **layout**
+  # (multiline, gap sizing), and responsive **gap** configuration per breakpoint.
+  #
   class Columns < BulmaPhlex::Base
     # **Parameters**
     # - `minimum_breakpoint` — Sets the minimum breakpoint for the columns (e.g. `:tablet`, `:desktop`)

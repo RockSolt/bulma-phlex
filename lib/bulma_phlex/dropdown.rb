@@ -3,12 +3,8 @@
 module BulmaPhlex
   # Renders a [Bulma Dropdown](https://bulma.io/documentation/components/dropdown/) component.
   #
-  # ## [Hoverable or Toggable](https://bulma.io/documentation/components/dropdown/#hoverable-or-toggable)
-  #
-  # By default the dropdown is in Click Mode and assumes a Stimulus controller named `bulma-phlex--dropdown` is present
-  # to handle the click events. The controller name can be customized using the `click` option.
-  #
-  # Set click to `false` to make the dropdown hoverable instead of togglable.
+  # Supports options for **alignment** and **trigger icon**, and can operate in either click-to-toggle
+  # or hover mode. Click mode integrates with a Stimulus controller; hover mode requires no JavaScript.
   #
   # ## Example
   #

@@ -4,7 +4,8 @@ module BulmaPhlex
   module TabComponents
     # Renders a single tab item within a {BulmaPhlex::Tabs} component.
     #
-    # Can also be used standalone when you need to create or update a tab dynamically.
+    # Supports an optional **icon** and an **active** state. Can also be used standalone
+    # when you need to create or update a tab dynamically.
     class Tab < BulmaPhlex::Base
       # **Parameters**
       # - `id` — Unique identifier for the tab
