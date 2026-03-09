@@ -42,6 +42,7 @@ Metrics/PerceivedComplexity:
 Naming/FileName:
   Exclude:
     - lib/bulma-phlex.rb
+    - lib/rubocop-bulma_phlex.rb
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

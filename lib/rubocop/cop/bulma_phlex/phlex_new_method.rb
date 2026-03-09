@@ -83,24 +83,41 @@ module RuboCop
         def on_class(node)
           return unless phlex_subclass?(node)
 
+          children = class_body_children(node)
+          return if children.nil?
+          return unless defines_initialize?(children)
+
+          check_new_method(node, children)
+        end
+
+        private
+
+        def class_body_children(node)
           body = node.body
-          return if body.nil?
+          return nil if body.nil?
 
-          children = body.begin_type? ? body.children : [body]
-          return unless children.any? { |n| n.def_type? && n.method_name == :initialize }
+          body.begin_type? ? body.children : [body]
+        end
 
+        def defines_initialize?(children)
+          children.any? { |n| n.def_type? && n.method_name == :initialize }
+        end
+
+        def check_new_method(node, children)
           new_method = children.find { |child| self_new_def?(child) }
 
           if new_method.nil?
             add_offense(node.loc.keyword, message: MSG_MISSING)
-          elsif !only_super?(new_method.body)
+          elsif invalid_new_method_body?(new_method)
             add_offense(new_method, message: MSG_BODY)
           elsif !preceding_comment?(new_method)
             add_offense(new_method, message: MSG_COMMENT)
           end
         end
 
-        private
+        def invalid_new_method_body?(new_method)
+          !only_super?(new_method.body)
+        end
 
         def preceding_comment?(node)
           processed_source.ast_with_comments[node].any?
@@ -118,7 +135,8 @@ module RuboCop
         end
 
         def matches_const?(node, name)
-          const_to_string(node) == name
+          resolved = const_to_string(node)
+          resolved == name || resolved == name.split("::").last
         end
 
         def const_to_string(node)
