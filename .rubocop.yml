@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=https://www.rubyschema.org/rubocop.json
 
+require:
+  - ./lib/rubocop-bulma_phlex
+
 AllCops:
   TargetRubyVersion: 3.2
   NewCops: enable
@@ -42,3 +45,13 @@ Style/StringLiterals:
 
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
+
+BulmaPhlex/PhlexNewMethod:
+  Enabled: true
+  Include:
+    - lib/bulma_phlex/**/*.rb
+  # The cop checks direct superclass only, not the full ancestry chain, so
+  # BulmaPhlex::Base must be listed explicitly even though it descends from Phlex::HTML.
+  Ancestors:
+    - Phlex::HTML
+    - BulmaPhlex::Base
