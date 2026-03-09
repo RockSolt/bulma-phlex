@@ -63,7 +63,7 @@ module BulmaPhlex
   #   - [With Icons](https://bulma.io/documentation/form/general/#with-icons)
   # - [Columns](https://bulma.io/documentation/columns/basics/)
   # - [Grid Cells](https://bulma.io/documentation/grid/grid-cells/)
-  class FormField < Phlex::HTML
+  class FormField < Base
     def initialize(help: nil, icon_left: nil, icon_right: nil, column: nil, grid: nil)
       @help = help
       @icon_left = icon_left

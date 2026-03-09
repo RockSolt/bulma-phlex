@@ -13,7 +13,7 @@ module BulmaPhlex
   #
   # ## References
   # - [Bulma Form Control](https://bulma.io/documentation/form/general/#form-control)
-  class FormControl < Phlex::HTML
+  class FormControl < Base
     def initialize(icon_left: nil, icon_right: nil, **html_attributes)
       @icon_left = icon_left
       @icon_right = icon_right
