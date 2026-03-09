@@ -8,7 +8,8 @@ module BulmaPhlex
   class ProgressBar < Base
     # **Parameters**
     # - `color` — [Color of the progress bar](https://bulma.io/documentation/elements/progress/#colors)
-    # - `size` — [Size of the progress bar](https://bulma.io/documentation/elements/progress/#sizes): `"small"`, `"normal"`, `"medium"`, `"large"`
+    # - `size` — [Size of the progress bar](https://bulma.io/documentation/elements/progress/#sizes): `"small"`,
+    # `"normal"`, `"medium"`, `"large"`
     # - `**html_attributes` — Additional HTML attributes for the progress element; use `value` and `max` to set progress
     def self.new(color: nil, size: nil, **html_attributes)
       super

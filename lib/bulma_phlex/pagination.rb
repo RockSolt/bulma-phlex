@@ -23,7 +23,7 @@ module BulmaPhlex
     #   `total_count`, `previous_page`, and `next_page`
     # - `path_builder` — A callable that takes a page number and returns a URL string
     # - `**html_attributes` — Additional HTML attributes for the pagination container
-    def self.new(pager, path_builder, **html_attributes) # rubocop:disable Lint/UselessMethodDefinition
+    def self.new(pager, path_builder, **html_attributes)
       super
     end
 

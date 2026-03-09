@@ -56,7 +56,8 @@ module BulmaPhlex
     # - `toggle` — If `true`, makes the tabs look like buttons
     # - `rounded` — If `true`, makes the tabs look like rounded buttons (also enables toggle)
     # - `fullwidth` — If `true`, makes the tabs take up the full width of the container
-    # - `data_attributes_builder` — Provides data attributes for Stimulus integration; defaults to `StimulusDataAttributes` with `"bulma-phlex--tabs"`
+    # - `data_attributes_builder` — Provides data attributes for Stimulus integration; defaults to
+    #  `StimulusDataAttributes` with `"bulma-phlex--tabs"`
     # - `**html_attributes` — Additional HTML attributes for the outer `<div>` element
     def self.new(align: nil,
                  size: nil,

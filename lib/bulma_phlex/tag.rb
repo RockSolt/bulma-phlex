@@ -14,7 +14,8 @@ module BulmaPhlex
     # - `delete` — If `true`, adds a delete button inside the tag
     # - `color` — Sets the [color of the tag](https://bulma.io/documentation/elements/tag/#colors)
     # - `light` — To use a light version of the color, use the key `light` instead of `color`
-    # - `size` — Sets the [size of the tag](https://bulma.io/documentation/elements/tag/#sizes): `"normal"`, `"medium"`, or `"large"`
+    # - `size` — Sets the [size of the tag](https://bulma.io/documentation/elements/tag/#sizes): `"normal"`,
+    # `"medium"`, or `"large"`
     # - `rounded` — If `true`, adds the `is-rounded` class to the tag
     # - `**options_and_html_attributes` — Additional HTML attributes applied to the rendered element
     def self.new(text, **options_and_html_attributes)

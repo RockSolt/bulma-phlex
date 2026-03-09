@@ -8,7 +8,8 @@ module BulmaPhlex
   # can be customized. Content is provided via a block.
   class Notification < BulmaPhlex::Base
     # **Parameters**
-    # - `delete` — If `true`, includes a delete button to dismiss the notification. Can also be a hash of HTML attributes for the button
+    # - `delete` — If `true`, includes a delete button to dismiss the notification. Can also be a hash of HTML
+    #  attributes for the button
     # - `color` — Color of the notification (e.g. `"primary"`, `"info"`, `"danger"`)
     # - `mode` — Style mode: `"light"` or `"dark"`
     # - `**html_attributes` — Additional HTML attributes for the notification element
