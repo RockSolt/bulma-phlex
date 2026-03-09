@@ -8,20 +8,18 @@ module BulmaPhlex
   #
   # ## Example:
   #
-  # ```ruby
-  # render BulmaPhlex::Level.new do |level|
-  #   level.left do
-  #     button(class: "button") { "Left" }
-  #   end
+  #     render BulmaPhlex::Level.new do |level|
+  #       level.left do
+  #         button(class: "button") { "Left" }
+  #       end
   #
-  #   level.right do
-  #     button(class: "button") { "Right" }
-  #   end
-  #   level.right do
-  #     button(class: "button") { "Right 2" }
-  #   end
-  # end
-  # ```
+  #       level.right do
+  #         button(class: "button") { "Right" }
+  #       end
+  #       level.right do
+  #         button(class: "button") { "Right 2" }
+  #       end
+  #     end
   #
   class Level < BulmaPhlex::Base
     def initialize(**html_attributes)

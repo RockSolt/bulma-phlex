@@ -16,21 +16,19 @@ module BulmaPhlex
   #
   # ## Example
   #
-  # ```ruby
-  # render BulmaPhlex::Tabs.new do |tabs|
-  #   tabs.tab(id: "profile", title: "Profile", active: true) do
-  #     "Profile content goes here"
-  #   end
+  #     render BulmaPhlex::Tabs.new do |tabs|
+  #       tabs.tab(id: "profile", title: "Profile", active: true) do
+  #         "Profile content goes here"
+  #       end
   #
-  #   tabs.tab(id: "settings", title: "Settings", icon: "fas fa-cog") do
-  #     "Settings content goes here"
-  #   end
+  #       tabs.tab(id: "settings", title: "Settings", icon: "fas fa-cog") do
+  #         "Settings content goes here"
+  #       end
   #
-  #   tabs.tab(id: "notifications", title: "Notifications", icon: "fas fa-bell") do
-  #     "Notifications content goes here"
-  #   end
-  # end
-  # ```
+  #       tabs.tab(id: "notifications", title: "Notifications", icon: "fas fa-bell") do
+  #         "Notifications content goes here"
+  #       end
+  #     end
   #
   # ## Options
   #

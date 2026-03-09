@@ -23,18 +23,15 @@ module BulmaPhlex
   #
   # ## Example
   #
-  # ```ruby
-  # render BulmaPhlex::Dropdown.new("Next Actions...") do |dropdown|
-  #   dropdown.link "View Profile", "/profile"
-  #   dropdown.link "Go to Settings", "/settings"
-  #   dropdown.divider
-  #   dropdown.item("This is just a text item")
-  #   dropdown.item do
-  #     div(class: "has-text-weight-bold") { "This is a bold item" }
-  #   end
-  # end
-  # ```
-  #
+  #     render BulmaPhlex::Dropdown.new("Next Actions...") do |dropdown|
+  #       dropdown.link "View Profile", "/profile"
+  #       dropdown.link "Go to Settings", "/settings"
+  #       dropdown.divider
+  #       dropdown.item("This is just a text item")
+  #       dropdown.item do
+  #         div(class: "has-text-weight-bold") { "This is a bold item" }
+  #       end
+  #     end
   class Dropdown < BulmaPhlex::Base
     def initialize(label, click: "bulma-phlex--dropdown", alignment: "left", icon: "fas fa-angle-down",
                    **html_attributes)

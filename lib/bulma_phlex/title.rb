@@ -19,11 +19,9 @@ module BulmaPhlex
   #
   # ## Example
   #
-  # ```ruby
-  # render BulmaPhlex::Title.new("Hello World")
-  # render BulmaPhlex::Title.new("Dr. Strangelove", size: 2, subtitle: "Or: How I Learned to Stop Worrying and
-  #   Love the Bomb")
-  # ```
+  #     render BulmaPhlex::Title.new("Hello World")
+  #     render BulmaPhlex::Title.new("Dr. Strangelove", size: 2, subtitle: "Or: How I Learned to Stop Worrying and
+  #       Love the Bomb")
   class Title < BulmaPhlex::Base
     def initialize(text, size: nil, subtitle: nil, subtitle_size: nil, spaced: false)
       @text = text

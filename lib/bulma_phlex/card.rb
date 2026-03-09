@@ -9,16 +9,14 @@ module BulmaPhlex
   #
   # ## Example
   #
-  # ```ruby
-  # render BulmaPhlex::Card.new do |card|
-  #   card.head("Card Title")
-  #   card.content do
-  #     "This is some card content"
-  #   end
-  #   card.footer_link("View", "/view", target: "_blank")
-  #   card.footer_link("Edit", "/edit", class: "has-text-primary")
-  # end
-  # ```
+  #     render BulmaPhlex::Card.new do |card|
+  #       card.head("Card Title")
+  #       card.content do
+  #         "This is some card content"
+  #       end
+  #       card.footer_link("View", "/view", target: "_blank")
+  #       card.footer_link("Edit", "/edit", class: "has-text-primary")
+  #     end
   class Card < BulmaPhlex::Base
     def initialize(**html_attributes)
       @html_attributes = html_attributes

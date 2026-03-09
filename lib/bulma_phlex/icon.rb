@@ -17,10 +17,8 @@ module BulmaPhlex
   #
   # ## Example
   #
-  # ```ruby
-  # render BulmaPhlex::Icon.new("fas fa-home")
-  # render BulmaPhlex::Icon.new("fas fa-home", color: :primary, size: :large, text_right: "Home")
-  # ```
+  #     render BulmaPhlex::Icon.new("fas fa-home")
+  #     render BulmaPhlex::Icon.new("fas fa-home", color: :primary, size: :large, text_right: "Home")
   class Icon < BulmaPhlex::Base
     def initialize(icon,
                    text_right: nil,

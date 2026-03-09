@@ -13,30 +13,28 @@ module BulmaPhlex
   #
   # ## Example
   #
-  # ```ruby
-  # render BulmaPhlex::NavigationBar.new do |navbar|
-  #   navbar.brand do
-  #     a(href: "/", class: "navbar-item") { "My App" }
-  #   end
+  #     render BulmaPhlex::NavigationBar.new do |navbar|
+  #       navbar.brand do
+  #         a(href: "/", class: "navbar-item") { "My App" }
+  #       end
   #
-  #   navbar.left do
-  #     a(href: "/", class: "navbar-item") { "Home" }
-  #     a(href: "/products", class: "navbar-item") { "Products" }
-  #   end
+  #       navbar.left do
+  #         a(href: "/", class: "navbar-item") { "Home" }
+  #         a(href: "/products", class: "navbar-item") { "Products" }
+  #       end
   #
-  #   navbar.right do
-  #     a(href: "/about", class: "navbar-item") { "About" }
+  #       navbar.right do
+  #         a(href: "/about", class: "navbar-item") { "About" }
   #
-  #     div(class: "navbar-item has-dropdown is-hoverable") do
-  #       a(class: "navbar-link") { "Account" }
-  #       render BulmaPhlex::NavigationBarDropdown.new do |dropdown|
-  #         dropdown.item "Sign In", "/login"
-  #         dropdown.item "Register", "/register"
+  #         div(class: "navbar-item has-dropdown is-hoverable") do
+  #           a(class: "navbar-link") { "Account" }
+  #           render BulmaPhlex::NavigationBarDropdown.new do |dropdown|
+  #             dropdown.item "Sign In", "/login"
+  #             dropdown.item "Register", "/register"
+  #           end
+  #         end
   #       end
   #     end
-  #   end
-  # end
-  # ```
   #
   # ## Options
   #

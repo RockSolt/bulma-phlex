@@ -15,9 +15,7 @@ module BulmaPhlex
   # The component supports optional left and right icons within the input control. Specify
   # icons with the `icon_left` and `icon_right` keyword arguments.
   #
-  # ```ruby
-  # render BulmaPhlex::FormField.new(icon_left: "fas fa-user", icon_right: "fas fa-check")
-  # ```
+  #     render BulmaPhlex::FormField.new(icon_left: "fas fa-user", icon_right: "fas fa-check")
   #
   # ## Column Layout
   #
@@ -32,40 +30,32 @@ module BulmaPhlex
   #
   # Here is the label provided as a block:
   #
-  # ```ruby
-  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
-  #   field.label { label "Project Name" }
-  #   field.input { input id: "project_name", name: "project[name]", type: "text" }
-  # end
-  # ```
+  #     render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
+  #       field.label { label "Project Name" }
+  #       field.input { input id: "project_name", name: "project[name]", type: "text" }
+  #     end
   #
   # Here is the label provided as a string:
   #
-  # ```ruby
-  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
-  #   field.label "Project Name"
-  #   field.input { input id: "project_name", name: "project[name]", type: "text" }
-  # end
-  # ```
+  #     render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
+  #       field.label "Project Name"
+  #       field.input { input id: "project_name", name: "project[name]", type: "text" }
+  #     end
   #
   # Here is no label provided:
   #
-  # ```ruby
-  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
-  #   field.input { input id: "project_name", name: "project[name]", type: "text" }
-  # end
-  # ```
+  #     render BulmaPhlex::FormField.new(help: "Enter the project name.") do |field|
+  #       field.input { input id: "project_name", name: "project[name]", type: "text" }
+  #     end
   #
   # ### Shorthand with no Label
   #
   # If no label is needed, you can use the shorthand syntax which just puts the control
   # in the block without needing to call `control` explicitly:
   #
-  # ```ruby
-  # render BulmaPhlex::FormField.new(help: "Enter the project name.") do
-  #   input id: "project_name", name: "project[name]", type: "text"
-  # end
-  # ```
+  #     render BulmaPhlex::FormField.new(help: "Enter the project name.") do
+  #       input id: "project_name", name: "project[name]", type: "text"
+  #     end
   #
   # ## References
   #

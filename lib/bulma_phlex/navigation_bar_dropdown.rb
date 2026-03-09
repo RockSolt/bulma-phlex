@@ -8,22 +8,19 @@ module BulmaPhlex
   #
   # ## Example
   #
-  # ```ruby
-  # render BulmaPhlex::NavigationBar.new do |navbar|
-  #   navbar.brand_item "My App", "/"
+  #     render BulmaPhlex::NavigationBar.new do |navbar|
+  #       navbar.brand_item "My App", "/"
   #
-  #   navbar.right do |menu|
-  #     menu.dropdown "Account" do |dropdown|
-  #       dropdown.header "User"
-  #       dropdown.item "Profile", "/profile"
-  #       dropdown.item "Settings", "/settings"
-  #       dropdown.divider
-  #       dropdown.item "Sign Out", "/logout"
+  #       navbar.right do |menu|
+  #         menu.dropdown "Account" do |dropdown|
+  #           dropdown.header "User"
+  #           dropdown.item "Profile", "/profile"
+  #           dropdown.item "Settings", "/settings"
+  #           dropdown.divider
+  #           dropdown.item "Sign Out", "/logout"
+  #         end
+  #       end
   #     end
-  #   end
-  # end
-  # ```
-  #
   class NavigationBarDropdown < BulmaPhlex::Base
     def view_template(&)
       div(class: "navbar-dropdown is-right", &)

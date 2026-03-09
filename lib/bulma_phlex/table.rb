@@ -9,23 +9,21 @@ module BulmaPhlex
   #
   # ## Example
   #
-  # ```ruby
-  # users = User.all
+  #     users = User.all
   #
-  # render BulmaPhlex::Table.new(users) do |table|
-  #   table.column "Name" do |user|
-  #     user.full_name
-  #   end
+  #     render BulmaPhlex::Table.new(users) do |table|
+  #       table.column "Name" do |user|
+  #         user.full_name
+  #       end
   #
-  #   table.column "Email" do |user|
-  #     user.email
-  #   end
+  #       table.column "Email" do |user|
+  #         user.email
+  #       end
   #
-  #   table.column "Actions" do |user|
-  #     link_to "Edit", edit_user_path(user), class: "button is-small"
-  #   end
-  # end
-  # ```
+  #       table.column "Actions" do |user|
+  #         link_to "Edit", edit_user_path(user), class: "button is-small"
+  #       end
+  #     end
   #
   # ## Options
   #

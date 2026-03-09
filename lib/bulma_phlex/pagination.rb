@@ -13,13 +13,11 @@ module BulmaPhlex
   #
   # ## Example
   #
-  # ```ruby
-  # # In a controller action:
-  # @products = Product.page(params[:page]).per(20)
+  #     # In a controller action:
+  #     @products = Product.page(params[:page]).per(20)
   #
-  # # In the view:
-  # render BulmaPhlex::Pagination.new(@products, ->(page) { products_path(page: page) })
-  # ```
+  #     # In the view:
+  #     render BulmaPhlex::Pagination.new(@products, ->(page) { products_path(page: page) })
   #
   class Pagination < BulmaPhlex::Base
     attr_reader :pager, :path_builder
