@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # ## Modal
+  # Renders a [Bulma modal](https://bulma.io/documentation/components/modal/) dialog overlay.
   #
-  # The Bulma Modal component is used to create modal dialogs. It consists of a background,
-  # content area, and a close button. The content of the modal can be defined using the block
-  # passed to the `call` method.
+  # Consists of a background, content area, and a close button. Content is defined via the block
+  # passed to the component.
   #
   # The constructor accepts an optional `data_attributes_builder` argument, which allows you to
   # provide data attributes for the container, background, and close button. By default, it uses a

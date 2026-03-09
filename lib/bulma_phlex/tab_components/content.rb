@@ -2,9 +2,7 @@
 
 module BulmaPhlex
   module TabComponents
-    # # Content
-    #
-    # This component represents a single content section within the Bulma Tabs component.
+    # Renders a single content panel within a {BulmaPhlex::Tabs} component.
     #
     # ## Arguments:
     # - `id`: Unique identifier for the content.

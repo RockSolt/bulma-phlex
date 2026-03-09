@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Title
-  #
-  # This component implements the
-  # [Bulma title element](https://bulma.io/documentation/elements/title/). It can optionally
-  # include a subtitle as well.
+  # Renders a [Bulma title element](https://bulma.io/documentation/elements/title/) with an optional subtitle.
   #
   # ## Parameters
   #

@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Grid Component
-  #
-  # The Grid component create a responsive grid layout using Bulma's grid system.
+  # Renders a responsive grid layout using [Bulma's grid system](https://bulma.io/documentation/grid/).
   #
   # ## Keyword Arguments
   #

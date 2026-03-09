@@ -2,11 +2,9 @@
 
 module BulmaPhlex
   module TabComponents
-    # # Tab
+    # Renders a single tab item within a {BulmaPhlex::Tabs} component.
     #
-    # This component represents a single tab within the Bulma Tabs component.
-    #
-    # The component can be used if you need to create or update a tab dynamically.
+    # Can also be used standalone when you need to create or update a tab dynamically.
     #
     # ## Arguments
     #

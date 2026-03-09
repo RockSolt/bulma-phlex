@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # ## Hero
+  # Renders a [Bulma Hero](https://bulma.io/documentation/layout/hero/) component.
   #
-  # This component implements the [Bulma Hero](https://bulma.io/documentation/layout/hero/) layout. There are
-  # three ways to invoke the component:
+  # There are three ways to invoke the component:
   #
   # - with a title and subtitle argument
   # - with a block for the hero body content

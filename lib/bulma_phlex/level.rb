@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Level component for responsive horizontal layouts
+  # Renders the [Bulma level](https://bulma.io/documentation/layout/level/) component.
   #
-  # This component implements the [Bulma level](https://bulma.io/documentation/layout/level/)
-  # interface, providing a flexible horizontal layout system with left and right alignment.
+  # The Level component provides a flexible horizontal layout system with left and right alignment.
   #
   # ## Example:
   #

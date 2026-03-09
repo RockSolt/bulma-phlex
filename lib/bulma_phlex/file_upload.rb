@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # File Upload
-  #
-  # The file upload component allows you to create a styled file input using Bulma's classes.
+  # Renders a styled [Bulma file upload](https://bulma.io/documentation/form/file/) input element.
   #
   # ## Options
   #

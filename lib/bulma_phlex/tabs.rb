@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Tabs component for toggling between different content sections
+  # Renders a [Bulma tabs](https://bulma.io/documentation/components/tabs/) component.
   #
-  # This component implements the [Bulma tabs](https://bulma.io/documentation/components/tabs/)
-  # interface, providing a way to toggle between different content sections using
-  # tabbed navigation. Includes support for icons and active state management.
+  # Supports icons, active state management, and an optional content area to the right of the tab bar.
   #
   # Use method `right_content` to add content to the right of the tabs, such as a button.
   #

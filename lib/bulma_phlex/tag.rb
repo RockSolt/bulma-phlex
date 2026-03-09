@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Tag
+  # Renders the [Bulma tag](https://bulma.io/documentation/elements/tag/) component.
   #
-  # The Tag component is a bit of a chameleon. It can generate a `span`, `a`, or `button` element
-  # based on the provided attributes. If an `href` attribute is provided, the tag will render as an `a` element. If
-  # the `delete` option is true or a `data-action` attribute is present, it will render as a `button` element.
-  #  Otherwise, it defaults to a `span` element.
+  # The component can generate a `span`, `a`, or `button` element based on the provided attributes. If an `href`
+  # attribute is provided, the tag will render as an `a` element. If the `delete` option is true or
+  # a `data-action` attribute is present, it will render as a `button` element.
+  # Otherwise, it defaults to a `span` element.
   #
   # ## Options
   #

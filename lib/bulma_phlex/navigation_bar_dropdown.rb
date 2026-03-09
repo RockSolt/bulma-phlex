@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Dropdown component for the Bulma navigation bar
+  # Render a dropdown menu for the navigation bar.
   #
   # This component implements the dropdown portion of the [Bulma navbar](https://bulma.io/documentation/components/navbar/#dropdown-menu).
   # It provides a structured way to add dropdown menus to a navigation bar with headers, items, and dividers.

@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Icon
-  #
-  # This component implements the
-  # [Bulma icon element](https://bulma.io/documentation/elements/icon/).
+  # Renders a [Bulma icon element](https://bulma.io/documentation/elements/icon/) with optional text and
+  # form control positioning.
   #
   # ## Options
   #

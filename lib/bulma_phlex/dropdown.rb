@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Dropdown component
-  #
-  # This component implements the [Bulma Dropdown](https://bulma.io/documentation/components/dropdown/).
+  # Renders a [Bulma Dropdown](https://bulma.io/documentation/components/dropdown/) component.
   #
   # ## [Hoverable or Toggable](https://bulma.io/documentation/components/dropdown/#hoverable-or-toggable)
   #

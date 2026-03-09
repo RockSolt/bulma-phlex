@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Table component for data display
+  # Renders the [Bulma table](https://bulma.io/documentation/elements/table/) component.
   #
-  # This component implements the [Bulma table](https://bulma.io/documentation/elements/table/)
-  # interface, providing a way to display data in rows and columns with customizable
+  # This component provides a way to display data in rows and columns with customizable
   # headers and formatting options.
   #
   # ## Example

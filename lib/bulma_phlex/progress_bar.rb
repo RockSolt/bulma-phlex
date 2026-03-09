@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Progress Bar
-  #
-  # This component implements the [Bulma progress bar element](https://bulma.io/documentation/elements/progress/).
+  # Renders the [Bulma progress bar element](https://bulma.io/documentation/elements/progress/).
   #
   # ## Options
   #

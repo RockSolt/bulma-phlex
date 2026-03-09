@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Form Field Component
+  # A `field` container that groups a label, control input, and optional help text using
+  # the [Bulma form field](https://bulma.io/documentation/form/general/#form-field) pattern.
   #
-  # The Bulma Form Field is a `field` container that groups a label with yielded content
-  # (usually an input). It can optionally include a help text.
+  # Groups a label with yielded content (usually an input) and optionally includes help text.
   #
   # The label can be provided either as a string argument to the `label` method or as a
   # block. If a string is provided, it will be rendered inside a `<label>` tag with the

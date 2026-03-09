@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Pagination component for navigating through multi-page content
+  # Renders the [Bulma pagination](https://bulma.io/documentation/components/pagination/) component.
   #
-  # This component implements the [Bulma pagination](https://bulma.io/documentation/components/pagination/)
-  # interface, providing navigation controls for paginated content. It shows:
+  # This component provides navigation controls for paginated content. It shows:
+  #
   # - Previous/next page links
   # - First/last page links when appropriate
   # - Current page indicator

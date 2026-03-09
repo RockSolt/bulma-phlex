@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Card component for content display
-  #
-  # This component implements the [Bulma card](https://bulma.io/documentation/components/card/)
-  # interface. Cards are flexible containers that can display various types of content
-  # including headers, content sections, and more.
+  # Renders a [Bulma card](https://bulma.io/documentation/components/card/) component.
   #
   # ## Example
   #

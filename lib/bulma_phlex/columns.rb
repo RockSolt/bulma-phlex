@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Columns Component
-  #
-  # The Columns component creates a responsive column layout using Bulma's column system.
+  # Renders a responsive column layout using [Bulma's column system](https://bulma.io/documentation/columns/basics/).
   #
   # ## Keyword Arguments
   #

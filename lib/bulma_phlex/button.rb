@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Button
-  #
-  # This component implements the [Bulma button](https://bulma.io/documentation/elements/button/)
-  # interface. It provides a simple way to create buttons with the appropriate Bulma classes.
+  # Renders a [Bulma button](https://bulma.io/documentation/elements/button/) element.
   #
   # The component can generate a button, anchor, or input element. By default it generates a `<button>`
   # element. If the `href` attribute is provided, it generates an `<a>` element. To generate an `<input>`

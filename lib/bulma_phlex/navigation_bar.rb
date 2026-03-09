@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # Navigation bar component for site navigation
+  # Renders the [Bulma navbar](https://bulma.io/documentation/components/navbar/) component.
   #
-  # This component implements the [Bulma navbar](https://bulma.io/documentation/components/navbar/)
-  # interface. It provides a responsive navigation header with support for branding, navigation
+  # This component provides a responsive navigation header with support for branding, navigation
   # links, and dropdown menus, automatically collapsing on mobile devices.
   #
   # The component is rendered with data attributes to enable JavaScript behavior for toggling the mobile

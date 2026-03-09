@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Form Control
-  #
-  # The Bulma Form Control is used to wrap form elements like inputs, selects, and buttons. It can optionally
-  # include icons on the left and/or right side of the control.
+  # Wraps form elements in a [Bulma form control](https://bulma.io/documentation/form/general/#form-control)
+  # container with optional left/right icons.
   #
   # ## Options
   #

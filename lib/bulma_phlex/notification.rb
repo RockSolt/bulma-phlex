@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 module BulmaPhlex
-  # # Notification
+  # Renders a [Bulma notification](https://bulma.io/documentation/elements/notification/) component.
   #
-  # The Bulma Notification component can be styled with the following options:
+  # Styled alert box for displaying messages to the user, with optional dismiss button.
+  # Can be styled with the following options:
   #
   # - `delete`: If true, includes a delete button to dismiss the notification. Can also be a hash of HTML
   # attributes for the button.
