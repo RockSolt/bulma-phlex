@@ -648,6 +648,14 @@ After checking out the repo, run `bundle install` to install dependencies. Then,
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
+### The `self.new` Pattern
+
+Each component that defines `initialize` also defines a dummy `self.new` that does nothing but call `super`. This exists solely to support hover documentation in editors using [Ruby LSP](https://shopify.github.io/ruby-lsp/).
+
+Phlex defines its own `self.new` on the base class (`Phlex::SGML`). Because Ruby LSP resolves hover documentation by walking the ancestor chain and stopping at the first definition it finds, it would otherwise show Phlex's generic comment for every component's `.new` call rather than the component's own parameter documentation. Defining a local `self.new` gives Ruby LSP a component-level entry point to attach comments to.
+
+The `self.new` method must match the signature of `initialize` and be preceded by a comment documenting its parameters. A custom RuboCop cop (`RuboCop::Cop::BulmaPhlex::PhlexNewMethod`) enforces this convention.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/RockSolt/bulma-phlex.
