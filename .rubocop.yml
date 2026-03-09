@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://www.rubyschema.org/rubocop.json
 
 require:
-  - ./lib/rubocop-bulma_phlex
+  - ./tools/rubocop-bulma_phlex
 
 AllCops:
   TargetRubyVersion: 3.2
