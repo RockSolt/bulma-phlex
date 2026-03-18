@@ -57,12 +57,9 @@ module BulmaPhlex
     end
 
     def delete_button
-      attributes = mix({ class: "delete", aria_label: "delete" }, **delete_attributes)
-      button(**attributes)
-    end
-
-    def delete_attributes
-      @delete.is_a?(Hash) ? @delete : nil
+      button_attributes = { class: "delete", aria_label: "delete" }
+      button_attributes = mix(button_attributes, @delete) if @delete.is_a?(Hash)
+      button(**button_attributes)
     end
 
     def message_body(&)
