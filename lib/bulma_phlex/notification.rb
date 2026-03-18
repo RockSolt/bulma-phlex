@@ -14,15 +14,17 @@ module BulmaPhlex
     # - `color` — Color of the notification (e.g. `"primary"`, `"info"`, `"danger"`)
     # - `mode` — Style mode: `"light"` or `"dark"`
     # - `**html_attributes` — Additional HTML attributes for the notification element
-    def self.new(delete: false, color: nil, mode: nil, **html_attributes)
+    def self.new(delete: nil, color: nil, mode: nil, **html_attributes)
       super
     end
 
-    def initialize(delete: false, color: nil, mode: nil, **html_attributes)
+    def initialize(delete: nil, color: nil, mode: nil, **html_attributes)
       @delete = delete
       @color = color
       @mode = mode
       @html_attributes = html_attributes
+
+      after_initialize
     end
 
     def view_template(&)
@@ -35,6 +37,9 @@ module BulmaPhlex
     end
 
     private
+
+    # allows for easy customization
+    def after_initialize; end
 
     def notification_classes
       classes = ["notification"]
