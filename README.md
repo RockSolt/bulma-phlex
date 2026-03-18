@@ -20,6 +20,7 @@ This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/ph
   - [Hero](#hero)
   - [Icon](#icon)
   - [Level](#level)
+  - [Message](#message)
   - [Modal](#modal)
   - [NavigationBar](#navigationbar)
   - [Notification](#notification)
@@ -213,6 +214,17 @@ Renders the [Bulma level](https://bulma.io/documentation/layout/level/) horizont
 render BulmaPhlex::Level.new do |level|
   level.left { button(class: "button") { "Back" } }
   level.right { button(class: "button is-primary") { "Save" } }
+end
+```
+
+
+### Message
+
+Renders a [Bulma message](https://bulma.io/documentation/components/message/) component with a header, optional delete button, and body.
+
+```ruby
+render BulmaPhlex::Message.new("Hello World", color: "info", delete: true) do
+  "Look, it's a deletable message box!"
 end
 ```
 
