@@ -65,6 +65,12 @@ module BulmaPhlex
       (@footer_items ||= []) << [text, href, html_attributes]
     end
 
+    # Delegates full control of the footer item to the block. The top element in the block must include
+    # the `card-footer-item` class.
+    def footer_item(&block)
+      (@footer_items ||= []) << block
+    end
+
     private
 
     def card_header
@@ -87,16 +93,24 @@ module BulmaPhlex
       return if @footer_items.nil? || @footer_items.empty?
 
       footer(class: "card-footer") do
-        @footer_items.each do |text, href, html_attributes|
-          icon = html_attributes.delete(:icon)
-          html_attributes[:class] = [html_attributes[:class], "card-footer-item"].compact.join(" ")
-          a(href:, **html_attributes) do
-            if icon.present?
-              icon_text(icon, text)
-            else
-              plain text
-            end
+        @footer_items.each do |block_or_text, href, html_attributes|
+          if block_or_text.is_a?(Proc)
+            block_or_text.call
+          else
+            render_footer_link(block_or_text, href, html_attributes)
           end
+        end
+      end
+    end
+
+    def render_footer_link(text, href, html_attributes)
+      icon = html_attributes.delete(:icon)
+      html_attributes[:class] = [html_attributes[:class], "card-footer-item"].compact.join(" ")
+      a(href:, **html_attributes) do
+        if icon.present?
+          icon_text(icon, text)
+        else
+          plain text
         end
       end
     end

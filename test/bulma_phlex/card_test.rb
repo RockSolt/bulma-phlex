@@ -114,5 +114,27 @@ module BulmaPhlex
 
       assert_html_equal expected_html, result
     end
+
+    def test_footer_items
+      component = BulmaPhlex::Card.new
+
+      result = component.call do |card|
+        card.footer_item do
+          card.a(href: "https://www.linkedin.com/in/rockridgesolutions", class: "card-footer-item") do
+            card.img(src: "images/LI-In-Bug.png", class: "linked-in-logo", alt: "LinkedIn Logo")
+          end
+        end
+      end
+
+      assert_html_equal <<~HTML, result
+        <div class="card">
+          <footer class="card-footer">
+            <a href="https://www.linkedin.com/in/rockridgesolutions" class="card-footer-item">
+              <img src="images/LI-In-Bug.png" class="linked-in-logo" alt="LinkedIn Logo">
+            </a>
+          </footer>
+        </div>
+      HTML
+    end
   end
 end

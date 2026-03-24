@@ -106,6 +106,9 @@ render BulmaPhlex::Card.new do |card|
 end
 ```
 
+Use method `footer_item` for full control of the footer items. Class `footer-item` must be on the outer element 
+of the block.
+
 
 ### Columns
 
