@@ -7,6 +7,17 @@ module BulmaPhlex
     include TagOutputAssertions
 
     def test_button
+      component = BulmaPhlex::Button.new("Click Me")
+      result = component.call
+
+      assert_html_equal <<~HTML, result
+        <button class="button">
+          Click Me
+        </button>
+      HTML
+    end
+
+    def test_button_with_block
       component = BulmaPhlex::Button.new
       result = component.call { "Click Me" }
 
@@ -18,8 +29,8 @@ module BulmaPhlex
     end
 
     def test_color
-      component = BulmaPhlex::Button.new(color: "primary")
-      result = component.call { "Primary Button" }
+      component = BulmaPhlex::Button.new("Primary Button", color: "primary")
+      result = component.call
 
       assert_html_equal <<~HTML, result
         <button class="button is-primary">
@@ -40,8 +51,8 @@ module BulmaPhlex
     end
 
     def test_size
-      component = BulmaPhlex::Button.new(size: "large")
-      result = component.call { "Large Button" }
+      component = BulmaPhlex::Button.new("Large Button", size: "large")
+      result = component.call
 
       assert_html_equal <<~HTML, result
         <button class="button is-large">
@@ -114,7 +125,7 @@ module BulmaPhlex
           <span class="icon">
             <i class="fas fa-pencil"></i>
           </span>
-          Button with Left Icon
+          <span>Button with Left Icon</span>
         </button>
       HTML
     end
@@ -125,7 +136,7 @@ module BulmaPhlex
 
       assert_html_equal <<~HTML, result
         <button class="button">
-          Button with Right Icon
+          <span>Button with Right Icon</span>
           <span class="icon">
             <i class="fas fa-trash"></i>
           </span>

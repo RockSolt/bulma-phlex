@@ -8,24 +8,24 @@ module Playground
 
         h3(class: "subtitle is-5") { "Colors" }
         div(class: "buttons mb-5") do
-          render BulmaPhlex::Button.new(color: "primary") { "Primary" }
-          render BulmaPhlex::Button.new(color: "link") { "Link" }
-          render BulmaPhlex::Button.new(color: "info") { "Info" }
-          render BulmaPhlex::Button.new(color: "success") { "Success" }
-          render BulmaPhlex::Button.new(color: "warning") { "Warning" }
-          render BulmaPhlex::Button.new(color: "danger") { "Danger" }
+          render BulmaPhlex::Button.new("Primary", color: "primary")
+          render BulmaPhlex::Button.new("Link", color: "link")
+          render BulmaPhlex::Button.new("Info", color: "info")
+          render BulmaPhlex::Button.new("Success", color: "success")
+          render BulmaPhlex::Button.new("Warning", color: "warning")
+          render BulmaPhlex::Button.new("Danger", color: "danger")
         end
 
         h3(class: "subtitle is-5") { "Mode (light / dark)" }
         div(class: "buttons mb-5") do
-          render BulmaPhlex::Button.new(color: "primary", mode: "light") { "Primary Light" }
-          render BulmaPhlex::Button.new(color: "info", mode: "light") { "Info Light" }
-          render BulmaPhlex::Button.new(color: "success", mode: "light") { "Success Light" }
-          render BulmaPhlex::Button.new(color: "primary", mode: "dark") { "Primary Dark" }
-          render BulmaPhlex::Button.new(color: "info", mode: "dark") { "Info Dark" }
+          render BulmaPhlex::Button.new("Primary Light", color: "primary", mode: "light")
+          render BulmaPhlex::Button.new("Info Light", color: "info", mode: "light")
+          render BulmaPhlex::Button.new("Success Light", color: "success", mode: "light")
+          render BulmaPhlex::Button.new("Primary Dark", color: "primary", mode: "dark")
+          render BulmaPhlex::Button.new("Info Dark", color: "info", mode: "dark")
         end
 
-        h3(class: "subtitle is-5") { "Sizes" }
+        h3(class: "subtitle is-5") { "Sizes (with labels from a block)" }
         div(class: "buttons mb-5 is-align-items-center") do
           render BulmaPhlex::Button.new(size: "small") { "Small" }
           render(BulmaPhlex::Button.new { "Normal" })
@@ -35,48 +35,49 @@ module Playground
 
         h3(class: "subtitle is-5") { "Outlined" }
         div(class: "buttons mb-5") do
-          render BulmaPhlex::Button.new(color: "primary", outlined: true) { "Primary" }
-          render BulmaPhlex::Button.new(color: "link", outlined: true) { "Link" }
-          render BulmaPhlex::Button.new(color: "info", outlined: true) { "Info" }
-          render BulmaPhlex::Button.new(color: "success", outlined: true) { "Success" }
-          render BulmaPhlex::Button.new(color: "warning", outlined: true) { "Warning" }
-          render BulmaPhlex::Button.new(color: "danger", outlined: true) { "Danger" }
+          render BulmaPhlex::Button.new("Primary", color: "primary", outlined: true)
+          render BulmaPhlex::Button.new("Link", color: "link", outlined: true)
+          render BulmaPhlex::Button.new("Info", color: "info", outlined: true)
+          render BulmaPhlex::Button.new("Success", color: "success", outlined: true)
+          render BulmaPhlex::Button.new("Warning", color: "warning", outlined: true)
+          render BulmaPhlex::Button.new("Danger", color: "danger", outlined: true)
         end
 
         h3(class: "subtitle is-5") { "Inverted" }
         div(class: "buttons mb-5 has-background-dark p-3") do
-          render BulmaPhlex::Button.new(color: "primary", inverted: true) { "Primary" }
-          render BulmaPhlex::Button.new(color: "info", inverted: true) { "Info" }
-          render BulmaPhlex::Button.new(color: "warning", inverted: true) { "Warning" }
-          render BulmaPhlex::Button.new(color: "danger", inverted: true) { "Danger" }
+          render BulmaPhlex::Button.new("Primary", color: "primary", inverted: true)
+          render BulmaPhlex::Button.new("Info", color: "info", inverted: true)
+          render BulmaPhlex::Button.new("Warning", color: "warning", inverted: true)
+          render BulmaPhlex::Button.new("Danger", color: "danger", inverted: true)
         end
 
         h3(class: "subtitle is-5") { "Rounded" }
         div(class: "buttons mb-5") do
-          render BulmaPhlex::Button.new(color: "primary", rounded: true) { "Primary" }
-          render BulmaPhlex::Button.new(color: "link", rounded: true) { "Link" }
-          render BulmaPhlex::Button.new(color: "info", rounded: true) { "Info" }
-          render BulmaPhlex::Button.new(color: "success", rounded: true) { "Success" }
-          render BulmaPhlex::Button.new(color: "danger", rounded: true) { "Danger" }
+          render BulmaPhlex::Button.new("Primary", color: "primary", rounded: true)
+          render BulmaPhlex::Button.new("Link", color: "link", rounded: true)
+          render BulmaPhlex::Button.new("Info", color: "info", rounded: true)
+          render BulmaPhlex::Button.new("Success", color: "success", rounded: true)
+          render BulmaPhlex::Button.new("Danger", color: "danger", rounded: true)
         end
 
         h3(class: "subtitle is-5") { "Responsive" }
         div(class: "buttons mb-5") do
-          render BulmaPhlex::Button.new(color: "primary", responsive: true) { "Responsive" }
-          render BulmaPhlex::Button.new(color: "info", responsive: true, size: "large") { "Responsive Large" }
+          render BulmaPhlex::Button.new("Responsive", color: "primary", responsive: true)
+          render BulmaPhlex::Button.new("Responsive Large", color: "info", responsive: true, size: "large")
         end
 
         h3(class: "subtitle is-5") { "Fullwidth" }
         div(class: "mb-5") do
-          render BulmaPhlex::Button.new(color: "primary", fullwidth: true) { "Fullwidth Button" }
+          render BulmaPhlex::Button.new("Fullwidth Button", color: "primary", fullwidth: true)
         end
 
         h3(class: "subtitle is-5") { "With Icon Left / Icon Right" }
         div(class: "buttons mb-5") do
-          render BulmaPhlex::Button.new(color: "primary", icon_left: "fas fa-check") { "Save" }
-          render BulmaPhlex::Button.new(color: "danger", icon_left: "fas fa-trash") { "Delete" }
-          render BulmaPhlex::Button.new(icon_right: "fas fa-angle-right") { "Next" }
-          render BulmaPhlex::Button.new(color: "info", icon_left: "fas fa-download", icon_right: "fas fa-angle-down") { "Export" }
+          render BulmaPhlex::Button.new("Save", color: "primary", icon_left: "fas fa-check")
+          render BulmaPhlex::Button.new("Delete", color: "danger", icon_left: "fas fa-trash")
+          render BulmaPhlex::Button.new("Next", icon_right: "fas fa-angle-right")
+          render BulmaPhlex::Button.new("Export", color: "info", icon_left: "fas fa-download",
+                                                  icon_right: "fas fa-angle-down")
         end
 
         h3(class: "subtitle is-5") { "Icon Only (icon:)" }
@@ -89,9 +90,9 @@ module Playground
 
         h3(class: "subtitle is-5") { "As Anchor (href:)" }
         div(class: "buttons mb-5") do
-          render BulmaPhlex::Button.new(color: "primary", href: "#") { "Anchor" }
-          render BulmaPhlex::Button.new(color: "info", href: "#", outlined: true) { "Outlined Anchor" }
-          render BulmaPhlex::Button.new(color: "success", href: "#", icon_left: "fas fa-external-link-alt") { "External" }
+          render BulmaPhlex::Button.new("Anchor", color: "primary", href: "#")
+          render BulmaPhlex::Button.new("Outlined Anchor", color: "info", href: "#", outlined: true)
+          render BulmaPhlex::Button.new("External", color: "success", href: "#", icon_left: "fas fa-external-link-alt")
         end
 
         h3(class: "subtitle is-5") { "As Input (input:)" }
