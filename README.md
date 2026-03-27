@@ -85,11 +85,12 @@ Renders a [Bulma button](https://bulma.io/documentation/elements/button/) elemen
 The component generates a `<button>` by default. Pass an `href:` attribute to generate an `<a>` element instead. Pass `input: "submit"` (or `"button"` or `"reset"`) to generate an `<input>` element.
 
 ```ruby
-BulmaPhlex::Button(color: "primary", size: "large", icon: "fas fa-thumbs-up") { "Like" }
+BulmaPhlex::Button("Like", color: "primary", size: "large", icon: "fas fa-thumbs-up")
 BulmaPhlex::Button(href: "/profile") { "View Profile" }
 BulmaPhlex::Button(input: "submit", color: "success")
 ```
 
+The button label can be passed in as a string or in a block.
 
 ### Card
 

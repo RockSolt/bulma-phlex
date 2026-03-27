@@ -7,6 +7,8 @@ module BulmaPhlex
   # arguments provided. Supports Bulma options for **color**, **size**, **style mode**,
   # and **layout** (responsive, fullwidth, outlined, inverted, rounded), as well as
   # optional **icons** on the left and/or right side of the label.
+  #
+  # The label can be passed into the component as a string or from a block.
   class Button < Base
     # Returns an array of CSS classes for the button based on the provided options.
     def self.classes_for(color: nil, # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
@@ -31,6 +33,7 @@ module BulmaPhlex
 
     # **Parameters**
     #
+    # - `label` (positional) — Optionally pass in button label as a string
     # - `color` — Button color: `"primary"`, `"link"`, `"info"`, `"success"`, `"warning"`, `"danger"`
     # - `mode` — Button style mode: `"light"` or `"dark"`
     # - `size` — Button size: `"small"`, `"normal"`, `"medium"`, `"large"`
@@ -44,7 +47,8 @@ module BulmaPhlex
     # - `icon_right` — Icon class added to the right of the button text
     # - `input` — If set, renders an `<input>` element of this type (`"button"`, `"reset"`, `"submit"`)
     # - `**html_attributes` — Additional HTML attributes for the button element
-    def self.new(color: nil,
+    def self.new(label = nil,
+                 color: nil,
                  mode: nil,
                  size: nil,
                  responsive: false,
@@ -60,7 +64,8 @@ module BulmaPhlex
       super
     end
 
-    def initialize(color: nil,
+    def initialize(label = nil,
+                   color: nil,
                    mode: nil,
                    size: nil,
                    responsive: false,
@@ -73,6 +78,7 @@ module BulmaPhlex
                    icon_right: nil,
                    input: nil,
                    **html_attributes)
+      @label = label
       @classes = self.class.classes_for(color:, mode:, size:, responsive:, fullwidth:, outlined:, inverted:, rounded:)
       @input = input
       @icon_left = icon || icon_left
@@ -81,6 +87,8 @@ module BulmaPhlex
     end
 
     def view_template(&)
+      block_content = capture(&)
+
       options = mix({ class: @classes }, @html_attributes)
 
       if @input
@@ -89,9 +97,22 @@ module BulmaPhlex
         element_type = @html_attributes.key?(:href) ? :a : :button
         tag(element_type, **options) do
           Icon(@icon_left) if @icon_left
-          yield if block_given?
+          button_label(block_content)
           Icon(@icon_right) if @icon_right
         end
+      end
+    end
+
+    private
+
+    def button_label(block_content)
+      value = @label || block_content
+      return if value.nil? || value.empty?
+
+      if @icon_left || @icon_right
+        span { value }
+      else
+        plain value
       end
     end
   end
