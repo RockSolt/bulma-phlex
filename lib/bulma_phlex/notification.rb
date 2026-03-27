@@ -43,8 +43,8 @@ module BulmaPhlex
 
     def notification_classes
       classes = ["notification"]
-      classes << "is-#{@color}" if @color.present?
-      classes << "is-#{@mode}" if @mode.present?
+      classes << "is-#{@color}" unless @color.nil?
+      classes << "is-#{@mode}" unless @mode.nil?
       classes.join(" ")
     end
 

@@ -32,7 +32,7 @@ module BulmaPhlex
       vanish(&)
 
       article(**mix({ class: message_classes }, **@html_attributes)) do
-        message_header if @header_text.present?
+        message_header unless @header_text.nil?
         message_body(&)
       end
     end
@@ -44,8 +44,8 @@ module BulmaPhlex
 
     def message_classes
       classes = ["message"]
-      classes << "is-#{@color}" if @color.present?
-      classes << "is-#{@size}" if @size.present? && @size.to_s != "normal"
+      classes << "is-#{@color}" unless @color.nil?
+      classes << "is-#{@size}" if !@size.nil? && @size.to_s != "normal"
       classes.join(" ")
     end
 
