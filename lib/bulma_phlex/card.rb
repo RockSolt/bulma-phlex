@@ -107,10 +107,10 @@ module BulmaPhlex
       icon = html_attributes.delete(:icon)
       html_attributes[:class] = [html_attributes[:class], "card-footer-item"].compact.join(" ")
       a(href:, **html_attributes) do
-        if icon.present?
-          icon_text(icon, text)
-        else
+        if icon.nil?
           plain text
+        else
+          icon_text(icon, text)
         end
       end
     end

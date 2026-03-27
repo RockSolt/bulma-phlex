@@ -32,7 +32,7 @@ module BulmaPhlex
     def view_template
       if @html_attributes.key?(:href)
         a(class: tag_classes, **@html_attributes) { text_and_optional_delete_button }
-      elsif @options[:delete] || @html_attributes.dig(:data, :action).present?
+      elsif @options[:delete] || !@html_attributes.dig(:data, :action).nil?
         button(class: tag_classes, **@html_attributes) { text_and_optional_delete_button }
       else
         span(class: tag_classes, **@html_attributes) { plain @text }
@@ -51,9 +51,9 @@ module BulmaPhlex
 
     def tag_classes
       classes = ["tag"]
-      classes << "is-#{@options[:color]}" if @options[:color].present?
+      classes << "is-#{@options[:color]}" unless @options[:color].nil?
       classes << "is-#{@options[:light]} is-light" if @options[:light]
-      classes << "is-#{@options[:size]}" if @options[:size].present?
+      classes << "is-#{@options[:size]}" unless @options[:size].nil?
       classes << "is-rounded" if @options[:rounded]
       classes.join(" ")
     end

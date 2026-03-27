@@ -42,16 +42,16 @@ module BulmaPhlex
       output = capture(&)
 
       section(**mix({ class: hero_classes }, @html_attributes)) do
-        if @body.present?
-          building_blocks(&)
-        else
+        if @body.nil?
           div(class: "hero-body") do
-            if output.present?
-              output
-            else
+            if output.empty?
               title_and_subtitle
+            else
+              raw safe(output)
             end
           end
+        else
+          building_blocks(&)
         end
       end
     end
