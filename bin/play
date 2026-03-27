@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "date"
+require "bulma-phlex"
+
+Dir[File.join(__dir__, "../playground/sections/**/*.rb")].each { |f| require_relative f }
+
+require_relative "../playground/page"
+
+output_path = File.join(__dir__, "../playground/index.html")
+File.write(output_path, Playground::Page.new.call)
+puts "Generated: #{output_path}"

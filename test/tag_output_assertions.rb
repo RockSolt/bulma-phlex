@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Provides assertions `assert_html_equal` and `assert_html_includes` for component tests.
 module TagOutputAssertions
   include ActionView::TestCase::DomAssertions
 

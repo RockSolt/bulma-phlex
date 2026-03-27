@@ -17,8 +17,8 @@ module BulmaPhlex
     def test_renders_label_from_block
       component = FormField.new
       output = component.call do |field|
-        field.label { label_builder }
-        field.control { input_builder }
+        field.label { field.html_label { "Label Here" } }
+        field.control { field.input(name: "test_input", type: "text") }
       end
 
       expected_html = <<~HTML
