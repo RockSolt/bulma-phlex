@@ -3,9 +3,16 @@
 module BulmaPhlex
   # Renders a [Bulma Hero](https://bulma.io/documentation/layout/hero/) component.
   #
-  # Supports **color** and **size** options. Content can be provided as a title/subtitle pair,
-  # a single block for the body, or by calling `head`, `body`, and `foot` on the yielded
-  # component to define each section independently.
+  # Supports **color** and **size** options. There are three ways to provide content:
+  #
+  # 1. **Title/subtitle params** — pass `title:` and/or `subtitle:` to the constructor; no block needed.
+  # 2. **Direct body block** — pass a block to `render`; call Phlex HTML methods on the yielded
+  #    component and they are rendered inside the `hero-body` div.
+  # 3. **Building blocks** — call `head`, `body`, and `foot` on the yielded component to
+  #    populate each of Bulma's three hero regions independently:
+  #    - `hero-head` — typically a navbar or branding bar
+  #    - `hero-body` — main content area
+  #    - `hero-foot` — bottom tabs or action bar
   class Hero < BulmaPhlex::Base
     # **Parameters**
     #

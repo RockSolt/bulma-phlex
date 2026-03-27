@@ -21,13 +21,16 @@ Metrics/AbcSize:
   Exclude:
     - lib/bulma_phlex/pagination.rb
     - lib/bulma_phlex/tabs.rb
+    - playground/sections/**/*section.rb
 Metrics/BlockLength:
   Exclude:
     - lib/bulma_phlex/pagination.rb
     - lib/bulma_phlex/tabs.rb
+    - playground/sections/**/*section.rb
 Metrics/ClassLength:
   Exclude:
     - test/**/*.rb
+    - playground/sections/**/*.rb
 Metrics/CyclomaticComplexity:
   Exclude:
     - lib/bulma_phlex/pagination.rb
@@ -43,6 +46,11 @@ Naming/FileName:
   Exclude:
     - lib/bulma-phlex.rb
     - tools/rubocop-bulma_phlex.rb
+
+Style/Documentation:
+  Exclude:
+    - test/**/*test.rb
+    - playground/sections/**/*.rb
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
