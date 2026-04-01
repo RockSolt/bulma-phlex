@@ -52,6 +52,23 @@ module BulmaPhlex
       assert_html_equal expected_html, output
     end
 
+    def test_renders_label_from_string_with_html_attributes
+      component = FormField.new
+      output = component.call do |field|
+        field.label("Label from String", class: "extra", data: { value: "test" })
+        field.control { input_builder }
+      end
+
+      assert_html_equal <<~HTML, output
+        <div class="field">
+          <label class="label extra" data-value="test">Label from String</label>
+          <div class="control">
+            <input name="test_input" type="text" />
+          </div>
+        </div>
+      HTML
+    end
+
     def test_skips_label_when_not_provided
       component = FormField.new
       output = component.call do |field|

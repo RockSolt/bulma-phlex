@@ -6,10 +6,10 @@ module Playground
       def view_template
         h2(class: "title is-4") { "Form Field" }
 
-        h3(class: "subtitle is-6 mt-4") { "String Label + Help Text" }
+        h3(class: "subtitle is-6 mt-4") { "String Label with Attributes + Help Text" }
         div(class: "mb-5") do
           render BulmaPhlex::FormField.new(help: "We'll never share your email.") do |f|
-            f.label "Email"
+            f.label "Email", data: { controller: "label-help" }
             f.control { input(type: "email", class: "input", placeholder: "you@example.com") }
           end
         end

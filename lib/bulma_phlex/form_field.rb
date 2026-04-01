@@ -9,6 +9,8 @@ module BulmaPhlex
   # integrating with Bulma's column and grid systems. The form control content is set via the
   # `control` method (or a block passed directly to the component).
   #
+  # If the label is passes as a string argument, the any additional html attributes can also be included as arguments.
+  #
   # ## References
   #
   # - [Bulma Form Field](https://bulma.io/documentation/form/general/#form-field)
@@ -46,8 +48,9 @@ module BulmaPhlex
     #
     # Optionally expects a block that renders a custom label (e.g. with a link or icon inside).
     # Only one of `label_string` or a block should be provided.
-    def label(label_string = nil, &block)
+    def label(label_string = nil, **html_attributes, &block)
       @label_string = label_string
+      @label_attributes = html_attributes
       @label_builder = block
     end
 
@@ -103,7 +106,7 @@ module BulmaPhlex
 
     def render_label
       if @label_string
-        html_label(class: "label") { @label_string }
+        html_label(**mix({ class: "label" }, **@label_attributes)) { @label_string }
       elsif @label_builder
         raw @label_builder&.call
       end
