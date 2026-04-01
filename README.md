@@ -162,7 +162,7 @@ Renders a [Bulma form field](https://bulma.io/documentation/form/general/#form-f
 
 ```ruby
 render BulmaPhlex::FormField.new(help: "We'll never share your email.") do |field|
-  field.label("Email Address")
+  field.label("Email Address", for: "user_email_address")
   field.control { input(name: "user[email_address]", type: "email") }
 end
 ```
