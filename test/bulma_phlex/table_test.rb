@@ -45,6 +45,32 @@ module BulmaPhlex
       assert_html_includes result, "<td>jane@example.com</td>"
     end
 
+    def test_adds_is_hidden_classes
+      rows = [
+        TestRecord.new(id: 1, name: "John Doe", email: "john@example.com"),
+        TestRecord.new(id: 2, name: "Jane Smith", email: "jane@example.com")
+      ]
+
+      component = BulmaPhlex::Table.new(rows)
+
+      raw_result = component.call do |table|
+        table.column("ID", &:id)
+        table.column("Name", &:name)
+        table.column("Email", hidden: "touch", &:email)
+      end
+
+      # Format the result for readable assertions and debugging
+      result = format_html(raw_result)
+
+      # Check for key elements in the rendered table
+      assert_html_includes result, "<th>ID</th>"
+      assert_html_includes result, "<th>Name</th>"
+      assert_html_includes result, '<th class="is-hidden-touch">Email</th>'
+      assert_html_includes result, "<td>1</td>"
+      assert_html_includes result, "<td>John Doe</td>"
+      assert_html_includes result, '<td class="is-hidden-touch">jane@example.com</td>'
+    end
+
     def test_renders_empty_table
       component = BulmaPhlex::Table.new([])
 
@@ -122,6 +148,18 @@ module BulmaPhlex
 
       assert_html_includes format_html(raw_result), 'data-test="value"'
       assert_html_includes format_html(raw_result), 'class="table projects"'
+    end
+
+    def test_classes_for_options
+      assert_equal ["table"], BulmaPhlex::Table.classes_for
+      assert_equal %w[table is-bordered], BulmaPhlex::Table.classes_for(bordered: true)
+      assert_equal %w[table is-striped], BulmaPhlex::Table.classes_for(striped: true)
+      assert_equal %w[table is-narrow], BulmaPhlex::Table.classes_for(narrow: true)
+      assert_equal %w[table is-hoverable], BulmaPhlex::Table.classes_for(hoverable: true)
+      assert_equal %w[table is-fullwidth], BulmaPhlex::Table.classes_for(fullwidth: true)
+
+      assert_equal %w[table is-bordered is-striped is-narrow],
+                   BulmaPhlex::Table.classes_for(bordered: true, striped: true, narrow: true)
     end
   end
 
@@ -201,6 +239,25 @@ module BulmaPhlex
       assert_html_includes result, '<td data-custom="go-bears">2023-10-01</td>'
       assert_html_includes result, '<td data-custom="go-bears">2023-10-02</td>'
     end
+
+    def test_date_column_with_hidden_option
+      rows = [
+        TestRecord.new(id: 1, name: "Event 1", start_date: Time.new(2023, 10, 1)),
+        TestRecord.new(id: 2, name: "Event 2", start_date: Time.new(2023, 10, 2))
+      ]
+
+      component = BulmaPhlex::Table.new(rows)
+
+      raw_result = component.call do |table|
+        table.date_column("Start Date", hidden: "mobile", &:start_date)
+      end
+
+      result = format_html(raw_result)
+
+      assert_html_includes result, '<th class="is-hidden-mobile">Start Date</th>'
+      assert_html_includes result, '<td class="is-hidden-mobile">2023-10-01</td>'
+      assert_html_includes result, '<td class="is-hidden-mobile">2023-10-02</td>'
+    end
   end
 
   class TableConditionalIconTest < Minitest::Test
@@ -248,6 +305,19 @@ module BulmaPhlex
       result = format_html(raw_result)
 
       assert_html_includes result, '<td class="has-text-centered"></td>'
+    end
+
+    def test_conditional_icon_column_with_hidden_option
+      row = [TestRecord.new(id: 1, name: "Item 1", active: true)]
+      component = BulmaPhlex::Table.new(row)
+
+      raw_result = component.call do |table|
+        table.conditional_icon("Active", hidden: "touch", icon_class: "fas fa-check", &:active)
+      end
+      result = format_html(raw_result)
+
+      assert_html_includes result, '<th class="is-hidden-touch has-text-centered">Active</th>'
+      assert_html_includes result, '<td class="is-hidden-touch has-text-centered">'
     end
   end
 end
