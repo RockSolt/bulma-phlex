@@ -338,6 +338,12 @@ To add pagination to the table, call `paginate` with a block that returns a path
 table.paginate { |page| products_path(page: page) }
 ```
 
+Hide columns on smaller screens with the column `hidden` option:
+
+```ruby
+table.column("Email", hidden: { mobile: true }) { |user| user.email }
+```
+
 
 ### Tabs
 
