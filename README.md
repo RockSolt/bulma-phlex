@@ -338,6 +338,13 @@ To add pagination to the table, call `paginate` with a block that returns a path
 table.paginate { |page| products_path(page: page) }
 ```
 
+Pass HTML attributes to the `tr` elements via the `row` method, using either keyword arguments or a block 
+that receives the record for the row:
+
+```ruby
+table.row(class: "custom-row-class") { |row| { id: "row-id-#{row.id}" } }
+```
+
 Hide columns on smaller screens with the column `hidden` option:
 
 ```ruby
