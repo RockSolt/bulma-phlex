@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BulmaPhlex Playground</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <style>
+      div.column > p {
+        background-color: cornflowerblue;
+        color: white;
+        border-radius: var(--bulma-radius);
+        font-weight: var(--bulma-weight-semibold);
+        padding: 1.25rem 0;
+        position: relative;
+        text-align: center;
+      }
+
+      /* Include this after Bulma's CSS so .notification and helpers are available */
+      .breakpoint-indicator {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 9999;
+        pointer-events: none; /* don't block clicks */
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      .bp {
+        display: none;
+        margin: 0;
+        padding: 0.35rem 0.6rem;
+        pointer-events: none;
+      }
+
+      /* Bulma default breakpoints (mobile-first) */
+      @media (max-width: 768px) {
+        .bp-mobile {
+          display: block;
+        }
+      }
+      @media (min-width: 769px) and (max-width: 1023px) {
+        .bp-tablet {
+          display: block;
+        }
+      }
+      @media (min-width: 1024px) and (max-width: 1215px) {
+        .bp-desktop {
+          display: block;
+        }
+      }
+      @media (min-width: 1216px) and (max-width: 1407px) {
+        .bp-widescreen {
+          display: block;
+        }
+      }
+      @media (min-width: 1408px) {
+        .bp-fullhd {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="breakpoint-indicator block">
+          <div class="notification is-primary is-size-7 bp bp-mobile">mobile</div>
+          <div class="notification is-primary is-size-7 bp bp-tablet">tablet</div>
+          <div class="notification is-primary is-size-7 bp bp-desktop">desktop</div>
+          <div class="notification is-primary is-size-7 bp bp-widescreen">widescreen</div>
+          <div class="notification is-primary is-size-7 bp bp-fullhd">fullhd</div>
+        </div>
+
+        <h1 class="title">Columns</h1>
+        <div class="columns">
+          <div class="column">
+            <p class="is-primary">1</p>
+          </div>
+          <div class="column">
+            <p class="is-primary">2</p>
+          </div>
+          <div class="column">
+            <p class="is-primary">3</p>
+          </div>
+          <div class="column">
+            <p class="is-primary">4</p>
+          </div>
+        </div>
+
+        <h1 class="title">Columns: is-mobile</h1>
+        <div class="columns is-mobile">
+          <div class="column">
+            <p class="is-primary">1</p>
+          </div>
+          <div class="column">
+            <p class="is-primary">2</p>
+          </div>
+          <div class="column">
+            <p class="is-primary">3</p>
+          </div>
+          <div class="column">
+            <p class="is-primary">4</p>
+          </div>
+        </div>
+
+        <h1 class="title">Columns: is-desktop</h1>
+        <div class="columns is-desktop">
+          <div class="column">
+            <p class="is-primary">1</p>
+          </div>
+          <div class="column">
+            <p class="is-primary">2</p>
+          </div>
+          <div class="column">
+            <p class="is-primary">3</p>
+          </div>
+          <div class="column">
+            <p class="is-primary">4</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
