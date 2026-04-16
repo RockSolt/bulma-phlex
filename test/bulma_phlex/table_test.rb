@@ -71,6 +71,71 @@ module BulmaPhlex
       assert_html_includes result, '<td class="is-hidden-touch">jane@example.com</td>'
     end
 
+    def test_html_attributes_on_table_row
+      rows = [
+        TestRecord.new(id: 1, name: "John Doe", email: "john@example.com"),
+        TestRecord.new(id: 2, name: "Jane Smith", email: "jane@example.com")
+      ]
+
+      component = BulmaPhlex::Table.new(rows)
+
+      raw_result = component.call do |table|
+        table.row(class: "custom-row-class")
+        table.column("ID", &:id)
+        table.column("Name", &:name)
+        table.column("Email", hidden: "touch", &:email)
+      end
+
+      # Format the result for readable assertions and debugging
+      result = format_html(raw_result)
+
+      assert_html_includes result, '<tr class="custom-row-class">'
+    end
+
+    def test_html_attributes_on_table_row_with_block
+      rows = [
+        TestRecord.new(id: 1, name: "John Doe", email: "john@example.com"),
+        TestRecord.new(id: 2, name: "Jane Smith", email: "jane@example.com")
+      ]
+
+      component = BulmaPhlex::Table.new(rows)
+
+      raw_result = component.call do |table|
+        table.row { |row| { id: "table-row-#{row.id}" } }
+        table.column("ID", &:id)
+        table.column("Name", &:name)
+        table.column("Email", hidden: "touch", &:email)
+      end
+
+      # Format the result for readable assertions and debugging
+      result = format_html(raw_result)
+
+      assert_html_includes result, '<tr id="table-row-1">'
+      assert_html_includes result, '<tr id="table-row-2">'
+    end
+
+    def test_html_attributes_on_table_row_with_args_and_block
+      rows = [
+        TestRecord.new(id: 1, name: "John Doe", email: "john@example.com"),
+        TestRecord.new(id: 2, name: "Jane Smith", email: "jane@example.com")
+      ]
+
+      component = BulmaPhlex::Table.new(rows)
+
+      raw_result = component.call do |table|
+        table.row(class: "custom-row-class") { |row| { id: "table-row-#{row.id}" } }
+        table.column("ID", &:id)
+        table.column("Name", &:name)
+        table.column("Email", hidden: "touch", &:email)
+      end
+
+      # Format the result for readable assertions and debugging
+      result = format_html(raw_result)
+
+      assert_html_includes result, '<tr class="custom-row-class" id="table-row-1">'
+      assert_html_includes result, '<tr class="custom-row-class" id="table-row-2">'
+    end
+
     def test_renders_empty_table
       component = BulmaPhlex::Table.new([])
 

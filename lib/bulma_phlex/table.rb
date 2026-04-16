@@ -8,6 +8,9 @@ module BulmaPhlex
   # (bordered, striped, hoverable) and **layout** options (narrow, fullwidth). An optional
   # **pagination** control can be added to the table footer via the `paginate` method.
   #
+  # The `tr` elements can be customized with the `row` method, which accepts static HTML attributes
+  # and/or a block that generates dynamic attributes based on the row data.
+  #
   # To make the table responsive, use the `hidden` argument to hide certain columns on smaller
   # screens. See the [Bulma documentation](https://bulma.io/documentation/helpers/visibility-helpers/#hide)
   # for the full list, but the most common options are `hidden: "mobile"` and `hidden: "touch"`.
@@ -20,6 +23,7 @@ module BulmaPhlex
   #     users = User.all
   #
   #     render BulmaPhlex::Table.new(users) do |table|
+  #       table.row(class: "has-background-light") { |user| { id: "user-row-#{user.id}" } }
   #       table.column("Name", &:full_name)
   #       table.column("Email", hidden: "touch", &:email)
   #       table.date_column("Joined", hidden: "mobile", &:created_at, format: "%B %d, %Y")
@@ -82,7 +86,7 @@ module BulmaPhlex
 
         tbody do
           @rows.each do |row|
-            tr do
+            tr(**table_row_html_attributes(row)) do
               @columns.each { |column| table_data_cell(column, row) }
             end
           end
@@ -90,6 +94,11 @@ module BulmaPhlex
 
         pagination
       end
+    end
+
+    def row(**html_attributes, &attribute_builder)
+      @row_attributes = html_attributes
+      @row_attribute_builder = attribute_builder
     end
 
     # Adds a column to the table. Can be called multiple times to define all columns.
@@ -160,6 +169,15 @@ module BulmaPhlex
       elsif classes.include?("has-text-centered")
         "has-text-centered"
       end
+    end
+
+    def table_row_html_attributes(row)
+      attributes = @row_attributes || {}
+      if @row_attribute_builder
+        dynamic_attributes = @row_attribute_builder.call(row) || {}
+        attributes = attributes.merge(dynamic_attributes)
+      end
+      attributes
     end
 
     def table_data_cell(column, row)
