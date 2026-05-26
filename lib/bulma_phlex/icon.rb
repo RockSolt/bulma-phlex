@@ -5,7 +5,12 @@ module BulmaPhlex
   # form control positioning.
   #
   # Supports **color** and **size** options, optional **text** to the left or right of the icon,
-  # and **positioning** helpers (`left`/`right`) for use inside form controls.
+  # and **positioning** helpers (`left`/`right`) for use inside form controls. When text is provide,
+  # the icon and text are wrapped in a container with the `icon-text` class for proper spacing, and
+  # the icon includes `aria-hidden="true"` for accessibility.
+  #
+  # Additional HTML attributes can be passed to the icon's `<span>` element via `**html_attributes`,
+  # and to the inner `<i>` by nested them under `icon_attributes`.
   #
   # ## Example
   #
@@ -21,7 +26,8 @@ module BulmaPhlex
     # - `text_left` — Text to display to the left of the icon
     # - `left` — If `true`, adds the `is-left` class for use in form controls
     # - `right` — If `true`, adds the `is-right` class for use in form controls
-    # - `**html_attributes` — Additional HTML attributes for the icon span element
+    # - `**html_attributes` — Additional HTML attributes for the icon span element. Nest attributes under
+    #     `icon_attributes` to apply them to the inner `<i>` element instead.
     def self.new(icon,
                  text_right: nil,
                  text_left: nil,
@@ -48,14 +54,15 @@ module BulmaPhlex
       @color = color
       @left = left
       @right = right
-      @html_attributes = html_attributes
+      @html_attributes = html_attributes.clone
+      @icon_attributes = @html_attributes.delete(:icon_attributes) || {}
     end
 
     def view_template
       optional_text_wrapper do
         span { @text_left } if @text_left
         span(**mix({ class: icon_classes }, @html_attributes)) do
-          i(class: @icon)
+          i(class: @icon, **@icon_attributes)
         end
         span { @text_right } if @text_right
       end
@@ -65,10 +72,15 @@ module BulmaPhlex
 
     def optional_text_wrapper(&)
       if @text_right || @text_left
+        add_aria_hidden_to_icon_attributes
         span(class: "icon-text", &)
       else
         yield
       end
+    end
+
+    def add_aria_hidden_to_icon_attributes
+      @icon_attributes = mix({ aria: { hidden: "true" } }, @icon_attributes)
     end
 
     def icon_classes
