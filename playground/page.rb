@@ -4,6 +4,7 @@ module Playground
   # This generates the playground for each component. Components must have a Section class and be registered here.
   class Page < Phlex::HTML
     SECTIONS = [
+      Sections::Breadcrumb,
       Sections::Button,
       Sections::Card,
       Sections::Columns,
