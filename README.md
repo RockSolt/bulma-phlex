@@ -10,6 +10,7 @@ This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/ph
 
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Breadcrumb](#breadcrumb)
   - [Button](#button)
   - [Card](#card)
   - [Columns](#columns)
@@ -77,6 +78,21 @@ require "bulma-phlex"
 ## Usage
 
 Use the Phlex components in your Rails views or any Ruby application that supports Phlex components.
+
+### Breadcrumb
+
+Renders a [Bulma breadcrumb](https://bulma.io/documentation/components/breadcrumb/) navigation element. Each breadcrumb item is added via the `item` method on the yielded component.
+
+```ruby
+render BulmaPhlex::Breadcrumb.new do |bc|
+  bc.item("Bulma", href: "/")
+  bc.item("Components", href: "/components")
+  bc.item("Breadcrumb")
+end
+```
+
+It supports options for **alignment** (centered, right-aligned), **separator** style (arrow, bullet, dot, or succeeds), and **size** (small, medium, large). Items also support an optional `icon` argument.
+
 
 ### Button
 
