@@ -18,7 +18,7 @@ module BulmaPhlex
 
       expected_html = <<~HTML
         <div class="navbar-dropdown is-right">
-          <div class="navbar-item header has-text-weight-medium">User</div>
+          <div class="navbar-item has-text-weight-semibold">User</div>
           <a class="navbar-item" href="/profile">Profile</a>
           <hr class="navbar-divider">
           <a class="navbar-item" href="/logout">Sign Out</a>
@@ -53,9 +53,30 @@ module BulmaPhlex
         dropdown.item("Item 2", "/item2")
       end
 
-      assert_html_includes result, '<div class="navbar-item header has-text-weight-medium">Section 1</div>'
+      assert_html_includes result, '<div class="navbar-item has-text-weight-semibold">Section 1</div>'
       assert_html_includes result, '<hr class="navbar-divider">'
-      assert_html_includes result, '<div class="navbar-item header has-text-weight-medium">Section 2</div>'
+      assert_html_includes result, '<div class="navbar-item has-text-weight-semibold">Section 2</div>'
+    end
+
+    def test_renders_optional_divider_on_headers
+      component = BulmaPhlex::NavigationBarDropdown.new
+
+      result = component.call do |dropdown|
+        dropdown.header("Section 1")
+        dropdown.item("Item 1", "/item1")
+        dropdown.header("Section 2", divider: true)
+        dropdown.item("Item 2", "/item2")
+      end
+
+      assert_html_equal <<~HTML, result
+        <div class="navbar-dropdown is-right">
+          <div class="navbar-item has-text-weight-semibold">Section 1</div>
+          <a class="navbar-item" href="/item1">Item 1</a>
+          <hr class="navbar-divider">
+          <div class="navbar-item has-text-weight-semibold">Section 2</div>
+          <a class="navbar-item" href="/item2">Item 2</a>
+        </div>
+      HTML
     end
   end
 end
