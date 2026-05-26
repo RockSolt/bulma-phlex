@@ -22,7 +22,7 @@ module BulmaPhlex
       assert_html_equal <<~HTML, result
         <span class="icon-text">
           <span class="icon">
-            <i class="fas fa-home"></i>
+            <i class="fas fa-home", aria-hidden="true"></i>
           </span>
           <span>Home</span>
         </span>
@@ -36,7 +36,7 @@ module BulmaPhlex
         <span class="icon-text">
           <span>Home</span>
           <span class="icon">
-            <i class="fas fa-home"></i>
+            <i class="fas fa-home" aria-hidden="true"></i>
           </span>
         </span>
       HTML
@@ -98,6 +98,16 @@ module BulmaPhlex
       assert_html_equal <<~HTML, result
         <span class="icon" id="home-icon" data-test="value">
           <i class="fas fa-home"></i>
+        </span>
+      HTML
+    end
+
+    def test_with_icon_attributes
+      result = Icon.new("fas fa-home", icon_attributes: { id: "home-icon", data: { test: "value" } }).call
+
+      assert_html_equal <<~HTML, result
+        <span class="icon">
+          <i class="fas fa-home" id="home-icon" data-test="value"></i>
         </span>
       HTML
     end
