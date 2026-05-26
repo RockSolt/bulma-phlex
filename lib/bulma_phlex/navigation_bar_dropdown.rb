@@ -26,8 +26,11 @@ module BulmaPhlex
       div(class: "navbar-dropdown is-right", &)
     end
 
-    def header(label)
-      div(class: "navbar-item header has-text-weight-medium") { label }
+    # Adds a non-clickable header item to the dropdown menu. Optionally add a divider before the header with
+    # the `divder: true` parameter.
+    def header(label, divider: false)
+      self.divider if divider
+      div(class: "navbar-item has-text-weight-semibold") { label }
     end
 
     def item(label, path)
