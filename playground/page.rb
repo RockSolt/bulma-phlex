@@ -17,6 +17,7 @@ module Playground
       Sections::Icon,
       Sections::Image,
       Sections::Level,
+      Sections::MediaObject,
       Sections::Message,
       # Sections::Modal,
       Sections::NavigationBar,
