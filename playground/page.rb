@@ -15,6 +15,7 @@ module Playground
       Sections::Grid,
       Sections::Hero,
       Sections::Icon,
+      Sections::Image,
       Sections::Level,
       Sections::Message,
       # Sections::Modal,
