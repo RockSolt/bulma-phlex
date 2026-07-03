@@ -85,7 +85,7 @@ module BulmaPhlex
       return if @card_content.nil?
 
       div(class: "card-content") do
-        div(class: "content") { @card_content.call }
+        @card_content.call
       end
     end
 

@@ -23,7 +23,7 @@ module BulmaPhlex
             <p class="card-header-title">Card Title</p>
           </header>
           <div class="card-content">
-            <div class="content">This is some card content</div>
+            This is some card content
           </div>
           <footer class="card-footer">
             <a href="/footer-link" class="card-footer-item">Footer Link</a>
