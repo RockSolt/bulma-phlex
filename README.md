@@ -111,11 +111,12 @@ The button label can be passed in as a string or in a block.
 
 ### Card
 
-Renders a [Bulma card](https://bulma.io/documentation/components/card/) with an optional header, content area, and footer links. Each section is populated via builder methods on the yielded component.
+Renders a [Bulma card](https://bulma.io/documentation/components/card/) with an optional header, image, content area, and footer links. Each section is populated via builder methods on the yielded component.
 
 ```ruby
 render BulmaPhlex::Card.new do |card|
   card.head("Card Title")
+  card.image(src: "image.jpg", alt: "Card image")
   card.content do
     "This is some card content"
   end

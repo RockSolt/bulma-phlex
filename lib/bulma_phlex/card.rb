@@ -3,7 +3,7 @@
 module BulmaPhlex
   # Renders a [Bulma card](https://bulma.io/documentation/components/card/) component.
   #
-  # Supports an optional **header** (with title and custom classes), a **content** area, and a
+  # Supports an optional **header** (with title and custom classes), an **image**, a **content** area, and a
   # **footer** with one or more link items (which can include icons). Each section is populated
   # via builder methods on the yielded component.
   #
@@ -34,6 +34,7 @@ module BulmaPhlex
 
       div(**mix(class: "card", **@html_attributes)) do
         card_header
+        card_image
         card_content
         card_footer
       end
@@ -46,6 +47,10 @@ module BulmaPhlex
     def head(title, classes: nil)
       @header_title = title
       @header_classes = classes
+    end
+
+    def image(src:, alt: nil, size: nil, rounded: false)
+      @image = BulmaPhlex::Image.new(src:, alt:, size:, rounded:)
     end
 
     # Sets the card body content.
@@ -78,6 +83,14 @@ module BulmaPhlex
 
       header(class: "card-header #{@header_classes}") do
         p(class: "card-header-title") { plain @header_title }
+      end
+    end
+
+    def card_image
+      return if @image.nil?
+
+      div(class: "card-image") do
+        render @image
       end
     end
 

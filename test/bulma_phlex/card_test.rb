@@ -52,6 +52,24 @@ module BulmaPhlex
       assert_html_equal expected_html, result
     end
 
+    def test_with_image
+      component = BulmaPhlex::Card.new
+
+      result = component.call do |card|
+        card.image(src: "image.jpg", alt: "An image", size: 128, rounded: true)
+      end
+
+      assert_html_equal <<~HTML, result
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-128x128">
+              <img src="image.jpg" alt="An image" class="is-rounded"/>
+            </figure>
+          </div>
+        </div>
+      HTML
+    end
+
     def test_footer_with_links
       component = BulmaPhlex::Card.new
 
