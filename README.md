@@ -20,6 +20,7 @@ This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/ph
   - [Grid](#grid)
   - [Hero](#hero)
   - [Icon](#icon)
+  - [Image](#image)
   - [Level](#level)
   - [Message](#message)
   - [Modal](#modal)
@@ -223,6 +224,23 @@ Renders a [Bulma icon](https://bulma.io/documentation/elements/icon/) element. S
 ```ruby
 render BulmaPhlex::Icon.new("fas fa-user")
 render BulmaPhlex::Icon.new("fas fa-home", size: :large, color: :primary, text_right: "Home")
+```
+
+
+### Image
+
+Renders a [Bulma image](https://bulma.io/documentation/elements/image/) element. Supports size, ratio, rounded, and additional HTML attributes (on either the wrapping `figure` element or the `img` element).
+
+```ruby
+render BulmaPhlex::Image.new(src: "image.jpg", size: 64)
+
+render BulmaPhlex::Image.new(
+  src: "image.jpg", 
+  alt: "An image", 
+  rounded: true, 
+  ratio: "16by9", 
+  img_attributes: { class: "custom-img-class", id: "image-id" }, 
+  class: "custom-class", id: "figure-image-id")
 ```
 
 
