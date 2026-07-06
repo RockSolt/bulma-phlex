@@ -18,6 +18,8 @@ module BulmaPhlex
   #       card.footer_link("Edit", "/edit", class: "has-text-primary")
   #     end
   class Card < BulmaPhlex::Base
+    extend Gem::Deprecate
+
     # **Parameters**
     #
     # - `**html_attributes` — Additional HTML attributes for the card element
@@ -45,8 +47,24 @@ module BulmaPhlex
     # - `title` — The text to display in the card header
     # - `classes` — Optional additional CSS classes for the header element
     def head(title, classes: nil)
+      header(title, class: classes)
+    end
+
+    deprecate :head, :header, 2027, 1
+
+    # in order to use the method name `header`, we need to grab a reference to the method on the base class
+    # so it is still available to us
+    alias html_header header
+
+    # Sets the card header. Pass in the title as a string and/or provide a block to render custom content
+    # in the header.
+    #
+    # - `title` — The text to display in the card header (optional)
+    # - `**html_attributes` — Additional HTML attributes for the header element (optional)
+    def header(title = nil, **html_attributes, &block)
       @header_title = title
-      @header_classes = classes
+      @header_attributes = html_attributes
+      @header_content = block
     end
 
     def image(src:, alt: nil, size: nil, rounded: false)
@@ -79,10 +97,11 @@ module BulmaPhlex
     private
 
     def card_header
-      return if @header_title.nil?
+      return if @header_title.nil? && @header_content.nil?
 
-      header(class: "card-header #{@header_classes}") do
-        p(class: "card-header-title") { plain @header_title }
+      html_header(**mix({ class: "card-header" }, @header_attributes)) do
+        p(class: "card-header-title") { plain @header_title } if @header_title
+        @header_content&.call
       end
     end
 

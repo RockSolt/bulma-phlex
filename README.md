@@ -115,7 +115,7 @@ Renders a [Bulma card](https://bulma.io/documentation/components/card/) with an 
 
 ```ruby
 render BulmaPhlex::Card.new do |card|
-  card.head("Card Title")
+  card.header("Card Title")
   card.image(src: "image.jpg", alt: "Card image")
   card.content do
     "This is some card content"
@@ -124,6 +124,8 @@ render BulmaPhlex::Card.new do |card|
   card.footer_link("Edit", "/edit", icon: "fas fa-edit")
 end
 ```
+
+The `header` method accepts a string, for a simple title, or a block for custom content.
 
 Use method `footer_item` for full control of the footer items. Class `footer-item` must be on the outer element 
 of the block.
