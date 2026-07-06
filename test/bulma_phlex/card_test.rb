@@ -10,7 +10,7 @@ module BulmaPhlex
       component = BulmaPhlex::Card.new
 
       result = component.call do |card|
-        card.head("Card Title")
+        card.header("Card Title")
         card.content do
           "This is some card content"
         end
@@ -19,11 +19,11 @@ module BulmaPhlex
 
       expected_html = <<~HTML
         <div class="card">
-          <header class="card-header ">
+          <header class="card-header">
             <p class="card-header-title">Card Title</p>
           </header>
           <div class="card-content">
-            <div class="content">This is some card content</div>
+            This is some card content
           </div>
           <footer class="card-footer">
             <a href="/footer-link" class="card-footer-item">Footer Link</a>
@@ -38,7 +38,9 @@ module BulmaPhlex
       component = BulmaPhlex::Card.new
 
       result = component.call do |card|
-        card.head("Custom Header", classes: "is-primary")
+        Gem::Deprecate.skip_during do
+          card.head("Custom Header", classes: "is-primary")
+        end
       end
 
       expected_html = <<~HTML
@@ -50,6 +52,99 @@ module BulmaPhlex
       HTML
 
       assert_html_equal expected_html, result
+    end
+
+    def test_header_with_title
+      component = BulmaPhlex::Card.new
+
+      result = component.call do |card|
+        card.header("Card Header")
+      end
+
+      expected_html = <<~HTML
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">Card Header</p>
+          </header>
+        </div>
+      HTML
+
+      assert_html_equal expected_html, result
+    end
+
+    def test_header_with_additional_attributes
+      component = BulmaPhlex::Card.new
+
+      result = component.call do |card|
+        card.header("Card Header", class: "is-primary", data: { test: "value" })
+      end
+
+      expected_html = <<~HTML
+        <div class="card">
+          <header class="card-header is-primary" data-test="value">
+            <p class="card-header-title">Card Header</p>
+          </header>
+        </div>
+      HTML
+
+      assert_html_equal expected_html, result
+    end
+
+    def test_header_with_block
+      component = BulmaPhlex::Card.new
+
+      result = component.call do |card|
+        card.header do
+          card.p(class: "card-header-title sale") { "On Sale" }
+        end
+      end
+
+      expected_html = <<~HTML
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title sale">On Sale</p>
+          </header>
+        </div>
+      HTML
+
+      assert_html_equal expected_html, result
+    end
+
+    def test_header_with_title_and_block
+      component = BulmaPhlex::Card.new
+
+      result = component.call do |card|
+        card.header("Card Header") do
+          card.p(class: "subtitle") { "On Sale" }
+        end
+      end
+
+      assert_html_equal <<~HTML, result
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">Card Header</p>
+            <p class="subtitle">On Sale</p>
+          </header>
+        </div>
+      HTML
+    end
+
+    def test_with_image
+      component = BulmaPhlex::Card.new
+
+      result = component.call do |card|
+        card.image(src: "image.jpg", alt: "An image", size: 128, rounded: true)
+      end
+
+      assert_html_equal <<~HTML, result
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-128x128">
+              <img src="image.jpg" alt="An image" class="is-rounded"/>
+            </figure>
+          </div>
+        </div>
+      HTML
     end
 
     def test_footer_with_links
@@ -101,12 +196,12 @@ module BulmaPhlex
       component = BulmaPhlex::Card.new(id: "my-card", data: { test: "value" })
 
       result = component.call do |card|
-        card.head("Card with Attributes")
+        card.header("Card with Attributes")
       end
 
       expected_html = <<~HTML
         <div class="card" id="my-card" data-test="value">
-          <header class="card-header ">
+          <header class="card-header">
             <p class="card-header-title">Card with Attributes</p>
           </header>
         </div>

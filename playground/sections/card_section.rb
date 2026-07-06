@@ -16,6 +16,17 @@ module Playground
           end
         end
 
+        h3(class: "label") { "With Image" }
+        div(class: "mb-5") do
+          render BulmaPhlex::Card.new do |card|
+            card.image(src: "https://bulma.io/assets/images/placeholders/1280x960.png")
+            card.content do
+              plain "The image can be used for a profile picture, product image, or any other visual representation " \
+                    "related to the card content."
+            end
+          end
+        end
+
         h3(class: "label") { "With Footer Links" }
         div(class: "mb-5") do
           render BulmaPhlex::Card.new do |card|

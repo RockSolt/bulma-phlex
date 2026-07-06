@@ -3,7 +3,7 @@
 module BulmaPhlex
   # Renders a [Bulma card](https://bulma.io/documentation/components/card/) component.
   #
-  # Supports an optional **header** (with title and custom classes), a **content** area, and a
+  # Supports an optional **header** (with title and custom classes), an **image**, a **content** area, and a
   # **footer** with one or more link items (which can include icons). Each section is populated
   # via builder methods on the yielded component.
   #
@@ -18,6 +18,8 @@ module BulmaPhlex
   #       card.footer_link("Edit", "/edit", class: "has-text-primary")
   #     end
   class Card < BulmaPhlex::Base
+    extend Gem::Deprecate
+
     # **Parameters**
     #
     # - `**html_attributes` — Additional HTML attributes for the card element
@@ -34,6 +36,7 @@ module BulmaPhlex
 
       div(**mix(class: "card", **@html_attributes)) do
         card_header
+        card_image
         card_content
         card_footer
       end
@@ -44,8 +47,28 @@ module BulmaPhlex
     # - `title` — The text to display in the card header
     # - `classes` — Optional additional CSS classes for the header element
     def head(title, classes: nil)
+      header(title, class: classes)
+    end
+
+    deprecate :head, :header, 2027, 1
+
+    # in order to use the method name `header`, we need to grab a reference to the method on the base class
+    # so it is still available to us
+    alias html_header header
+
+    # Sets the card header. Pass in the title as a string and/or provide a block to render custom content
+    # in the header.
+    #
+    # - `title` — The text to display in the card header (optional)
+    # - `**html_attributes` — Additional HTML attributes for the header element (optional)
+    def header(title = nil, **html_attributes, &block)
       @header_title = title
-      @header_classes = classes
+      @header_attributes = html_attributes
+      @header_content = block
+    end
+
+    def image(src:, alt: nil, size: nil, rounded: false)
+      @image = BulmaPhlex::Image.new(src:, alt:, size:, rounded:)
     end
 
     # Sets the card body content.
@@ -74,10 +97,19 @@ module BulmaPhlex
     private
 
     def card_header
-      return if @header_title.nil?
+      return if @header_title.nil? && @header_content.nil?
 
-      header(class: "card-header #{@header_classes}") do
-        p(class: "card-header-title") { plain @header_title }
+      html_header(**mix({ class: "card-header" }, @header_attributes)) do
+        p(class: "card-header-title") { plain @header_title } if @header_title
+        @header_content&.call
+      end
+    end
+
+    def card_image
+      return if @image.nil?
+
+      div(class: "card-image") do
+        render @image
       end
     end
 
@@ -85,7 +117,7 @@ module BulmaPhlex
       return if @card_content.nil?
 
       div(class: "card-content") do
-        div(class: "content") { @card_content.call }
+        @card_content.call
       end
     end
 
