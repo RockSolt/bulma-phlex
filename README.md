@@ -22,6 +22,7 @@ This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/ph
   - [Icon](#icon)
   - [Image](#image)
   - [Level](#level)
+  - [Media Object](#media-object)
   - [Message](#message)
   - [Modal](#modal)
   - [NavigationBar](#navigationbar)
@@ -255,6 +256,28 @@ Renders the [Bulma level](https://bulma.io/documentation/layout/level/) horizont
 render BulmaPhlex::Level.new do |level|
   level.left { button(class: "button") { "Back" } }
   level.right { button(class: "button is-primary") { "Save" } }
+end
+```
+
+
+### Media Object
+
+Renders a [Bulma media object](https://bulma.io/documentation/layout/media-object/) with an optional left image/icon, right content, and main body content. Each section is populated via builder methods on the yielded component.
+
+```ruby
+render BulmaPhlex::MediaObject.new do |media|
+  media.left { img(src: "/avatar.png", alt: "Avatar") }
+  media.content { "This is the main content of the media object." }
+  media.right { button(class: "button is-small") { "Action" } }
+end
+```
+
+If the left content is an image, method `image` can be used instead of `left` to automatically build the supporting HTML structure.
+
+```ruby
+render BulmaPhlex::MediaObject.new do |media|
+  media.image(src: "/avatar.png", alt: "Avatar", size: 64, rounded: true)
+  media.content { "This is the main content of the media object." }
 end
 ```
 
