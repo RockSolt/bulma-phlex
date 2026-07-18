@@ -210,6 +210,21 @@ module BulmaPhlex
       assert_html_equal expected_html, result
     end
 
+    def test_with_additional_classes
+      component = BulmaPhlex::Card.new(class: "approved")
+      result = component.call do |card|
+        card.header("Card with Additional Classes")
+      end
+
+      assert_html_equal <<~HTML, result
+        <div class="card approved">
+          <header class="card-header">
+            <p class="card-header-title">Card with Additional Classes</p>
+          </header>
+        </div>
+      HTML
+    end
+
     def test_footer_items
       component = BulmaPhlex::Card.new
 

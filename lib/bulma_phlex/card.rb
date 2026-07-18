@@ -34,7 +34,7 @@ module BulmaPhlex
     def view_template(&)
       vanish(&)
 
-      div(**mix(class: "card", **@html_attributes)) do
+      div(**mix({ class: "card" }, **@html_attributes)) do
         card_header
         card_image
         card_content
