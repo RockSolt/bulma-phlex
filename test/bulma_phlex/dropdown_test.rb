@@ -164,5 +164,35 @@ module BulmaPhlex
       assert_includes result, 'id="my-dropdown"'
       assert_includes result, 'data-test="value"'
     end
+
+    def test_item_with_additional_html_attributes
+      component = BulmaPhlex::Dropdown.new("Menu")
+
+      result = component.call do |dropdown|
+        dropdown.item "Custom Item", class: "custom-class", data: { info: "extra" }
+      end
+
+      assert_includes result, '<div class="dropdown-item custom-class" data-info="extra">'
+    end
+
+    def test_link_with_additional_html_attributes
+      component = BulmaPhlex::Dropdown.new("Menu")
+
+      result = component.call do |dropdown|
+        dropdown.link "Custom Link", "/custom", class: "custom-link", data: { info: "extra" }
+      end
+
+      assert_includes result, '<a class="dropdown-item custom-link" data-info="extra" href="/custom">'
+    end
+
+    def test_divider_with_additional_html_attributes
+      component = BulmaPhlex::Dropdown.new("Menu")
+
+      result = component.call do |dropdown|
+        dropdown.divider class: "custom-divider", data: { info: "extra" }
+      end
+
+      assert_includes result, '<hr class="dropdown-divider custom-divider" data-info="extra">'
+    end
   end
 end

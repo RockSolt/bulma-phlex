@@ -68,20 +68,21 @@ module BulmaPhlex
       div(class: "dropdown-item has-text-weight-semibold is-unselectable") { label }
     end
 
-    def item(content = nil, &)
+    def item(content = nil, **html_attributes, &)
+      attributes = mix({ class: "dropdown-item" }, html_attributes)
       if block_given?
-        div(class: "dropdown-item", &)
+        div(**attributes, &)
       else
-        div(class: "dropdown-item") { content }
+        div(**attributes) { content }
       end
     end
 
-    def link(label, path)
-      a(class: "dropdown-item", href: path) { label }
+    def link(label, path, **html_attributes)
+      a(**mix({ class: "dropdown-item" }, html_attributes), href: path) { label }
     end
 
-    def divider
-      hr(class: "dropdown-divider")
+    def divider(**html_attributes)
+      hr(**mix({ class: "dropdown-divider" }, html_attributes))
     end
 
     private
