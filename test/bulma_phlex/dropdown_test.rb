@@ -28,6 +28,31 @@ module BulmaPhlex
       assert_html_equal expected_html, result
     end
 
+    def test_renders_dropdown_with_header_and_divider
+      component = BulmaPhlex::Dropdown.new("Menu")
+
+      result = component.call do |dropdown|
+        dropdown.header "Header", divider: true
+      end
+
+      assert_html_equal <<~HTML, result
+        <div class="dropdown" data-controller="bulma-phlex--dropdown">
+          <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" data-action="bulma-phlex--dropdown#toggle">
+              <span>Menu</span>
+              <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <hr class="dropdown-divider">
+              <div class="dropdown-item has-text-weight-semibold is-unselectable">Header</div>
+            </div>
+          </div>
+        </div>
+      HTML
+    end
+
     def test_renders_dropdown_with_links_and_items
       component = BulmaPhlex::Dropdown.new("Menu")
 

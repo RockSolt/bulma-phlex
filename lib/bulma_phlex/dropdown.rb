@@ -61,6 +61,13 @@ module BulmaPhlex
       end
     end
 
+    # Adds a non-clickable header item to the dropdown menu. Optionally add a divider before the header with
+    # the `divder: true` parameter.
+    def header(label, divider: false)
+      self.divider if divider
+      div(class: "dropdown-item has-text-weight-semibold is-unselectable") { label }
+    end
+
     def item(content = nil, &)
       if block_given?
         div(class: "dropdown-item", &)
