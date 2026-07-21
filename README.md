@@ -76,7 +76,6 @@ This gem requires:
 require "bulma-phlex"
 ```
 
-
 ## Usage
 
 Use the Phlex components in your Rails views or any Ruby application that supports Phlex components.
@@ -94,7 +93,6 @@ end
 ```
 
 It supports options for **alignment** (centered, right-aligned), **separator** style (arrow, bullet, dot, or succeeds), and **size** (small, medium, large). Items also support an optional `icon` argument.
-
 
 ### Button
 
@@ -128,9 +126,8 @@ end
 
 The `header` method accepts a string, for a simple title, or a block for custom content.
 
-Use method `footer_item` for full control of the footer items. Class `footer-item` must be on the outer element 
+Use method `footer_item` for full control of the footer items. Class `footer-item` must be on the outer element
 of the block.
-
 
 ### Columns
 
@@ -145,7 +142,6 @@ end
 ```
 
 The `gap:` option accepts either an integer (0–8) or a hash keyed by breakpoint for responsive gap sizes.
-
 
 ### Dropdown
 
@@ -163,6 +159,11 @@ end
 
 Set `click: false` to use hover mode instead of the Stimulus controller.
 
+Use method `header` to add a non-clickable header item. The method takes an optional `divider` argument. (This is not in the Bulma library.)
+
+```ruby
+  dropdown.header("Actions", divider: true)
+```
 
 ### File Upload
 
@@ -175,7 +176,6 @@ end
 ```
 
 Set `name: true` to include a file name display element. When enabled, Stimulus data attributes are wired up automatically. The controller is not included in this gem; an [example implementation](https://github.com/RockSolt/bulma-phlex-rails/blob/main/app/javascript/controllers/bulma_phlex/file_input_display_controller.js) is available in the `bulma-phlex-rails` gem.
-
 
 ### Form Field
 
@@ -190,7 +190,6 @@ end
 
 The `column:` and `grid:` options integrate the field into Bulma's column and grid layout systems. Both accept `true`, a size string, or a breakpoint hash.
 
-
 ### Grid
 
 Renders a [Bulma smart grid](https://bulma.io/documentation/grid/smart-grid/) layout. Supports fixed column counts, auto-count, minimum column width, and independent gap control.
@@ -202,7 +201,6 @@ render BulmaPhlex::Grid.new(minimum_column_width: 16) do
   end
 end
 ```
-
 
 ### Hero
 
@@ -220,7 +218,6 @@ render BulmaPhlex::Hero.new(color: "info", size: "large") do |hero|
 end
 ```
 
-
 ### Icon
 
 Renders a [Bulma icon](https://bulma.io/documentation/elements/icon/) element. Supports color, size, optional text alongside the icon, and left/right positioning for use inside form controls.
@@ -230,7 +227,6 @@ render BulmaPhlex::Icon.new("fas fa-user")
 render BulmaPhlex::Icon.new("fas fa-home", size: :large, color: :primary, text_right: "Home")
 ```
 
-
 ### Image
 
 Renders a [Bulma image](https://bulma.io/documentation/elements/image/) element. Supports size, ratio, rounded, and additional HTML attributes (on either the wrapping `figure` element or the `img` element).
@@ -239,14 +235,13 @@ Renders a [Bulma image](https://bulma.io/documentation/elements/image/) element.
 render BulmaPhlex::Image.new(src: "image.jpg", size: 64)
 
 render BulmaPhlex::Image.new(
-  src: "image.jpg", 
-  alt: "An image", 
-  rounded: true, 
-  ratio: "16by9", 
-  img_attributes: { class: "custom-img-class", id: "image-id" }, 
+  src: "image.jpg",
+  alt: "An image",
+  rounded: true,
+  ratio: "16by9",
+  img_attributes: { class: "custom-img-class", id: "image-id" },
   class: "custom-class", id: "figure-image-id")
 ```
-
 
 ### Level
 
@@ -258,7 +253,6 @@ render BulmaPhlex::Level.new do |level|
   level.right { button(class: "button is-primary") { "Save" } }
 end
 ```
-
 
 ### Media Object
 
@@ -281,7 +275,6 @@ render BulmaPhlex::MediaObject.new do |media|
 end
 ```
 
-
 ### Message
 
 Renders a [Bulma message](https://bulma.io/documentation/components/message/) component with a header, optional delete button, and body.
@@ -291,7 +284,6 @@ render BulmaPhlex::Message.new("Hello World", color: "info", delete: true) do
   "Look, it's a deletable message box!"
 end
 ```
-
 
 ### Modal
 
@@ -307,7 +299,6 @@ end
 ```
 
 The modal is shown by adding the `is-active` class to the container — nothing in the component does this automatically. The default Stimulus controller (`bulma-phlex--modal`) handles open/close behavior. Pass a custom `data_attributes_builder:` to integrate with a different JavaScript setup.
-
 
 ### NavigationBar
 
@@ -331,7 +322,6 @@ end
 > [!NOTE]
 > Setting `container: true` (or a constraint string like `"is-max-desktop"`) wraps the navbar content in a Bulma container for fixed-width layout. The navbar's background color still spans the full viewport width.
 
-
 ### Notification
 
 Renders a [Bulma notification](https://bulma.io/documentation/elements/notification/) alert box with support for color and mode options.
@@ -350,7 +340,6 @@ render BulmaPhlex::Notification.new(color: "warning", delete: { data: { action: 
 end
 ```
 
-
 ### Pagination
 
 Renders the [Bulma pagination](https://bulma.io/documentation/components/pagination/) component with previous/next links, numbered page links, ellipses for skipped ranges, and an item count summary. Only renders when there is more than one page of results.
@@ -361,7 +350,6 @@ render BulmaPhlex::Pagination.new(@products, ->(page) { products_path(page: page
 
 The first argument must be a pager object responding to `current_page`, `total_pages`, `per_page`, `total_count`, `previous_page`, and `next_page`.
 
-
 ### Progress Bar
 
 Renders a [Bulma progress bar](https://bulma.io/documentation/elements/progress/) element. Supports color and size options.
@@ -371,7 +359,6 @@ render BulmaPhlex::ProgressBar.new(color: "success", size: "large", value: 75, m
 ```
 
 Omitting `value:` and `max:` produces an indeterminate (animated) progress bar.
-
 
 ### Table
 
@@ -398,7 +385,7 @@ To add pagination to the table, call `paginate` with a block that returns a path
 table.paginate { |page| products_path(page: page) }
 ```
 
-Pass HTML attributes to the `tr` elements via the `row` method, using either keyword arguments or a block 
+Pass HTML attributes to the `tr` elements via the `row` method, using either keyword arguments or a block
 that receives the record for the row:
 
 ```ruby
@@ -410,7 +397,6 @@ Hide columns on smaller screens with the column `hidden` option:
 ```ruby
 table.column("Email", hidden: { mobile: true }) { |user| user.email }
 ```
-
 
 ### Tabs
 
@@ -427,7 +413,6 @@ Tab switching is handled by the `bulma-phlex--tabs` Stimulus controller. The con
 
 An optional right-side element (e.g. a button) can be placed alongside the tab bar via `right_content`.
 
-
 ### Tag
 
 Renders the [Bulma tag](https://bulma.io/documentation/elements/tag/) component. Supports color, size, rounded, and an optional inline delete button.
@@ -438,7 +423,6 @@ render BulmaPhlex::Tag.new("Sale", light: "danger")
 ```
 
 The element type is inferred from the attributes: an `href:` produces an `<a>`, a `data-action` or `delete: true` produces a `<button>`, and otherwise a `<span>` is used.
-
 
 ### Title and Subtitle
 
@@ -451,13 +435,12 @@ render BulmaPhlex::Title.new("Dr. Strangelove", size: 2, subtitle: "Or: How I Le
 
 When `size:` is set but `subtitle_size:` is not, the subtitle size defaults to `size + 2`.
 
-
 ## Upgrading to 0.8
 
 > [!IMPORTANT]
 > The 0.8.0 release includes breaking changes. The namespace for the components has been changed from `Components::Bulma` to `Components::BulmaPhlex`.
 
-This can generally be handled with a *Find-and-Replace*:
+This can generally be handled with a _Find-and-Replace_:
 
 **Find:** `Bulma::`
 **Replace:** `BulmaPhlex::`
@@ -465,7 +448,6 @@ This can generally be handled with a *Find-and-Replace*:
 Note that this change was also applied to the expected Stimulus controllers. References such as the Navigation bar have been updated from `bulma--navigation-bar` to `bulma-phlex--navigation-bar`.
 
 Finally, the optional Rails extensions for the Card and Table components have been moved to the `bulma-phlex-rails` gem. If you are using this with Rails, you should use [the `bulma-phlex-rails` gem](https://github.com/RockSolt/bulma-phlex-rails). It provides both the component extensions as well as JavaScript for the Dropdown, Navigation Bar, and Tabs components.
-
 
 ## Development
 

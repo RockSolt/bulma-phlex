@@ -28,6 +28,31 @@ module BulmaPhlex
       assert_html_equal expected_html, result
     end
 
+    def test_renders_dropdown_with_header_and_divider
+      component = BulmaPhlex::Dropdown.new("Menu")
+
+      result = component.call do |dropdown|
+        dropdown.header "Header", divider: true
+      end
+
+      assert_html_equal <<~HTML, result
+        <div class="dropdown" data-controller="bulma-phlex--dropdown">
+          <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" data-action="bulma-phlex--dropdown#toggle">
+              <span>Menu</span>
+              <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <hr class="dropdown-divider">
+              <div class="dropdown-item has-text-weight-semibold is-unselectable">Header</div>
+            </div>
+          </div>
+        </div>
+      HTML
+    end
+
     def test_renders_dropdown_with_links_and_items
       component = BulmaPhlex::Dropdown.new("Menu")
 
@@ -138,6 +163,36 @@ module BulmaPhlex
 
       assert_includes result, 'id="my-dropdown"'
       assert_includes result, 'data-test="value"'
+    end
+
+    def test_item_with_additional_html_attributes
+      component = BulmaPhlex::Dropdown.new("Menu")
+
+      result = component.call do |dropdown|
+        dropdown.item "Custom Item", class: "custom-class", data: { info: "extra" }
+      end
+
+      assert_includes result, '<div class="dropdown-item custom-class" data-info="extra">'
+    end
+
+    def test_link_with_additional_html_attributes
+      component = BulmaPhlex::Dropdown.new("Menu")
+
+      result = component.call do |dropdown|
+        dropdown.link "Custom Link", "/custom", class: "custom-link", data: { info: "extra" }
+      end
+
+      assert_includes result, '<a class="dropdown-item custom-link" data-info="extra" href="/custom">'
+    end
+
+    def test_divider_with_additional_html_attributes
+      component = BulmaPhlex::Dropdown.new("Menu")
+
+      result = component.call do |dropdown|
+        dropdown.divider class: "custom-divider", data: { info: "extra" }
+      end
+
+      assert_includes result, '<hr class="dropdown-divider custom-divider" data-info="extra">'
     end
   end
 end
