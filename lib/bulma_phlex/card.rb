@@ -18,8 +18,6 @@ module BulmaPhlex
   #       card.footer_link("Edit", "/edit", class: "has-text-primary")
   #     end
   class Card < BulmaPhlex::Base
-    extend Gem::Deprecate
-
     # **Parameters**
     #
     # - `**html_attributes` — Additional HTML attributes for the card element
@@ -47,10 +45,10 @@ module BulmaPhlex
     # - `title` — The text to display in the card header
     # - `classes` — Optional additional CSS classes for the header element
     def head(title, classes: nil)
+      warn "[DEPRECATION] `BulmaPhlex::Card#head` is deprecated. Use `header` instead.", category: :deprecated
+
       header(title, class: classes)
     end
-
-    deprecate :head, :header, 2027, 1
 
     # in order to use the method name `header`, we need to grab a reference to the method on the base class
     # so it is still available to us

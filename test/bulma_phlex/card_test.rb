@@ -38,9 +38,11 @@ module BulmaPhlex
       component = BulmaPhlex::Card.new
 
       result = component.call do |card|
-        Gem::Deprecate.skip_during do
-          card.head("Custom Header", classes: "is-primary")
-        end
+        deprecated_warning_flag = Warning[:deprecated]
+        Warning[:deprecated] = false
+        card.head("Custom Header", classes: "is-primary")
+      ensure
+        Warning[:deprecated] = deprecated_warning_flag
       end
 
       expected_html = <<~HTML
