@@ -17,7 +17,7 @@ module BulmaPhlex
       end
 
       expected_html = <<~HTML
-        <div class="navbar-dropdown is-right">
+        <div class="navbar-dropdown">
           <div class="navbar-item has-text-weight-semibold">User</div>
           <a class="navbar-item" href="/profile">Profile</a>
           <hr class="navbar-divider">
@@ -69,7 +69,7 @@ module BulmaPhlex
       end
 
       assert_html_equal <<~HTML, result
-        <div class="navbar-dropdown is-right">
+        <div class="navbar-dropdown">
           <div class="navbar-item has-text-weight-semibold">Section 1</div>
           <a class="navbar-item" href="/item1">Item 1</a>
           <hr class="navbar-divider">
@@ -77,6 +77,75 @@ module BulmaPhlex
           <a class="navbar-item" href="/item2">Item 2</a>
         </div>
       HTML
+    end
+
+    def test_with_right_aligned_dropdown
+      component = BulmaPhlex::NavigationBarDropdown.new(right: true)
+
+      result = component.call do |dropdown|
+        dropdown.header("Section 1")
+        dropdown.item("Item 1", "/item1")
+      end
+
+      assert_html_includes result, '<div class="navbar-dropdown is-right">'
+    end
+
+    def test_with_boxed_dropdown
+      component = BulmaPhlex::NavigationBarDropdown.new(boxed: true)
+
+      result = component.call do |dropdown|
+        dropdown.header("Section 1")
+        dropdown.item("Item 1", "/item1")
+      end
+
+      assert_html_includes result, '<div class="navbar-dropdown is-boxed">'
+    end
+
+    def test_with_html_attributes_on_dropdown
+      component = BulmaPhlex::NavigationBarDropdown.new(data: { foo: "bar" }, id: "my-dropdown")
+
+      result = component.call do |dropdown|
+        dropdown.header("Section 1")
+        dropdown.item("Item 1", "/item1")
+      end
+
+      assert_html_includes result, '<div class="navbar-dropdown" data-foo="bar" id="my-dropdown">'
+    end
+
+    def test_header_with_html_attributes
+      component = BulmaPhlex::NavigationBarDropdown.new
+
+      result = component.call do |dropdown|
+        dropdown.header("Section 1", class: "custom-header")
+        dropdown.header("Section 2", data: { foo: "bar" })
+      end
+
+      assert_html_includes result, '<div class="navbar-item has-text-weight-semibold custom-header">Section 1</div>'
+      assert_html_includes result, '<div class="navbar-item has-text-weight-semibold" data-foo="bar">Section 2</div>'
+    end
+
+    def test_item_with_html_attributes
+      component = BulmaPhlex::NavigationBarDropdown.new
+
+      result = component.call do |dropdown|
+        dropdown.item("Item 1", "/item1", class: "custom-class")
+        dropdown.item("Item 2", "/item2", data: { foo: "bar" })
+      end
+
+      assert_html_includes result, '<a class="navbar-item custom-class" href="/item1">Item 1</a>'
+      assert_html_includes result, '<a class="navbar-item" href="/item2" data-foo="bar">Item 2</a>'
+    end
+
+    def test_divider_with_html_attributes
+      component = BulmaPhlex::NavigationBarDropdown.new
+
+      result = component.call do |dropdown|
+        dropdown.divider(class: "custom-divider")
+        dropdown.divider(data: { foo: "bar" })
+      end
+
+      assert_html_includes result, '<hr class="navbar-divider custom-divider">'
+      assert_html_includes result, '<hr class="navbar-divider" data-foo="bar">'
     end
   end
 end
