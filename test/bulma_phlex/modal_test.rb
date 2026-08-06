@@ -39,5 +39,24 @@ module BulmaPhlex
         </div>
       HTML
     end
+
+    def test_with_custom_stimulus_controller
+      data_attributes_builder = BulmaPhlex::Modal::StimulusDataAttributes.new("rockridge--mc")
+      component = BulmaPhlex::Modal.new(data_attributes_builder:)
+
+      result = component.call do
+        "Modal content goes here"
+      end
+
+      assert_html_equal <<~HTML, result
+        <div class="modal" data-controller="rockridge--mc">
+          <div class="modal-background" data-action="click->rockridge--mc#close"></div>
+          <div class="modal-content">
+            Modal content goes here
+          </div>
+          <button class="modal-close is-large" aria-label="close" data-action="rockridge--mc#close"></button>
+        </div>
+      HTML
+    end
   end
 end
