@@ -8,9 +8,14 @@ module BulmaPhlex
   # `data_attributes_builder` option.
   class Modal < BulmaPhlex::Base
     StimulusDataAttributes = Data.define(:stimulus_controller) do
-      def for_container = { controller: stimulus_controller }
-      def for_background = { action: "click->bulma-phlex--modal#close" }
-      def for_close_button = { action: "bulma-phlex--modal#close" }
+      def for_container
+        { controller: stimulus_controller,
+          action: ["keydown.esc@document->#{stimulus_controller}#close",
+                   "command->#{stimulus_controller}#openOrCloseByCommand"] }
+      end
+
+      def for_background = { action: "click->#{stimulus_controller}#close" }
+      def for_close_button = { action: "#{stimulus_controller}#close" }
     end
 
     # **Parameters**
