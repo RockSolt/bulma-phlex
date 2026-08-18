@@ -422,11 +422,38 @@ In addition to `column`, two specialized column methods are available:
 - `date_column(header, format: "%Y-%m-%d")` — formats the value with `strftime`
 - `conditional_icon(header, icon_class: "fas fa-check")` — shows an icon when the block returns truthy
 
+#### Sortable columns
+
+Pass a `BulmaPhlex::Table::Sort` object with the URL for the next sort state to add a sortable header. The component renders the sort link, icon, and accessible sort state; your application remains responsible for interpreting the sort parameters and ordering the records.
+
+```ruby
+render BulmaPhlex::Table.new(@users) do |table|
+  table.column(
+    "Name",
+    sort: BulmaPhlex::Table::Sort.new(href: users_path(sort: "name"))
+  ) { |user| user.full_name }
+
+  table.date_column(
+    "Joined",
+    sort: BulmaPhlex::Table::Sort.new(
+      href: users_path(sort: "created_at"),
+      direction: :descending
+    )
+  ) { |user| user.created_at }
+end
+```
+
+Set `direction:` to `:ascending` or `:descending` for the currently active column. An inactive sort defaults to ascending on its first activation; use `initial_direction: :descending` to change that. Use `link_attributes:` to add HTML attributes to the generated link, or `aria_label:` to provide a custom accessible label.
+
+#### Pagination
+
 To add pagination to the table, call `paginate` with a block that returns a path given a page number:
 
 ```ruby
 table.paginate { |page| products_path(page: page) }
 ```
+
+#### Custom row attributes
 
 Pass HTML attributes to the `tr` elements via the `row` method, using either keyword arguments or a block
 that receives the record for the row:
@@ -434,6 +461,8 @@ that receives the record for the row:
 ```ruby
 table.row(class: "custom-row-class") { |row| { id: "row-id-#{row.id}" } }
 ```
+
+#### Responsive columns
 
 Hide columns on smaller screens with the column `hidden` option:
 
