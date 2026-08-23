@@ -19,6 +19,7 @@ module Playground
       Sections::Level,
       Sections::MediaObject,
       Sections::Message,
+      Sections::Menu,
       # Sections::Modal,
       Sections::NavigationBar,
       Sections::Pagination,

@@ -23,6 +23,7 @@ This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/ph
   - [Image](#image)
   - [Level](#level)
   - [Media Object](#media-object)
+  - [Menu](#menu)
   - [Message](#message)
   - [Modal](#modal)
   - [NavigationBar](#navigationbar)
@@ -272,6 +273,45 @@ If the left content is an image, method `image` can be used instead of `left` to
 render BulmaPhlex::MediaObject.new do |media|
   media.image(src: "/avatar.png", alt: "Avatar", size: 64, rounded: true)
   media.content { "This is the main content of the media object." }
+end
+```
+
+### Menu
+
+Renders a [Bulma menu](https://bulma.io/documentation/components/menu/) with support for labels, lists, and nested lists.
+
+```ruby
+render BulmaPhlex::Menu.new do |menu|
+  menu.label("General")
+  menu.list do
+    menu.item("Dashboard", href: "/dashboard", active: true)
+    menu.item("Customers", href: "/customers")
+  end
+
+  menu.label("Administration")
+  menu.list do
+    menu.item("Team Settings", href: "/teams/settings")
+    menu.item("Manage Your Team", href: "/teams/dashboard") do
+      menu.item("Members", href: "/members")
+      menu.item("Plugins", href: "/plugins")
+      menu.item("Add a member", href: "/add-member")
+    end
+  end
+end
+```
+
+Nested lists can be created by passing a block to the `item` method. An expandable section (header opens and closes but is not a link) can be created with the `expandable_item` method.
+
+```ruby
+render BulmaPhlex::Menu.new do |menu|
+  menu.label("General")
+  menu.list do
+    menu.item("Dashboard", href: "/dashboard", active: true)
+    menu.expandable_item("Customers") do
+      menu.item("Active Customers", href: "/customers/active")
+      menu.item("Inactive Customers", href: "/customers/inactive")
+    end
+  end
 end
 ```
 
