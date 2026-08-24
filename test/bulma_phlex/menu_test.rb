@@ -68,7 +68,7 @@ module BulmaPhlex
             <li><a href="#dashboard">Dashboard</a></li>
             <li>
               <details open="true">
-                <summary class="menu-item">Customers</summary>
+                <summary class="menu-item is-clickable">Customers</summary>
                 <ul class="menu-list">
                   <li><a href="#active-customers">Active Customers</a></li>
                   <li><a href="#inactive-customers">Inactive Customers</a></li>
@@ -100,7 +100,7 @@ module BulmaPhlex
             <li><a href="#dashboard">Dashboard</a></li>
             <li>
               <details open="true">
-                <summary class="menu-item">Customers</summary>
+                <summary class="menu-item is-clickable">Customers</summary>
                 <ul class="menu-list">
                   <li><a href="#active-customers" class="is-active">Active Customers</a></li>
                   <li><a href="#inactive-customers">Inactive Customers</a></li>

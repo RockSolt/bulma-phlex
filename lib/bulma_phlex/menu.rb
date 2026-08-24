@@ -70,7 +70,7 @@ module BulmaPhlex
 
       li(**li_attributes) do
         details(open:) do
-          summary(**mix({ class: "menu-item" }, attributes)) { label }
+          summary(**mix({ class: "menu-item is-clickable" }, attributes)) { label }
           nested_list(&)
         end
       end
