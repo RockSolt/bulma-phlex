@@ -51,7 +51,7 @@ module BulmaPhlex
 
       result = format_html(component.call { |table| table.column("Name", sort:, &:name) })
 
-      assert_html_includes result, '<a href="/users?sort=name" aria-label="Sort by Name, ascending">'
+      assert_html_includes result, '<a href="/users?sort=name" aria-label="Sort by Name">'
       assert_html_includes result, 'class="fas fa-sort"'
       refute_includes result, "aria-sort="
     end
@@ -68,7 +68,7 @@ module BulmaPhlex
 
       assert_html_includes result, '<th aria-sort="descending">'
       assert_html_includes result, 'class="fas fa-sort-down"'
-      assert_html_includes result, 'aria-label="Name, sorted descending. Activate to sort ascending."'
+      assert_html_includes result, 'aria-label="Name, sorted descending. Activate to change sort order."'
       assert_html_includes result, 'target="_blank"'
       assert_html_includes result, 'data-turbo-frame="widgets"'
     end
@@ -84,7 +84,7 @@ module BulmaPhlex
 
       assert_html_includes result, 'href="/users?sort=name"'
       assert_html_includes result, 'aria-describedby="sort-help"'
-      assert_html_includes result, 'aria-label="Sort by Name, ascending"'
+      assert_html_includes result, 'aria-label="Sort by Name"'
     end
 
     def test_rejects_invalid_sort_value

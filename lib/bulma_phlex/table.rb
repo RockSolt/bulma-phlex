@@ -198,10 +198,9 @@ module BulmaPhlex
       label = header.to_s
       if sort.active?
         direction = sort.direction
-        next_direction = sort.next_direction
-        "#{label}, sorted #{direction}. Activate to sort #{next_direction}."
+        "#{label}, sorted #{direction}. Activate to change sort order."
       else
-        "Sort by #{label}, #{sort.initial_direction}"
+        "Sort by #{label}"
       end
     end
 
