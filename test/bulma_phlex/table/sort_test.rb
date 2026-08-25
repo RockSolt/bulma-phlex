@@ -5,16 +5,15 @@ require "test_helper"
 module BulmaPhlex
   class Table
     class SortTest < ActiveSupport::TestCase
-      def test_defaults_to_an_inactive_ascending_sort
+      def test_defaults_to_an_inactive_sort
         sort = Sort.new(href: "/widgets?filter[sort]=name")
 
         assert_equal "/widgets?filter[sort]=name", sort.href
         assert_nil sort.direction
-        assert_equal :ascending, sort.initial_direction
+
         assert_not_predicate sort, :active?
         assert_not_predicate sort, :ascending?
         assert_not_predicate sort, :descending?
-        assert_equal :ascending, sort.next_direction
         assert_equal({}, sort.link_attributes)
         assert_nil sort.aria_label
       end
@@ -26,28 +25,20 @@ module BulmaPhlex
         assert_predicate sort.link_attributes, :frozen?
       end
 
-      def test_reports_an_active_ascending_sort_and_toggles_to_descending
+      def test_reports_an_active_ascending_sort
         sort = Sort.new(href: "/widgets?filter[sort]=-name", direction: :ascending)
 
         assert_predicate sort, :active?
         assert_predicate sort, :ascending?
         assert_not_predicate sort, :descending?
-        assert_equal :descending, sort.next_direction
       end
 
-      def test_reports_an_active_descending_sort_and_toggles_to_ascending
+      def test_reports_an_active_descending_sort
         sort = Sort.new(href: "/widgets?filter[sort]=name", direction: :descending)
 
         assert_predicate sort, :active?
         assert_not_predicate sort, :ascending?
         assert_predicate sort, :descending?
-        assert_equal :ascending, sort.next_direction
-      end
-
-      def test_uses_the_configured_initial_direction_for_an_inactive_sort
-        sort = Sort.new(href: "/widgets?filter[sort]=-created_at", initial_direction: :descending)
-
-        assert_equal :descending, sort.next_direction
       end
 
       def test_preserves_link_attributes_and_accessible_label
@@ -64,14 +55,6 @@ module BulmaPhlex
         end
 
         assert_equal "direction must be :ascending, :descending, or nil", error.message
-      end
-
-      def test_rejects_an_unknown_initial_direction
-        error = assert_raises(ArgumentError) do
-          Sort.new(href: "/widgets", initial_direction: :sideways)
-        end
-
-        assert_equal "direction must be :ascending, :descending", error.message
       end
 
       def test_normalizes_the_aria_container_key

@@ -443,7 +443,7 @@ render BulmaPhlex::Table.new(@users) do |table|
 end
 ```
 
-Set `direction:` to `:ascending` or `:descending` for the currently active column. An inactive sort defaults to ascending on its first activation; use `initial_direction: :descending` to change that. Use `link_attributes:` to add HTML attributes to the generated link, or `aria_label:` to provide a custom accessible label.
+Set `direction:` to `:ascending` or `:descending` for the currently active column. The caller controls the sort semantics and supplies the URL for the next sort state. Use `link_attributes:` to add HTML attributes to the generated link, or `aria_label:` to provide a custom accessible label.
 
 #### Pagination
 

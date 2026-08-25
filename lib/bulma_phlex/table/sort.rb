@@ -11,21 +11,19 @@ module BulmaPhlex
       DIRECTIONS = %i[ascending descending].freeze
       RESERVED_LINK_ATTRIBUTE_KEYS = %i[href aria_label].freeze
 
-      attr_reader :href, :direction, :initial_direction, :link_attributes, :aria_label
+      attr_reader :href, :direction, :link_attributes, :aria_label
 
       # @param href [String] The URL to link to for the next sort state.
       # @param direction [Symbol, nil] The current sort direction, or nil if not sorted.
-      # @param initial_direction [Symbol] The direction to sort when the column is first sorted.
+
       # @param link_attributes [Hash] Additional HTML attributes to add to the link
       # @param aria_label [String, nil] The aria-label for the link. If not provided, the link will have no aria-label.
-      def initialize(href:, direction: nil, initial_direction: :ascending, link_attributes: {}, aria_label: nil)
+      def initialize(href:, direction: nil, link_attributes: {}, aria_label: nil)
         validate_direction!(direction, allow_nil: true)
-        validate_direction!(initial_direction)
         validate_link_attributes!(link_attributes)
 
         @href = href
         @direction = direction
-        @initial_direction = initial_direction
         @link_attributes = normalize_link_attributes(link_attributes).freeze
         @aria_label = aria_label
         freeze
@@ -41,12 +39,6 @@ module BulmaPhlex
 
       def descending?
         @direction == :descending
-      end
-
-      def next_direction
-        return @initial_direction unless active?
-
-        ascending? ? :descending : :ascending
       end
 
       private
