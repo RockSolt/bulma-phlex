@@ -5,7 +5,7 @@ module BulmaPhlex
   #
   # Displays a collection of records in rows and columns. Columns are defined via the `column`,
   # `date_column`, and `conditional_icon` builder methods. Headers can optionally be sortable by
-  # passing a `Table::Sort` presentation object. Supports Bulma **style** options
+  # passing a sort hash to the column. Supports Bulma **style** options
   # (bordered, striped, hoverable) and **layout** options (narrow, fullwidth). An optional
   # **pagination** control can be added to the table footer via the `paginate` method.
   #
@@ -25,11 +25,11 @@ module BulmaPhlex
   #
   #     render BulmaPhlex::Table.new(users) do |table|
   #       table.row(class: "has-background-light") { |user| { id: "user-row-#{user.id}" } }
-  #       table.column("Name", sort: BulmaPhlex::Table::Sort.new(href: "/users?sort=name"), &:full_name)
+  #       table.column("Name", sort: { href: "/users?sort=name" }, &:full_name)
   #       table.column("Email", hidden: "touch", &:email)
-  #       table.date_column("Joined", hidden: "mobile", sort: BulmaPhlex::Table::Sort.new(
-  #         href: "/users?sort=created_at", direction: :descending
-  #       ), &:created_at, format: "%B %d, %Y")
+  #       table.date_column("Joined", hidden: "mobile", sort: {
+  #         href: "/users?sort=created_at", current_direction: :descending
+  #       }, &:created_at, format: "%B %d, %Y")
   #       table.conditional_icon("Admin?", &:admin?)
   #       table.column "Actions" do |user|
   #         link_to "Edit", edit_user_path(user), class: "button is-small"
@@ -107,14 +107,12 @@ module BulmaPhlex
     # Adds a column to the table. Can be called multiple times to define all columns.
     #
     # - `header` — The column header text
-    # - `sort` — Optional `Table::Sort`; its `href` is supplied by the caller and represents the next sort state
+    # - `sort` — Optional hash containing `href`, `current_direction`, and `link_attributes` for the generated link
     # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
     #
     # Expects a block that receives each `row` object and returns the cell content.
     def column(header, hidden: false, sort: nil, **html_attributes, &content)
-      unless sort.nil? || sort.is_a?(BulmaPhlex::Table::Sort)
-        raise ArgumentError, "sort must be a BulmaPhlex::Table::Sort or nil"
-      end
+      raise ArgumentError, "sort must be a Hash or nil" unless sort.nil? || sort.is_a?(Hash)
 
       @columns << { header:, hidden:, html_attributes:, content:, sort: }
     end
@@ -161,47 +159,11 @@ module BulmaPhlex
       sort = column[:sort]
       return th(class: header_classes(column)) { column[:header] } unless sort
 
-      attributes = sort_link_attributes(column, sort)
-
-      th(**header_attributes(column, sort)) do
-        a(**attributes) do
-          span { column[:header] }
-          render Icon.new(sort_icon(sort), icon_attributes: { aria: { hidden: "true" } }, class: "ml-1")
-        end
-      end
-    end
-
-    def sort_link_attributes(column, sort)
-      mix(
-        sort.link_attributes,
-        href: sort.href,
-        aria!: mix(sort.link_attributes.fetch(:aria, {}), label: sort_link_label(column[:header], sort))
+      render Sort.new(
+        header_label: column[:header],
+        header_classes: header_classes(column),
+        **sort
       )
-    end
-
-    def header_attributes(column, sort)
-      attributes = { class: header_classes(column) }
-      attributes[:aria_sort] = sort.direction if sort.active?
-      attributes
-    end
-
-    def sort_icon(sort)
-      return "fas fa-sort-up" if sort.ascending?
-      return "fas fa-sort-down" if sort.descending?
-
-      "fas fa-sort"
-    end
-
-    def sort_link_label(header, sort)
-      return sort.aria_label if sort.aria_label
-
-      label = header.to_s
-      if sort.active?
-        direction = sort.direction
-        "#{label}, sorted #{direction}. Activate to change sort order."
-      else
-        "Sort by #{label}"
-      end
     end
 
     def header_classes(column)

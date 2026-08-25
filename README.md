@@ -424,26 +424,26 @@ In addition to `column`, two specialized column methods are available:
 
 #### Sortable columns
 
-Pass a `BulmaPhlex::Table::Sort` object with the URL for the next sort state to add a sortable header. The component renders the sort link, icon, and accessible sort state; your application remains responsible for interpreting the sort parameters and ordering the records.
+Pass a sort hash with the URL for the next sort state to add a sortable header. The component renders the sort link, icon, and accessible sort state; your application remains responsible for interpreting the sort parameters and ordering the records.
 
 ```ruby
 render BulmaPhlex::Table.new(@users) do |table|
   table.column(
     "Name",
-    sort: BulmaPhlex::Table::Sort.new(href: users_path(sort: "name"))
+    sort: { href: users_path(sort: "name") }
   ) { |user| user.full_name }
 
   table.date_column(
     "Joined",
-    sort: BulmaPhlex::Table::Sort.new(
+    sort: {
       href: users_path(sort: "created_at"),
-      direction: :descending
-    )
+      current_direction: :descending
+    }
   ) { |user| user.created_at }
 end
 ```
 
-Set `direction:` to `:ascending` or `:descending` for the currently active column. The caller controls the sort semantics and supplies the URL for the next sort state. Use `link_attributes:` to add HTML attributes to the generated link, or `aria_label:` to provide a custom accessible label.
+Set `current_direction:` to `:ascending` or `:descending` for the currently active column. Pass additional attributes for the generated link with `link_attributes:`. The component generates an accessible label from the column header and sort state.
 
 #### Pagination
 

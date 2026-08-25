@@ -2,31 +2,39 @@
 
 module BulmaPhlex
   class Table
-    # Presentation state for a sortable table header.
-    #
-    # The caller owns the sort semantics and supplies an href for the next sort
-    # state. This object only describes how that state should be presented by a
-    # table component.
-    class Sort
+    # Internal component for rendering a sortable table header.
+    class Sort < BulmaPhlex::Base
       DIRECTIONS = %i[ascending descending].freeze
-      RESERVED_LINK_ATTRIBUTE_KEYS = %i[href aria_label].freeze
 
-      attr_reader :href, :direction, :link_attributes, :aria_label
+      # **Parameters**
+      #
+      # - `header_label` — The text to display in the table header
+      # - `header_classes` — CSS classes for the `<th>` element
+      # - `href` — The URL to navigate to when the header is clicked
+      # - `current_direction` — The current sort direction (`:ascending`, `:descending`, or `nil`)
+      # - `link_attributes` — Additional HTML attributes for the `<a>` element
+      def self.new(header_label:, header_classes:, href:, current_direction: nil, link_attributes: {})
+        super
+      end
 
-      # @param href [String] The URL to link to for the next sort state.
-      # @param direction [Symbol, nil] The current sort direction, or nil if not sorted.
-
-      # @param link_attributes [Hash] Additional HTML attributes to add to the link
-      # @param aria_label [String, nil] The aria-label for the link. If not provided, the link will have no aria-label.
-      def initialize(href:, direction: nil, link_attributes: {}, aria_label: nil)
-        validate_direction!(direction, allow_nil: true)
+      def initialize(header_label:, header_classes:, href:, current_direction: nil, link_attributes: {})
+        validate_direction!(current_direction)
         validate_link_attributes!(link_attributes)
 
+        @header_label = header_label
+        @header_classes = header_classes
         @href = href
-        @direction = direction
-        @link_attributes = normalize_link_attributes(link_attributes).freeze
-        @aria_label = aria_label
-        freeze
+        @direction = current_direction
+        @link_attributes = link_attributes
+      end
+
+      def view_template
+        th(**header_attributes) do
+          a(**link_attributes) do
+            span { @header_label }
+            render Icon.new(icon, icon_attributes: { aria: { hidden: "true" } }, class: "ml-1")
+          end
+        end
       end
 
       def active?
@@ -41,47 +49,50 @@ module BulmaPhlex
         @direction == :descending
       end
 
+      attr_reader :href, :direction
+
       private
 
-      def validate_direction!(value, allow_nil: false)
-        return if value.nil? && allow_nil
-        return if DIRECTIONS.include?(value)
+      def header_attributes
+        attributes = { class: @header_classes }
+        attributes[:aria_sort] = @direction if active?
+        attributes
+      end
+
+      def link_attributes
+        mix(
+          @link_attributes,
+          href!: @href,
+          aria!: mix(@link_attributes.fetch(:aria, {}), label!: link_label)
+        )
+      end
+
+      def link_label
+        label = @header_label.to_s
+        return "Sort by #{label}" unless active?
+
+        "#{label}, sorted #{@direction}. Activate to change sort order."
+      end
+
+      def icon
+        return "fas fa-sort-up" if ascending?
+        return "fas fa-sort-down" if descending?
+
+        "fas fa-sort"
+      end
+
+      def validate_direction!(value)
+        return if value.nil? || DIRECTIONS.include?(value)
 
         valid_directions = DIRECTIONS.map { |direction| ":#{direction}" }.join(", ")
-        raise ArgumentError, "direction must be #{valid_directions}#{", or nil" if allow_nil}"
+        raise ArgumentError, "current_direction must be #{valid_directions}, or nil"
       end
 
       def validate_link_attributes!(value)
         raise ArgumentError, "link_attributes must be a Hash" unless value.is_a?(Hash)
-
-        validate_reserved_link_attributes!(value)
-        validate_aria_link_attributes!(value)
-      end
-
-      def validate_reserved_link_attributes!(attributes)
-        reserved_attribute = RESERVED_LINK_ATTRIBUTE_KEYS.find do |key|
-          attributes.key?(key) || attributes.key?(key.to_s.tr("_", "-"))
-        end
-        return unless reserved_attribute
-
-        raise ArgumentError, "link_attributes must not include #{reserved_attribute.inspect}"
-      end
-
-      def validate_aria_link_attributes!(attributes)
-        aria_attributes = attributes[:aria] || attributes["aria"]
-        return unless aria_attributes.is_a?(Hash) && (aria_attributes.key?(:label) || aria_attributes.key?("label"))
-
-        raise ArgumentError, "link_attributes[:aria] must not include :label"
-      end
-
-      def normalize_link_attributes(attributes)
-        attributes.transform_keys { |key| key == "aria" ? :aria : key }.tap do |normalized_attributes|
-          aria_attributes = normalized_attributes[:aria]
-          next unless aria_attributes.is_a?(Hash)
-
-          normalized_attributes[:aria] = aria_attributes.transform_keys { |key| key == "label" ? :label : key }
-        end
       end
     end
+
+    private_constant :Sort
   end
 end
