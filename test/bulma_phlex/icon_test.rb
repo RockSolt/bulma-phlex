@@ -42,6 +42,19 @@ module BulmaPhlex
       HTML
     end
 
+    def test_icon_with_text_and_nowrap
+      result = Icon.new("fas fa-home", text_left: "Home", nowrap: true).call
+
+      assert_html_equal <<~HTML, result
+        <span class="icon-text is-flex-wrap-nowrap">
+          <span>Home</span>
+          <span class="icon">
+            <i class="fas fa-home" aria-hidden="true"></i>
+          </span>
+        </span>
+      HTML
+    end
+
     def test_icon_with_size
       result = Icon.new("fas fa-home", size: :medium).call
 

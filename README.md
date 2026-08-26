@@ -223,9 +223,12 @@ end
 
 Renders a [Bulma icon](https://bulma.io/documentation/elements/icon/) element. Supports color, size, optional text alongside the icon, and left/right positioning for use inside form controls.
 
+When text is rendered alongside the icon, Bulma allows the text and icon to wrap by default. Pass `nowrap: true` when they form a compact UI unit that should stay together, such as a sortable table heading, toolbar action, button label, or navigation item. Leave it unset when the text should be allowed to wrap in a constrained container.
+
 ```ruby
 render BulmaPhlex::Icon.new("fas fa-user")
 render BulmaPhlex::Icon.new("fas fa-home", size: :large, color: :primary, text_right: "Home")
+render BulmaPhlex::Icon.new("fas fa-sort", text_left: "Revenue", nowrap: true)
 ```
 
 ### Image
