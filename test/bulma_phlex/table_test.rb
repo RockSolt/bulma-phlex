@@ -51,14 +51,15 @@ module BulmaPhlex
 
       result = format_html(component.call { |table| table.column("Name", sort:, &:name) })
 
-      assert_html_includes result, '<a href="/users?sort=name" aria-label="Sort by Name">'
+      assert_html_includes result, '<a class="has-text-grey-dark" href="/users?sort=name" aria-label="Sort by Name">'
       assert_html_includes result, 'class="fas fa-sort"'
+      assert_html_includes result, 'class="icon-text is-flex-wrap-nowrap"'
       refute_includes result, "aria-sort="
     end
 
     def test_renders_active_sortable_header_with_state
       component = BulmaPhlex::Table.new([TestRecord.new(id: 1, name: "John Doe", email: "john@example.com")])
-      sort = { href: "/users?sort=name", current_direction: :descending }
+      sort = { href: "/users?sort=name", current_direction: :desc }
 
       result = format_html(component.call { |table| table.column("Name", sort:, &:name) })
 

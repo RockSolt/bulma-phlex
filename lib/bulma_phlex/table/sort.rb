@@ -4,14 +4,14 @@ module BulmaPhlex
   class Table
     # Internal component for rendering a sortable table header.
     class Sort < BulmaPhlex::Base
-      DIRECTIONS = %i[ascending descending].freeze
+      DIRECTIONS = %i[asc desc].freeze
 
       # **Parameters**
       #
       # - `header_label` — The text to display in the table header
       # - `header_classes` — CSS classes for the `<th>` element
       # - `href` — The URL to navigate to when the header is clicked
-      # - `current_direction` — The current sort direction (`:ascending`, `:descending`, or `nil`)
+      # - `current_direction` — The current sort direction (`:asc`, `:desc`, or `nil`)
       # - `link_attributes` — Additional HTML attributes for the `<a>` element
       def self.new(header_label:, header_classes:, href:, current_direction: nil, link_attributes: {})
         super
@@ -31,8 +31,7 @@ module BulmaPhlex
       def view_template
         th(**header_attributes) do
           a(**link_attributes) do
-            span { @header_label }
-            render Icon.new(icon, icon_attributes: { aria: { hidden: "true" } }, class: "ml-1")
+            render Icon.new(icon, text_left: @header_label, nowrap: true, icon_attributes: { aria: { hidden: "true" } })
           end
         end
       end
@@ -42,11 +41,11 @@ module BulmaPhlex
       end
 
       def ascending?
-        @direction == :ascending
+        @direction == :asc
       end
 
       def descending?
-        @direction == :descending
+        @direction == :desc
       end
 
       attr_reader :href, :direction
@@ -55,11 +54,17 @@ module BulmaPhlex
 
       def header_attributes
         attributes = { class: @header_classes }
-        attributes[:aria_sort] = @direction if active?
+        if active?
+          attributes[:aria_sort] = ascending? ? "ascending" : "descending"
+        end
         attributes
       end
 
       def link_attributes
+        unless @link_attributes[:class]&.include?("has-text-")
+          @link_attributes = mix(@link_attributes,
+                                 class: "has-text-grey-dark")
+        end
         mix(
           @link_attributes,
           href!: @href,
@@ -71,7 +76,8 @@ module BulmaPhlex
         label = @header_label.to_s
         return "Sort by #{label}" unless active?
 
-        "#{label}, sorted #{@direction}. Activate to change sort order."
+        sort_dir = ascending? ? "ascending" : "descending"
+        "#{label}, sorted #{sort_dir}. Activate to change sort order."
       end
 
       def icon

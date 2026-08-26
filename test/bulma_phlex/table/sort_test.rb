@@ -21,7 +21,7 @@ module BulmaPhlex
           header_label: "Name",
           header_classes: [],
           href: "/widgets?filter[sort]=-name",
-          current_direction: :ascending
+          current_direction: :asc
         )
 
         assert_predicate sort, :active?
@@ -34,7 +34,7 @@ module BulmaPhlex
           header_label: "Name",
           header_classes: [],
           href: "/widgets?filter[sort]=name",
-          current_direction: :descending
+          current_direction: :desc
         )
 
         assert_predicate sort, :active?
@@ -47,7 +47,7 @@ module BulmaPhlex
           Sort.new(header_label: "Name", header_classes: [], href: "/widgets", current_direction: :sideways)
         end
 
-        assert_equal "current_direction must be :ascending, :descending, or nil", error.message
+        assert_equal "current_direction must be :asc, :desc, or nil", error.message
       end
     end
   end
