@@ -45,6 +45,74 @@ module BulmaPhlex
       assert_html_includes result, "<td>jane@example.com</td>"
     end
 
+    def test_renders_inactive_sortable_header
+      component = BulmaPhlex::Table.new([TestRecord.new(id: 1, name: "John Doe", email: "john@example.com")])
+      sort = { href: "/users?sort=name" }
+
+      result = format_html(component.call { |table| table.column("Name", sort:, &:name) })
+
+      assert_html_includes result, '<a class="has-text-grey-dark" href="/users?sort=name" aria-label="Sort by Name">'
+      assert_html_includes result, 'class="fas fa-sort"'
+      assert_html_includes result, 'class="icon-text is-flex-wrap-nowrap"'
+      refute_includes result, "aria-sort="
+    end
+
+    def test_renders_active_sortable_header_with_state
+      component = BulmaPhlex::Table.new([TestRecord.new(id: 1, name: "John Doe", email: "john@example.com")])
+      sort = { href: "/users?sort=name", current_direction: :desc }
+
+      result = format_html(component.call { |table| table.column("Name", sort:, &:name) })
+
+      assert_html_includes result, '<th aria-sort="descending">'
+      assert_html_includes result, 'class="fas fa-sort-down"'
+      assert_html_includes result, 'aria-label="Name, sorted descending. Activate to change sort order."'
+    end
+
+    def test_rejects_invalid_sort_value
+      component = BulmaPhlex::Table.new([])
+
+      error = assert_raises(ArgumentError) { component.column("Name", sort: true, &:name) }
+
+      assert_equal "sort must be a Hash or nil", error.message
+    end
+
+    def test_renders_sort_link_attributes
+      component = BulmaPhlex::Table.new([TestRecord.new(id: 1, name: "John Doe", email: "john@example.com")])
+      sort = {
+        href: "/users?sort=name",
+        link_attributes: {
+          class: "has-text-link",
+          target: "_blank",
+          data: { turbo_frame: "widgets" },
+          aria: { describedby: "sort-help" }
+        }
+      }
+
+      result = format_html(component.call { |table| table.column("Name", sort:, &:name) })
+
+      assert_html_includes result, 'class="has-text-link"'
+      assert_html_includes result, 'target="_blank"'
+      assert_html_includes result, 'data-turbo-frame="widgets"'
+      assert_html_includes result, 'aria-describedby="sort-help"'
+      assert_html_includes result, 'aria-label="Sort by Name"'
+    end
+
+    def test_preserves_component_owned_sort_attributes
+      component = BulmaPhlex::Table.new([TestRecord.new(id: 1, name: "John Doe", email: "john@example.com")])
+      sort = {
+        href: "/users?sort=name",
+        link_attributes: { href: "/incorrect", aria: { label: "Incorrect label", describedby: "sort-help" } }
+      }
+
+      result = format_html(component.call { |table| table.column("Name", sort:, &:name) })
+
+      assert_html_includes result, 'href="/users?sort=name"'
+      refute_includes result, "/incorrect /users?sort=name"
+      assert_html_includes result, 'aria-label="Sort by Name"'
+      refute_includes result, "Incorrect label"
+      assert_html_includes result, 'aria-describedby="sort-help"'
+    end
+
     def test_adds_is_hidden_classes
       rows = [
         TestRecord.new(id: 1, name: "John Doe", email: "john@example.com"),

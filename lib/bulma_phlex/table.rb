@@ -4,7 +4,8 @@ module BulmaPhlex
   # Renders the [Bulma table](https://bulma.io/documentation/elements/table/) component.
   #
   # Displays a collection of records in rows and columns. Columns are defined via the `column`,
-  # `date_column`, and `conditional_icon` builder methods. Supports Bulma **style** options
+  # `date_column`, and `conditional_icon` builder methods. Headers can optionally be sortable by
+  # passing a sort hash to the column. Supports Bulma **style** options
   # (bordered, striped, hoverable) and **layout** options (narrow, fullwidth). An optional
   # **pagination** control can be added to the table footer via the `paginate` method.
   #
@@ -24,9 +25,11 @@ module BulmaPhlex
   #
   #     render BulmaPhlex::Table.new(users) do |table|
   #       table.row(class: "has-background-light") { |user| { id: "user-row-#{user.id}" } }
-  #       table.column("Name", &:full_name)
+  #       table.column("Name", sort: { href: "/users?sort=name" }, &:full_name)
   #       table.column("Email", hidden: "touch", &:email)
-  #       table.date_column("Joined", hidden: "mobile", &:created_at, format: "%B %d, %Y")
+  #       table.date_column("Joined", hidden: "mobile", sort: {
+  #         href: "/users?sort=created_at", current_direction: :descending
+  #       }, &:created_at, format: "%B %d, %Y")
   #       table.conditional_icon("Admin?", &:admin?)
   #       table.column "Actions" do |user|
   #         link_to "Edit", edit_user_path(user), class: "button is-small"
@@ -104,11 +107,14 @@ module BulmaPhlex
     # Adds a column to the table. Can be called multiple times to define all columns.
     #
     # - `header` — The column header text
+    # - `sort` — Optional hash containing `href`, `current_direction`, and `link_attributes` for the generated link
     # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
     #
     # Expects a block that receives each `row` object and returns the cell content.
-    def column(header, hidden: false, **html_attributes, &content)
-      @columns << { header:, hidden:, html_attributes:, content: }
+    def column(header, hidden: false, sort: nil, **html_attributes, &content)
+      raise ArgumentError, "sort must be a Hash or nil" unless sort.nil? || sort.is_a?(Hash)
+
+      @columns << { header:, hidden:, html_attributes:, content:, sort: }
     end
 
     # Adds a date-formatted column to the table. Can be called multiple times.
@@ -118,8 +124,8 @@ module BulmaPhlex
     # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
     #
     # Expects a block that receives each `row` object and returns a `Date` or `Time` value.
-    def date_column(header, hidden: false, format: "%Y-%m-%d", **html_attributes, &content)
-      column(header, hidden:, **html_attributes) do |row|
+    def date_column(header, hidden: false, format: "%Y-%m-%d", sort: nil, **html_attributes, &content)
+      column(header, hidden:, sort:, **html_attributes) do |row|
         content.call(row)&.strftime(format)
       end
     end
@@ -131,10 +137,10 @@ module BulmaPhlex
     # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
     #
     # Expects a block that receives each `row` object and returns a truthy or falsy value.
-    def conditional_icon(header, hidden: false, icon_class: "fas fa-check", **html_attributes, &content)
+    def conditional_icon(header, hidden: false, icon_class: "fas fa-check", sort: nil, **html_attributes, &content)
       html_attributes[:class] = [html_attributes[:class], "has-text-centered"].compact.join(" ")
 
-      column(header, hidden:, **html_attributes) do |row|
+      column(header, hidden:, sort:, **html_attributes) do |row|
         Icon(icon_class) if content.call(row)
       end
     end
@@ -150,7 +156,14 @@ module BulmaPhlex
     private
 
     def table_header(column)
-      th(class: header_classes(column)) { column[:header] }
+      sort = column[:sort]
+      return th(class: header_classes(column)) { column[:header] } unless sort
+
+      render Sort.new(
+        header_label: column[:header],
+        header_classes: header_classes(column),
+        **sort
+      )
     end
 
     def header_classes(column)
