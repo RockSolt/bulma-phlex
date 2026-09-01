@@ -173,7 +173,7 @@ module BulmaPhlex
       component = BulmaPhlex::Card.new
 
       result = component.call do |card|
-        card.footer_link("Profile", "/profile", icon: "fas fa-user")
+        card.footer_link("Profile", "/profile", icon: "fa-solid fa-user")
       end
 
       expected_html = <<~HTML
@@ -182,7 +182,7 @@ module BulmaPhlex
             <a href="/profile" class="card-footer-item">
               <span class="icon-text">
                 <span class='icon'>
-                  <i class='fas fa-user'></i>
+                  <i class='fa-solid fa-user'></i>
                 </span>
                 <span>Profile</span>
               </span>

@@ -24,11 +24,13 @@ module BulmaPhlex
     end
 
     def test_exposes_default_icon_configuration
-      assert_equal({ ascending: "fas fa-sort-up", descending: "fas fa-sort-down", inactive: "fas fa-sort" },
+      assert_equal({ ascending: "fa-solid fa-sort-up",
+                     descending: "fa-solid fa-sort-down",
+                     inactive: "fa-solid fa-sort" },
                    @icons.sort)
-      assert_equal "fas fa-angle-down", @icons.dropdown
-      assert_equal "fas fa-upload", @icons.file_upload
-      assert_equal "fas fa-check", @icons.conditional
+      assert_equal "fa-solid fa-angle-down", @icons.dropdown
+      assert_equal "fa-solid fa-upload", @icons.file_upload
+      assert_equal "fa-solid fa-check", @icons.conditional
     end
 
     def test_applies_configured_sort_icons

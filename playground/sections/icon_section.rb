@@ -14,45 +14,45 @@ module Playground
 
         h3(class: "subtitle is-5") { "Basic" }
         div(class: "mb-5") do
-          render BulmaPhlex::Icon.new("fas fa-check")
-          render BulmaPhlex::Icon.new("fas fa-times")
-          render BulmaPhlex::Icon.new("fas fa-download")
+          render BulmaPhlex::Icon.new("fa-solid fa-check")
+          render BulmaPhlex::Icon.new("fa-solid fa-xmark")
+          render BulmaPhlex::Icon.new("fa-solid fa-download")
         end
 
         h3(class: "subtitle is-5") { "Sizes" }
         div(class: "mb-5") do
-          render BulmaPhlex::Icon.new("fas fa-star", size: :small)
-          render BulmaPhlex::Icon.new("fas fa-star")
-          render BulmaPhlex::Icon.new("fas fa-star", size: :medium)
-          render BulmaPhlex::Icon.new("fas fa-star", size: :large)
+          render BulmaPhlex::Icon.new("fa-solid fa-star", size: :small)
+          render BulmaPhlex::Icon.new("fa-solid fa-star")
+          render BulmaPhlex::Icon.new("fa-solid fa-star", size: :medium)
+          render BulmaPhlex::Icon.new("fa-solid fa-star", size: :large)
         end
 
         h3(class: "subtitle is-5") { "Colors" }
         div(class: "mb-5") do
-          render BulmaPhlex::Icon.new("fas fa-check", color: :success)
-          render BulmaPhlex::Icon.new("fas fa-exclamation-triangle", color: :warning)
-          render BulmaPhlex::Icon.new("fas fa-times", color: :danger)
-          render BulmaPhlex::Icon.new("fas fa-info-circle", color: :info)
-          render BulmaPhlex::Icon.new("fas fa-circle", color: :primary)
+          render BulmaPhlex::Icon.new("fa-solid fa-check", color: :success)
+          render BulmaPhlex::Icon.new("fa-solid fa-triangle-exclamation", color: :warning)
+          render BulmaPhlex::Icon.new("fa-solid fa-xmark", color: :danger)
+          render BulmaPhlex::Icon.new("fa-solid fa-circle-info", color: :info)
+          render BulmaPhlex::Icon.new("fa-solid fa-circle", color: :primary)
         end
 
         h3(class: "subtitle is-5") { "Size + Color" }
         div(class: "mb-5") do
-          render BulmaPhlex::Icon.new("fas fa-home", size: :large, color: :primary)
-          render BulmaPhlex::Icon.new("fas fa-bell", size: :medium, color: :danger)
+          render BulmaPhlex::Icon.new("fa-solid fa-home", size: :large, color: :primary)
+          render BulmaPhlex::Icon.new("fa-solid fa-bell", size: :medium, color: :danger)
         end
 
         h3(class: "subtitle is-5") { "Text Right (icon-text)" }
         div(class: "mb-5") do
-          render BulmaPhlex::Icon.new("fas fa-home", text_right: "Home")
-          render BulmaPhlex::Icon.new("fas fa-envelope", text_right: "Contact")
-          render BulmaPhlex::Icon.new("fas fa-user", text_right: "Profile")
+          render BulmaPhlex::Icon.new("fa-solid fa-home", text_right: "Home")
+          render BulmaPhlex::Icon.new("fa-solid fa-envelope", text_right: "Contact")
+          render BulmaPhlex::Icon.new("fa-solid fa-user", text_right: "Profile")
         end
 
         h3(class: "subtitle is-5") { "Text Left (icon-text)" }
         div(class: "mb-5") do
-          render BulmaPhlex::Icon.new("fas fa-check", text_left: "Confirmed")
-          render BulmaPhlex::Icon.new("fas fa-lock", text_left: "Secure")
+          render BulmaPhlex::Icon.new("fa-solid fa-check", text_left: "Confirmed")
+          render BulmaPhlex::Icon.new("fa-solid fa-lock", text_left: "Secure")
         end
 
         h3(class: "subtitle is-5") { "Left / Right Flags (for form controls)" }
@@ -75,8 +75,8 @@ module Playground
           div(class: "field") do
             div(class: "control has-icons-left has-icons-right") do
               input(class: "input", type: "email", placeholder: "Email")
-              render BulmaPhlex::Icon.new("fas fa-envelope", size: :small, left: true)
-              render BulmaPhlex::Icon.new("fas fa-check", size: :small, right: true)
+              render BulmaPhlex::Icon.new("fa-solid fa-envelope", size: :small, left: true)
+              render BulmaPhlex::Icon.new("fa-solid fa-check", size: :small, right: true)
             end
           end
         end

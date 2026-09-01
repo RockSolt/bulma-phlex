@@ -133,9 +133,9 @@ module BulmaPhlex
     def test_with_icons
       component = BulmaPhlex::Breadcrumb.new
       results = component.call do |bc|
-        bc.item("Bulma", href: "/", icon: "fas fa-home")
-        bc.item("Components", href: "/components", icon: "fas fa-puzzle-piece")
-        bc.item("Breadcrumb", icon: "fas fa-thumbs-up")
+        bc.item("Bulma", href: "/", icon: "fa-solid fa-home")
+        bc.item("Components", href: "/components", icon: "fa-solid fa-puzzle-piece")
+        bc.item("Breadcrumb", icon: "fa-solid fa-thumbs-up")
       end
 
       assert_html_equal <<~HTML, results
@@ -144,7 +144,7 @@ module BulmaPhlex
             <li>
               <a href="/">
                 <span class="icon is-small">
-                  <i class="fas fa-home" aria-hidden="true"></i>
+                  <i class="fa-solid fa-home" aria-hidden="true"></i>
                 </span>
                 <span>Bulma</span>
               </a>
@@ -152,7 +152,7 @@ module BulmaPhlex
             <li>
               <a href="/components">
                 <span class="icon is-small">
-                  <i class="fas fa-puzzle-piece" aria-hidden="true"></i>
+                  <i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i>
                 </span>
                 <span>Components</span>
               </a>
@@ -160,7 +160,7 @@ module BulmaPhlex
             <li class="is-active">
               <a aria-current="page">
                 <span class="icon is-small">
-                  <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+                  <i class="fa-solid fa-thumbs-up" aria-hidden="true"></i>
                 </span>
                 <span>Breadcrumb</span>
               </a>

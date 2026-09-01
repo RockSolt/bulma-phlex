@@ -35,7 +35,7 @@ module Playground
             nav.brand do
               a(class: "navbar-item", href: "#") do
                 span(class: "icon-text") do
-                  span(class: "icon") { i(class: "fas fa-feather") }
+                  span(class: "icon") { i(class: "fa-solid fa-feather") }
                   span { plain "BulmaPhlex" }
                 end
               end
@@ -57,7 +57,7 @@ module Playground
 
             nav.right do
               a(href: "#", class: "navbar-item") do
-                span(class: "icon") { i(class: "fas fa-bell") }
+                span(class: "icon") { i(class: "fa-solid fa-bell") }
               end
               div(class: "navbar-item") do
                 render BulmaPhlex::Button.new(outlined: true, size: "small") { "Log in" }

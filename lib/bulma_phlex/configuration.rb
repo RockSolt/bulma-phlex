@@ -9,13 +9,13 @@ module BulmaPhlex
 
       def initialize
         @sort = {
-          ascending: "fas fa-sort-up",
-          descending: "fas fa-sort-down",
-          inactive: "fas fa-sort"
+          ascending: "fa-solid fa-sort-up",
+          descending: "fa-solid fa-sort-down",
+          inactive: "fa-solid fa-sort"
         }
-        @dropdown = "fas fa-angle-down"
-        @file_upload = "fas fa-upload"
-        @conditional = "fas fa-check"
+        @dropdown = "fa-solid fa-angle-down"
+        @file_upload = "fa-solid fa-upload"
+        @conditional = "fa-solid fa-check"
       end
     end
 

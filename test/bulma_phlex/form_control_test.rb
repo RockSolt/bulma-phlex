@@ -29,28 +29,28 @@ module BulmaPhlex
     end
 
     def test_renders_icon_left
-      component = FormControl.new(icon_left: "fas fa-check")
+      component = FormControl.new(icon_left: "fa-solid fa-check")
       output = component.call { "Content" }
 
       assert_html_equal <<~HTML, output
         <div class="control has-icons-left">
           Content
           <span class="icon is-small is-left">
-            <i class="fas fa-check"></i>
+            <i class="fa-solid fa-check"></i>
           </span>
         </div>
       HTML
     end
 
     def test_renders_icon_right
-      component = FormControl.new(icon_right: "fas fa-check")
+      component = FormControl.new(icon_right: "fa-solid fa-check")
       output = component.call { "Content" }
 
       assert_html_equal <<~HTML, output
         <div class="control has-icons-right">
           Content
           <span class="icon is-small is-right">
-            <i class="fas fa-check"></i>
+            <i class="fa-solid fa-check"></i>
           </span>
         </div>
       HTML

@@ -74,7 +74,7 @@ module BulmaPhlex
       component = BulmaPhlex::Tabs.new(boxed: true)
 
       result = component.call do |tabs|
-        tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
+        tabs.tab(id: "tab1", title: "Settings", icon: "fa-solid fa-gear") do
           "Settings content"
         end
       end
@@ -86,7 +86,7 @@ module BulmaPhlex
       component = BulmaPhlex::Tabs.new(align: :centered)
 
       result = component.call do |tabs|
-        tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
+        tabs.tab(id: "tab1", title: "Settings", icon: "fa-solid fa-gear") do
           "Settings content"
         end
       end
@@ -98,7 +98,7 @@ module BulmaPhlex
       component = BulmaPhlex::Tabs.new(align: :right)
 
       result = component.call do |tabs|
-        tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
+        tabs.tab(id: "tab1", title: "Settings", icon: "fa-solid fa-gear") do
           "Settings content"
         end
       end
@@ -110,7 +110,7 @@ module BulmaPhlex
       component = BulmaPhlex::Tabs.new(size: "small")
 
       result = component.call do |tabs|
-        tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
+        tabs.tab(id: "tab1", title: "Settings", icon: "fa-solid fa-gear") do
           "Settings content"
         end
       end
@@ -122,7 +122,7 @@ module BulmaPhlex
       component = BulmaPhlex::Tabs.new(toggle: true)
 
       result = component.call do |tabs|
-        tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
+        tabs.tab(id: "tab1", title: "Settings", icon: "fa-solid fa-gear") do
           "Settings content"
         end
       end
@@ -134,7 +134,7 @@ module BulmaPhlex
       component = BulmaPhlex::Tabs.new(rounded: true)
 
       result = component.call do |tabs|
-        tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
+        tabs.tab(id: "tab1", title: "Settings", icon: "fa-solid fa-gear") do
           "Settings content"
         end
       end
@@ -146,7 +146,7 @@ module BulmaPhlex
       component = BulmaPhlex::Tabs.new(fullwidth: true)
 
       result = component.call do |tabs|
-        tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
+        tabs.tab(id: "tab1", title: "Settings", icon: "fa-solid fa-gear") do
           "Settings content"
         end
       end
@@ -158,12 +158,12 @@ module BulmaPhlex
       component = BulmaPhlex::Tabs.new
 
       result = component.call do |tabs|
-        tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
+        tabs.tab(id: "tab1", title: "Settings", icon: "fa-solid fa-gear") do
           "Settings content"
         end
       end
 
-      assert_html_includes result, '<span class="icon mr-1"><i class="fas fa-cog"></i></span>'
+      assert_html_includes result, '<span class="icon mr-1"><i class="fa-solid fa-gear"></i></span>'
       assert_html_includes result, "<span>Settings</span>"
     end
 
@@ -171,7 +171,7 @@ module BulmaPhlex
       component = BulmaPhlex::Tabs.new(id: "my-tabs", data: { custom: "value" })
 
       result = component.call do |tabs|
-        tabs.tab(id: "tab1", title: "Settings", icon: "fas fa-cog") do
+        tabs.tab(id: "tab1", title: "Settings", icon: "fa-solid fa-gear") do
           "Settings content"
         end
       end

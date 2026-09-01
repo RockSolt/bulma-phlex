@@ -6,8 +6,8 @@ module BulmaPhlex
   class FormControl < Base
     # **Parameters**
     #
-    # - `icon_left` — Icon class for the left side of the control (e.g. `"fas fa-check"`)
-    # - `icon_right` — Icon class for the right side of the control (e.g. `"fas fa-check"`)
+    # - `icon_left` — Icon class for the left side of the control (e.g. `"fa-solid fa-check"`)
+    # - `icon_right` — Icon class for the right side of the control (e.g. `"fa-solid fa-check"`)
     # - `**html_attributes` — Additional HTML attributes for the control element
     def self.new(icon_left: nil, icon_right: nil, **html_attributes)
       super

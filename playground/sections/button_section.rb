@@ -73,26 +73,27 @@ module Playground
 
         h3(class: "subtitle is-5") { "With Icon Left / Icon Right" }
         div(class: "buttons mb-5") do
-          render BulmaPhlex::Button.new("Save", color: "primary", icon_left: "fas fa-check")
-          render BulmaPhlex::Button.new("Delete", color: "danger", icon_left: "fas fa-trash")
-          render BulmaPhlex::Button.new("Next", icon_right: "fas fa-angle-right")
-          render BulmaPhlex::Button.new("Export", color: "info", icon_left: "fas fa-download",
-                                                  icon_right: "fas fa-angle-down")
+          render BulmaPhlex::Button.new("Save", color: "primary", icon_left: "fa-solid fa-check")
+          render BulmaPhlex::Button.new("Delete", color: "danger", icon_left: "fa-solid fa-trash")
+          render BulmaPhlex::Button.new("Next", icon_right: "fa-solid fa-angle-right")
+          render BulmaPhlex::Button.new("Export", color: "info", icon_left: "fa-solid fa-download",
+                                                  icon_right: "fa-solid fa-angle-down")
         end
 
         h3(class: "subtitle is-5") { "Icon Only (icon:)" }
         div(class: "buttons mb-5") do
-          render BulmaPhlex::Button.new(icon: "fas fa-home")
-          render BulmaPhlex::Button.new(color: "primary", icon: "fas fa-check")
-          render BulmaPhlex::Button.new(color: "danger", icon: "fas fa-trash")
-          render BulmaPhlex::Button.new(color: "info", size: "large", icon: "fas fa-search")
+          render BulmaPhlex::Button.new(icon: "fa-solid fa-home")
+          render BulmaPhlex::Button.new(color: "primary", icon: "fa-solid fa-check")
+          render BulmaPhlex::Button.new(color: "danger", icon: "fa-solid fa-trash")
+          render BulmaPhlex::Button.new(color: "info", size: "large", icon: "fa-solid fa-search")
         end
 
         h3(class: "subtitle is-5") { "As Anchor (href:)" }
         div(class: "buttons mb-5") do
           render BulmaPhlex::Button.new("Anchor", color: "primary", href: "#")
           render BulmaPhlex::Button.new("Outlined Anchor", color: "info", href: "#", outlined: true)
-          render BulmaPhlex::Button.new("External", color: "success", href: "#", icon_left: "fas fa-external-link-alt")
+          render BulmaPhlex::Button.new("External", color: "success", href: "#",
+                                                    icon_left: "fa-solid fa-arrow-up-right-from-square")
         end
 
         h3(class: "subtitle is-5") { "As Input (input:)" }

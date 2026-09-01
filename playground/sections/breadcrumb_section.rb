@@ -71,9 +71,9 @@ module Playground
 
         h3(class: "subtitle is-5") { "With Icons" }
         render BulmaPhlex::Breadcrumb.new do |bc|
-          bc.item("Home", href: "/", icon: "fas fa-home")
-          bc.item("Components", href: "/components", icon: "fas fa-cubes")
-          bc.item("Breadcrumb", icon: "fas fa-link")
+          bc.item("Home", href: "/", icon: "fa-solid fa-home")
+          bc.item("Components", href: "/components", icon: "fa-solid fa-cubes")
+          bc.item("Breadcrumb", icon: "fa-solid fa-link")
         end
       end
     end

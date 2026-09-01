@@ -16,7 +16,7 @@ module BulmaPhlex
           <div class="dropdown-trigger">
             <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" data-action="bulma-phlex--dropdown#toggle">
               <span>Menu</span>
-              <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+              <span class="icon is-small"><i class="fa-solid fa-angle-down" aria-hidden="true"></i></span>
             </button>
           </div>
           <div class="dropdown-menu" id="dropdown-menu" role="menu">
@@ -40,7 +40,7 @@ module BulmaPhlex
           <div class="dropdown-trigger">
             <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" data-action="bulma-phlex--dropdown#toggle">
               <span>Menu</span>
-              <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+              <span class="icon is-small"><i class="fa-solid fa-angle-down" aria-hidden="true"></i></span>
             </button>
           </div>
           <div class="dropdown-menu" id="dropdown-menu" role="menu">
@@ -67,7 +67,7 @@ module BulmaPhlex
           <div class="dropdown-trigger">
             <button class="button" aria-haspopup="true" aria-controls="dropdown-menu" data-action="bulma-phlex--dropdown#toggle">
               <span>Menu</span>
-              <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>
+              <span class="icon is-small"><i class="fa-solid fa-angle-down" aria-hidden="true"></i></span>
             </button>
           </div>
           <div class="dropdown-menu" id="dropdown-menu" role="menu">
@@ -121,11 +121,11 @@ module BulmaPhlex
     end
 
     def test_custom_icon
-      component = BulmaPhlex::Dropdown.new("Menu", icon: "fas fa-caret-down")
+      component = BulmaPhlex::Dropdown.new("Menu", icon: "fa-solid fa-caret-down")
 
       result = component.call
 
-      assert_includes result, "fas fa-caret-down"
+      assert_includes result, "fa-solid fa-caret-down"
     end
 
     def test_dropdown_link_escapes_label
@@ -140,12 +140,12 @@ module BulmaPhlex
     end
 
     def test_dropdown_with_custom_label_and_icon
-      component = BulmaPhlex::Dropdown.new("Actions", icon: "fas fa-ellipsis-v")
+      component = BulmaPhlex::Dropdown.new("Actions", icon: "fa-solid fa-ellipsis-vertical")
 
       result = component.call
 
       assert_includes result, "Actions"
-      assert_includes result, "fas fa-ellipsis-v"
+      assert_includes result, "fa-solid fa-ellipsis-vertical"
     end
 
     def test_dropdown_with_string_alignment

@@ -48,7 +48,7 @@ module Playground
         div(class: "mb-5") do
           render BulmaPhlex::Level.new do |level|
             level.left do
-              render BulmaPhlex::Icon.new("fas fa-bell", text_right: "Notifications")
+              render BulmaPhlex::Icon.new("fa-solid fa-bell", text_right: "Notifications")
             end
 
             level.right do
@@ -56,7 +56,7 @@ module Playground
             end
 
             level.right do
-              render BulmaPhlex::Button.new(color: "info", icon_left: "fas fa-sync") { "Refresh" }
+              render BulmaPhlex::Button.new(color: "info", icon_left: "fa-solid fa-arrows-rotate") { "Refresh" }
             end
           end
         end

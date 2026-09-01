@@ -122,7 +122,7 @@ Renders a [Bulma button](https://bulma.io/documentation/elements/button/) elemen
 The component generates a `<button>` by default. Pass an `href:` attribute to generate an `<a>` element instead. Pass `input: "submit"` (or `"button"` or `"reset"`) to generate an `<input>` element.
 
 ```ruby
-BulmaPhlex::Button("Like", color: "primary", size: "large", icon: "fas fa-thumbs-up")
+BulmaPhlex::Button("Like", color: "primary", size: "large", icon: "fa-solid fa-thumbs-up")
 BulmaPhlex::Button(href: "/profile") { "View Profile" }
 BulmaPhlex::Button(input: "submit", color: "success")
 ```
@@ -141,7 +141,7 @@ render BulmaPhlex::Card.new do |card|
     "This is some card content"
   end
   card.footer_link("View", "/view", target: "_blank")
-  card.footer_link("Edit", "/edit", icon: "fas fa-edit")
+  card.footer_link("Edit", "/edit", icon: "fa-solid fa-pen-to-square")
 end
 ```
 
@@ -246,9 +246,9 @@ Renders a [Bulma icon](https://bulma.io/documentation/elements/icon/) element. S
 When text is rendered alongside the icon, Bulma allows the text and icon to wrap by default. Pass `nowrap: true` when they form a compact UI unit that should stay together, such as a sortable table heading, toolbar action, button label, or navigation item. Leave it unset when the text should be allowed to wrap in a constrained container.
 
 ```ruby
-render BulmaPhlex::Icon.new("fas fa-user")
-render BulmaPhlex::Icon.new("fas fa-home", size: :large, color: :primary, text_right: "Home")
-render BulmaPhlex::Icon.new("fas fa-sort", text_left: "Revenue", nowrap: true)
+render BulmaPhlex::Icon.new("fa-solid fa-user")
+render BulmaPhlex::Icon.new("fa-solid fa-home", size: :large, color: :primary, text_right: "Home")
+render BulmaPhlex::Icon.new("fa-solid fa-sort", text_left: "Revenue", nowrap: true)
 ```
 
 ### Image
@@ -497,7 +497,7 @@ Renders a [Bulma tabs](https://bulma.io/documentation/components/tabs/) componen
 ```ruby
 render BulmaPhlex::Tabs.new(boxed: true) do |tabs|
   tabs.tab(id: "profile", title: "Profile", active: true) { "Profile content" }
-  tabs.tab(id: "settings", title: "Settings", icon: "fas fa-cog") { "Settings content" }
+  tabs.tab(id: "settings", title: "Settings", icon: "fa-solid fa-gear") { "Settings content" }
 end
 ```
 

@@ -80,7 +80,7 @@ module BulmaPhlex
     #
     # - `text` — The link label text
     # - `href` — The URL the link points to
-    # - `icon:` — Optional icon class string (e.g. `"fas fa-edit"`) to render an icon alongside the text
+    # - `icon:` — Optional icon class string (e.g. `"fa-solid fa-pen-to-square"`) to render an icon alongside the text
     # - `**html_attributes` — Additional HTML attributes for the `<a>` element (e.g. `target:`, `class:`)
     def footer_link(text, href, **html_attributes)
       (@footer_items ||= []) << [text, href, html_attributes]

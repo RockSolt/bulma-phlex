@@ -34,9 +34,9 @@ module Playground
             card.content do
               plain "Cards can include a footer with one or more link items."
             end
-            card.footer_link("View", "#", icon: "fas fa-eye")
-            card.footer_link("Edit", "#", icon: "fas fa-edit", class: "has-text-primary")
-            card.footer_link("Delete", "#", icon: "fas fa-trash", class: "has-text-danger")
+            card.footer_link("View", "#", icon: "fa-solid fa-eye")
+            card.footer_link("Edit", "#", icon: "fa-solid fa-pen-to-square", class: "has-text-primary")
+            card.footer_link("Delete", "#", icon: "fa-solid fa-trash", class: "has-text-danger")
           end
         end
 

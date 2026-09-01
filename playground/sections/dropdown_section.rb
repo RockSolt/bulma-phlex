@@ -28,7 +28,7 @@ module Playground
             d.divider
             d.item do
               span(class: "icon-text") do
-                span(class: "icon") { i(class: "fas fa-user") }
+                span(class: "icon") { i(class: "fa-solid fa-user") }
                 span { plain "Signed in as user@example.com" }
               end
             end
@@ -37,7 +37,8 @@ module Playground
 
         h3(class: "label") { "Aligned & Icon" }
         div(class: "mb-5") do
-          render BulmaPhlex::Dropdown.new("More", click: false, alignment: "right", icon: "fas fa-ellipsis-v") do |d|
+          render BulmaPhlex::Dropdown.new("More", click: false, alignment: "right",
+                                                  icon: "fa-solid fa-ellipsis-vertical") do |d|
             d.link "Documentation", "https://bulma.io"
             d.link "Source", "#"
             d.divider
