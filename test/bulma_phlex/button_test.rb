@@ -117,13 +117,13 @@ module BulmaPhlex
     end
 
     def test_icon_left
-      component = BulmaPhlex::Button.new(icon_left: "fas fa-pencil")
+      component = BulmaPhlex::Button.new(icon_left: "fa-solid fa-pencil")
       result = component.call { "Button with Left Icon" }
 
       assert_html_equal <<~HTML, result
         <button class="button">
           <span class="icon">
-            <i class="fas fa-pencil"></i>
+            <i class="fa-solid fa-pencil"></i>
           </span>
           <span>Button with Left Icon</span>
         </button>
@@ -131,27 +131,27 @@ module BulmaPhlex
     end
 
     def test_icon_right
-      component = BulmaPhlex::Button.new(icon_right: "fas fa-trash")
+      component = BulmaPhlex::Button.new(icon_right: "fa-solid fa-trash")
       result = component.call { "Button with Right Icon" }
 
       assert_html_equal <<~HTML, result
         <button class="button">
           <span>Button with Right Icon</span>
           <span class="icon">
-            <i class="fas fa-trash"></i>
+            <i class="fa-solid fa-trash"></i>
           </span>
         </button>
       HTML
     end
 
     def test_icon
-      component = BulmaPhlex::Button.new(icon: "fas fa-check")
+      component = BulmaPhlex::Button.new(icon: "fa-solid fa-check")
       result = component.call
 
       assert_html_equal <<~HTML, result
         <button class="button">
           <span class="icon">
-            <i class="fas fa-check"></i>
+            <i class="fa-solid fa-check"></i>
           </span>
         </button>
       HTML

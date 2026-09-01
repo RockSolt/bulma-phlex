@@ -52,7 +52,7 @@ module BulmaPhlex
       result = format_html(component.call { |table| table.column("Name", sort:, &:name) })
 
       assert_html_includes result, '<a class="has-text-grey-dark" href="/users?sort=name" aria-label="Sort by Name">'
-      assert_html_includes result, 'class="fas fa-sort"'
+      assert_html_includes result, 'class="fa-solid fa-sort"'
       assert_html_includes result, 'class="icon-text is-flex-wrap-nowrap"'
       refute_includes result, "aria-sort="
     end
@@ -64,7 +64,7 @@ module BulmaPhlex
       result = format_html(component.call { |table| table.column("Name", sort:, &:name) })
 
       assert_html_includes result, '<th aria-sort="descending">'
-      assert_html_includes result, 'class="fas fa-sort-down"'
+      assert_html_includes result, 'class="fa-solid fa-sort-down"'
       assert_html_includes result, 'aria-label="Name, sorted descending. Activate to change sort order."'
     end
 
@@ -403,7 +403,7 @@ module BulmaPhlex
       component = BulmaPhlex::Table.new(rows)
 
       raw_result = component.call do |table|
-        table.conditional_icon("Active", icon_class: "fas fa-check", &:active)
+        table.conditional_icon("Active", icon_class: "fa-solid fa-check", &:active)
       end
       result = format_html(raw_result)
 
@@ -415,14 +415,14 @@ module BulmaPhlex
       component = BulmaPhlex::Table.new(row)
 
       raw_result = component.call do |table|
-        table.conditional_icon("Active", icon_class: "fas fa-check", &:active)
+        table.conditional_icon("Active", icon_class: "fa-solid fa-check", &:active)
       end
       result = format_html(raw_result)
 
       assert_html_includes result, <<~HTML
         <td class="has-text-centered">
           <span class="icon">
-            <i class="fas fa-check"></i>
+            <i class="fa-solid fa-check"></i>
           </span>
         </td>
       HTML
@@ -433,7 +433,7 @@ module BulmaPhlex
       component = BulmaPhlex::Table.new(row)
 
       raw_result = component.call do |table|
-        table.conditional_icon("Active", icon_class: "fas fa-check", &:active)
+        table.conditional_icon("Active", icon_class: "fa-solid fa-check", &:active)
       end
       result = format_html(raw_result)
 
@@ -445,7 +445,7 @@ module BulmaPhlex
       component = BulmaPhlex::Table.new(row)
 
       raw_result = component.call do |table|
-        table.conditional_icon("Active", hidden: "touch", icon_class: "fas fa-check", &:active)
+        table.conditional_icon("Active", hidden: "touch", icon_class: "fa-solid fa-check", &:active)
       end
       result = format_html(raw_result)
 

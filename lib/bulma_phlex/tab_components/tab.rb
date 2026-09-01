@@ -11,7 +11,7 @@ module BulmaPhlex
       #
       # - `id` — Unique identifier for the tab
       # - `title` — The text displayed on the tab
-      # - `icon` — Optional icon class to display on the tab (e.g. `"fas fa-cog"`)
+      # - `icon` — Optional icon class to display on the tab (e.g. `"fa-solid fa-gear"`)
       # - `active` — If `true`, marks the tab as currently active
       # - `data_attributes_proc` — A proc that generates data attributes for the tab
       def self.new(id:, title:, icon:, active:,

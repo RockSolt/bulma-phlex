@@ -16,12 +16,12 @@ module BulmaPhlex
   #
   # ## Example
   #
-  #     render BulmaPhlex::Icon.new("fas fa-home")
-  #     render BulmaPhlex::Icon.new("fas fa-home", color: :primary, size: :large, text_right: "Home")
+  #     render BulmaPhlex::Icon.new("fa-solid fa-home")
+  #     render BulmaPhlex::Icon.new("fa-solid fa-home", color: :primary, size: :large, text_right: "Home")
   class Icon < BulmaPhlex::Base
     # **Parameters**
     #
-    # - `icon` — The icon class string (e.g. `"fas fa-home"`)
+    # - `icon` — The icon class string (e.g. `"fa-solid fa-home"`)
     # - `color` — Sets the [color of the icon](https://bulma.io/documentation/elements/icon/#colors)
     # - `size` — Sets the [size of the icon](https://bulma.io/documentation/elements/icon/#sizes)
     # - `text_right` — Text to display to the right of the icon

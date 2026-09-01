@@ -13,19 +13,22 @@ module BulmaPhlex
       # - `href` — The URL to navigate to when the header is clicked
       # - `current_direction` — The current sort direction (`:asc`, `:desc`, or `nil`)
       # - `link_attributes` — Additional HTML attributes for the `<a>` element
-      def self.new(header_label:, header_classes:, href:, current_direction: nil, link_attributes: {})
+      # - `icons` — Icon classes for `ascending`, `descending`, and `inactive` states
+      def self.new(header_label:, header_classes:, href:, current_direction: nil, link_attributes: {}, icons: nil)
         super
       end
 
-      def initialize(header_label:, header_classes:, href:, current_direction: nil, link_attributes: {})
+      def initialize(header_label:, header_classes:, href:, current_direction: nil, link_attributes: {}, icons: nil)
         validate_direction!(current_direction)
         validate_link_attributes!(link_attributes)
+        validate_icons!(icons) unless icons.nil?
 
         @header_label = header_label
         @header_classes = header_classes
         @href = href
         @direction = current_direction
         @link_attributes = link_attributes
+        @icons = BulmaPhlex.config.icons.sort.merge(icons || {})
       end
 
       def view_template
@@ -81,10 +84,10 @@ module BulmaPhlex
       end
 
       def icon
-        return "fas fa-sort-up" if ascending?
-        return "fas fa-sort-down" if descending?
+        return @icons[:ascending] if ascending?
+        return @icons[:descending] if descending?
 
-        "fas fa-sort"
+        @icons[:inactive]
       end
 
       def validate_direction!(value)
@@ -96,6 +99,10 @@ module BulmaPhlex
 
       def validate_link_attributes!(value)
         raise ArgumentError, "link_attributes must be a Hash" unless value.is_a?(Hash)
+      end
+
+      def validate_icons!(value)
+        raise ArgumentError, "icons must be a Hash" unless value.is_a?(Hash)
       end
     end
 

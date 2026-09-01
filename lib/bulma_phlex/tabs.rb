@@ -18,11 +18,11 @@ module BulmaPhlex
   #         "Profile content goes here"
   #       end
   #
-  #       tabs.tab(id: "settings", title: "Settings", icon: "fas fa-cog") do
+  #       tabs.tab(id: "settings", title: "Settings", icon: "fa-solid fa-gear") do
   #         "Settings content goes here"
   #       end
   #
-  #       tabs.tab(id: "notifications", title: "Notifications", icon: "fas fa-bell") do
+  #       tabs.tab(id: "notifications", title: "Notifications", icon: "fa-solid fa-bell") do
   #         "Notifications content goes here"
   #       end
   #     end
@@ -98,7 +98,7 @@ module BulmaPhlex
     #
     # - `id:` — A unique identifier for the tab, used to link the tab button to its content panel
     # - `title:` — The text label displayed on the tab button
-    # - `icon:` — Optional icon class string (e.g. `"fas fa-cog"`) displayed alongside the title
+    # - `icon:` — Optional icon class string (e.g. `"fa-solid fa-gear"`) displayed alongside the title
     # - `active:` — If `true`, this tab is shown as selected on initial render (default: `false`)
     #
     # Expects a block that renders the content for this tab's panel.

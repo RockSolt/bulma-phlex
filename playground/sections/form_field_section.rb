@@ -37,7 +37,7 @@ module Playground
 
         h3(class: "subtitle is-6 mt-4") { "Icon Left" }
         div(class: "mb-5") do
-          render BulmaPhlex::FormField.new(icon_left: "fas fa-user") do |f|
+          render BulmaPhlex::FormField.new(icon_left: "fa-solid fa-user") do |f|
             f.label "Username"
             f.control { input(type: "text", class: "input", placeholder: "username") }
           end
@@ -45,7 +45,7 @@ module Playground
 
         h3(class: "subtitle is-6 mt-4") { "Icon Right" }
         div(class: "mb-5") do
-          render BulmaPhlex::FormField.new(icon_right: "fas fa-check") do |f|
+          render BulmaPhlex::FormField.new(icon_right: "fa-solid fa-check") do |f|
             f.label "Status"
             f.control { input(type: "text", class: "input", placeholder: "confirmed") }
           end
@@ -53,7 +53,7 @@ module Playground
 
         h3(class: "subtitle is-6 mt-4") { "Icons on Both Sides" }
         div(class: "mb-5") do
-          render BulmaPhlex::FormField.new(icon_left: "fas fa-envelope", icon_right: "fas fa-check",
+          render BulmaPhlex::FormField.new(icon_left: "fa-solid fa-envelope", icon_right: "fa-solid fa-check",
                                            help: "Looks good!") do |f|
             f.label "Email"
             f.control { input(type: "email", class: "input is-success", placeholder: "you@example.com") }
@@ -62,7 +62,7 @@ module Playground
 
         h3(class: "subtitle is-6 mt-4") { "Implicit Control (no field.control call)" }
         div(class: "mb-5") do
-          render BulmaPhlex::FormField.new(icon_left: "fas fa-search") do
+          render BulmaPhlex::FormField.new(icon_left: "fa-solid fa-search") do
             input(type: "text", class: "input", placeholder: "Search…")
           end
         end

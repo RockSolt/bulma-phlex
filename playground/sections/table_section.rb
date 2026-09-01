@@ -57,7 +57,7 @@ module Playground
           render BulmaPhlex::Table.new(USERS) do |table|
             table.column("Name", &:name)
             table.column("Role", &:role)
-            table.conditional_icon("Active", icon_class: "fas fa-check", &:active)
+            table.conditional_icon("Active", icon_class: "fa-solid fa-check", &:active)
           end
         end
 

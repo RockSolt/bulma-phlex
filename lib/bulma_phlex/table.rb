@@ -107,7 +107,8 @@ module BulmaPhlex
     # Adds a column to the table. Can be called multiple times to define all columns.
     #
     # - `header` — The column header text
-    # - `sort` — Optional hash containing `href`, `current_direction`, and `link_attributes` for the generated link
+    # - `sort` — Optional hash containing `href`, `current_direction`, `link_attributes`,
+    #   and `icons` for the generated link
     # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
     #
     # Expects a block that receives each `row` object and returns the cell content.
@@ -133,12 +134,13 @@ module BulmaPhlex
     # Adds a column that displays an icon when the block returns a truthy value. Can be called multiple times.
     #
     # - `header` — The column header text
-    # - `icon_class` — The CSS class(es) for the icon element (default: `"fas fa-check"`)
+    # - `icon_class` — The CSS class(es) for the icon element (default: configured conditional icon)
     # - `**html_attributes` — Additional HTML attributes for each `<td>` cell in this column
     #
     # Expects a block that receives each `row` object and returns a truthy or falsy value.
-    def conditional_icon(header, hidden: false, icon_class: "fas fa-check", sort: nil, **html_attributes, &content)
+    def conditional_icon(header, hidden: false, icon_class: nil, sort: nil, **html_attributes, &content)
       html_attributes[:class] = [html_attributes[:class], "has-text-centered"].compact.join(" ")
+      icon_class ||= BulmaPhlex.config.icons.conditional
 
       column(header, hidden:, sort:, **html_attributes) do |row|
         Icon(icon_class) if content.call(row)

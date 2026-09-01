@@ -9,6 +9,7 @@ This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/ph
 ## Table of Contents
 
 - [Installation](#installation)
+- [Configuration](#configuration)
 - [Usage](#usage)
   - [Breadcrumb](#breadcrumb)
   - [Button](#button)
@@ -77,6 +78,25 @@ This gem requires:
 require "bulma-phlex"
 ```
 
+## Configuration
+
+Icons chosen internally by components can be configured globally. The default icons are Font Awesome 7 solid icons, but you can change them to other icons by providing the appropriate class names.
+
+```ruby
+BulmaPhlex.configure do |config|
+  config.icons.sort = {
+    ascending: "fa-solid fa-arrow-up",
+    descending: "fa-solid fa-arrow-down",
+    inactive: "fa-solid fa-sort"
+  }
+  config.icons.dropdown = "fa-solid fa-chevron-down"
+  config.icons.file_upload = "fa-solid fa-upload"
+  config.icons.conditional = "fa-solid fa-check"
+end
+```
+
+Sortable columns also accept an `icons:` hash for a per-column override. Dropdowns accept `icon:` and conditional table columns accept `icon_class:`.
+
 ## Usage
 
 Use the Phlex components in your Rails views or any Ruby application that supports Phlex components.
@@ -102,7 +122,7 @@ Renders a [Bulma button](https://bulma.io/documentation/elements/button/) elemen
 The component generates a `<button>` by default. Pass an `href:` attribute to generate an `<a>` element instead. Pass `input: "submit"` (or `"button"` or `"reset"`) to generate an `<input>` element.
 
 ```ruby
-BulmaPhlex::Button("Like", color: "primary", size: "large", icon: "fas fa-thumbs-up")
+BulmaPhlex::Button("Like", color: "primary", size: "large", icon: "fa-solid fa-thumbs-up")
 BulmaPhlex::Button(href: "/profile") { "View Profile" }
 BulmaPhlex::Button(input: "submit", color: "success")
 ```
@@ -121,7 +141,7 @@ render BulmaPhlex::Card.new do |card|
     "This is some card content"
   end
   card.footer_link("View", "/view", target: "_blank")
-  card.footer_link("Edit", "/edit", icon: "fas fa-edit")
+  card.footer_link("Edit", "/edit", icon: "fa-solid fa-pen-to-square")
 end
 ```
 
@@ -226,9 +246,9 @@ Renders a [Bulma icon](https://bulma.io/documentation/elements/icon/) element. S
 When text is rendered alongside the icon, Bulma allows the text and icon to wrap by default. Pass `nowrap: true` when they form a compact UI unit that should stay together, such as a sortable table heading, toolbar action, button label, or navigation item. Leave it unset when the text should be allowed to wrap in a constrained container.
 
 ```ruby
-render BulmaPhlex::Icon.new("fas fa-user")
-render BulmaPhlex::Icon.new("fas fa-home", size: :large, color: :primary, text_right: "Home")
-render BulmaPhlex::Icon.new("fas fa-sort", text_left: "Revenue", nowrap: true)
+render BulmaPhlex::Icon.new("fa-solid fa-user")
+render BulmaPhlex::Icon.new("fa-solid fa-home", size: :large, color: :primary, text_right: "Home")
+render BulmaPhlex::Icon.new("fa-solid fa-sort", text_left: "Revenue", nowrap: true)
 ```
 
 ### Image
@@ -420,7 +440,7 @@ end
 In addition to `column`, two specialized column methods are available:
 
 - `date_column(header, format: "%Y-%m-%d")` — formats the value with `strftime`
-- `conditional_icon(header, icon_class: "fas fa-check")` — shows an icon when the block returns truthy
+- `conditional_icon(header, icon_class:)` — shows the configured conditional icon, or the supplied icon, when the block returns truthy
 
 #### Sortable columns
 
@@ -477,7 +497,7 @@ Renders a [Bulma tabs](https://bulma.io/documentation/components/tabs/) componen
 ```ruby
 render BulmaPhlex::Tabs.new(boxed: true) do |tabs|
   tabs.tab(id: "profile", title: "Profile", active: true) { "Profile content" }
-  tabs.tab(id: "settings", title: "Settings", icon: "fas fa-cog") { "Settings content" }
+  tabs.tab(id: "settings", title: "Settings", icon: "fa-solid fa-gear") { "Settings content" }
 end
 ```
 

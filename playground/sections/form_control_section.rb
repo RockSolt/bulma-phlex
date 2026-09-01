@@ -21,21 +21,21 @@ module Playground
 
         h3(class: "subtitle is-5") { "Icon Left" }
         div(class: "mb-5") do
-          render BulmaPhlex::FormControl.new(icon_left: "fas fa-envelope") do
+          render BulmaPhlex::FormControl.new(icon_left: "fa-solid fa-envelope") do
             input(class: "input", type: "email", placeholder: "e.g. alex@example.com")
           end
         end
 
         h3(class: "subtitle is-5") { "Icon Right" }
         div(class: "mb-5") do
-          render BulmaPhlex::FormControl.new(icon_right: "fas fa-check") do
+          render BulmaPhlex::FormControl.new(icon_right: "fa-solid fa-check") do
             input(class: "input", type: "text", placeholder: "Validated field")
           end
         end
 
         h3(class: "subtitle is-5") { "Icons Left and Right" }
         div(class: "mb-5") do
-          render BulmaPhlex::FormControl.new(icon_left: "fas fa-user", icon_right: "fas fa-check") do
+          render BulmaPhlex::FormControl.new(icon_left: "fa-solid fa-user", icon_right: "fa-solid fa-check") do
             input(class: "input", type: "text", placeholder: "Username")
           end
         end

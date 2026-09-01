@@ -21,8 +21,8 @@ module BulmaPhlex
     # **Parameters**
     #
     # - `help` — Optional help text displayed below the input
-    # - `icon_left` — Icon class for an icon to the left of the input (e.g. `"fas fa-user"`)
-    # - `icon_right` — Icon class for an icon to the right of the input (e.g. `"fas fa-check"`)
+    # - `icon_left` — Icon class for an icon to the left of the input (e.g. `"fa-solid fa-user"`)
+    # - `icon_right` — Icon class for an icon to the right of the input (e.g. `"fa-solid fa-check"`)
     # - `column` — If `true`, makes the field a column; a size string (e.g. `"half"`) sets the size for
     #   all breakpoints; a hash (e.g. `{ mobile: "full", desktop: "half" }`) sets responsive sizes
     # - `grid` — If `true`, makes the field a grid cell; a size string sets the cell size

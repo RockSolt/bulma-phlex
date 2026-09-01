@@ -99,15 +99,15 @@ module Playground
         h3(class: "subtitle is-5") { "With Icons" }
         div(class: "mb-5") do
           render BulmaPhlex::Tabs.new do |tabs|
-            tabs.tab(id: "home", title: "Home", icon: "fas fa-home", active: true) do
+            tabs.tab(id: "home", title: "Home", icon: "fa-solid fa-home", active: true) do
               p { "Welcome home! This tab has an icon." }
             end
 
-            tabs.tab(id: "reports", title: "Reports", icon: "fas fa-chart-line") do
+            tabs.tab(id: "reports", title: "Reports", icon: "fa-solid fa-chart-line") do
               p { "Reports and analytics content." }
             end
 
-            tabs.tab(id: "tools", title: "Tools", icon: "fas fa-cog") do
+            tabs.tab(id: "tools", title: "Tools", icon: "fa-solid fa-gear") do
               p { "Tool configuration lives here." }
             end
           end

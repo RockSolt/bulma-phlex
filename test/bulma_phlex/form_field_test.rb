@@ -106,7 +106,7 @@ module BulmaPhlex
     end
 
     def test_icon_on_the_left
-      component = FormField.new(icon_left: "fas fa-user")
+      component = FormField.new(icon_left: "fa-solid fa-user")
       output = component.call do |field|
         field.control { input_builder }
       end
@@ -115,7 +115,7 @@ module BulmaPhlex
           <div class="control has-icons-left">
             <input name="test_input" type="text" />
             <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
+              <i class="fa-solid fa-user"></i>
             </span>
           </div>
         </div>
@@ -125,7 +125,7 @@ module BulmaPhlex
     end
 
     def test_icon_on_the_right
-      component = FormField.new(icon_right: "fas fa-user")
+      component = FormField.new(icon_right: "fa-solid fa-user")
       output = component.call do |field|
         field.control { input_builder }
       end
@@ -134,7 +134,7 @@ module BulmaPhlex
           <div class="control has-icons-right">
             <input name="test_input" type="text" />
             <span class="icon is-small is-right">
-              <i class="fas fa-user"></i>
+              <i class="fa-solid fa-user"></i>
             </span>
           </div>
         </div>
@@ -144,7 +144,7 @@ module BulmaPhlex
     end
 
     def test_icons_on_both_sides
-      component = FormField.new(icon_left: "fas fa-user", icon_right: "fas fa-check")
+      component = FormField.new(icon_left: "fa-solid fa-user", icon_right: "fa-solid fa-check")
       output = component.call do |field|
         field.control { input_builder }
       end
@@ -153,10 +153,10 @@ module BulmaPhlex
           <div class="control has-icons-left has-icons-right">
             <input name="test_input" type="text" />
             <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
+              <i class="fa-solid fa-user"></i>
             </span>
             <span class="icon is-small is-right">
-              <i class="fas fa-check"></i>
+              <i class="fa-solid fa-check"></i>
             </span>
           </div>
         </div>

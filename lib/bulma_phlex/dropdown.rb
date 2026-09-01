@@ -23,19 +23,19 @@ module BulmaPhlex
     # - `label` — The text displayed in the dropdown trigger button
     # - `click` — Stimulus controller name for toggling; set to `false` for hover mode instead
     # - `alignment` — Alignment of the dropdown menu: `"left"` (default), `"right"`, or `"up"`
-    # - `icon` — Icon class for the trigger button (default: `"fas fa-angle-down"`)
+    # - `icon` — Icon class for the trigger button (default: configured dropdown icon)
     # - `**html_attributes` — Additional HTML attributes for the outermost dropdown element
-    def self.new(label, click: "bulma-phlex--dropdown", alignment: "left", icon: "fas fa-angle-down",
+    def self.new(label, click: "bulma-phlex--dropdown", alignment: "left", icon: nil,
                  **html_attributes)
       super
     end
 
-    def initialize(label, click: "bulma-phlex--dropdown", alignment: "left", icon: "fas fa-angle-down",
+    def initialize(label, click: "bulma-phlex--dropdown", alignment: "left", icon: nil,
                    **html_attributes)
       @label = label
       @click = click
       @alignment = alignment
-      @icon = icon
+      @icon = icon || BulmaPhlex.config.icons.dropdown
       @html_attributes = html_attributes
     end
 
