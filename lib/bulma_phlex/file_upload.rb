@@ -25,6 +25,7 @@ module BulmaPhlex
     # - `align` — Aligns the file input: `"right"` or `"centered"`
     # - `fullwidth` — If `true`, makes the file input full width
     # - `boxed` — If `true`, makes the file input boxed
+    # - `icon` — Icon class for the upload control (default: configured file upload icon)
     # - `data_attributes_builder` — A custom builder for the data attributes used for Stimulus integration;
     #   defaults to a builder with the controller name `"bulma-phlex--file-input-display"`
     def self.new(color: nil,
@@ -33,6 +34,7 @@ module BulmaPhlex
                  align: nil,
                  fullwidth: false,
                  boxed: false,
+                 icon: nil,
                  data_attributes_builder: nil)
       super
     end
@@ -43,6 +45,7 @@ module BulmaPhlex
                    align: nil,
                    fullwidth: false,
                    boxed: false,
+                   icon: nil,
                    data_attributes_builder: nil)
       @color = color
       @size = size
@@ -50,6 +53,7 @@ module BulmaPhlex
       @align = align
       @fullwidth = fullwidth
       @boxed = boxed
+      @icon = icon || BulmaPhlex.config.icons.file_upload
 
       return unless @name
 
@@ -63,7 +67,7 @@ module BulmaPhlex
           yield(@data_attributes_builder&.for_file_input)
           span(class: "file-cta") do
             span(class: "file-icon") do
-              i(class: "fas fa-upload")
+              i(class: @icon)
             end
             span(class: "file-label") { plain " Choose a file… " }
           end

@@ -14,4 +14,14 @@ loader.setup # ready!
 # Bulma-styled applications with a Ruby-focused components.
 module BulmaPhlex
   extend Phlex::Kit
+
+  class << self
+    def config
+      @config ||= Configuration.new
+    end
+
+    def configure
+      yield config
+    end
+  end
 end

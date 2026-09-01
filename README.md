@@ -9,6 +9,7 @@ This gem provides a set of ready-to-use [Phlex](https://github.com/phlex-ruby/ph
 ## Table of Contents
 
 - [Installation](#installation)
+- [Configuration](#configuration)
 - [Usage](#usage)
   - [Breadcrumb](#breadcrumb)
   - [Button](#button)
@@ -76,6 +77,25 @@ This gem requires:
 ```ruby
 require "bulma-phlex"
 ```
+
+## Configuration
+
+Icons chosen internally by components can be configured globally. The default icons are Font Awesome 7 solid icons, but you can change them to other icons by providing the appropriate class names.
+
+```ruby
+BulmaPhlex.configure do |config|
+  config.icons.sort = {
+    ascending: "fa-solid fa-arrow-up",
+    descending: "fa-solid fa-arrow-down",
+    inactive: "fa-solid fa-sort"
+  }
+  config.icons.dropdown = "fa-solid fa-chevron-down"
+  config.icons.file_upload = "fa-solid fa-upload"
+  config.icons.conditional = "fa-solid fa-check"
+end
+```
+
+Sortable columns also accept an `icons:` hash for a per-column override. Dropdowns accept `icon:` and conditional table columns accept `icon_class:`.
 
 ## Usage
 
@@ -420,7 +440,7 @@ end
 In addition to `column`, two specialized column methods are available:
 
 - `date_column(header, format: "%Y-%m-%d")` — formats the value with `strftime`
-- `conditional_icon(header, icon_class: "fas fa-check")` — shows an icon when the block returns truthy
+- `conditional_icon(header, icon_class:)` — shows the configured conditional icon, or the supplied icon, when the block returns truthy
 
 #### Sortable columns
 
