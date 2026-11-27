@@ -29,6 +29,19 @@ module BulmaPhlex
             class: @active ? "" : "is-hidden",
             data: @data_attributes.call(@id), &)
       end
+
+      # This method is new in Phlex 3.0 and is used to handle a block, which is no longer valid at initialization
+      # When this library requires Phlex 3.0, this method can be removed
+      #
+      # https://github.com/yippee-fun/phlex/pull/1104
+      unless method_defined?(:with_content)
+        def with_content(&block)
+          raise(Phlex::ArgumentError, "with_content requires a block.") unless block
+
+          @_content_block = block
+          self
+        end
+      end
     end
   end
 end

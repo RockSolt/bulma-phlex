@@ -49,10 +49,10 @@ module BulmaPhlex
     end
 
     def test_with_body_passed_into_block
-      component = BulmaPhlex::Hero.new(color: "info", size: "medium") do |hero|
+      component = BulmaPhlex::Hero.new(color: "info", size: "medium")
+      result = component.call do |hero|
         hero.p(class: "title") { "The Title" }
       end
-      result = component.call
 
       assert_html_equal <<~HTML, result
         <section class="hero is-info is-medium">
