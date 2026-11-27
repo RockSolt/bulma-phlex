@@ -7,9 +7,9 @@ module BulmaPhlex
     include TagOutputAssertions
 
     def test_message
-      component = Message.new("The Header") { "The content." }
+      component = Message.new("The Header")
 
-      assert_html_equal <<~HTML, component.call
+      assert_html_equal(<<~HTML, component.call { "The content." })
         <article class="message">
           <div class="message-header">
             <p>The Header</p>
@@ -22,9 +22,9 @@ module BulmaPhlex
     end
 
     def test_with_delete
-      component = Message.new("The Header", delete: true) { "The content." }
+      component = Message.new("The Header", delete: true)
 
-      assert_html_equal <<~HTML, component.call
+      assert_html_equal(<<~HTML, component.call { "The content." })
         <article class="message">
           <div class="message-header">
             <p>The Header</p>
@@ -39,9 +39,9 @@ module BulmaPhlex
 
     def test_with_delete_hash
       delete = { data: { controller: "delete-me" } }
-      component = Message.new("The Header", delete:) { "The content." }
+      component = Message.new("The Header", delete:)
 
-      assert_html_equal <<~HTML, component.call
+      assert_html_equal(<<~HTML, component.call { "The content." })
         <article class="message">
           <div class="message-header">
             <p>The Header</p>
@@ -55,9 +55,9 @@ module BulmaPhlex
     end
 
     def test_with_color
-      component = Message.new("The Header", color: "info") { "The informational content." }
+      component = Message.new("The Header", color: "info")
 
-      assert_html_equal <<~HTML, component.call
+      assert_html_equal(<<~HTML, component.call { "The informational content." })
         <article class="message is-info">
           <div class="message-header">
             <p>The Header</p>
@@ -70,9 +70,9 @@ module BulmaPhlex
     end
 
     def test_with_size
-      component = Message.new("The Header", size: "large") { "The large content." }
+      component = Message.new("The Header", size: "large")
 
-      assert_html_equal <<~HTML, component.call
+      assert_html_equal(<<~HTML, component.call { "The large content." })
         <article class="message is-large">
           <div class="message-header">
             <p>The Header</p>
@@ -85,9 +85,9 @@ module BulmaPhlex
     end
 
     def test_without_header
-      component = Message.new { "There is no header." }
+      component = Message.new
 
-      assert_html_equal <<~HTML, component.call
+      assert_html_equal(<<~HTML, component.call { "There is no header." })
         <article class="message">
           <div class="message-body">
             There is no header.
@@ -97,9 +97,9 @@ module BulmaPhlex
     end
 
     def test_with_additional_attributes
-      component = Message.new("With Attributes", class: "important", data: { value: "test" }) { "Important content." }
+      component = Message.new("With Attributes", class: "important", data: { value: "test" })
 
-      assert_html_equal <<~HTML, component.call
+      assert_html_equal(<<~HTML, component.call { "Important content." })
         <article class="message important" data-value="test">
           <div class="message-header">
             <p>With Attributes</p>
@@ -129,9 +129,9 @@ module BulmaPhlex
     end
 
     def test_by_default_has_deleteable_controller
-      component = CustomMessage.new("Custom") { "With stimulus controller." }
+      component = CustomMessage.new("Custom")
 
-      assert_html_equal <<~HTML, component.call
+      assert_html_equal(<<~HTML, component.call { "With stimulus controller." })
         <article class="message" data-controller="deleteable">
           <div class="message-header">
             <p>Custom</p>
@@ -145,9 +145,9 @@ module BulmaPhlex
     end
 
     def test_can_skip_delete_button
-      component = CustomMessage.new("The Header", delete: false) { "The content." }
+      component = CustomMessage.new("The Header", delete: false)
 
-      assert_html_equal <<~HTML, component.call
+      assert_html_equal(<<~HTML, component.call { "The content." })
         <article class="message">
           <div class="message-header">
             <p>The Header</p>

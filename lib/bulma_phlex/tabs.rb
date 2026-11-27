@@ -106,8 +106,8 @@ module BulmaPhlex
       @tabs << TabComponents::Tab.new(id:, title:, icon:, active:,
                                       data_attributes_proc: @data_attributes_builder.method(:for_tab))
       @contents << TabComponents::Content.new(id:, active:,
-                                              data_attributes_proc: @data_attributes_builder.method(:for_content),
-                                              &)
+                                              data_attributes_proc: @data_attributes_builder.method(:for_content))
+                                         .with_content(&)
     end
 
     # Sets optional content to render to the right of the tab bar (e.g. a button or action link).
